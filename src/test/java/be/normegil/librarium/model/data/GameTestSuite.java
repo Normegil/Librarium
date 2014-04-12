@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         GameTestSafety.class,
         GameTestImmutable.class,
-        GameTest.class
+        GameTest.class,
+        GameTestXmlSupport.class
 })
 public class GameTestSuite {
 }

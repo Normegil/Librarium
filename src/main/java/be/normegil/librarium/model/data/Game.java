@@ -1,12 +1,27 @@
 package be.normegil.librarium.model.data;
 
+import be.normegil.librarium.WarningTypes;
 import org.apache.commons.lang3.Validate;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.NONE)
 public class Game {
 
-    private Long id;
+    @XmlAttribute
+    private final Long id;
+    @XmlElement
+    private final String name;
 
-    private String name;
+    /**
+     * For JAXB
+     */
+    @SuppressWarnings(WarningTypes.UNUSED)
+    private Game() {
+        this.id = null;
+        this.name = null;
+    }
 
     public Game(final Long id, final String name) {
         Validate.notNull(id);
@@ -32,12 +47,10 @@ public class Game {
         return name;
     }
 
-    public Game withName(String name) {
+    public Game withName(final String name) {
         Validate.notNull(name);
         Validate.isTrue(!name.isEmpty());
 
-        Game game = new Game(this);
-        game.name = name;
-        return game;
+        return new Game(getId(), name);
     }
 }
