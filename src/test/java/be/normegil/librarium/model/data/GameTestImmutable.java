@@ -3,7 +3,7 @@ package be.normegil.librarium.model.data;
 import org.junit.Before;
 import org.junit.Test;
 
-import static be.normegil.librarium.AssertHelper.assertDifferentInstance;
+import static org.junit.Assert.assertNotSame;
 
 public class GameTestImmutable {
 
@@ -20,6 +20,6 @@ public class GameTestImmutable {
     @Test
     public void testWithName() throws Exception {
         Game newGame = game.withName(ALTERNATIVE_NAME);
-        assertDifferentInstance(game, newGame);
+        assertNotSame(game, newGame);
     }
 }
