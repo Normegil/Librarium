@@ -1,5 +1,6 @@
 package be.normegil.librarium.model.data;
 
+import be.normegil.librarium.annotation.XSD;
 import org.apache.commons.lang3.Validate;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
 
 @Entity
+@XSD(path = "game.xsd")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Game {
@@ -23,7 +25,7 @@ public class Game {
     /**
      * For JAXB
      */
-    protected Game() {
+    public Game() {
         this.id = null;
         this.name = null;
     }
