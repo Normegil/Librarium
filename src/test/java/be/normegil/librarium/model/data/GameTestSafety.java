@@ -24,20 +24,15 @@ public class GameTestSafety {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testCopyConstructor_NullParameter() throws Exception {
-        new Game(null);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testWithName_NullParameter() throws Exception {
+    public void testSetName_NullParameter() throws Exception {
         Game game = new Game(DEFAULT_ID, DEFAULT_NAME);
-        game.withName(null);
+        game.setName(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testWithName_EmptyParameter() throws Exception {
+    public void testSetName_EmptyParameter() throws Exception {
         Game game = new Game(DEFAULT_ID, DEFAULT_NAME);
-        game.withName(EMPTY_NAME);
+        game.setName(EMPTY_NAME);
     }
 
 }

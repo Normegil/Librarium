@@ -6,9 +6,9 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         GameTestSafety.class,
-        GameTestImmutable.class,
         GameTest.class,
-        GameTestXmlSupport.class
+        GameTestXmlSupport.class,
+        GameTestDatabaseSupport.class
 })
 public class GameTestSuite {
 }

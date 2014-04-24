@@ -1,32 +1,42 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.WarningTypes;
 import org.apache.commons.lang3.Validate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
 
+@Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 public class Game {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @XmlAttribute
-    private final Long id;
+    private Long id;
     @XmlElement
-    private final String name;
+    private String name;
 
     /**
      * For JAXB
      */
-    @SuppressWarnings(WarningTypes.UNUSED)
-    private Game() {
+    protected Game() {
         this.id = null;
         this.name = null;
     }
 
+    public Game(final String name) {
+        validateName(name);
+
+        this.name = name;
+    }
+
     public Game(final Long id, final String name) {
         Validate.notNull(id);
-        Validate.notNull(name);
-        Validate.isTrue(!name.isEmpty());
+        validateName(name);
 
         this.id = id;
         this.name = name;
@@ -40,17 +50,25 @@ public class Game {
     }
 
     public Long getId() {
+        Validate.notNull(id);
+
         return id;
     }
 
     public String getName() {
+        validateName(name);
+
         return name;
     }
 
-    public Game withName(final String name) {
+    public void setName(String name) {
+        validateName(name);
+
+        this.name = name;
+    }
+
+    private void validateName(final String name) {
         Validate.notNull(name);
         Validate.isTrue(!name.isEmpty());
-
-        return new Game(getId(), name);
     }
 }

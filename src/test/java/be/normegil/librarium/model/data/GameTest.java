@@ -19,7 +19,7 @@ public class GameTest {
 
     @Test
     public void testWithName() throws Exception {
-        Game newGame = game.withName(ALTERNATIVE_NAME);
-        assertEquals(ALTERNATIVE_NAME, newGame.getName());
+        game.setName(ALTERNATIVE_NAME);
+        assertEquals(ALTERNATIVE_NAME, game.getName());
     }
 }

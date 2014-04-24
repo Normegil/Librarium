@@ -1,6 +1,6 @@
 package be.normegil.librarium;
 
-public class ApplicationProperty {
+public class ApplicationProperties {
 
     public static final String ENCOODING = "UTF-8";
 
