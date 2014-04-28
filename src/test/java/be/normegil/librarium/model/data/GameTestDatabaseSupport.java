@@ -19,25 +19,24 @@ public class GameTestDatabaseSupport {
     public static final String ALTERNATIVE_NAME = "AlternativeName";
     private EntityManager entityManager;
     private EntityManagerFactory entityManagerFactory;
+    private Game game;
 
     @Before
     public void setUp() throws Exception {
         entityManagerFactory = Persistence.createEntityManagerFactory(TestSpecificProperties.PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
+
+        game = insertGameInDatabase();
     }
 
     @Test
     public void testCreate() throws Exception {
-        Game game = insertGameInDatabase();
-
         Game loadedGame = entityManager.find(Game.class, game.getId());
         assertGamePropertiesEquals(game, loadedGame);
     }
 
     @Test
     public void testUpdate() throws Exception {
-        Game game = insertGameInDatabase();
-
         EntityTransaction transaction = entityManager.getTransaction();
         Game loadedGame = entityManager.find(Game.class, game.getId());
         transaction.begin();
@@ -50,7 +49,7 @@ public class GameTestDatabaseSupport {
 
     @Test
     public void testDelete() throws Exception {
-        Game game = insertGameInDatabase();
+
 
         entityManager.remove(game);
         Long idGame = game.getId();

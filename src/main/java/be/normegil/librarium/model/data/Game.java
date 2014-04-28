@@ -3,13 +3,16 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.annotation.XSD;
 import org.apache.commons.lang3.Validate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 
+/* @NamedQueries(
+        @NamedQuery(name = "Game.getAll",
+                query = "select Game from Game")
+) */
+
 @Entity
+@Table(name = "GAME")
 @XSD(path = "game.xsd")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -17,9 +20,11 @@ public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID")
     @XmlAttribute
     private Long id;
     @XmlElement
+    @Column(name = "NAME")
     private String name;
 
     /**
@@ -72,5 +77,13 @@ public class Game {
     private void validateName(final String name) {
         Validate.notNull(name);
         Validate.isTrue(!name.isEmpty());
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
