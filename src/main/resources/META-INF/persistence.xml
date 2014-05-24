@@ -2,6 +2,6 @@
 <persistence version="2.0"
              xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="MainPU" transaction-type="JTA">
-        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/PostgreSQLDSDS</jta-data-source>
     </persistence-unit>
 </persistence>

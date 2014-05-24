@@ -8,7 +8,7 @@ import java.net.URL;
 
 import static org.junit.Assert.assertEquals;
 
-public class XSDUtilTest {
+public class UTXSDUtil {
 
     private XSDUtil xsdUtil;
 

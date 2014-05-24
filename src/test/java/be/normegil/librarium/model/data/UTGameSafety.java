@@ -2,7 +2,7 @@ package be.normegil.librarium.model.data;
 
 import org.junit.Test;
 
-public class GameTestSafety {
+public class UTGameSafety {
 
     public static final long DEFAULT_ID = 0L;
     public static final String DEFAULT_NAME = "Name";

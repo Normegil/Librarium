@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.dao;
 
-import be.normegil.librarium.TestSpecificProperties;
+import be.normegil.librarium.SpecificTestProperties;
 import be.normegil.librarium.model.data.Game;
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +15,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.*;
 
-public class GameDatabaseDAOTest {
+public class UTGameDatabaseDAO {
 
     public static final String NAME = "GameName";
     public static final String ALTERNATIVE_NAME = "AlternativeName";
@@ -27,7 +27,7 @@ public class GameDatabaseDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        entityManagerFactory = Persistence.createEntityManagerFactory(TestSpecificProperties.PERSISTENCE_UNIT_NAME);
+        entityManagerFactory = Persistence.createEntityManagerFactory(SpecificTestProperties.PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
 
         game = insertGameInDatabase();
@@ -54,7 +54,7 @@ public class GameDatabaseDAOTest {
         Collection<Game> games = new ArrayList<Game>();
         games.add(game);
         Collection<Game> allGames = dao.getAll();
-        assertTrue("Games Definied["+games+"]\nGames Loaded["+allGames+"]", allGames.containsAll(games));
+        assertTrue("Games Definied[" + games + "]\nGames Loaded[" + allGames + "]", allGames.containsAll(games));
     }
 
     @Test

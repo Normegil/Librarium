@@ -57,8 +57,6 @@ public class Game {
     }
 
     public Long getId() {
-        Validate.notNull(id);
-
         return id;
     }
 
@@ -77,6 +75,23 @@ public class Game {
     private void validateName(final String name) {
         Validate.notNull(name);
         Validate.isTrue(!name.isEmpty());
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Game game = (Game) o;
+
+        if (!name.equals(game.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     @Override

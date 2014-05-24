@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.dao;
 
-import be.normegil.librarium.TestSpecificProperties;
+import be.normegil.librarium.SpecificTestProperties;
 import be.normegil.librarium.model.data.Game;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
 
 import static org.junit.Assert.assertNull;
 
-public class GameDatabaseDAOTestSafety {
+public class UTGameDatabaseDAO_Safety {
 
     public static final String NAME = "GameName";
     private EntityManager entityManager;
@@ -21,7 +21,7 @@ public class GameDatabaseDAOTestSafety {
 
     @Before
     public void setUp() throws Exception {
-        entityManagerFactory = Persistence.createEntityManagerFactory(TestSpecificProperties.PERSISTENCE_UNIT_NAME);
+        entityManagerFactory = Persistence.createEntityManagerFactory(SpecificTestProperties.PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
 
         insertGameInDatabase();

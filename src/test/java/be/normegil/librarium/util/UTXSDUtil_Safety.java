@@ -3,7 +3,7 @@ package be.normegil.librarium.util;
 import org.junit.Before;
 import org.junit.Test;
 
-public class XSDUtilTestSafety {
+public class UTXSDUtil_Safety {
 
     private XSDUtil xsdUtil;
 

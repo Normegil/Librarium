@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.TestSpecificProperties;
+import be.normegil.librarium.SpecificTestProperties;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import javax.persistence.Persistence;
 import static be.normegil.librarium.model.data.GameTestHelper.assertGamePropertiesEquals;
 import static org.junit.Assert.assertNull;
 
-public class GameTestDatabaseSupport {
+public class UTGame_DatabaseSupport {
 
     public static final String NAME = "GameName";
     public static final String ALTERNATIVE_NAME = "AlternativeName";
@@ -23,7 +23,7 @@ public class GameTestDatabaseSupport {
 
     @Before
     public void setUp() throws Exception {
-        entityManagerFactory = Persistence.createEntityManagerFactory(TestSpecificProperties.PERSISTENCE_UNIT_NAME);
+        entityManagerFactory = Persistence.createEntityManagerFactory(SpecificTestProperties.PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
 
         game = insertGameInDatabase();

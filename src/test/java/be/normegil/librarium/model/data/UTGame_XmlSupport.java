@@ -18,7 +18,7 @@ import java.io.InputStream;
 
 import static be.normegil.librarium.model.data.GameTestHelper.assertGamePropertiesEquals;
 
-public class GameTestXmlSupport {
+public class UTGame_XmlSupport {
 
     public static final String DEFAULT_NAME = "DefaultName";
     public static final long DEFAULT_ID = 0L;
@@ -48,7 +48,7 @@ public class GameTestXmlSupport {
 
     @Test
     public void testXmlMarshaller() throws Exception {
-        File temporaryFile = File.createTempFile("GameTestXmlSupport-Marshalling", ".xml");
+        File temporaryFile = File.createTempFile("GameXmlSupport-Marshalling", ".xml");
         marshaller.marshal(game, temporaryFile);
         Game toTestGame = (Game) unmarshaller.unmarshal(temporaryFile);
         assertGamePropertiesEquals(game, toTestGame);
@@ -67,7 +67,7 @@ public class GameTestXmlSupport {
         XSDUtil xsdUtil = new XSDUtil();
         Schema schema = schemaFactory.newSchema(xsdUtil.getSchema(Game.class));
 
-        File temporaryFile = File.createTempFile("GameTestXmlSupport-Marshalling", ".xml");
+        File temporaryFile = File.createTempFile("GameXmlSupport-Marshalling", ".xml");
         marshaller.setSchema(schema);
         marshaller.setEventHandler(new UnitTestXMLValidationEventHandler());
         marshaller.marshal(game, temporaryFile);

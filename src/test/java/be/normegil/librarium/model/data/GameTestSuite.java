@@ -5,10 +5,10 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        GameTestSafety.class,
+        UTGameSafety.class,
         GameTest.class,
-        GameTestXmlSupport.class,
-        GameTestDatabaseSupport.class
+        UTGame_XmlSupport.class,
+        UTGame_DatabaseSupport.class
 })
 public class GameTestSuite {
 }

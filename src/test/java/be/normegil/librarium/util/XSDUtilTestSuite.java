@@ -5,8 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        XSDUtilTestSafety.class,
-        XSDUtilTest.class
+        UTXSDUtil_Safety.class,
+        UTXSDUtil.class
 })
 public class XSDUtilTestSuite {
 }
