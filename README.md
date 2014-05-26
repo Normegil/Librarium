@@ -14,7 +14,7 @@ To get the code, use following command :
 
 >  git clone git@github.com:Normegil/Librarium.git
   
-It should create a new folder called "Librarium".
+It should create a new folder called **Librarium**.
 
 ### Setup
 
@@ -22,7 +22,7 @@ Generate the war file
 
 > mvn clean install
 
-You will find the ".war" file in the "target" folder. 
+You will find the *.war* file in the **target** folder. 
 You just need to  give it to your server and launch it.
 
 ### Useful links
