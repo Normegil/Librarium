@@ -37,7 +37,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(Arquillian.class)
 public class UTGameREST_RESTReponses {
 
-    public static final String SERVICE_PATH = "rest/games";
+    public static final String SERVICE_PATH = ApplicationProperties.BASE_PATH + "/games";
     public static final String GET_ALL = "/all";
     public static final String NAME = "TestName";
 
