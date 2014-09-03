@@ -5,7 +5,7 @@
 
     <container qualifier="wildfly-embedded">
         <configuration>
-            <!-- <property name="managementPort">26345</property> -->
+            <!-- <property familyName="managementPort">26345</property> -->
         </configuration>
     </container>
 

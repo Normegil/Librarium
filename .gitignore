@@ -4,3 +4,13 @@ target/
 #IntelliJ Idea
 .idea/
 *.iml
+
+#Conflict Files
+*.orig
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+
+#Temporary Files
+*.swp

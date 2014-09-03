@@ -1,6 +1,6 @@
 package be.normegil.librarium.rest;
 
-import be.normegil.librarium.model.data.Game;
+import be.normegil.librarium.model.data.game.Game;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class UTGameREST_Safety {
 
     @Test
     public void testUpdateGame_NullName() throws Exception {
-        Game game = new Game(NAME);
+        Game game = Game.builder().setTitle(NAME).build();
         Response response = gameREST.updateGame(null, game);
         assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
     }

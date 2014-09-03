@@ -11,7 +11,7 @@ public class XSDUtil {
     public URL getSchema(Class clazz) {
         XSD xsdAnnotation = (XSD) clazz.getAnnotation(XSD.class);
         if (xsdAnnotation != null) {
-            String path = xsdAnnotation.path();
+            String path = xsdAnnotation.value();
             return getUrlToXSD(clazz, path);
         } else {
             throw new IllegalArgumentException(clazz.getCanonicalName() + " doesn't contain any @XSD Annotation");

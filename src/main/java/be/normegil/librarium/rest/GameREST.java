@@ -1,7 +1,7 @@
 package be.normegil.librarium.rest;
 
 import be.normegil.librarium.model.dao.GameDAO;
-import be.normegil.librarium.model.data.Game;
+import be.normegil.librarium.model.data.game.Game;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -14,115 +14,115 @@ import java.util.Collection;
 @Path("/games")
 public class GameREST {
 
-    public static final String ERROR_MESSAGE = "Error while %s game";
-    
-    @Inject
-    private Logger log;
+	public static final String ERROR_MESSAGE = "Error while %s game";
 
-    private GameDAO gameDAO;
+	@Inject
+	private Logger log;
 
-    @GET
-    @Path("/all")
-    @Produces({"application/json", "application/xml"})
-    public Response getGamesList() {
-        try {
-            Collection<Game> games = gameDAO.getAll();
-            GenericEntity<Collection<Game>> entity = new GenericEntity<Collection<Game>>(games) {
-            };
-            return Response.ok(entity).build();
-        } catch (Exception e) {
-            log.error(String.format(ERROR_MESSAGE, "getting all"), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+	private GameDAO gameDAO;
 
-    @GET
-    @Path("{ID}")
-    @Produces({"application/json", "application/xml"})
-    public Response getGame(@PathParam("ID") Long id) {
-        try {
-            if (id == null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+	@GET
+	@Path("/all")
+	@Produces({"application/json", "application/xml"})
+	public Response getGamesList() {
+		try {
+			Collection<Game> games = gameDAO.getAll();
+			GenericEntity<Collection<Game>> entity = new GenericEntity<Collection<Game>>(games) {
+			};
+			return Response.ok(entity).build();
+		} catch (Exception e) {
+			log.error(String.format(ERROR_MESSAGE, "getting all"), e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 
-            Game game = gameDAO.get(id);
-            if (game == null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            } else {
-                return Response.ok(game).build();
-            }
-        } catch (Exception e) {
-            log.error(String.format(ERROR_MESSAGE, "getting"), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+	@GET
+	@Path("{ID}")
+	@Produces({"application/json", "application/xml"})
+	public Response getGame(@PathParam("ID") Long id) {
+		try {
+			if (id == null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-    @PUT
-    @Consumes({"application/json", "application/xml"})
-    public Response createGame(Game game) {
-        try {
-            if (game == null || game.getId() != null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+			Game game = gameDAO.get(id);
+			if (game == null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			} else {
+				return Response.ok(game).build();
+			}
+		} catch (Exception e) {
+			log.error(String.format(ERROR_MESSAGE, "getting"), e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 
-            gameDAO.save(game);
-            return Response.ok().build();
-        } catch (Exception e) {
-            log.error(String.format(ERROR_MESSAGE, "creating"), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+	@PUT
+	@Consumes({"application/json", "application/xml"})
+	public Response createGame(Game game) {
+		try {
+			if (game == null || game.getId() != null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-    @POST
-    @Path("{ID}")
-    @Consumes({"application/json", "application/xml"})
-    @Transactional(Transactional.TxType.REQUIRED)
-    public Response updateGame(@PathParam("ID") Long id,
-                               Game sendedGame) {
+			gameDAO.save(game);
+			return Response.ok().build();
+		} catch (Exception e) {
+			log.error(String.format(ERROR_MESSAGE, "creating"), e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 
-        try {
-            if (id == null || sendedGame == null || !id.equals(sendedGame.getId())) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+	@POST
+	@Path("{ID}")
+	@Consumes({"application/json", "application/xml"})
+	@Transactional(Transactional.TxType.REQUIRED)
+	public Response updateGame(@PathParam("ID") Long id,
+	                           Game sendedGame) {
 
-            Game game = gameDAO.get(id);
-            if (game == null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+		try {
+			if (id == null || sendedGame == null || !id.equals(sendedGame.getId())) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-            game.setName(sendedGame.getName());
-            gameDAO.save(game);
-            return Response.ok().build();
-        } catch (Exception e) {
-            log.error(String.format(ERROR_MESSAGE, "updating"), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+			Game game = gameDAO.get(id);
+			if (game == null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-    @DELETE
-    @Path("{ID}")
-    @Transactional(Transactional.TxType.REQUIRED)
-    public Response deleteGame(@PathParam("ID") Long id) {
-        try {
-            if (id == null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+			game.setTitle(sendedGame.getTitle());
+			gameDAO.save(game);
+			return Response.ok().build();
+		} catch (Exception e) {
+			log.error(String.format(ERROR_MESSAGE, "updating"), e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 
-            Game game = gameDAO.get(id);
-            if (game == null) {
-                return Response.status(Response.Status.BAD_REQUEST).build();
-            }
+	@DELETE
+	@Path("{ID}")
+	@Transactional(Transactional.TxType.REQUIRED)
+	public Response deleteGame(@PathParam("ID") Long id) {
+		try {
+			if (id == null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-            gameDAO.remove(game);
-            return Response.ok().build();
-        } catch (Exception e) {
-            log.error(String.format(ERROR_MESSAGE, "deleting"), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+			Game game = gameDAO.get(id);
+			if (game == null) {
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
 
-    @Inject
-    public void setGameDAO(final GameDAO gameDAO) {
-        this.gameDAO = gameDAO;
-    }
+			gameDAO.remove(game);
+			return Response.ok().build();
+		} catch (Exception e) {
+			log.error(String.format(ERROR_MESSAGE, "deleting"), e);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@Inject
+	public void setGameDAO(final GameDAO gameDAO) {
+		this.gameDAO = gameDAO;
+	}
 }

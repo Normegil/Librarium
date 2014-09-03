@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="jaxbTestClass" type="jaxbTestClass"/>
+
+  <xs:complexType name="jaxbTestClass">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+      <xs:element name="url" type="xs:string" minOccurs="0"/>
+      <xs:element name="date" type="localDate" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long"/>
+  </xs:complexType>
+
+  <xs:complexType name="localDate" final="extension restriction">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+
