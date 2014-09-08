@@ -15,8 +15,7 @@ import java.time.Month;
 		UTReleaseDate.class,
 		UTReleaseDateEquality.class,
 		UTReleaseDateComparator.class,
-		UTReleaseDateDatabaseSupport.class,
-		UTReleaseDatePKEquality.class
+		UTReleaseDateDatabaseSupport.class
 })
 public class ReleaseDateTestSuite implements DataFactory<ReleaseDate> {
 

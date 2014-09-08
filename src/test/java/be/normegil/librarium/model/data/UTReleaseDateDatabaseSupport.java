@@ -28,6 +28,6 @@ public class UTReleaseDateDatabaseSupport extends AbstractDatabaseSupportTest<Re
 
 	@Override
 	protected Object getId(final ReleaseDate entity) {
-		return new ReleaseDate.ReleaseDatePK(entity.getMedia().getId(), entity.getSupport().getId());
+		return entity.getId();
 	}
 }

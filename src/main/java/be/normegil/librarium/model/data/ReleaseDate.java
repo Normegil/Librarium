@@ -15,11 +15,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @javax.persistence.Entity
-@IdClass(ReleaseDate.ReleaseDatePK.class)
 @Access(AccessType.FIELD)
-public class ReleaseDate implements Comparable<ReleaseDate>, Serializable {
+public class ReleaseDate extends Entity implements Comparable<ReleaseDate>, Serializable {
 
-	@Id
 	@ManyToOne(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.REFRESH,
@@ -28,7 +26,7 @@ public class ReleaseDate implements Comparable<ReleaseDate>, Serializable {
 	})
 	@JoinColumn(name = "id_media")
 	private Media media;
-	@Id
+
 	@ManyToOne(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.REFRESH,
@@ -121,56 +119,5 @@ public class ReleaseDate implements Comparable<ReleaseDate>, Serializable {
 				.append("support", support)
 				.append("date", date)
 				.toString();
-	}
-
-	public static class ReleaseDatePK implements Serializable {
-
-		@NotNull
-		private UUID support;
-
-		@NotNull
-		private UUID media;
-
-		public ReleaseDatePK(@NotNull @Valid final UUID mediaId, @NotNull @Valid final UUID supportId) {
-			this.media = mediaId;
-			this.support = supportId;
-		}
-
-		public ReleaseDatePK() {
-		}
-
-		public UUID getSupportID() {
-			return support;
-		}
-
-		public UUID getMediaID() {
-			return media;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) {
-				return false;
-			}
-			if (obj == this) {
-				return true;
-			}
-			if (obj.getClass() != getClass()) {
-				return false;
-			}
-			ReleaseDatePK rhs = (ReleaseDatePK) obj;
-			return new EqualsBuilder()
-					.append(this.support, rhs.support)
-					.append(this.media, rhs.media)
-					.isEquals();
-		}
-
-		@Override
-		public int hashCode() {
-			return new HashCodeBuilder()
-					.append(support)
-					.append(media)
-					.toHashCode();
-		}
 	}
 }
