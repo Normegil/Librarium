@@ -1,5 +1,6 @@
 package be.normegil.librarium.model.data;
 
+import be.normegil.librarium.model.data.fake.FakeEntity;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.EntityHelper;
 import org.junit.runner.RunWith;
@@ -27,14 +28,14 @@ public class EntityTestSuite implements DataFactory<Entity> {
 
 	@Override
 	public Entity getNew(final boolean withLink) {
-		Entity entity = new Entity();
+		Entity entity = new FakeEntity();
 		new EntityHelper().setId(entity, ID);
 		return entity;
 	}
 
 	@Override
 	public Entity getNext(final boolean withLink) {
-		Entity entity = new Entity();
+		Entity entity = new FakeEntity();
 		new EntityHelper().setId(entity, UUID.randomUUID());
 		return entity;
 	}

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public class Entity {
+public abstract class Entity {
 
 	@Id
 	@Column(name = "ID")

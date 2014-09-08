@@ -2,6 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
+import be.normegil.librarium.model.data.fake.FakeEntity;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -33,7 +34,7 @@ public class UTEntityComparator extends AbstractDataComparableTest<Entity> {
 
 	@Test
 	public void testEquality() throws Exception {
-		Entity copy = new Entity();
+		Entity copy = new FakeEntity();
 		Entity entity = getEntity();
 		new EntityHelper().setId(copy, entity.getId());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
@@ -41,14 +42,14 @@ public class UTEntityComparator extends AbstractDataComparableTest<Entity> {
 
 	@Test
 	public void testId_First() throws Exception {
-		Entity newEntity = new Entity();
+		Entity newEntity = new FakeEntity();
 		new EntityHelper().setId(newEntity, ALTERNATIVE_ID);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(getEntity(), newEntity)));
 	}
 
 	@Test
 	public void testId_Second() throws Exception {
-		Entity newEntity = new Entity();
+		Entity newEntity = new FakeEntity();
 		new EntityHelper().setId(newEntity, ALTERNATIVE_ID);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(newEntity, getEntity())));
 	}
