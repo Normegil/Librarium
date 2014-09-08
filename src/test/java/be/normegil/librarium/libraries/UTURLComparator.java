@@ -4,7 +4,7 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataComparatorTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataComparatorTest;
 import org.junit.Test;
 
 import java.util.Comparator;

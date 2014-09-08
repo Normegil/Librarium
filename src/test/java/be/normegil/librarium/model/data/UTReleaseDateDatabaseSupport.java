@@ -3,7 +3,7 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDatabaseSupportTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDatabaseSupportTest;
 
 public class UTReleaseDateDatabaseSupport extends AbstractDatabaseSupportTest<ReleaseDate> {
 

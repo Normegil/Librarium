@@ -6,7 +6,7 @@ import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.Role;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataEqualityTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import org.junit.Test;
 
 import java.time.Duration;

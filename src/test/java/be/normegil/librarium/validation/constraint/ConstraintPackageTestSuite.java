@@ -8,6 +8,7 @@ import org.junit.runners.Suite;
 		NotEmptyValidatorTestSuite.class,
 		ValidDateFormatValidatorTestSuite.class,
 		PositiveDurationValidatorTestSuite.class,
+		PositiveLongValidatorTestSuite.class,
 		HttpUrlValidatorTestSuite.class
 })
 public class ConstraintPackageTestSuite {

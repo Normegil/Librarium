@@ -2,8 +2,8 @@ package be.normegil.librarium.rest;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.model.dao.GameDAO;
-import be.normegil.librarium.model.dao.GameDatabaseDAO;
+import be.normegil.librarium.model.dao.DAO;
+import be.normegil.librarium.model.dao.game.GameDatabaseDAO;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.util.LoggerProducer;
@@ -67,7 +67,7 @@ public class UTGameREST_RESTReponses {
 				.addClass(GameREST.class)
 				.addClass(ApplicationProperties.class)
 				.addClass(GameDatabaseDAO.class)
-				.addClass(GameDAO.class)
+				.addClass(DAO.class)
 				.addClass(Game.class)
 				.addClass(be.normegil.librarium.model.data.Entity.class)
 				.addClass(LoggerProducer.class)

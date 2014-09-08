@@ -1,9 +1,9 @@
 package be.normegil.librarium.rest;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.model.dao.GameDAO;
-import be.normegil.librarium.model.data.game.Game;
+import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.data.game.Game;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class UTGameREST {
 
 	public static final String ALTERNATIVE_NAME = "GameREST";
 	private GameREST gameREST;
-	private GameDAO gameDAO;
+	private DAO<Game> gameDAO;
 
 	@Before
 	public void setUp() throws Exception {

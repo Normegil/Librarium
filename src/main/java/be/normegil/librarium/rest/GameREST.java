@@ -1,6 +1,6 @@
 package be.normegil.librarium.rest;
 
-import be.normegil.librarium.model.dao.GameDAO;
+import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.game.Game;
 import org.slf4j.Logger;
 
@@ -19,7 +19,7 @@ public class GameREST {
 	@Inject
 	private Logger log;
 
-	private GameDAO gameDAO;
+	private DAO<Game> gameDAO;
 
 	@GET
 	@Path("/all")
@@ -65,7 +65,7 @@ public class GameREST {
 				return Response.status(Response.Status.BAD_REQUEST).build();
 			}
 
-			gameDAO.save(game);
+			gameDAO.create(game);
 			return Response.ok().build();
 		} catch (Exception e) {
 			log.error(String.format(ERROR_MESSAGE, "creating"), e);
@@ -91,7 +91,7 @@ public class GameREST {
 			}
 
 			game.setTitle(sendedGame.getTitle());
-			gameDAO.save(game);
+			gameDAO.update(game);
 			return Response.ok().build();
 		} catch (Exception e) {
 			log.error(String.format(ERROR_MESSAGE, "updating"), e);
@@ -122,7 +122,7 @@ public class GameREST {
 	}
 
 	@Inject
-	public void setGameDAO(final GameDAO gameDAO) {
+	public void setGameDAO(final DAO<Game> gameDAO) {
 		this.gameDAO = gameDAO;
 	}
 }

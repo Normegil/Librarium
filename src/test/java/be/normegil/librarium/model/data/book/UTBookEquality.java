@@ -5,7 +5,7 @@ import be.normegil.librarium.model.data.fake.FakeBook;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataEqualityTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

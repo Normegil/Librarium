@@ -94,7 +94,6 @@ public class GameSerie extends BaseMedia implements Comparable<GameSerie>, Seria
 		GameSerie rhs = (GameSerie) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(obj))
-				.append(this.games, rhs.games)
 				.isEquals();
 	}
 
@@ -102,7 +101,6 @@ public class GameSerie extends BaseMedia implements Comparable<GameSerie>, Seria
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.appendSuper(super.hashCode())
-				.append(games)
 				.toHashCode();
 	}
 

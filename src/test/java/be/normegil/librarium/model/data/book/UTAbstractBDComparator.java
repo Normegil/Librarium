@@ -5,11 +5,8 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.data.fake.FakeAbstractBD;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataComparableTest;
-import be.normegil.librarium.tool.test.AbstractDataComparatorTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataComparableTest;
 import org.junit.Test;
-
-import java.util.Comparator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

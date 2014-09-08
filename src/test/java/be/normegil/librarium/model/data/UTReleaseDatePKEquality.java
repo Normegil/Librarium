@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.tool.test.AbstractDataEqualityTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotEquals;

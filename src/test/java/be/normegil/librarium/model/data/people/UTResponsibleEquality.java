@@ -5,7 +5,7 @@ import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.fake.FakeResponsible;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataEqualityTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

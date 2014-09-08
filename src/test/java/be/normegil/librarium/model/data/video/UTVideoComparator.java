@@ -5,10 +5,9 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeVideo;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.Role;
-import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractDataComparableTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataComparableTest;
 import org.junit.Test;
 
 import java.time.Duration;

@@ -2,7 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
-import be.normegil.librarium.tool.test.AbstractDataEqualityTest;
+import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.Test;

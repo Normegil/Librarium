@@ -18,6 +18,10 @@ public class FakeResponsible extends Responsible implements Comparable<Responsib
 		super(init);
 	}
 
+	private FakeResponsible() {
+		super();
+	}
+
 	public static Builder builder() {
 		return new FakeResponsible.Builder();
 	}

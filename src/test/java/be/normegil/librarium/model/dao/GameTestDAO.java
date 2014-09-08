@@ -5,11 +5,13 @@ import be.normegil.librarium.tool.EntityHelper;
 import org.apache.commons.lang3.Validate;
 
 import javax.ejb.Stateless;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Stateless
-public class GameTestDAO implements GameDAO {
+public class GameTestDAO implements DAO<Game> {
 
 	public static final String NAME = "Name";
 
@@ -36,7 +38,7 @@ public class GameTestDAO implements GameDAO {
 	}
 
 	@Override
-	public Game get(final Long id) {
+	public Game get(final Object id) {
 		Validate.notNull(id);
 		for (Game game : games) {
 			if (game.getId().equals(id)) {
@@ -47,9 +49,15 @@ public class GameTestDAO implements GameDAO {
 	}
 
 	@Override
-	public void save(final Game game) {
-		remove(game);
-		games.add(game);
+	public void create(@NotNull @Valid final Game entity) {
+		games.add(entity);
+	}
+
+	@Override
+	public Game update(@NotNull @Valid final Game entity) {
+		remove(entity);
+		create(entity);
+		return entity;
 	}
 
 	@Override

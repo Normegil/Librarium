@@ -1,7 +1,5 @@
 package be.normegil.librarium.validation.constraint;
 
-import be.normegil.librarium.validation.constraint.PositiveDurationValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;
@@ -14,7 +12,10 @@ import java.lang.annotation.Target;
 		ElementType.PARAMETER
 })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PositiveDurationValidator.class)
+@Constraint(validatedBy = {
+		PositiveDurationValidator.class,
+		PositiveLongValidator.class
+})
 public @interface Positive {
 
 	String message() default

@@ -3,7 +3,7 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.test.AbstractEntityDatabaseSupportTest;
+import be.normegil.librarium.tool.test.model.data.AbstractEntityDatabaseSupportTest;
 
 public class UTUniverseDatabaseSupport extends AbstractEntityDatabaseSupportTest<Universe> {
 
