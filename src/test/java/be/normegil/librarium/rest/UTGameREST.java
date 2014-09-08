@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -72,7 +73,7 @@ public class UTGameREST {
 	@Test
 	public void testDeleteGame() throws Exception {
 		Game gameFromDAO = getGameFromDAO();
-		Long id = gameFromDAO.getId();
+		UUID id = gameFromDAO.getId();
 		gameREST.deleteGame(id);
 		assertNull(gameDAO.get(id));
 	}

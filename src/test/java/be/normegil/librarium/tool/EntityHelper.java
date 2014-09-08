@@ -1,30 +1,27 @@
 package be.normegil.librarium.tool;
 
-import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.Entity;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+import java.util.UUID;
 
 public class EntityHelper {
 
-	public void setId(Entity entity, Long id) {
+	public void setId(Entity entity, UUID id) {
 		try {
-			@SuppressWarnings(WarningTypes.UNCHECKED_CALL)
-			Method setId = Entity.class.getDeclaredMethod("setId", Long.class);
+			Field idField = Entity.class.getDeclaredField("id");
 
-			boolean accessible = setId.isAccessible();
-			setId.setAccessible(true);
+			boolean accessible = idField.isAccessible();
+			idField.setAccessible(true);
 
-			setId.invoke(entity, id);
+			idField.set(entity, id);
 
-			setId.setAccessible(accessible);
-		} catch (NoSuchMethodException e) {
-			throw new be.normegil.librarium.util.exception.NoSuchMethodException(e);
-		} catch (InvocationTargetException e) {
-			throw new be.normegil.librarium.util.exception.InvocationTargetException(e);
+			idField.setAccessible(accessible);
+
 		} catch (IllegalAccessException e) {
 			throw new be.normegil.librarium.util.exception.IllegalAccessException(e);
+		} catch (NoSuchFieldException e) {
+			throw new be.normegil.librarium.util.exception.NoSuchFieldException(e);
 		}
 	}
 

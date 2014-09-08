@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @javax.persistence.Entity
 @IdClass(ReleaseDate.ReleaseDatePK.class)
@@ -125,12 +126,12 @@ public class ReleaseDate implements Comparable<ReleaseDate>, Serializable {
 	public static class ReleaseDatePK implements Serializable {
 
 		@NotNull
-		private Long support;
+		private UUID support;
 
 		@NotNull
-		private Long media;
+		private UUID media;
 
-		public ReleaseDatePK(@NotNull @Valid final long mediaId, @NotNull @Valid final long supportId) {
+		public ReleaseDatePK(@NotNull @Valid final UUID mediaId, @NotNull @Valid final UUID supportId) {
 			this.media = mediaId;
 			this.support = supportId;
 		}
@@ -138,11 +139,11 @@ public class ReleaseDate implements Comparable<ReleaseDate>, Serializable {
 		public ReleaseDatePK() {
 		}
 
-		public Long getSupportID() {
+		public UUID getSupportID() {
 			return support;
 		}
 
-		public Long getMediaID() {
+		public UUID getMediaID() {
 			return media;
 		}
 

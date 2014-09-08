@@ -2,8 +2,8 @@ package be.normegil.librarium.rest;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.EntityHelper;
 import org.apache.http.HttpStatus;
 import org.junit.After;
@@ -12,13 +12,15 @@ import org.junit.Test;
 
 import javax.ws.rs.core.Response;
 import java.util.Collection;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
 public class UTGameREST_BorderCases {
 
-	public static final String NAME = "GameREST";
-	public static final long ID = 10L;
+	private static final String NAME = "GameREST";
+	private static final UUID ID = UUID.fromString("72e608ea-202c-44aa-ae42-699130d8367c");
+	private static final UUID ALTERNATIVE_ID = UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e");
 	private GameREST gameREST;
 	private DAO<Game> gameDAO;
 
@@ -59,7 +61,7 @@ public class UTGameREST_BorderCases {
 
 		Game game = Game.builder().setTitle(NAME).build();
 		EntityHelper entityHelper = new EntityHelper();
-		entityHelper.setId(game, 1L);
+		entityHelper.setId(game, ALTERNATIVE_ID);
 		Response response = gameREST.createGame(game);
 		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
 	}

@@ -6,30 +6,28 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlAttribute;
-import java.util.Comparator;
+import java.util.UUID;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public class Entity{
+public class Entity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	@XmlAttribute
-	private Long id;
+	private UUID id;
 
 	protected Entity() {
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	// Needed for JAXB Unmarshalling
-	private void setId(@NotNull Long id) {
-		this.id = id;
+	@PrePersist
+	private void generateUUID() {
+		if (id == null) {
+			id = UUID.randomUUID();
+		}
 	}
 
 	@Override
@@ -44,7 +42,7 @@ public class Entity{
 			return new CompareToBuilder()
 					.append(getId(), o.getId())
 					.toComparison();
-		}else {
+		} else {
 			return Constants.Comparator.PRIORITY_SECOND;
 		}
 	}

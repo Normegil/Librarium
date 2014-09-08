@@ -30,6 +30,7 @@ import javax.ws.rs.core.Response;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -40,23 +41,13 @@ public class UTGameREST_RESTReponses {
 	public static final String SERVICE_PATH = ApplicationProperties.BASE_PATH + "/games";
 	public static final String GET_ALL = "/all";
 	public static final String NAME = "TestName";
+	private static final UUID ID = UUID.fromString(Long.toString(500L));
 
 	@ArquillianResource
 	@SuppressWarnings(WarningTypes.UNUSED)
 	private URL deployementURL;
 
-	private Collection<Game> gameInDatabase = new ArrayList<Game>();
-
-	@After
-	public void tearDown() throws Exception {
-		Collection<Game> gamesFromREST = getGamesFromREST();
-		for (Game game : gamesFromREST) {
-			getRESTServices()
-					.path("/" + game.getId())
-					.request()
-					.delete();
-		}
-	}
+	private Collection<Game> gameInDatabase = new ArrayList<>();
 
 	@Deployment
 	public static WebArchive createTestArchive() {
@@ -73,6 +64,17 @@ public class UTGameREST_RESTReponses {
 				.addClass(LoggerProducer.class)
 				.addAsResource("META-INF/persistence.xml")
 				.addAsLibraries(resolver.resolve("org.apache.commons:commons-lang3:3.3.1").withTransitivity().asFile());
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		Collection<Game> gamesFromREST = getGamesFromREST();
+		for (Game game : gamesFromREST) {
+			getRESTServices()
+					.path("/" + game.getId())
+					.request()
+					.delete();
+		}
 	}
 
 	@Test
@@ -219,7 +221,7 @@ public class UTGameREST_RESTReponses {
 	public void testCreateGame_WithID() throws Exception {
 		Game game = Game.builder().setTitle(NAME).build();
 		EntityHelper entityHelper = new EntityHelper();
-		entityHelper.setId(game, 500L);
+		entityHelper.setId(game, ID);
 		WebTarget restServices = getRESTServices();
 
 		Response response = restServices

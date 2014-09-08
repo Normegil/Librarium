@@ -9,13 +9,14 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 
 @Stateless
 public class GameTestDAO implements DAO<Game> {
 
 	public static final String NAME = "Name";
 
-	private Collection<Game> games = new ArrayList<Game>();
+	private Collection<Game> games = new ArrayList<>();
 
 	public GameTestDAO() {
 		Game game1 = Game.builder().setTitle(NAME).build();
@@ -23,9 +24,9 @@ public class GameTestDAO implements DAO<Game> {
 		Game game3 = Game.builder().setTitle(NAME + 3).build();
 
 		EntityHelper entityHelper = new EntityHelper();
-		entityHelper.setId(game1, 1L);
-		entityHelper.setId(game2, 2L);
-		entityHelper.setId(game3, 3L);
+		entityHelper.setId(game1, UUID.fromString("a32bacaa-3c33-4435-a9b2-4ae7d13617f8"));
+		entityHelper.setId(game2, UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e"));
+		entityHelper.setId(game3, UUID.fromString("72e608ea-202c-44aa-ae42-699130d8367c"));
 
 		games.add(game1);
 		games.add(game2);
@@ -34,7 +35,7 @@ public class GameTestDAO implements DAO<Game> {
 
 	@Override
 	public Collection<Game> getAll() {
-		return new ArrayList<Game>(games);
+		return new ArrayList<>(games);
 	}
 
 	@Override

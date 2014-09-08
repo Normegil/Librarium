@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
+import java.util.UUID;
 
 @Path("/games")
 public class GameREST {
@@ -39,7 +40,7 @@ public class GameREST {
 	@GET
 	@Path("{ID}")
 	@Produces({"application/json", "application/xml"})
-	public Response getGame(@PathParam("ID") Long id) {
+	public Response getGame(@PathParam("ID") UUID id) {
 		try {
 			if (id == null) {
 				return Response.status(Response.Status.BAD_REQUEST).build();
@@ -77,7 +78,7 @@ public class GameREST {
 	@Path("{ID}")
 	@Consumes({"application/json", "application/xml"})
 	@Transactional(Transactional.TxType.REQUIRED)
-	public Response updateGame(@PathParam("ID") Long id,
+	public Response updateGame(@PathParam("ID") UUID id,
 	                           Game sendedGame) {
 
 		try {
@@ -102,7 +103,7 @@ public class GameREST {
 	@DELETE
 	@Path("{ID}")
 	@Transactional(Transactional.TxType.REQUIRED)
-	public Response deleteGame(@PathParam("ID") Long id) {
+	public Response deleteGame(@PathParam("ID") UUID id) {
 		try {
 			if (id == null) {
 				return Response.status(Response.Status.BAD_REQUEST).build();
