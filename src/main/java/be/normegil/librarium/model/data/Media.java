@@ -76,6 +76,10 @@ public abstract class Media extends BaseMedia {
 		universes.remove(universe);
 	}
 
+	public void clearUniverses() {
+		universes.clear();
+	}
+
 	public Set<Support> getSupports() {
 		Set<Support> supports = new TreeSet<>();
 		for (ReleaseDate releaseDate : releaseDates) {
@@ -102,6 +106,10 @@ public abstract class Media extends BaseMedia {
 
 	public void removeSupport(@NotNull final Support support) {
 		removeReleaseDate(support);
+	}
+
+	public void clearSupports() {
+		clearReleaseDates();
 	}
 
 	public Map<Support, LocalDate> getReleaseDates() {
@@ -149,6 +157,10 @@ public abstract class Media extends BaseMedia {
 				releaseDates.remove(releaseDate);
 			}
 		}
+	}
+
+	public void clearReleaseDates() {
+		releaseDates.clear();
 	}
 
 	protected Set<StaffMember> getStaffMembers() {

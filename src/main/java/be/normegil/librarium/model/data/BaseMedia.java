@@ -114,6 +114,10 @@ public abstract class BaseMedia extends Entity {
 		tags.remove(tag);
 	}
 
+	public void clearTags() {
+		tags.clear();
+	}
+
 	public URL getOfficialWebsite() {
 		return officialWebsite;
 	}
@@ -154,6 +158,10 @@ public abstract class BaseMedia extends Entity {
 		stores.remove(store);
 	}
 
+	public void clearStores() {
+		stores.clear();
+	}
+
 	public Set<DownloadLink> getDownloadLinks() {
 		return new TreeSet<>(downloadLinks);
 	}
@@ -177,6 +185,10 @@ public abstract class BaseMedia extends Entity {
 
 	public void removeDownloadLink(@NotNull final DownloadLink downloadLink) {
 		downloadLinks.remove(downloadLink);
+	}
+
+	public void clearDownloadLinks() {
+		downloadLinks.clear();
 	}
 
 	public int compareTo(final BaseMedia o) {

@@ -1,10 +1,11 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.rest.game;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.game.GameDatabaseDAO;
 import be.normegil.librarium.model.data.game.Game;
+import be.normegil.librarium.rest.game.GameREST;
 import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.util.LoggerProducer;
 import org.apache.http.HttpStatus;
@@ -36,7 +37,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
-public class UTGameREST_RESTReponses {
+public class ITGameREST_RESTReponses {
 
 	public static final String SERVICE_PATH = ApplicationProperties.BASE_PATH + "/games";
 	public static final String GET_ALL = "/all";

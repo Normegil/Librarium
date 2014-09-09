@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.rest.game;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -6,8 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         UTGameREST_Safety.class,
-        UTGameREST.class,
-        UTGameREST_BorderCases.class
+        UTGameREST.class
 })
 public class GameRESTTestSuite {
 }

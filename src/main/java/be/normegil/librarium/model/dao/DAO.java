@@ -3,10 +3,13 @@ package be.normegil.librarium.model.dao;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.List;
 
 public interface DAO<E> {
 
-	Collection<E> getAll();
+	List<E> getAll();
+
+	long getNumberOfElement();
 
 	E get(@NotNull Object id);
 

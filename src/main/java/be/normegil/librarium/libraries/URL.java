@@ -43,11 +43,23 @@ public class URL implements Comparable<URL> {
 	}
 
 	public URL(@NotNull URL url) {
-		this.url = url.url;
+		try {
+			this.url = new java.net.URL(url.getProtocol(), url.getHost(), url.getPort(), url.getFilePath());
+		} catch (MalformedURLException e) {
+			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+		}
 	}
 
 	public URL(@NotNull java.net.URL url) {
 		this.url = url;
+	}
+
+	public URL(@NotNull URI uri) {
+		try {
+			this.url = uri.toURL();
+		} catch (MalformedURLException e) {
+			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+		}
 	}
 
 	// For JAXB
@@ -85,6 +97,10 @@ public class URL implements Comparable<URL> {
 
 	public java.net.URL getOriginalURL() {
 		return url;
+	}
+
+	public URL addToPath(@NotEmpty String path) {
+		return new URL(getProtocol(), getHost(), getPort(), getFilePath() + path);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -14,6 +15,7 @@ public abstract class Entity {
 
 	@Id
 	@Column(name = "ID")
+	@XmlAttribute
 	private UUID id;
 
 	protected Entity() {
