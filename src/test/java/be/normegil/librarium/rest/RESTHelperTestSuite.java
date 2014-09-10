@@ -7,11 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 		UTRESTHelperSafety.class,
 		UTRESTHelperGetAll.class,
-		UTRESTHelperGet.class,
-		UTRESTHelperCreate.class,
-		UTRESTHelperUpdateByPUT.class,
-		UTRESTHelperUpdateByPOST.class,
-		UTRESTHelperDelete.class
+		UTRESTHelper.class
 })
 public class RESTHelperTestSuite {
 }

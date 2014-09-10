@@ -1,6 +1,5 @@
 package be.normegil.librarium.model.dao;
 
-import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
@@ -21,11 +20,15 @@ public class GameTestDAO implements DAO<Game> {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
-	private static final int NUMBER_OF_GAMES = ApplicationProperties.REST.DEFAULT_LIMIT * 2;
+	private static final int DEFAULT_NUMBER_OF_GAMES = 5;
 	private Collection<Game> games = new ArrayList<>();
 
 	public GameTestDAO() {
-		addGame(NUMBER_OF_GAMES);
+		this(DEFAULT_NUMBER_OF_GAMES);
+	}
+
+	public GameTestDAO(int numberOfGamesToAdd) {
+		addGame(numberOfGamesToAdd);
 	}
 
 	private EntityHelper addGame(int numberOfGames) {

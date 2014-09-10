@@ -2,6 +2,7 @@ package be.normegil.librarium.rest;
 
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
+import be.normegil.librarium.model.dao.game.GameDatabaseDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.util.ClassHelper;
