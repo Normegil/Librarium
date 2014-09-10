@@ -55,7 +55,7 @@ public class RESTCollectionHelper {
 		return limit;
 	}
 
-	private List<URL> convertToURLs(final List<? extends Entity> entities, final URL baseURL) {
+	public List<URL> convertToURLs(final List<? extends Entity> entities, final URL baseURL) {
 		List<URL> urlsToEntities = new ArrayList<>();
 		UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
 		for (Entity entity : entities) {

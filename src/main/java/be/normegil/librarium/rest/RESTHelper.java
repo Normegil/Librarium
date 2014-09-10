@@ -40,7 +40,7 @@ public class RESTHelper<E extends Entity> {
 			setMarshallerOptions(baseURL);
 
 			List<E> entities = dao.getAll();
-			CollectionResource resource = new RESTCollectionHelper().getCollectionResource(entities, baseURL, dao.getNumberOfElement(), offset, limit);
+			CollectionResource resource = new RESTCollectionHelper().getCollectionResource(entities, baseURL, dao.getNumberOfElements(), offset, limit);
 			return Response.ok(resource).build();
 		} catch (Exception e) {
 			LOG.error("Error getting all Entities [EntityType=" + entityClass.getTypeName() + "]", e);

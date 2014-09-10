@@ -1,7 +1,11 @@
 package be.normegil.librarium.model.dao;
 
+import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.game.Game;
+import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.EntityHelper;
+import be.normegil.librarium.tool.FactoryRepository;
 import org.apache.commons.lang3.Validate;
 
 import javax.ejb.Stateless;
@@ -9,33 +13,44 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Stateless
 public class GameTestDAO implements DAO<Game> {
 
-	public static final String NAME = "Name";
-
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
+	private static final int NUMBER_OF_GAMES = ApplicationProperties.REST.DEFAULT_LIMIT * 2;
 	private Collection<Game> games = new ArrayList<>();
 
 	public GameTestDAO() {
-		Game game1 = Game.builder().setTitle(NAME).build();
-		Game game2 = Game.builder().setTitle(NAME + 2).build();
-		Game game3 = Game.builder().setTitle(NAME + 3).build();
+		addGame(NUMBER_OF_GAMES);
+	}
 
+	private EntityHelper addGame(int numberOfGames) {
 		EntityHelper entityHelper = new EntityHelper();
-		entityHelper.setId(game1, UUID.fromString("a32bacaa-3c33-4435-a9b2-4ae7d13617f8"));
-		entityHelper.setId(game2, UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e"));
-		entityHelper.setId(game3, UUID.fromString("72e608ea-202c-44aa-ae42-699130d8367c"));
-
-		games.add(game1);
-		games.add(game2);
-		games.add(game3);
+		for (int i = 0; i < numberOfGames; i++) {
+			Game game = GAME_FACTORY.getNext();
+			entityHelper.setId(game, UUID.randomUUID());
+			games.add(game);
+		}
+		return entityHelper;
 	}
 
 	@Override
 	public Collection<Game> getAll() {
 		return new ArrayList<>(games);
+	}
+
+	@Override
+	public List<Game> getAll(final long offset, final int limit) {
+		return null;
+	}
+
+	@Override
+	public long getNumberOfElements() {
+		return games.size();
 	}
 
 	@Override

@@ -9,7 +9,9 @@ public interface DAO<E> {
 
 	List<E> getAll();
 
-	long getNumberOfElement();
+	List<E> getAll(long offset, int limit);
+
+	long getNumberOfElements();
 
 	E get(@NotNull Object id);
 

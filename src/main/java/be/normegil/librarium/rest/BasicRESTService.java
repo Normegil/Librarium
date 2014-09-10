@@ -166,7 +166,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 			limit = ApplicationProperties.REST.MAX_LIMIT;
 		}
 
-		long numberOfElements = getDao().getNumberOfElement();
+		long numberOfElements = getDao().getNumberOfElements();
 		long numberOfPages = numberOfElements / limit;
 		long firstOffset = 0L;
 		long lastOffset = numberOfPages * limit + 1;

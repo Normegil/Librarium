@@ -32,6 +32,34 @@ public class CollectionResource {
 		return new Builder();
 	}
 
+	public Long getOffset() {
+		return offset;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public URL getURLToFirstPage() {
+		return first;
+	}
+
+	public URL getURLToPreviousPage() {
+		return previous;
+	}
+
+	public URL getURLToNextPage() {
+		return next;
+	}
+
+	public URL getURLToLastPage() {
+		return last;
+	}
+
+	public List<URL> getItems() {
+		return items;
+	}
+
 	public abstract static class Init<E extends Init<E>> {
 		private Long offset;
 		private Integer limit;

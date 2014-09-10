@@ -18,6 +18,7 @@ import javax.validation.ConstraintViolationException;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.ContextResolver;
 import javax.xml.bind.Marshaller;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
@@ -50,6 +51,21 @@ public class UTRESTHelperSafety {
 	public void tearDown() throws Exception {
 		entity = null;
 		dao = null;
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testContructor_NullDAO() throws Exception {
+		Validator.validate(getConstructor(), new Object[]{null, context, updater});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testContructor_NullContext() throws Exception {
+		Validator.validate(getConstructor(), dao, null, updater);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testContructor_NullUpdater() throws Exception {
+		Validator.validate(getConstructor(), dao, context, null);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -97,14 +113,28 @@ public class UTRESTHelperSafety {
 		Validator.validate(entity, getUpdateByPUTMethod(), UUID.randomUUID(), null);
 	}
 
-
-
-	private Method getUpdateByPUTMethod() {
-		return CLASS.getMethod("updateByPUT", UUID.class, Object.class);
+	@Test(expected = ConstraintViolationException.class)
+	public void testUpdateByPOST_NullInfo() throws Exception {
+		Validator.validate(entity, getUpdateByPOSTMethod(), null, UUID.randomUUID(), GAME_FACTORY.getNext());
 	}
 
-	private Method getCreateMethod() {
-		return CLASS.getMethod("create", UriInfo.class, Object.class);
+	@Test(expected = ConstraintViolationException.class)
+	public void testUpdateByPOST_NullUUID() throws Exception {
+		Validator.validate(entity, getUpdateByPOSTMethod(), info, null, GAME_FACTORY.getNext());
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testUpdateByPOST_NullEntity() throws Exception {
+		Validator.validate(entity, getUpdateByPOSTMethod(), info, UUID.randomUUID(), null);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testDelete_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("delete", UUID.class), new Object[]{null});
+	}
+
+	private Constructor<RESTHelper> getConstructor() {
+		return CLASS.getConstructor(DAO.class, ContextResolver.class, Updater.class);
 	}
 
 	private Method getGetAllMethod() {
@@ -113,5 +143,17 @@ public class UTRESTHelperSafety {
 
 	private Method getGetMethod() {
 		return CLASS.getMethod("get", UriInfo.class, UUID.class);
+	}
+
+	private Method getCreateMethod() {
+		return CLASS.getMethod("create", UriInfo.class, Object.class);
+	}
+
+	private Method getUpdateByPUTMethod() {
+		return CLASS.getMethod("updateByPUT", UUID.class, Object.class);
+	}
+
+	private Method getUpdateByPOSTMethod() {
+		return CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Object.class);
 	}
 }
