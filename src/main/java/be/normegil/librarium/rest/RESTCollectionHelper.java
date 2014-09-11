@@ -18,11 +18,12 @@ public class RESTCollectionHelper {
 	public CollectionResource getCollectionResource(final List<? extends Entity> entities, final URL baseURL, final long totalNumberOfElements, final Long offset, final Integer limit) {
 		long realOffset = getRealOffset(offset);
 		int realLimit = getRealLimit(limit);
+		long lastOffset = getLastOffset(totalNumberOfElements, realLimit);
 		CollectionResource.Builder builder = CollectionResource.builder()
 				.setOffset(realOffset)
 				.setLimit(realLimit)
 				.setFirst(getCollectionURL(baseURL, FIRST_OFFSET, realLimit))
-				.setLast(getCollectionURL(baseURL, totalNumberOfElements, realLimit));
+				.setLast(getCollectionURL(baseURL, lastOffset, realLimit));
 
 		List<URL> urls = convertToURLs(entities, baseURL);
 		builder.addAllItem(urls);
@@ -37,6 +38,17 @@ public class RESTCollectionHelper {
 			builder.setPrevious(getCollectionURL(baseURL, previousOffset, realLimit));
 		}
 		return builder.build();
+	}
+
+	public long getLastOffset(final long totalNumberOfElements, final int realLimit) {
+		long numberOfFullPage = totalNumberOfElements / realLimit;
+		long lastOffset;
+		if (totalNumberOfElements % realLimit == 0) {
+			lastOffset = numberOfFullPage * (realLimit - 1);
+		} else {
+			lastOffset = numberOfFullPage * realLimit;
+		}
+		return lastOffset;
 	}
 
 	private long getRealOffset(final Long offset) {
@@ -66,7 +78,7 @@ public class RESTCollectionHelper {
 		return urlsToEntities;
 	}
 
-	protected URL getCollectionURL(@NotNull final URL baseURL, final long offset, final int limit) {
+	public URL getCollectionURL(@NotNull final URL baseURL, final long offset, final int limit) {
 		return baseURL.addToPath("?offset=" + offset + "&limit=" + limit);
 	}
 }

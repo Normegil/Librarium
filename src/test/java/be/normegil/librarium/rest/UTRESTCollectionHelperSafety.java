@@ -5,15 +5,14 @@ import be.normegil.librarium.libraries.Class;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
-import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
-import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.validation.ConstraintViolationException;
 import java.lang.reflect.Method;
@@ -54,12 +53,38 @@ public class UTRESTCollectionHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testGetCollectionResource_NullOffset() throws Exception {
-		Validator.validate(entity, getGetCollectionResourceMethod(), dao, URL_FACTORY.getNext(), dao.getNumberOfElements(), null, DEFAULT_LIMIT);
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), null, DEFAULT_LIMIT);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testGetCollectionResource_NullLimit() throws Exception {
-		Validator.validate(entity, getGetCollectionResourceMethod(), dao, URL_FACTORY.getNext(), dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetCollectionResource_NumberOfElementsNegative() throws Exception {
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), URL_FACTORY.getNext(), -1, DEFAULT_OFFSET, DEFAULT_LIMIT);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetCollectionResource_NegativeOffset() throws Exception {
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), -1L, DEFAULT_LIMIT);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetCollectionResource_OffsetHigherThanNumberOfElements() throws Exception {
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), dao.getNumberOfElements() + 1, DEFAULT_LIMIT);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetCollectionResource_OffsetTooHighForCollectionSize() throws Exception {
+		dao = new GameTestDAO(5);
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(0L, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), 2L, DEFAULT_LIMIT);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetCollectionResource_OffsetTooLowForCollectionSize() throws Exception {
+		Validator.validate(entity, getGetCollectionResourceMethod(), dao.getAll(dao.getNumberOfElements() -1, DEFAULT_LIMIT), URL_FACTORY.getNext(), dao.getNumberOfElements(), 0L, DEFAULT_LIMIT);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
