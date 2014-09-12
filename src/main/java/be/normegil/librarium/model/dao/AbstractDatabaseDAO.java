@@ -2,12 +2,10 @@ package be.normegil.librarium.model.dao;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.model.data.video.EpisodeSerie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
-import java.util.Collection;
 import java.util.List;
 
 public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
@@ -24,7 +22,7 @@ public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
 
 	@Override
 	public long getNumberOfElements() {
-		return 0;
+		return (long) entityManager.createQuery(getNumberOfElementsQuery()).getSingleResult();
 	}
 
 	public List<Entity> getAll() {
@@ -36,9 +34,6 @@ public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
 		return entityManager.createQuery(getGetAllQuery()).getResultList();
 	}
 
-	private String getGetAllQuery() {
-		return "select e from " + entityClass.getName() + " e";
-	}
 
 	public Entity get(Object id) {
 		return entityManager.find(getEntityClass(), id);
@@ -67,5 +62,13 @@ public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
 
 	protected Class<Entity> getEntityClass() {
 		return entityClass;
+	}
+
+	private String getGetAllQuery() {
+		return "select e from " + entityClass.getName() + " e";
+	}
+
+	private String getNumberOfElementsQuery() {
+		return "select count(e.id) from " + entityClass.getName() + " e";
 	}
 }

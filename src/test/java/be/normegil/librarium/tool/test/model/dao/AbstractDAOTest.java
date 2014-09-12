@@ -58,6 +58,13 @@ public abstract class AbstractDAOTest<DAO extends AbstractDatabaseDAO, Entity> {
 	}
 
 	@Test
+	public void testGetNumberOfElements() throws Exception {
+		Object result = entityManager.createQuery("select count(e.id) from " + entity.getClass().getName() + " e").getSingleResult();
+		long numberOfElements = dao.getNumberOfElements();
+		assertEquals(result, numberOfElements);
+	}
+
+	@Test
 	public void testGet() throws Exception {
 		Entity foundEntity = (Entity) dao.get(getEntityId(entity));
 		assertEquals(entity, foundEntity);
