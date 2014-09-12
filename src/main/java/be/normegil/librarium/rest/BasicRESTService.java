@@ -176,7 +176,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 		long previousOffset = offset - 1;
 		long nextOffset = offset + 1;
 		CollectionResource.Builder builder = CollectionResource.builder()
-				.addAllItem(urls)
+				.addAllItems(urls)
 				.setOffset(offset)
 				.setLimit(limit)
 				.setFirst(getCollectionURL(baseURL, firstOffset, limit))

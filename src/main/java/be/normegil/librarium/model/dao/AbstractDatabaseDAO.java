@@ -2,11 +2,13 @@ package be.normegil.librarium.model.dao;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
+import be.normegil.librarium.model.data.video.EpisodeSerie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
+import java.util.List;
 
 public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
 
@@ -20,7 +22,17 @@ public abstract class AbstractDatabaseDAO<Entity> implements DAO<Entity> {
 		entityClass = (Class<Entity>) genericSuperclass.getActualTypeArguments()[0];
 	}
 
-	public Collection<Entity> getAll() {
+	@Override
+	public long getNumberOfElements() {
+		return 0;
+	}
+
+	public List<Entity> getAll() {
+		return getAll(0L, ApplicationProperties.REST.DEFAULT_LIMIT);
+	}
+
+	@Override
+	public List<Entity> getAll(final long offset, final int limit) {
 		return entityManager.createQuery(getGetAllQuery()).getResultList();
 	}
 

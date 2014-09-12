@@ -1,10 +1,12 @@
 package be.normegil.librarium.rest;
 
 import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.tool.DataFactory;
@@ -12,7 +14,6 @@ import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import static org.junit.Assert.*;
 
 public class UTRESTCollectionHelper {
 
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<Entity> ENTITY_FACTORY = FactoryRepository.get(Entity.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
 	private static final int DEFAULT_LIMIT = ApplicationProperties.REST.DEFAULT_LIMIT;
@@ -275,7 +278,7 @@ public class UTRESTCollectionHelper {
 		List<Game> games = dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT);
 		URL baseURL = URL_FACTORY.getNext();
 		long numberOfElements = dao.getNumberOfElements();
-		CollectionResource resource = restCollectionHelper.getCollectionResource(games, baseURL, numberOfElements, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		CollectionResource resource = restCollectionHelper.getCollectionResource(games, baseURL, numberOfElements, null, DEFAULT_LIMIT);
 
 		long numberOfFullPage = numberOfElements / DEFAULT_LIMIT;
 		long lastOffset = numberOfFullPage * (DEFAULT_LIMIT - 1);
@@ -285,27 +288,91 @@ public class UTRESTCollectionHelper {
 	}
 
 	@Test
-	public void testGetCollectionResource_NullLimit() throws Exception {
-		throw new NotImplementedException();
+	public void testGetCollectionResource_NullLimit_Items() throws Exception {
+		URL baseURL = URL_FACTORY.getNext();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(new ArrayList<>(), baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		List<URL> expectedURLs = restCollectionHelper.convertToURLs(dao.getAll(FIRST_OFFSET, DEFAULT_LIMIT), baseURL);
+		assertEquals(expectedURLs, resource.getItems());
 	}
 
 	@Test
-	public void testGetCollectionResource_NegativeLimit() throws Exception {
-		throw new NotImplementedException();
+	public void testGetCollectionResource_NullLimit_Offset() throws Exception {
+		URL baseURL = URL_FACTORY.getNext();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(new ArrayList<>(), baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		assertEquals((Long) DEFAULT_OFFSET, resource.getOffset());
 	}
 
 	@Test
-	public void testGetCollectionResource_LimitZero() throws Exception {
-		throw new NotImplementedException();
+	public void testGetCollectionResource_NullLimit_Limit() throws Exception {
+		CollectionResource resource = restCollectionHelper.getCollectionResource(new ArrayList<>(), URL_FACTORY.getNext(), dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		assertEquals(ApplicationProperties.REST.DEFAULT_LIMIT, resource.getLimit());
+	}
+
+	@Test
+	public void testGetCollectionResource_NullLimit_URLToFirstPage() throws Exception {
+		URL baseURL = URL_FACTORY.getNext();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(dao.getAll(DEFAULT_OFFSET, ApplicationProperties.REST.DEFAULT_LIMIT), baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		URL expected = restCollectionHelper.getCollectionURL(baseURL, FIRST_OFFSET, ApplicationProperties.REST.DEFAULT_LIMIT);
+		assertEquals(expected, resource.getURLToFirstPage());
+	}
+
+	@Test
+	public void testGetCollectionResource_NullLimit_URLToPreviousPage() throws Exception {
+		URL baseURL = URL_FACTORY.getNext();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		URL expected = restCollectionHelper.getCollectionURL(baseURL, DEFAULT_OFFSET - ApplicationProperties.REST.DEFAULT_LIMIT, ApplicationProperties.REST.DEFAULT_LIMIT);
+		assertEquals(expected, resource.getURLToPreviousPage());
+	}
+
+	@Test
+	public void testGetCollectionResource_NullLimit_URLToNextPage() throws Exception {
+		List<Game> games = dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT);
+		URL baseURL = URL_FACTORY.getNext();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(games, baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, null);
+		URL expected = restCollectionHelper.getCollectionURL(baseURL, DEFAULT_OFFSET + ApplicationProperties.REST.DEFAULT_LIMIT, ApplicationProperties.REST.DEFAULT_LIMIT);
+		assertEquals(expected, resource.getURLToNextPage());
+	}
+
+	@Test
+	public void testGetCollectionResource_NullLimit_URLToLastPage() throws Exception {
+		URL baseURL = URL_FACTORY.getNext();
+		long numberOfElements = dao.getNumberOfElements();
+		CollectionResource resource = restCollectionHelper.getCollectionResource(dao.getAll(DEFAULT_OFFSET, ApplicationProperties.REST.DEFAULT_LIMIT), baseURL, numberOfElements, DEFAULT_OFFSET, null);
+
+		long numberOfFullPage = numberOfElements / ApplicationProperties.REST.DEFAULT_LIMIT;
+		long lastOffset = numberOfFullPage * (ApplicationProperties.REST.DEFAULT_LIMIT - 1);
+
+		URL expected = restCollectionHelper.getCollectionURL(baseURL, lastOffset, ApplicationProperties.REST.DEFAULT_LIMIT);
+		assertEquals(expected, resource.getURLToLastPage());
 	}
 
 	@Test
 	public void testConvertToURLs() throws Exception {
-		throw new NotImplementedException();
+		URL baseURL = URL_FACTORY.getNext();
+		List<Entity> entities = new ArrayList<>();
+		entities.add(ENTITY_FACTORY.getNext());
+		entities.add(ENTITY_FACTORY.getNext());
+		entities.add(ENTITY_FACTORY.getNext());
+		List<URL> toTest = restCollectionHelper.convertToURLs(entities, baseURL);
+		List<URL> expected = new ArrayList<>();
+		for (Entity entity : entities) {
+			expected.add(baseURL.addToPath(Constants.URL_SEPARATOR + entity.getId()));
+		}
+		assertEquals(expected, toTest);
 	}
 
 	@Test
 	public void testConvertToURLs_EmptyList() throws Exception {
-		throw new NotImplementedException();
+		URL baseURL = URL_FACTORY.getNext();
+		List<URL> toTest = restCollectionHelper.convertToURLs(new ArrayList<>(), baseURL);
+		assertTrue(toTest.isEmpty());
+	}
+
+	@Test
+	public void testGetCollectionURL() throws Exception {
+		URL url = URL_FACTORY.getNext();
+		URL toTest = restCollectionHelper.getCollectionURL(url, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		URL expected = url.addToPath("?offset=" + DEFAULT_OFFSET + "&limit=" + DEFAULT_LIMIT);
+		assertEquals(expected, toTest);
 	}
 }

@@ -15,13 +15,8 @@ import java.util.List;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		UTCollectionResourceSafety.class,
-		UTCollectionResource.class,
-		UTCollectionResourceEquality.class,
-		UTCollectionResourceComparator.class,
 		UTCollectionResourceBuilderSafety.class,
 		UTCollectionResourceBuilder.class,
-		UTCollectionResourceDatabaseSupport.class,
 		UTCollectionResourceXMLSupport.class,
 		UTCollectionResourceJSONSupport.class
 })
@@ -37,13 +32,23 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 
 	@Override
 	public CollectionResource getNew() {
+		return getNew(true);
+	}
+
+	@Override
+	public CollectionResource getNext() {
+		return getNext(true);
+	}
+
+	@Override
+	public CollectionResource getNew(final boolean withLink) {
 		URL url = URL_FACTORY.getNew();
 		List<Game> games = new ArrayList<>();
 		games.add(GAME_FACTORY.getNew());
 		RESTCollectionHelper helper = new RESTCollectionHelper();
 		List<URL> urls = helper.convertToURLs(games, url);
 		return CollectionResource.builder()
-				.addAllItem(urls)
+				.addAllItems(urls)
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
 				.setFirst(helper.getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT))
@@ -52,17 +57,17 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 	}
 
 	@Override
-	public CollectionResource getNext() {
+	public CollectionResource getNext(final boolean withLink) {
 		URL url = URL_FACTORY.getNext();
 		List<Game> games = new ArrayList<>();
-		games.add(GAME_FACTORY.getNext());
-		games.add(GAME_FACTORY.getNext());
-		games.add(GAME_FACTORY.getNext());
-		games.add(GAME_FACTORY.getNext());
+		games.add(GAME_FACTORY.getNext(false));
+		games.add(GAME_FACTORY.getNext(false));
+		games.add(GAME_FACTORY.getNext(false));
+		games.add(GAME_FACTORY.getNext(false));
 		RESTCollectionHelper helper = new RESTCollectionHelper();
 		List<URL> urls = helper.convertToURLs(games, url);
 		return CollectionResource.builder()
-				.addAllItem(urls)
+				.addAllItems(urls)
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
 				.setFirst(helper.getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT))

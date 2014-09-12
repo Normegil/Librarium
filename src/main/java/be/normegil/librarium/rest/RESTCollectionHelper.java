@@ -26,7 +26,7 @@ public class RESTCollectionHelper {
 				.setLast(getCollectionURL(baseURL, lastOffset, realLimit));
 
 		List<URL> urls = convertToURLs(entities, baseURL);
-		builder.addAllItem(urls);
+		builder.addAllItems(urls);
 
 		long nextOffset = realOffset + realLimit;
 		if (nextOffset <= totalNumberOfElements) {

@@ -73,6 +73,17 @@ public class CollectionResource {
 
 		protected abstract E self();
 
+		public E from(final CollectionResource collectionResource){
+			offset = collectionResource.getOffset();
+			limit = collectionResource.getLimit();
+			first = collectionResource.getURLToFirstPage();
+			previous = collectionResource.getURLToPreviousPage();
+			next = collectionResource.getURLToNextPage();
+			last = collectionResource.getURLToLastPage();
+			items.addAll(collectionResource.getItems());
+			return self();
+		}
+
 		public E setOffset(final Long offset) {
 			this.offset = offset;
 			return self();
@@ -103,7 +114,7 @@ public class CollectionResource {
 			return self();
 		}
 
-		public E addAllItem(final List<URL> items) {
+		public E addAllItems(final List<URL> items) {
 			for (URL item : items) {
 				addItem(item);
 			}
