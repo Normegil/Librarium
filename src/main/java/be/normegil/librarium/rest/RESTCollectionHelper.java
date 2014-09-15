@@ -21,23 +21,37 @@ public class RESTCollectionHelper {
 		long lastOffset = getLastOffset(totalNumberOfElements, realLimit);
 		CollectionResource.Builder builder = CollectionResource.builder()
 				.setOffset(realOffset)
-				.setLimit(realLimit)
-				.setFirst(getCollectionURL(baseURL, FIRST_OFFSET, realLimit))
-				.setLast(getCollectionURL(baseURL, lastOffset, realLimit));
+				.setLimit(realLimit);
 
 		List<URL> urls = convertToURLs(entities, baseURL);
 		builder.addAllItems(urls);
-
-		long nextOffset = realOffset + realLimit;
-		if (nextOffset <= totalNumberOfElements) {
-			builder.setNext(getCollectionURL(baseURL, nextOffset, realLimit));
-		}
-
-		long previousOffset = realOffset - realLimit;
-		if (previousOffset >= 0) {
-			builder.setPrevious(getCollectionURL(baseURL, previousOffset, realLimit));
-		}
 		return builder.build();
+	}
+
+	public URL getPreviousURL(URL baseURL, long offset, int limit) {
+		if (offset != FIRST_OFFSET) {
+			long previousOffset;
+			if (offset - limit < FIRST_OFFSET) {
+				previousOffset = FIRST_OFFSET;
+			} else {
+				previousOffset = offset - limit;
+			}
+			return getCollectionURL(baseURL, previousOffset, limit);
+		}
+		return null;
+	}
+
+	public URL getNextURL(URL baseURL, long offset, int limit, long totalNumberOfItems) {
+		if (offset + limit < totalNumberOfItems) {
+			return getCollectionURL(baseURL, offset + limit, limit);
+		}
+		return null;
+	}
+
+	public URL getLastURL(URL baseURL, long offset, int limit, long totalNumberOfItems) {
+		long numberOfPagesMinusOne = totalNumberOfItems / limit;
+		long lastOffset = numberOfPagesMinusOne * limit;
+		return getCollectionURL(baseURL, lastOffset, limit);
 	}
 
 	public long getLastOffset(final long totalNumberOfElements, final int realLimit) {

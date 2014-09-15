@@ -1,7 +1,5 @@
 package be.normegil.librarium.validation.constraint;
 
-import be.normegil.librarium.validation.constraint.NotEmptyValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;

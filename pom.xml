@@ -5,6 +5,7 @@
 	<groupId>be.normegil</groupId>
 	<artifactId>librarium</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<name>librarium</name>
 	<packaging>war</packaging>
 
 	<url>http://maven.apache.org</url>
@@ -67,7 +68,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.1.0.Final</version>
+			<version>5.1.2.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -109,6 +110,13 @@
 			<artifactId>resteasy-jettison-provider</artifactId>
 			<version>3.0.8.Final</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- Needed to get com.sun.el.ExpressionFactoryImpl. Not sure how this worked -->
+		<dependency>
+			<groupId>com.sun.el</groupId>
+			<artifactId>el-ri</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 

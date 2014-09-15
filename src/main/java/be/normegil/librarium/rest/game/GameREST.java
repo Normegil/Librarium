@@ -93,5 +93,7 @@ public class GameREST implements RESTService<Game>, Updater<Game>{
 		}
 	}
 
-
+	protected void setDAO(final DAO<Game> dao) {
+		this.dao = dao;
+	}
 }

@@ -5,7 +5,6 @@ import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
 import be.normegil.librarium.model.data.game.Game;
-import be.normegil.librarium.rest.game.GameREST;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;

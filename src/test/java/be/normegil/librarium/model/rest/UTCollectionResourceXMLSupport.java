@@ -1,5 +1,6 @@
 package be.normegil.librarium.model.rest;
 
+import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.test.model.data.AbstractJAXBSupportTest;
 import be.normegil.librarium.util.jaxb.JAXBHelper;
@@ -14,6 +15,10 @@ public class UTCollectionResourceXMLSupport extends AbstractJAXBSupportTest<Coll
 
 	@Override
 	protected CollectionResource initEntity() {
-		return FACTORY.getNew();
+		CollectionResource resource = FACTORY.getNew();
+		for (URL url : resource.getItems()) {
+
+		}
+		return resource;
 	}
 }

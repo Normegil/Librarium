@@ -165,30 +165,12 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 		} else if (limit > ApplicationProperties.REST.MAX_LIMIT) {
 			limit = ApplicationProperties.REST.MAX_LIMIT;
 		}
-
-		long numberOfElements = getDao().getNumberOfElements();
-		long numberOfPages = numberOfElements / limit;
-		long firstOffset = 0L;
-		long lastOffset = numberOfPages * limit + 1;
-		if (offset == null) {
-			offset = 0L;
-		}
-		long previousOffset = offset - 1;
-		long nextOffset = offset + 1;
 		CollectionResource.Builder builder = CollectionResource.builder()
 				.addAllItems(urls)
 				.setOffset(offset)
 				.setLimit(limit)
-				.setFirst(getCollectionURL(baseURL, firstOffset, limit))
-				.setLast(getCollectionURL(baseURL, lastOffset, limit));
-
-		if (nextOffset <= numberOfElements) {
-			builder.setNext(getCollectionURL(baseURL, nextOffset, limit));
-		}
-
-		if (previousOffset >= 0) {
-			builder.setPrevious(getCollectionURL(baseURL, previousOffset, limit));
-		}
+				.setBaseURL(baseURL)
+				.setTotalNumberOfItems(getDao().getNumberOfElements());
 		return builder.build();
 	}
 

@@ -42,7 +42,7 @@ public class GameTestDAO implements DAO<Game> {
 	}
 
 	@Override
-	public Collection<Game> getAll() {
+	public List<Game> getAll() {
 		return new ArrayList<>(games);
 	}
 

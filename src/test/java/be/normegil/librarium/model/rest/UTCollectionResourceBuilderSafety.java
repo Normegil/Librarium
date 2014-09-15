@@ -4,20 +4,17 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.Class;
 import be.normegil.librarium.libraries.URL;
-import be.normegil.librarium.model.data.game.Game;
-import be.normegil.librarium.rest.RESTCollectionHelper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.URLFactory;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class UTCollectionResourceBuilderSafety {
@@ -25,6 +22,8 @@ public class UTCollectionResourceBuilderSafety {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
 	private static final Class<CollectionResource.Builder> CLASS = new Class<>(CollectionResource.Builder.class);
+	private static final Method BUILD_METHOD = CLASS.getMethod("build");
+	private static final Method SET_OFFSET_METHOD = CLASS.getMethod("setOffset", long.class);
 	private static final int DEFAULT_LIMIT = ApplicationProperties.REST.DEFAULT_LIMIT;
 	private static final Long FIRST_OFFSET = 0L;
 	private static final Long DEFAULT_OFFSET = FIRST_OFFSET;
@@ -41,27 +40,8 @@ public class UTCollectionResourceBuilderSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testFrom() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("from", CollectionResource.class), new Object[]{null});
-	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testSetOffset_Null() throws Exception {
-		Validator.validate(entity, getSetOffsetMethod(), new Object[]{null});
-	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testSetOffset_Empty() throws Exception {
-		Validator.validate(entity, getSetOffsetMethod(), -1L);
-	}
-
-	private Method getSetOffsetMethod() {
-		return CLASS.getMethod("setOffset", Long.class);
-	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testSetLimit_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setLimit", int.class), new Object[]{null});
+	public void testSetOffset_Negative() throws Exception {
+		Validator.validate(entity, SET_OFFSET_METHOD, -1L);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -75,28 +55,18 @@ public class UTCollectionResourceBuilderSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testSetFirst_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setFirst", URL.class), new Object[]{null});
+	public void testSetBaseURL_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setBaseURL", URL.class), new Object[]{null});
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testSetPrevious_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setPrevious", URL.class), new Object[]{null});
-	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testSetNext_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setNext", URL.class), new Object[]{null});
-	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testSetLast_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setLast", URL.class), new Object[]{null});
+	public void testSetTotalNumberOfItems_Negative() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setTotalNumberOfItems", long.class), -1L);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testAddAllItems_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("addAllItems", Collection.class), new Object[]{null});
+		Validator.validate(entity, CLASS.getMethod("addAllItems", List.class), new Object[]{null});
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -106,27 +76,47 @@ public class UTCollectionResourceBuilderSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testBuild_Empty() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("build"));
+		Validator.validate(getConstructorFromBuilder(), entity);
+		Validator.validate(entity, BUILD_METHOD);
 	}
 
-	@Test(expected = ConstraintViolationException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testBuild_OffsetHigherThanNumberOfElements() throws Exception {
-		fillBuilder();
-		Validator.validate(entity, CLASS.getMethod("build"));
-	}
-
-	private void fillBuilder() {
 		List<URL> urls = new ArrayList<>();
 		urls.add(URL_FACTORY.getNext());
 		urls.add(URL_FACTORY.getNext());
 		urls.add(URL_FACTORY.getNext());
-		RESTCollectionHelper helper = new RESTCollectionHelper();
 		URL baseURL = URL_FACTORY.getNext();
+
 		entity
 				.addAllItems(urls)
-				.setOffset(DEFAULT_OFFSET)
+				.setOffset(2L)
 				.setLimit(DEFAULT_LIMIT)
-				.setFirst(helper.getCollectionURL(baseURL, FIRST_OFFSET, DEFAULT_LIMIT))
-				.setLast(helper.getCollectionURL(baseURL, helper.getLastOffset(urls.size(), DEFAULT_LIMIT), DEFAULT_LIMIT));
+				.setBaseURL(baseURL)
+				.setTotalNumberOfItems(1L);
+
+		entity.build();
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testBuild_OffsetEqualsToNumberOfElementsWhenNotZero() throws Exception {
+		List<URL> urls = new ArrayList<>();
+		urls.add(URL_FACTORY.getNext());
+		urls.add(URL_FACTORY.getNext());
+		urls.add(URL_FACTORY.getNext());
+		URL baseURL = URL_FACTORY.getNext();
+
+		entity
+				.addAllItems(urls)
+				.setOffset(2L)
+				.setLimit(DEFAULT_LIMIT)
+				.setBaseURL(baseURL)
+				.setTotalNumberOfItems(2L);
+
+		entity.build();
+	}
+
+	private Constructor<CollectionResource> getConstructorFromBuilder() {
+		return new Class<>(CollectionResource.class).getConstructor(CollectionResource.Init.class);
 	}
 }
