@@ -46,10 +46,6 @@ public class UTRESTHelper {
 	@Mock
 	private UriInfo info;
 
-	@Mock
-	private RESTCollectionHelper helper;
-
-
 	@Before
 	public void setUp() throws Exception {
 		dao = new GameTestDAO();

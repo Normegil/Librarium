@@ -1,10 +1,11 @@
 package be.normegil.librarium.model.rest;
 
 import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.annotation.XSD;
 import be.normegil.librarium.libraries.URL;
-import be.normegil.librarium.rest.RESTCollectionHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -69,11 +70,11 @@ public class CollectionResource {
 
 		totalNumberOfItems = init.totalNumberOfItems;
 
-		first = new RESTCollectionHelper().getCollectionURL(init.baseURL, FIRST_OFFSET, limit);
-		last = new RESTCollectionHelper().getLastURL(init.baseURL, limit, totalNumberOfItems);
+		first = helper().getCollectionURL(init.baseURL, FIRST_OFFSET, limit);
+		last = helper().generateLastURL(init.baseURL, limit, totalNumberOfItems);
 
-		previous = new RESTCollectionHelper().getPreviousURL(init.baseURL, offset, limit);
-		next = new RESTCollectionHelper().getNextURL(init.baseURL, offset, limit, totalNumberOfItems);
+		previous = helper().generatePreviousURL(init.baseURL, offset, limit);
+		next = helper().generateNextURL(init.baseURL, offset, limit, totalNumberOfItems);
 
 		items = init.items;
 	}
@@ -96,6 +97,10 @@ public class CollectionResource {
 
 	public static Builder builder() {
 		return new Builder();
+	}
+
+	public static Helper helper() {
+		return new Helper();
 	}
 
 	private boolean offsetIsConsistant(final Long offset, final Long totalNumberOfItems) {
@@ -200,7 +205,7 @@ public class CollectionResource {
 			offset = resource.getOffset();
 			limit = resource.getLimit();
 			totalNumberOfItems = resource.getTotalNumberOfItems();
-			baseURL = new RESTCollectionHelper().getBaseURL(resource.getURLToFirstPage());
+			baseURL = helper().getBaseURL(resource.getURLToFirstPage());
 			return self();
 		}
 
@@ -240,6 +245,46 @@ public class CollectionResource {
 		@Valid
 		CollectionResource build() {
 			return new CollectionResource(this);
+		}
+	}
+
+	public static class Helper {
+		private URL generatePreviousURL(@NotNull URL baseURL, long offset, int limit) {
+			if (offset != FIRST_OFFSET) {
+				long previousOffset;
+				if (offset - limit < FIRST_OFFSET) {
+					previousOffset = FIRST_OFFSET;
+				} else {
+					previousOffset = offset - limit;
+				}
+				return getCollectionURL(baseURL, previousOffset, limit);
+			}
+			return null;
+		}
+
+		private URL generateNextURL(URL baseURL, long offset, int limit, long totalNumberOfItems) {
+			if (offset + limit < totalNumberOfItems) {
+				return getCollectionURL(baseURL, offset + limit, limit);
+			}
+			return null;
+		}
+
+		private URL generateLastURL(URL baseURL, int limit, long totalNumberOfItems) {
+			long numberOfPagesMinusOne = totalNumberOfItems / limit;
+			if (totalNumberOfItems % limit == 0) {
+				numberOfPagesMinusOne -= 1;
+			}
+			long lastOffset = numberOfPagesMinusOne * limit;
+			return getCollectionURL(baseURL, lastOffset, limit);
+		}
+
+		public URL getCollectionURL(@NotNull final URL baseURL, final long offset, final int limit) {
+			return baseURL.addToPath(Constants.URL.PARAMETER_SEPARATOR + "offset=" + offset + "&limit=" + limit);
+		}
+
+		public URL getBaseURL(@NotNull final URL collectionURL) {
+			String baseURLString = StringUtils.substringBefore(collectionURL.toRepresentation(), Constants.URL.PARAMETER_SEPARATOR);
+			return new URL(baseURLString);
 		}
 	}
 

@@ -3,7 +3,6 @@ package be.normegil.librarium.model.rest;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
-import be.normegil.librarium.rest.RESTCollectionHelper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;
@@ -99,7 +98,7 @@ public class UTCollectionResourceBuilder {
 				.setBaseURL(url)
 				.setTotalNumberOfItems(DEFAULT_NUMBER_OF_ITEMS)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToFirstPage());
 	}
 
@@ -112,7 +111,7 @@ public class UTCollectionResourceBuilder {
 				.setTotalNumberOfItems(DEFAULT_LIMIT + 5)
 				.setBaseURL(url)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, DEFAULT_LIMIT, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, DEFAULT_LIMIT, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToLastPage());
 	}
 
@@ -125,7 +124,7 @@ public class UTCollectionResourceBuilder {
 				.setTotalNumberOfItems(DEFAULT_LIMIT - 5)
 				.setBaseURL(url)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToLastPage());
 	}
 
@@ -138,7 +137,7 @@ public class UTCollectionResourceBuilder {
 				.setTotalNumberOfItems(DEFAULT_LIMIT * 3)
 				.setBaseURL(url)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, DEFAULT_LIMIT * 2, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, DEFAULT_LIMIT * 2, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToLastPage());
 	}
 
@@ -152,7 +151,7 @@ public class UTCollectionResourceBuilder {
 				.setBaseURL(url)
 				.setTotalNumberOfItems(DEFAULT_NUMBER_OF_ITEMS)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, offset - DEFAULT_LIMIT, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, offset - DEFAULT_LIMIT, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToPreviousPage());
 	}
 
@@ -166,7 +165,7 @@ public class UTCollectionResourceBuilder {
 				.setBaseURL(url)
 				.setTotalNumberOfItems(DEFAULT_NUMBER_OF_ITEMS)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToPreviousPage());
 	}
 
@@ -191,7 +190,7 @@ public class UTCollectionResourceBuilder {
 				.setBaseURL(url)
 				.setTotalNumberOfItems(DEFAULT_NUMBER_OF_ITEMS)
 				.build();
-		URL expected = new RESTCollectionHelper().getCollectionURL(url, DEFAULT_OFFSET + DEFAULT_LIMIT, DEFAULT_LIMIT);
+		URL expected = CollectionResource.helper().getCollectionURL(url, DEFAULT_OFFSET + DEFAULT_LIMIT, DEFAULT_LIMIT);
 		assertEquals(expected, collectionResource.getURLToNextPage());
 	}
 

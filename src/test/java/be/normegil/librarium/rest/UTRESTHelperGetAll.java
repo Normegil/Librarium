@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -44,10 +45,6 @@ public class UTRESTHelperGetAll {
 	@Mock
 	private UriInfo info;
 
-	@Spy
-	private RESTCollectionHelper helper;
-
-
 	@Before
 	public void setUp() throws Exception {
 		dao = new GameTestDAO(NUMBER_OF_GAMES);
@@ -68,8 +65,7 @@ public class UTRESTHelperGetAll {
 	public void testGetAll_RESTCollectionResourceCalled() throws Exception {
 		restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		URL baseURL = new URL(baseURI);
-		verify(helper, times(1))
-				.getCollectionResource(dao.getAll(), baseURL, dao.getNumberOfElements(), DEFAULT_OFFSET, DEFAULT_LIMIT);
+		throw new NotImplementedException();
 	}
 
 	@Test

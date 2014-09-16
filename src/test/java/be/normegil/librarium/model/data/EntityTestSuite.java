@@ -11,6 +11,8 @@ import java.util.UUID;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 		UTEntityComparator.class,
+		UTEntityHelperSafety.class,
+		UTEntityHelper.class,
 })
 public class EntityTestSuite implements DataFactory<Entity> {
 

@@ -2,11 +2,15 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
+import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.util.jaxb.adapter.UUIDToRESTURLAdapter;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @MappedSuperclass
@@ -19,6 +23,10 @@ public abstract class Entity {
 	private UUID id;
 
 	protected Entity() {
+	}
+
+	public static Helper helper() {
+		return new Helper();
 	}
 
 	public UUID getId() {
@@ -46,6 +54,19 @@ public abstract class Entity {
 					.toComparison();
 		} else {
 			return Constants.Comparator.PRIORITY_SECOND;
+		}
+	}
+
+	public static class Helper {
+		public List<URL> convertToURLs(final List<? extends Entity> entities, final URL baseURL) {
+			List<URL> urlsToEntities = new ArrayList<>();
+			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			for (Entity entity : entities) {
+				UUID id = entity.getId();
+				URL urlToEntity = adapter.marshal(id);
+				urlsToEntities.add(urlToEntity);
+			}
+			return urlsToEntities;
 		}
 	}
 }
