@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public abstract class Entity {
 	}
 
 	public static class Helper {
-		public List<URL> convertToURLs(final List<? extends Entity> entities, final URL baseURL) {
+		public List<URL> convertToURLs(@NotNull final List<? extends Entity> entities, @NotNull final URL baseURL) {
 			List<URL> urlsToEntities = new ArrayList<>();
 			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
 			for (Entity entity : entities) {

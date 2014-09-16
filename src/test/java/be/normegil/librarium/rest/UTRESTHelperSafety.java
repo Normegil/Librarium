@@ -5,6 +5,7 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.Class;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -146,14 +147,14 @@ public class UTRESTHelperSafety {
 	}
 
 	private Method getCreateMethod() {
-		return CLASS.getMethod("create", UriInfo.class, Object.class);
+		return CLASS.getMethod("create", UriInfo.class, Entity.class);
 	}
 
 	private Method getUpdateByPUTMethod() {
-		return CLASS.getMethod("updateByPUT", UUID.class, Object.class);
+		return CLASS.getMethod("updateByPUT", UUID.class, Entity.class);
 	}
 
 	private Method getUpdateByPOSTMethod() {
-		return CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Object.class);
+		return CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Entity.class);
 	}
 }

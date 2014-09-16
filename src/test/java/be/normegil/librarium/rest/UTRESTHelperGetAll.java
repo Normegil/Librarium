@@ -12,8 +12,10 @@ import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ws.rs.core.Response;
@@ -25,6 +27,7 @@ import java.net.URI;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UTRESTHelperGetAll {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
@@ -51,8 +54,6 @@ public class UTRESTHelperGetAll {
 		restHelper = new RESTHelper<>(dao, context, updater);
 
 		baseURI = URL_FACTORY.getNext().toURI();
-		when(info.getBaseUri())
-				.thenReturn(baseURI);
 	}
 
 	@After

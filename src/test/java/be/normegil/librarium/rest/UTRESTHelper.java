@@ -14,11 +14,14 @@ import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.ContextResolver;
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import java.net.URI;
 import java.util.UUID;
@@ -27,6 +30,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UTRESTHelper {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
@@ -54,6 +58,10 @@ public class UTRESTHelper {
 		baseURI = URL_FACTORY.getNext().toURI();
 		when(info.getBaseUri())
 				.thenReturn(baseURI);
+
+		JAXBContext jaxbContext = JAXBContext.newInstance();
+		when(context.getContext(restHelper.getClass()))
+				.thenReturn(jaxbContext.createMarshaller());
 	}
 
 	@After
@@ -223,9 +231,8 @@ public class UTRESTHelper {
 
 	@Test
 	public void testDelete_IDNotFound() throws Exception {
-		Entity entity = dao.getAll().iterator().next();
-		Response response = restHelper.delete(entity.getId());
-		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
+		Response response = restHelper.delete(UUID.randomUUID());
+		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
 	}
 
 }
