@@ -1,10 +1,12 @@
 package be.normegil.librarium.rest;
 
 import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.util.jaxb.adapter.UUIDToRESTURLAdapter;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -48,8 +50,11 @@ public class RESTCollectionHelper {
 		return null;
 	}
 
-	public URL getLastURL(URL baseURL, long offset, int limit, long totalNumberOfItems) {
+	public URL getLastURL(URL baseURL, int limit, long totalNumberOfItems) {
 		long numberOfPagesMinusOne = totalNumberOfItems / limit;
+		if (totalNumberOfItems % limit == 0) {
+			numberOfPagesMinusOne -= 1;
+		}
 		long lastOffset = numberOfPagesMinusOne * limit;
 		return getCollectionURL(baseURL, lastOffset, limit);
 	}
@@ -94,5 +99,10 @@ public class RESTCollectionHelper {
 
 	public URL getCollectionURL(@NotNull final URL baseURL, final long offset, final int limit) {
 		return baseURL.addToPath("?offset=" + offset + "&limit=" + limit);
+	}
+
+	public URL getBaseURL(@NotNull final URL collectionURL) {
+		String baseURLString = StringUtils.substringBefore(collectionURL.toRepresentation(), Constants.URL.PARAMETER_SEPARATOR);
+		return new URL(baseURLString);
 	}
 }

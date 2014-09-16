@@ -9,6 +9,8 @@ import be.normegil.librarium.model.data.game.GameSerieTestSuite;
 import be.normegil.librarium.model.data.game.GameTestSuite;
 import be.normegil.librarium.model.data.people.*;
 import be.normegil.librarium.model.data.video.*;
+import be.normegil.librarium.model.rest.CollectionResource;
+import be.normegil.librarium.model.rest.CollectionResourceTestSuite;
 import be.normegil.librarium.util.jaxb.JAXBHelperTestSuite;
 
 import java.util.HashMap;
@@ -41,6 +43,7 @@ public class FactoryRepository {
 	private static void initialize() {
 		// Framework classes
 		factories.put(URL.class, new URLFactory());
+		factories.put(CollectionResource.class, new CollectionResourceTestSuite());
 
 		// Model Classes
 		factories.put(AbstractBD.class, new AbstractBDTestSuite());

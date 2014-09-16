@@ -10,8 +10,8 @@ public class UUIDHelper {
 	public URL toURL(final URL baseURL, final UUID uuid) {
 		URL finalURL = baseURL;
 		String baseFilePath = baseURL.getFilePath();
-		if (!baseFilePath.endsWith(Constants.URL_SEPARATOR)) {
-			finalURL.addToPath(Constants.URL_SEPARATOR);
+		if (!baseFilePath.endsWith(Constants.URL.PATH_SEPARATOR)) {
+			finalURL.addToPath(Constants.URL.PATH_SEPARATOR);
 		}
 		return baseURL.addToPath(uuid.toString());
 	}

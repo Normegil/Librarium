@@ -130,6 +130,19 @@ public class UTCollectionResourceBuilder {
 	}
 
 	@Test
+	public void testLastPageURL_NumberOfItemsMultipleOfLimit() throws Exception {
+		URL url = URL_FACTORY.getNext();
+		CollectionResource collectionResource = entity
+				.setOffset(DEFAULT_OFFSET)
+				.setLimit(DEFAULT_LIMIT)
+				.setTotalNumberOfItems(DEFAULT_LIMIT * 3)
+				.setBaseURL(url)
+				.build();
+		URL expected = new RESTCollectionHelper().getCollectionURL(url, DEFAULT_LIMIT * 2, DEFAULT_LIMIT);
+		assertEquals(expected, collectionResource.getURLToLastPage());
+	}
+
+	@Test
 	public void testPreviousPageURL_OffsetHigherThanLimit() throws Exception {
 		URL url = URL_FACTORY.getNext();
 		long offset = DEFAULT_LIMIT + 5;

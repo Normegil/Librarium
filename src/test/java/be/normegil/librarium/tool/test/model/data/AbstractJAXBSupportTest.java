@@ -75,7 +75,10 @@ public abstract class AbstractJAXBSupportTest<E> {
 	@Test
 	public void testXmlUnMarshaller() throws Exception {
 		JAXBHelper<E> jaxbHelper = getJAXBHelper();
-		InputStream inputStream = getClass().getResourceAsStream(getTestFileName());
+		String testFileName = getTestFileName();
+		InputStream inputStream = getClass().getResourceAsStream(testFileName);
+
+		log.info("Searched " + documentType + " File in : " + testFileName);
 
 		E toTestEntity = jaxbHelper.from(documentType, inputStream);
 

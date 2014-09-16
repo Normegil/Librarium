@@ -1,9 +1,8 @@
 package be.normegil.librarium.util;
 
+import be.normegil.librarium.libraries.FieldWrapper;
 import be.normegil.librarium.model.data.BaseMedia;
 import be.normegil.librarium.model.data.Entity;
-import be.normegil.librarium.tool.comparator.FieldComparator;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +37,12 @@ public class UTClassHelper {
 		expected.addAll(Arrays.asList(aClass.getFields()));
 		expected.addAll(Arrays.asList(aClass.getDeclaredFields()));
 
-		assertEquals(expected, entity.getAllFields(aClass));
+		Collection<FieldWrapper> allFields = entity.getAllFields(aClass);
+		List<Field> toTest = new ArrayList<>();
+		for (FieldWrapper field : allFields) {
+			toTest.add(field.getOriginalField());
+		}
+		assertEquals(expected, toTest);
 	}
 
 	@Test
@@ -52,8 +56,11 @@ public class UTClassHelper {
 		expected.addAll(Arrays.asList(aClass.getSuperclass().getFields()));
 		expected.addAll(Arrays.asList(aClass.getSuperclass().getDeclaredFields()));
 
-		Collection<Field> allFields = entity.getAllFields(aClass);
-		List<Field> foundFieldsList = new ArrayList<>(allFields);
+		Collection<FieldWrapper> allFields = entity.getAllFields(aClass);
+		List<Field> foundFieldsList = new ArrayList<>();
+		for (FieldWrapper field : allFields) {
+			foundFieldsList.add(field.getOriginalField());
+		}
 		assertEquals(expected, foundFieldsList);
 	}
 }

@@ -100,7 +100,7 @@ public class UTRESTHelper {
 		Response response = restHelper.create(info, entity);
 		URI location = response.getLocation();
 		URL baseURL = new URL(info.getBaseUri());
-		URL urlToEntity = baseURL.addToPath(Constants.URL_SEPARATOR + entity.getId());
+		URL urlToEntity = baseURL.addToPath(Constants.URL.PATH_SEPARATOR + entity.getId());
 		assertEquals(urlToEntity.toURI(), location);
 	}
 

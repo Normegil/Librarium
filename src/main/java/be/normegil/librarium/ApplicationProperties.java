@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath(Constants.URL_SEPARATOR + ApplicationProperties.BASE_PATH)
+@ApplicationPath(Constants.URL.PATH_SEPARATOR + ApplicationProperties.BASE_PATH)
 public class ApplicationProperties extends Application {
 
 	public static final String ENCODING = "UTF-8";

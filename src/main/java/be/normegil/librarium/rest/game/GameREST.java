@@ -21,7 +21,7 @@ import javax.xml.bind.Marshaller;
 import java.util.Set;
 import java.util.UUID;
 
-@Path(Constants.URL_SEPARATOR + "games")
+@Path(Constants.URL.PATH_SEPARATOR + "games")
 public class GameREST implements RESTService<Game>, Updater<Game>{
 
 	private DAO<Game> dao;

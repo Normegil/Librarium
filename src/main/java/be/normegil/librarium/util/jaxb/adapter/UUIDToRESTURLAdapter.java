@@ -17,12 +17,12 @@ public class UUIDToRESTURLAdapter extends XmlAdapter<URL, UUID> {
 
 	@Override
 	public UUID unmarshal(final URL v) {
-		String uuidString = StringUtils.substringAfterLast(v.toRepresentation(), Constants.URL_SEPARATOR);
+		String uuidString = StringUtils.substringAfterLast(v.toRepresentation(), Constants.URL.PATH_SEPARATOR);
 		return UUID.fromString(uuidString);
 	}
 
 	@Override
 	public URL marshal(final UUID v) {
-		return baseURL.addToPath(v.toString());
+		return baseURL.addToPath(Constants.URL.PATH_SEPARATOR + v.toString());
 	}
 }

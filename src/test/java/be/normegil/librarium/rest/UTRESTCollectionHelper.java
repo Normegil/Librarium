@@ -356,7 +356,7 @@ public class UTRESTCollectionHelper {
 		List<URL> toTest = restCollectionHelper.convertToURLs(entities, baseURL);
 		List<URL> expected = new ArrayList<>();
 		for (Entity entity : entities) {
-			expected.add(baseURL.addToPath(Constants.URL_SEPARATOR + entity.getId()));
+			expected.add(baseURL.addToPath(Constants.URL.PATH_SEPARATOR + entity.getId()));
 		}
 		assertEquals(expected, toTest);
 	}

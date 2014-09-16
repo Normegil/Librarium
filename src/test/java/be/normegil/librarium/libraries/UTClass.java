@@ -81,22 +81,26 @@ public class UTClass {
 	public void testGetPrivateField() throws Exception {
 		String fieldName = "universes";
 		Field expected = BASE_CLASS.getDeclaredField(fieldName);
-		Field toTest = entity.getField(fieldName);
-		assertEquals(expected, toTest);
+		FieldWrapper toTest = entity.getField(fieldName);
+		assertEquals(expected, toTest.getOriginalField());
 	}
 
 	@Test
 	public void testGetSuperclassField() throws Exception {
 		String fieldName = "id";
 		Field expected = Entity.class.getDeclaredField(fieldName);
-		Field toTest = entity.getField(fieldName);
-		assertEquals(expected, toTest);
+		FieldWrapper toTest = entity.getField(fieldName);
+		assertEquals(expected, toTest.getOriginalField());
 	}
 
 	@Test
 	public void testGetAllFields() throws Exception {
 		List<Field> expected = getAllFields(BASE_CLASS);
-		Collection<Field> toTest = entity.getAllFields();
+		Collection<FieldWrapper> allFields = entity.getAllFields();
+		List<Field> toTest = new ArrayList<>();
+		for (FieldWrapper field : allFields) {
+			toTest.add(field.getOriginalField());
+		}
 		assertEquals(expected, toTest);
 	}
 

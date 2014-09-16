@@ -6,7 +6,6 @@ import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Collection;
 
@@ -42,8 +41,8 @@ public class Class<E> implements Comparable<Class<E>> {
 		}
 	}
 
-	public Field getField(@NotEmpty String fieldName) {
-		for (Field field : getAllFields()) {
+	public FieldWrapper getField(@NotEmpty String fieldName) {
+		for (FieldWrapper field : getAllFields()) {
 			if (field.getName().equals(fieldName)) {
 				return field;
 			}
@@ -51,7 +50,7 @@ public class Class<E> implements Comparable<Class<E>> {
 		throw new be.normegil.librarium.util.exception.NoSuchFieldException("Field not found [Name=" + fieldName + "]");
 	}
 
-	public Collection<Field> getAllFields() {
+	public Collection<FieldWrapper> getAllFields() {
 		return new ClassHelper().getAllFields(aClass);
 	}
 
