@@ -76,6 +76,11 @@
 			<version>3.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.arquillian.core</groupId>
 			<artifactId>arquillian-core-api</artifactId>
 			<version>1.1.4.Final</version>

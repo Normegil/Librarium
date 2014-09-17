@@ -7,7 +7,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+		RESTHelperTestSuite.class,
+
         GamePackageTestSuite.class
 })
-public class RESTTestSuite {
+public class RESTPackageTestSuite {
 }
