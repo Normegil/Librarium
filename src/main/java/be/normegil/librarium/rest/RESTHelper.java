@@ -36,13 +36,17 @@ public class RESTHelper<E extends Entity> {
 			URL baseURL = new URL(info.getBaseUri());
 			setMarshallerOptions(baseURL);
 
-			List<E> entities = dao.getAll();
+			CollectionResource.Helper helper = CollectionResource.helper();
+			long realOffset = helper.getRealOffset(offset);
+			int realLimit = helper.getRealLimit(limit);
+			List<E> entities = dao.getAll(realOffset, realLimit);
+			List<URL> urls = Entity.helper().convertToURLs(entities, baseURL);
 			CollectionResource resource = CollectionResource.builder()
 					.setOffset(offset)
 					.setLimit(limit)
 					.setTotalNumberOfItems(dao.getNumberOfElements())
 					.setBaseURL(baseURL)
-					.addAllItems(Entity.helper().convertToURLs(entities, baseURL))
+					.addAllItems(urls)
 					.build();
 			return Response.ok(resource).build();
 		} catch (Exception e) {
@@ -90,7 +94,7 @@ public class RESTHelper<E extends Entity> {
 
 	public Response updateByPUT(@NotNull final UUID id, @NotNull final E entity) {
 		try {
-			if (id == null || entity == null || !id.equals(entity.getId())) {
+			if (id == null || entity == null || isEntityIDValid(id, entity.getId())) {
 				return Response.status(Response.Status.BAD_REQUEST).build();
 			}
 
@@ -111,7 +115,7 @@ public class RESTHelper<E extends Entity> {
 
 	public Response updateByPOST(@NotNull final UriInfo info, @NotNull final UUID id, @NotNull final E entity) {
 		try {
-			if (id == null || entity == null || !id.equals(entity.getId())) {
+			if (id == null || entity == null || isEntityIDValid(id, entity.getId())) {
 				return Response.status(Response.Status.BAD_REQUEST).build();
 			}
 
@@ -132,6 +136,10 @@ public class RESTHelper<E extends Entity> {
 			LOG.error("Error updating Game with ID : " + id, e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+
+	private boolean isEntityIDValid(final UUID id, final UUID entityID) {
+		return entityID != null && !id.equals(entityID);
 	}
 
 	public Response delete(@NotNull final UUID id) {

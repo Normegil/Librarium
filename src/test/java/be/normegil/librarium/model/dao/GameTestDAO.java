@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public class GameTestDAO implements DAO<Game> {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
 	private static final int DEFAULT_NUMBER_OF_GAMES = 5;
-	private Collection<Game> games = new ArrayList<>();
+	private List<Game> games = new ArrayList<>();
 
 	public GameTestDAO() {
 		this(DEFAULT_NUMBER_OF_GAMES);
@@ -48,7 +47,12 @@ public class GameTestDAO implements DAO<Game> {
 
 	@Override
 	public List<Game> getAll(final long offset, final int limit) {
-		return null;
+		List<Game> gamesToReturn = new ArrayList<>();
+		for (int i = 0; i < limit && offset + i < games.size(); i++) {
+			int index = (int) (offset + i);
+			gamesToReturn.add(games.get(index));
+		}
+		return gamesToReturn;
 	}
 
 	@Override
@@ -70,6 +74,7 @@ public class GameTestDAO implements DAO<Game> {
 	@Override
 	public void create(@NotNull @Valid final Game entity) {
 		games.add(entity);
+		new EntityHelper().setId(entity, UUID.randomUUID());
 	}
 
 	@Override

@@ -88,7 +88,7 @@ public class UTRESTHelper {
 	@Test
 	public void testGet_IDNotFound_ResponseStatus() throws Exception {
 		Response response = restHelper.get(info, UUID.randomUUID());
-		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
+		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
 	}
 
 	@Test
@@ -141,7 +141,7 @@ public class UTRESTHelper {
 		Game newEntity = GAME_FACTORY.getNext();
 		new EntityHelper().setId(newEntity, uuid);
 		Response response = restHelper.updateByPUT(uuid, newEntity);
-		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
+		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
 	}
 
 	@Test
@@ -195,7 +195,7 @@ public class UTRESTHelper {
 		Game newEntity = GAME_FACTORY.getNext();
 		new EntityHelper().setId(newEntity, uuid);
 		Response response = restHelper.updateByPOST(info, uuid, newEntity);
-		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
+		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
 	}
 
 	@Test

@@ -23,6 +23,8 @@ public class UUIDToRESTURLAdapter extends XmlAdapter<URL, UUID> {
 
 	@Override
 	public URL marshal(final UUID v) {
-		return baseURL.addToPath(Constants.URL.PATH_SEPARATOR + v.toString());
+		String uuidAsString = v.toString();
+		String pathToAdd = Constants.URL.PATH_SEPARATOR + uuidAsString;
+		return baseURL.addToPath(pathToAdd);
 	}
 }

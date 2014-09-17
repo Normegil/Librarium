@@ -50,31 +50,18 @@ public class CollectionResource {
 	private List<URL> items;
 
 	protected CollectionResource(@Valid Init<?> init) {
-		if (init.offset != null) {
-			if (offsetIsConsistant(init.offset, init.totalNumberOfItems)) {
-				offset = init.offset;
-			} else {
-				throw new IllegalArgumentException("Offset inconsitancy [Offset=" + init.offset + ";TotalNumberOfItems=" + init.totalNumberOfItems + "]");
-			}
-		} else {
-			offset = 0L;
+		Helper helper = helper();
+		offset = helper.getRealOffset(init.offset);
+		if (!offsetIsConsistant(offset, init.totalNumberOfItems)) {
+			throw new IllegalArgumentException("Offset inconsitancy [Offset=" + init.offset + ";TotalNumberOfItems=" + init.totalNumberOfItems + "]");
 		}
-
-		if (init.limit == null) {
-			limit = ApplicationProperties.REST.DEFAULT_LIMIT;
-		} else if (ApplicationProperties.REST.MAX_LIMIT < init.limit) {
-			limit = ApplicationProperties.REST.MAX_LIMIT;
-		} else {
-			limit = init.limit;
-		}
-
+		limit = helper.getRealLimit(init.limit);
 		totalNumberOfItems = init.totalNumberOfItems;
 
-		first = helper().getCollectionURL(init.baseURL, FIRST_OFFSET, limit);
-		last = helper().generateLastURL(init.baseURL, limit, totalNumberOfItems);
-
-		previous = helper().generatePreviousURL(init.baseURL, offset, limit);
-		next = helper().generateNextURL(init.baseURL, offset, limit, totalNumberOfItems);
+		first = helper.getCollectionURL(init.baseURL, FIRST_OFFSET, limit);
+		last = helper.generateLastURL(init.baseURL, limit, totalNumberOfItems);
+		previous = helper.generatePreviousURL(init.baseURL, offset, limit);
+		next = helper.generateNextURL(init.baseURL, offset, limit, totalNumberOfItems);
 
 		items = init.items;
 	}
@@ -285,6 +272,24 @@ public class CollectionResource {
 		public URL getBaseURL(@NotNull final URL collectionURL) {
 			String baseURLString = StringUtils.substringBefore(collectionURL.toRepresentation(), Constants.URL.PARAMETER_SEPARATOR);
 			return new URL(baseURLString);
+		}
+
+		public long getRealOffset(Long offset) {
+			if (offset != null) {
+				return offset;
+			} else {
+				return 0L;
+			}
+		}
+
+		public int getRealLimit(Integer limit) {
+			if (limit == null) {
+				return ApplicationProperties.REST.DEFAULT_LIMIT;
+			} else if (ApplicationProperties.REST.MAX_LIMIT < limit) {
+				return ApplicationProperties.REST.MAX_LIMIT;
+			} else {
+				return limit;
+			}
 		}
 	}
 
