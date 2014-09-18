@@ -3,8 +3,12 @@ package be.normegil.librarium.libraries;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.util.jaxb.adapter.URLAdapter;
+import be.normegil.librarium.util.parser.adapter.jaxb.URLJAXBAdapter;
+import be.normegil.librarium.util.parser.adapter.json.URLJsonDeserializer;
+import be.normegil.librarium.util.parser.adapter.json.URLJsonSerializer;
 import be.normegil.librarium.validation.constraint.NotEmpty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -19,8 +23,10 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@XmlJavaTypeAdapter(URLAdapter.class)
+@XmlJavaTypeAdapter(URLJAXBAdapter.class)
 @Convert(converter = URL.UrlConverter.class)
+@JsonSerialize(using = URLJsonSerializer.class)
+@JsonDeserialize(using = URLJsonDeserializer.class)
 public class URL implements Comparable<URL> {
 
 	@NotNull

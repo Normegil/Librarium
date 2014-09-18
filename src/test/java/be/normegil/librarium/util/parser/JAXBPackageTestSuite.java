@@ -1,6 +1,6 @@
-package be.normegil.librarium.util.jaxb;
+package be.normegil.librarium.util.parser;
 
-import be.normegil.librarium.util.jaxb.adapter.AdapterPackageTestSuite;
+import be.normegil.librarium.util.parser.adapter.AdapterPackageTestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

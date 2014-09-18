@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.jaxb;
+package be.normegil.librarium.util.parser;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.Class;
@@ -52,27 +52,27 @@ public class UTJAXBHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFrom_NullDocumentType() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("from", JAXBHelper.DocumentType.class, InputStream.class), null, new ByteArrayInputStream("Stream".getBytes()));
+		Validator.validate(entity, CLASS.getMethod("from", Parser.DocumentType.class, InputStream.class), null, new ByteArrayInputStream("Stream".getBytes()));
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFrom_NullInputStream() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("from", JAXBHelper.DocumentType.class, InputStream.class), JAXBHelper.DocumentType.JSON, null);
+		Validator.validate(entity, CLASS.getMethod("from", Parser.DocumentType.class, InputStream.class), Parser.DocumentType.JSON, null);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testTo_NullObject() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("to", Object.class, JAXBHelper.DocumentType.class, OutputStream.class), null, JAXBHelper.DocumentType.JSON, System.out);
+		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), null, Parser.DocumentType.JSON, System.out);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testTo_NullDocumentType() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("to", Object.class, JAXBHelper.DocumentType.class, OutputStream.class), FACTORY.getNext(), null, System.out);
+		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNext(), null, System.out);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testTo_NullOutputStream() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("to", Object.class, JAXBHelper.DocumentType.class, OutputStream.class), FACTORY.getNext(), JAXBHelper.DocumentType.JSON, null);
+		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNext(), Parser.DocumentType.JSON, null);
 	}
 
 	private Schema getValidationSchema(java.lang.Class<?> aClass) throws SAXException {

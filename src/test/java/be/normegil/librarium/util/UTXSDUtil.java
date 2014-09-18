@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.util.jaxb.JAXBHelperTestSuite;
+import be.normegil.librarium.util.parser.JAXBHelperTestSuite;
 import org.junit.Before;
 import org.junit.Test;
 

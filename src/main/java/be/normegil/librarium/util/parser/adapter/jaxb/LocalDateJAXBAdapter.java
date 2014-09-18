@@ -1,11 +1,11 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.util.DateHelper;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;
 
-public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
+public class LocalDateJAXBAdapter extends XmlAdapter<String, LocalDate> {
 
 	private DateHelper dateHelper = new DateHelper();
 

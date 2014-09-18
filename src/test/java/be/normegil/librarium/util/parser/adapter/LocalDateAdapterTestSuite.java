@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

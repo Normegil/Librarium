@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.util.jaxb.JAXBPackageTestSuite;
+import be.normegil.librarium.util.parser.JAXBPackageTestSuite;
 import be.normegil.librarium.util.persistence.PersistencePackageTestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

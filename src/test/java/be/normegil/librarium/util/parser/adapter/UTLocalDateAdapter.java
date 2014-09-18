@@ -1,6 +1,7 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter;
 
 import be.normegil.librarium.util.DateHelper;
+import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateJAXBAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +13,11 @@ import static org.junit.Assert.assertEquals;
 public class UTLocalDateAdapter {
 
 	private static final DateHelper DATE_HELPER = new DateHelper();
-	private LocalDateAdapter entity;
+	private LocalDateJAXBAdapter entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new LocalDateAdapter();
+		entity = new LocalDateJAXBAdapter();
 	}
 
 	@After

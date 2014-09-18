@@ -4,12 +4,11 @@ import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.rest.CollectionResource;
-import be.normegil.librarium.util.jaxb.adapter.UUIDToRESTURLAdapter;
+import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.ContextResolver;
@@ -83,7 +82,7 @@ public class RESTHelper<E extends Entity> {
 
 			dao.create(entity);
 			URL baseURL = new URL(info.getBaseUri());
-			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 			URL urlToCreatedEntity = adapter.marshal(entity.getId());
 			return Response.ok().location(urlToCreatedEntity.toURI()).build();
 		} catch (Exception e) {
@@ -129,7 +128,7 @@ public class RESTHelper<E extends Entity> {
 			dao.update(entity);
 
 			URL baseURL = new URL(info.getBaseUri());
-			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 			URL urlToCreatedEntity = adapter.marshal(entity.getId());
 			return Response.ok().location(urlToCreatedEntity.toURI()).build();
 		} catch (Exception e) {
@@ -163,6 +162,6 @@ public class RESTHelper<E extends Entity> {
 
 	private void setMarshallerOptions(final URL baseURL) throws MalformedURLException {
 		Marshaller marshaller = context.getContext(this.getClass());
-		marshaller.setAdapter(UUIDToRESTURLAdapter.class, new UUIDToRESTURLAdapter(baseURL));
+		marshaller.setAdapter(UUIDToRESTURLJAXBAdapter.class, new UUIDToRESTURLJAXBAdapter(baseURL));
 	}
 }

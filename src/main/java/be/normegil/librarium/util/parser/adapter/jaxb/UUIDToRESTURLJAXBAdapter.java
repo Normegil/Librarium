@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
@@ -7,11 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.UUID;
 
-public class UUIDToRESTURLAdapter extends XmlAdapter<URL, UUID> {
+public class UUIDToRESTURLJAXBAdapter extends XmlAdapter<URL, UUID> {
 
 	private final URL baseURL;
 
-	public UUIDToRESTURLAdapter(URL baseURL) {
+	public UUIDToRESTURLJAXBAdapter(URL baseURL) {
 		this.baseURL = baseURL;
 	}
 

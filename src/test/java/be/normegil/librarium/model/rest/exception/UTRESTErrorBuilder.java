@@ -48,7 +48,7 @@ public class UTRESTErrorBuilder {
 		RESTError copy = entity
 				.from(error)
 				.build();
-		assertEquals(error.getStatus(), copy.getStatus());
+		assertEquals(error.getHttpStatus(), copy.getHttpStatus());
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class UTRESTErrorBuilder {
 		RESTError rESTError = entity
 				.setHttpStatus(HttpStatus.ACCEPTED)
 				.build();
-		assertEquals(HttpStatus.ACCEPTED, rESTError.getStatus());
+		assertEquals(HttpStatus.ACCEPTED, rESTError.getHttpStatus());
 	}
 
 	@Test

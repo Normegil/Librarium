@@ -1,11 +1,11 @@
-package be.normegil.librarium.util.jaxb;
+package be.normegil.librarium.util.parser;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.annotation.XSD;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.util.jaxb.adapter.LocalDateAdapter;
+import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateJAXBAdapter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.junit.runner.RunWith;
@@ -69,7 +69,7 @@ public class JAXBHelperTestSuite implements DataFactory<JAXBHelperTestSuite.JAXB
 
 		private URL url;
 
-		@XmlJavaTypeAdapter(LocalDateAdapter.class)
+		@XmlJavaTypeAdapter(LocalDateJAXBAdapter.class)
 		private LocalDate date;
 
 		@XmlTransient

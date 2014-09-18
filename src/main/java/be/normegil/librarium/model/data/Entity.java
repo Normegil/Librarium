@@ -3,7 +3,7 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
-import be.normegil.librarium.util.jaxb.adapter.UUIDToRESTURLAdapter;
+import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -61,7 +61,7 @@ public abstract class Entity {
 	public static class Helper {
 		public List<URL> convertToURLs(@NotNull final List<? extends Entity> entities, @NotNull final URL baseURL) {
 			List<URL> urlsToEntities = new ArrayList<>();
-			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 			for (Entity entity : entities) {
 				UUID id = entity.getId();
 				URL urlToEntity = adapter.marshal(id);

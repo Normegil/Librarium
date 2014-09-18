@@ -1,10 +1,10 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.libraries.URL;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-public class URLAdapter extends XmlAdapter<String, URL> {
+public class URLJAXBAdapter extends XmlAdapter<String, URL> {
 	@Override
 	public URL unmarshal(final String url) throws Exception {
 		if (url == null || url.isEmpty()) {

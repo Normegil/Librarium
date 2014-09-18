@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.jaxb;
+package be.normegil.librarium.util.parser;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
@@ -36,18 +36,16 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testTo_XML() throws Exception {
-		JAXBHelper.DocumentType documentType = JAXBHelper.DocumentType.XML;
-
 		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
 
 		File file = File.createTempFile("JAXBHelperTest-", ".xml");
 		FileOutputStream outputStream = new FileOutputStream(file);
-		entity.to(expected, documentType, outputStream);
+		entity.to(expected, outputStream);
 		outputStream.close();
 		LOG.info("XML File Location : " + file.getAbsolutePath());
 
 		FileInputStream inputStream = new FileInputStream(file);
-		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(documentType, inputStream);
+		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);
 		inputStream.close();
 
 		assertEquals(expected, toTest);
@@ -55,18 +53,16 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testTo_JSON() throws Exception {
-		JAXBHelper.DocumentType documentType = JAXBHelper.DocumentType.JSON;
-
 		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
 
 		File file = File.createTempFile("JAXBHelperTest-", ".json");
 		FileOutputStream outputStream = new FileOutputStream(file);
-		entity.to(expected, documentType, outputStream);
+		entity.to(expected, outputStream);
 		outputStream.close();
 		LOG.info("JSON File Location : " + file.getAbsolutePath());
 
 		FileInputStream inputStream = new FileInputStream(file);
-		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(documentType, inputStream);
+		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);
 		inputStream.close();
 
 		assertEquals(expected, toTest);
@@ -74,12 +70,10 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testFrom_XML() throws Exception {
-		JAXBHelper.DocumentType documentType = JAXBHelper.DocumentType.XML;
-
 		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
 
 		InputStream inputStream = getClass().getResourceAsStream("JAXBTestClass.xml");
-		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(documentType, inputStream);
+		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);
 		inputStream.close();
 
 		assertEquals(expected, toTest);
@@ -87,12 +81,10 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testFrom_JSON() throws Exception {
-		JAXBHelper.DocumentType documentType = JAXBHelper.DocumentType.JSON;
-
 		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
 
 		InputStream inputStream = getClass().getResourceAsStream("JAXBTestClass.json");
-		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(documentType, inputStream);
+		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);
 		inputStream.close();
 
 		assertEquals(expected, toTest);

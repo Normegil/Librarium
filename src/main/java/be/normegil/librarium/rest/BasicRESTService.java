@@ -6,7 +6,7 @@ import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.CollectionResource;
-import be.normegil.librarium.util.jaxb.adapter.UUIDToRESTURLAdapter;
+import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 
 import javax.validation.constraints.NotNull;
@@ -69,7 +69,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 
 			getDao().create(entity);
 			URL baseURL = new URL(info.getBaseUri());
-			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 			URL urlToCreatedEntity = adapter.marshal(entity.getId());
 			return Response.ok().location(urlToCreatedEntity.toURI()).build();
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 			getDao().update(entity);
 
 			URL baseURL = new URL(info.getBaseUri());
-			UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 			URL urlToCreatedEntity = adapter.marshal(entity.getId());
 			return Response.ok().location(urlToCreatedEntity.toURI()).build();
 		} catch (Exception e) {
@@ -154,7 +154,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 
 	private void setMarshallerOptions(final URL baseURL) throws MalformedURLException {
 		Marshaller context = getContextResolver().getContext(this.getClass());
-		context.setAdapter(UUIDToRESTURLAdapter.class, new UUIDToRESTURLAdapter(baseURL));
+		context.setAdapter(UUIDToRESTURLJAXBAdapter.class, new UUIDToRESTURLJAXBAdapter(baseURL));
 	}
 
 	protected CollectionResource getCollectionResource(final List<? extends Entity> entities, final URL baseURL, Long offset, Integer limit) {
@@ -176,7 +176,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 
 	private List<URL> convertToURLs(final List<? extends Entity> entities, final URL baseURL) {
 		List<URL> urlsToEntities = new ArrayList<>();
-		UUIDToRESTURLAdapter adapter = new UUIDToRESTURLAdapter(baseURL);
+		UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);
 		for (Entity entity : entities) {
 			UUID id = entity.getId();
 			URL urlToEntity = adapter.marshal(id);

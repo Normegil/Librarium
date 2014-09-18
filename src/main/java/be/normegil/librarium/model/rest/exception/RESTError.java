@@ -1,9 +1,12 @@
 package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.validation.constraint.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,24 +15,25 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class RESTError {
 
 	@NotNull
-	private final HttpStatus status;
+	private HttpStatus httpStatus;
 	@Min(1)
-	private final int code;
+	private int code;
 	@NotEmpty
-	private final String message;
+	private String message;
 	@NotEmpty
-	private final String developerMessage;
+	private String developerMessage;
 	@NotNull
 	@Valid
-	private final URL moreInfoUrl;
+	private URL moreInfoUrl;
 	private Throwable throwable;
 
 	private RESTError(@NotNull @Valid final Builder builder) {
 		code = builder.code;
-		status = builder.status;
+		httpStatus = builder.status;
 		message = builder.message;
 		developerMessage = builder.developerMessage;
 		moreInfoUrl = builder.moreInfoUrl;
@@ -38,11 +42,16 @@ public class RESTError {
 
 	public RESTError(@NotNull @Valid final RESTError error) {
 		code = error.getCode();
-		status = error.getStatus();
+		httpStatus = error.getHttpStatus();
 		message = error.getMessage();
 		developerMessage = error.getDeveloperMessage();
 		moreInfoUrl = error.getMoreInfoURL();
 		throwable = error.getThrowable();
+	}
+
+	// For Parsers
+	@SuppressWarnings(WarningTypes.UNUSED)
+	private RESTError() {
 	}
 
 	public static Builder builder() {
@@ -55,8 +64,8 @@ public class RESTError {
 		return error;
 	}
 
-	public HttpStatus getStatus() {
-		return status;
+	public HttpStatus getHttpStatus() {
+		return httpStatus;
 	}
 
 	public int getCode() {
@@ -108,7 +117,7 @@ public class RESTError {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ApplicationProperties.TO_STRING_STYLE)
-				.append("status", status)
+				.append("status", httpStatus)
 				.append("code", code)
 				.append("message", message)
 				.append("developerMessage", developerMessage)
@@ -132,7 +141,7 @@ public class RESTError {
 
 		public Builder from(@NotNull @Valid RESTError error) {
 			code = error.getCode();
-			status = error.getStatus();
+			status = error.getHttpStatus();
 			message = error.getMessage();
 			developerMessage = error.getDeveloperMessage();
 			moreInfoUrl = error.getMoreInfoURL();

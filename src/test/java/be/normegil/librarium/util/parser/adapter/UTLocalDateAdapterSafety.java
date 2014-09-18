@@ -1,20 +1,22 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter;
 
-import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateJAXBAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertEquals;
 
-public class UTURLAdapterSafety {
+public class UTLocalDateAdapterSafety {
 
 	private static final String EMPTY_STRING = "";
-	private URLAdapter entity;
+	private LocalDateJAXBAdapter entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new URLAdapter();
+		entity = new LocalDateJAXBAdapter();
 	}
 
 	@After
@@ -24,14 +26,14 @@ public class UTURLAdapterSafety {
 
 	@Test
 	public void testUnmarshal_Null() throws Exception {
-		URL url = entity.unmarshal(null);
-		assertEquals(null, url);
+		LocalDate date = entity.unmarshal(null);
+		assertEquals(null, date);
 	}
 
 	@Test
 	public void testUnmarshal_Empty() throws Exception {
-		URL url = entity.unmarshal(EMPTY_STRING);
-		assertEquals(null, url);
+		LocalDate date = entity.unmarshal(EMPTY_STRING);
+		assertEquals(null, date);
 	}
 
 	@Test

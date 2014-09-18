@@ -13,7 +13,7 @@ import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.model.rest.CollectionResourceTestSuite;
 import be.normegil.librarium.model.rest.exception.RESTError;
 import be.normegil.librarium.model.rest.exception.RESTErrorTestSuite;
-import be.normegil.librarium.util.jaxb.JAXBHelperTestSuite;
+import be.normegil.librarium.util.parser.JAXBHelperTestSuite;
 
 import java.util.HashMap;
 import java.util.Map;

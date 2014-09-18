@@ -1,9 +1,10 @@
-package be.normegil.librarium.util.jaxb.adapter;
+package be.normegil.librarium.util.parser.adapter;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
+import be.normegil.librarium.util.parser.adapter.jaxb.URLJAXBAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,11 +15,11 @@ public class UTURLAdapter {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> FACTORY = FactoryRepository.get(URL.class);
-	private URLAdapter entity;
+	private URLJAXBAdapter entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new URLAdapter();
+		entity = new URLJAXBAdapter();
 	}
 
 	@After
