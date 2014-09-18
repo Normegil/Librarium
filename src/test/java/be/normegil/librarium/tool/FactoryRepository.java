@@ -11,6 +11,8 @@ import be.normegil.librarium.model.data.people.*;
 import be.normegil.librarium.model.data.video.*;
 import be.normegil.librarium.model.rest.CollectionResource;
 import be.normegil.librarium.model.rest.CollectionResourceTestSuite;
+import be.normegil.librarium.model.rest.exception.RESTError;
+import be.normegil.librarium.model.rest.exception.RESTErrorTestSuite;
 import be.normegil.librarium.util.jaxb.JAXBHelperTestSuite;
 
 import java.util.HashMap;
@@ -44,6 +46,7 @@ public class FactoryRepository {
 		// Framework classes
 		factories.put(URL.class, new URLFactory());
 		factories.put(CollectionResource.class, new CollectionResourceTestSuite());
+		factories.put(RESTError.class, new RESTErrorTestSuite());
 
 		// Model Classes
 		factories.put(AbstractBD.class, new AbstractBDTestSuite());

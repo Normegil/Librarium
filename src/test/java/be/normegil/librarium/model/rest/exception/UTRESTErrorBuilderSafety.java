@@ -1,0 +1,72 @@
+package be.normegil.librarium.model.rest.exception;
+
+import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.tool.validation.Validator;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import javax.validation.ConstraintViolationException;
+
+public class UTRESTErrorBuilderSafety {
+
+	private static final Class<RESTError.Builder> CLASS = new Class<>(RESTError.Builder.class);
+	private static final String EMPTY_STRING = "";
+	private RESTError.Builder entity;
+
+	@Before
+	public void setUp() throws Exception {
+		entity = RESTError.builder();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		entity = null;
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testEmptyBuildReturnValue() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("build"));
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testFrom_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("from", RESTError.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetStatus_NotAnHttpStatus() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setStatus", int.class), -1);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetMessage_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setMessage", String.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetMessage_Empty() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setMessage", String.class), EMPTY_STRING);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetDeveloperMessage_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setDeveloperMessage", String.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetDeveloperMessage_Empty() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setDeveloperMessage", String.class), EMPTY_STRING);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetMoreInfoUrl_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setMoreInfoURL", URL.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testSetThrowable_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setThrowable", Throwable.class), new Object[]{null});
+	}
+}
