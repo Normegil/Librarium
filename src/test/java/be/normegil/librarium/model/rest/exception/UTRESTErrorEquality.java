@@ -2,6 +2,7 @@ package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
@@ -44,7 +45,7 @@ public class UTRESTErrorEquality extends AbstractDataEqualityTest<RESTError> {
 		RESTError entity = getEntity();
 		RESTError copy = RESTError.builder()
 				.from(entity)
-				.setHttpStatus(entity.getStatus() + 1)
+				.setHttpStatus(HttpStatus.ACCEPTED)
 				.build();
 		assertEquals(entity, copy);
 	}

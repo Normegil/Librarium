@@ -2,6 +2,7 @@ package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.libraries.Class;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -36,8 +37,8 @@ public class UTRESTErrorBuilderSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testSetStatus_NotAnHttpStatus() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setStatus", int.class), -1);
+	public void testSetStatus_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setHttpStatus", HttpStatus.class), new Object[]{null});
 	}
 
 	@Test(expected = ConstraintViolationException.class)

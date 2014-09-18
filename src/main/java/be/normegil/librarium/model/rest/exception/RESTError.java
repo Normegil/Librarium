@@ -2,6 +2,7 @@ package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -13,16 +14,17 @@ import javax.validation.constraints.NotNull;
 
 public class RESTError {
 
-	private final int status;
+	@NotNull
+	private final HttpStatus status;
 	@Min(1)
 	private final int code;
 	@NotEmpty
 	private final String message;
 	@NotEmpty
 	private final String developerMessage;
-	@NotNull @Valid
+	@NotNull
+	@Valid
 	private final URL moreInfoUrl;
-	@NotNull @Valid
 	private Throwable throwable;
 
 	private RESTError(@NotNull @Valid final Builder builder) {
@@ -53,7 +55,7 @@ public class RESTError {
 		return error;
 	}
 
-	public int getStatus() {
+	public HttpStatus getStatus() {
 		return status;
 	}
 
@@ -117,10 +119,15 @@ public class RESTError {
 
 	public static class Builder {
 		private Throwable throwable;
-		private int status;
+		@NotNull
+		private HttpStatus status;
+		@Min(1)
 		private int code;
+		@NotEmpty
 		private String message;
+		@NotEmpty
 		private String developerMessage;
+		@NotNull
 		private URL moreInfoUrl;
 
 		public Builder from(@NotNull @Valid RESTError error) {
@@ -138,7 +145,7 @@ public class RESTError {
 			return this;
 		}
 
-		public Builder setHttpStatus(final int status) {
+		public Builder setHttpStatus(@NotNull final HttpStatus status) {
 			this.status = status;
 			return this;
 		}

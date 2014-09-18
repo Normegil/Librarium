@@ -2,9 +2,9 @@ package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,9 +98,9 @@ public class UTRESTErrorBuilder {
 	@Test
 	public void testSetHttpStatus() throws Exception {
 		RESTError rESTError = entity
-				.setHttpStatus(HttpStatus.SC_MULTI_STATUS)
+				.setHttpStatus(HttpStatus.ACCEPTED)
 				.build();
-		assertEquals(HttpStatus.SC_MULTI_STATUS, rESTError.getStatus());
+		assertEquals(HttpStatus.ACCEPTED, rESTError.getStatus());
 	}
 
 	@Test

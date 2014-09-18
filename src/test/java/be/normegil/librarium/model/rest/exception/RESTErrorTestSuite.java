@@ -2,9 +2,9 @@ package be.normegil.librarium.model.rest.exception;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import org.apache.http.HttpStatus;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -38,21 +38,20 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 
 	@Override
 	public RESTError getNew(final boolean withLink) {
-		RESTError entity = RESTError.builder()
-				.setHttpStatus(HttpStatus.SC_NOT_FOUND)
+		return RESTError.builder()
+				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode(FAKE_CODE)
 				.setMessage(MESSAGE)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE)
 				.setMoreInfoURL(URL_FACTORY.getNew())
 				.setThrowable(new NullPointerException())
 				.build();
-		return entity;
 	}
 
 	@Override
 	public RESTError getNext(final boolean withLink) {
 		RESTError entity = RESTError.builder()
-				.setHttpStatus(HttpStatus.SC_NOT_FOUND)
+				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode((int) (FAKE_CODE + index))
 				.setMessage(MESSAGE + index)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE + index)
