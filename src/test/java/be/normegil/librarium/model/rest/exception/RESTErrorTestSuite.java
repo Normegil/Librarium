@@ -8,6 +8,9 @@ import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 		UTRESTErrorSafety.class,
@@ -24,6 +27,7 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 	private static final int FAKE_CODE = 40449;
 	private static final String MESSAGE = "Message";
 	private static final String DEVELOPPER_MESSAGE = "DevelopperMessage";
+	private static final LocalDateTime DEFAULT_TIME = LocalDateTime.of(2014, Month.SEPTEMBER, 19, 18, 20);
 	private static long index = 0L;
 
 	@Override
@@ -44,7 +48,7 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 				.setMessage(MESSAGE)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE)
 				.setMoreInfoURL(URL_FACTORY.getNew())
-				.setThrowable(new NullPointerException())
+				.setTime(DEFAULT_TIME)
 				.build();
 	}
 
@@ -56,7 +60,7 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 				.setMessage(MESSAGE + index)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE + index)
 				.setMoreInfoURL(URL_FACTORY.getNext())
-				.setThrowable(new NullPointerException())
+				.setTime(LocalDateTime.now())
 				.build();
 
 		index += 1;

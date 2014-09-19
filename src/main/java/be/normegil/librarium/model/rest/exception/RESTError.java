@@ -4,9 +4,12 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.HttpStatus;
+import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonDeserializer;
+import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonSerializer;
 import be.normegil.librarium.validation.constraint.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -14,6 +17,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class RESTError {
@@ -29,7 +33,10 @@ public class RESTError {
 	@NotNull
 	@Valid
 	private URL moreInfoUrl;
-	private Throwable throwable;
+
+	@JsonSerialize(using = LocalDateTimeJsonSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+	private LocalDateTime time;
 
 	private RESTError(@NotNull @Valid final Builder builder) {
 		code = builder.code;
@@ -37,7 +44,7 @@ public class RESTError {
 		message = builder.message;
 		developerMessage = builder.developerMessage;
 		moreInfoUrl = builder.moreInfoUrl;
-		throwable = builder.throwable;
+		time = builder.time;
 	}
 
 	public RESTError(@NotNull @Valid final RESTError error) {
@@ -46,7 +53,7 @@ public class RESTError {
 		message = error.getMessage();
 		developerMessage = error.getDeveloperMessage();
 		moreInfoUrl = error.getMoreInfoURL();
-		throwable = error.getThrowable();
+		time = error.getTime();
 	}
 
 	// For Parsers
@@ -58,9 +65,14 @@ public class RESTError {
 		return new Builder();
 	}
 
+	public RESTError withTime(@NotNull @Valid LocalDateTime time) {
+		RESTError error = new RESTError(this);
+		error.time = time;
+		return error;
+	}
+
 	public RESTError withThrowable(@NotNull @Valid Throwable throwable) {
 		RESTError error = new RESTError(this);
-		error.throwable = throwable;
 		return error;
 	}
 
@@ -84,8 +96,8 @@ public class RESTError {
 		return moreInfoUrl;
 	}
 
-	public Throwable getThrowable() {
-		return throwable;
+	public LocalDateTime getTime() {
+		return time;
 	}
 
 	@Override
@@ -102,7 +114,7 @@ public class RESTError {
 		RESTError rhs = (RESTError) obj;
 		return new EqualsBuilder()
 				.append(this.code, rhs.code)
-				.append(this.throwable, rhs.throwable)
+				.append(this.time, rhs.time)
 				.isEquals();
 	}
 
@@ -110,24 +122,23 @@ public class RESTError {
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.append(code)
-				.append(throwable)
+				.append(time)
 				.toHashCode();
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ApplicationProperties.TO_STRING_STYLE)
-				.append("status", httpStatus)
+				.append("httpStatus", httpStatus)
 				.append("code", code)
 				.append("message", message)
 				.append("developerMessage", developerMessage)
 				.append("moreInfoUrl", moreInfoUrl)
-				.append("throwable", throwable)
+				.append("time", time)
 				.toString();
 	}
 
 	public static class Builder {
-		private Throwable throwable;
 		@NotNull
 		private HttpStatus status;
 		@Min(1)
@@ -138,6 +149,7 @@ public class RESTError {
 		private String developerMessage;
 		@NotNull
 		private URL moreInfoUrl;
+		private LocalDateTime time;
 
 		public Builder from(@NotNull @Valid RESTError error) {
 			code = error.getCode();
@@ -145,7 +157,7 @@ public class RESTError {
 			message = error.getMessage();
 			developerMessage = error.getDeveloperMessage();
 			moreInfoUrl = error.getMoreInfoURL();
-			throwable = error.getThrowable();
+			time = error.getTime();
 			return this;
 		}
 
@@ -174,8 +186,8 @@ public class RESTError {
 			return this;
 		}
 
-		public Builder setThrowable(@NotNull final Throwable throwable) {
-			this.throwable = throwable;
+		public Builder setTime(@NotNull final LocalDateTime time) {
+			this.time = time;
 			return this;
 		}
 

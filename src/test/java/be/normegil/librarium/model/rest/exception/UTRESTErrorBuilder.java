@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertEquals;
 
 public class UTRESTErrorBuilder {
@@ -52,15 +54,6 @@ public class UTRESTErrorBuilder {
 	}
 
 	@Test
-	public void testFrom_Throwable() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
-		RESTError copy = entity
-				.from(error)
-				.build();
-		assertEquals(error.getThrowable(), copy.getThrowable());
-	}
-
-	@Test
 	public void testFrom_Message() throws Exception {
 		RESTError error = REST_ERROR_FACTORY.getNext();
 		RESTError copy = entity
@@ -85,6 +78,15 @@ public class UTRESTErrorBuilder {
 				.from(error)
 				.build();
 		assertEquals(error.getMoreInfoURL(), copy.getMoreInfoURL());
+	}
+
+	@Test
+	public void testFrom_Time() throws Exception {
+		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError copy = entity
+				.from(error)
+				.build();
+		assertEquals(error.getTime(), copy.getTime());
 	}
 
 	@Test
@@ -129,10 +131,11 @@ public class UTRESTErrorBuilder {
 	}
 
 	@Test
-	public void testSetThrowable() throws Exception {
+	public void testSetTime() throws Exception {
+		LocalDateTime time = LocalDateTime.now();
 		RESTError rESTError = entity
-				.setThrowable(THROWABLE)
+				.setTime(time)
 				.build();
-		assertEquals(THROWABLE, rESTError.getThrowable());
+		assertEquals(time, rESTError.getTime());
 	}
 }

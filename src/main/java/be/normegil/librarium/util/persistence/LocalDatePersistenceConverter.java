@@ -27,7 +27,7 @@ public class LocalDatePersistenceConverter implements AttributeConverter<LocalDa
 		if (date == null || date.isEmpty()) {
 			return null;
 		} else {
-			return dateHelper.parse(date);
+			return dateHelper.parseLocalDate(date);
 		}
 	}
 }

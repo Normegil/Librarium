@@ -8,6 +8,8 @@ import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.test.model.data.AbstractDataEqualityTest;
 import org.junit.Test;
 
+import java.time.temporal.ChronoUnit;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -81,11 +83,11 @@ public class UTRESTErrorEquality extends AbstractDataEqualityTest<RESTError> {
 	}
 
 	@Test
-	public void testDifferentThrowable() throws Exception {
+	public void testDifferentTime() throws Exception {
 		RESTError entity = getEntity();
 		RESTError copy = RESTError.builder()
 				.from(entity)
-				.setThrowable(new IllegalArgumentException())
+				.setTime(entity.getTime().plus(2, ChronoUnit.MINUTES))
 				.build();
 		assertNotEquals(entity, copy);
 	}

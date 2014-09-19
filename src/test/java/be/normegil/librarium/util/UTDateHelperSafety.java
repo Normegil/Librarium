@@ -33,16 +33,16 @@ public class UTDateHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testParse_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("parse", String.class), new Object[]{null});
+		Validator.validate(entity, CLASS.getMethod("parseLocalDate", String.class), new Object[]{null});
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testParse_Empty() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("parse", String.class), EMPTY_STRING);
+		Validator.validate(entity, CLASS.getMethod("parseLocalDate", String.class), EMPTY_STRING);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testParse_WrongFormat() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("parse", String.class), WRONG_FORMAT);
+		Validator.validate(entity, CLASS.getMethod("parseLocalDate", String.class), WRONG_FORMAT);
 	}
 }

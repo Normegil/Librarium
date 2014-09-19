@@ -7,6 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import static org.junit.Assert.assertEquals;
 
 public class UTRESTError {
@@ -32,16 +35,17 @@ public class UTRESTError {
 	}
 
 	@Test
-	public void testWithThrowable() throws Exception {
-		Throwable throwable = new IllegalArgumentException();
-		RESTError copy = entity.withThrowable(throwable);
-		assertEquals(throwable, copy.getThrowable());
+	public void testWithTime() throws Exception {
+		LocalDateTime newTime = entity.getTime().plus(2, ChronoUnit.MINUTES);
+		RESTError copy = entity.withTime(newTime);
+		assertEquals(newTime, copy.getTime());
 	}
 
 	@Test
-	public void testWithThrowable_Immutable() throws Exception {
-		Throwable originalThrowable = entity.getThrowable();
-		entity.withThrowable(new IllegalArgumentException());
-		assertEquals(originalThrowable, entity.getThrowable());
+	public void testWithTime_Immutable() throws Exception {
+		LocalDateTime time = entity.getTime();
+		LocalDateTime newTime = entity.getTime().plus(2, ChronoUnit.MINUTES);
+		entity.withTime(newTime);
+		assertEquals(time, entity.getTime());
 	}
 }

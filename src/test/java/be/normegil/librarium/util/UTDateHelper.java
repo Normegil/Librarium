@@ -1,9 +1,6 @@
 package be.normegil.librarium.util;
 
 import be.normegil.librarium.ApplicationProperties;
-import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.tool.DataFactory;
-import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +42,6 @@ public class UTDateHelper {
 		ZonedDateTime zonedDateTime = ZonedDateTime.of(date.atStartOfDay(), ZoneId.systemDefault());
 		String toConvert = zonedDateTime.format(ApplicationProperties.STANDARD_TIME_FORMAT);
 
-		assertEquals(date, entity.parse(toConvert));
+		assertEquals(date, entity.parseLocalDate(toConvert));
 	}
 }

@@ -14,7 +14,7 @@ public class LocalDateJAXBAdapter extends XmlAdapter<String, LocalDate> {
 		if (date == null || date.isEmpty()) {
 			return null;
 		} else {
-			return dateHelper.parse(date);
+			return dateHelper.parseLocalDate(date);
 		}
 	}
 

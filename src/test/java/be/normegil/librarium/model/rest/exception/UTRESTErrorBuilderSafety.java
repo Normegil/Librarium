@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
+import java.time.LocalDateTime;
 
 public class UTRESTErrorBuilderSafety {
 
@@ -67,7 +68,7 @@ public class UTRESTErrorBuilderSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testSetThrowable_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("setThrowable", Throwable.class), new Object[]{null});
+	public void testSetTime_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("setTime", LocalDateTime.class), new Object[]{null});
 	}
 }
