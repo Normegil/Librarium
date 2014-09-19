@@ -18,7 +18,9 @@ import java.time.Month;
 		UTRESTErrorEquality.class,
 		UTRESTErrorBuilderSafety.class,
 		UTRESTErrorBuilder.class,
-		UTRESTErrorJSONSupport.class
+		UTRESTErrorJSONSupport.class,
+		UTRESTErrorXMLSupport.class,
+		//UTRESTErrorCSVSupport.class
 })
 public class RESTErrorTestSuite implements DataFactory<RESTError> {
 

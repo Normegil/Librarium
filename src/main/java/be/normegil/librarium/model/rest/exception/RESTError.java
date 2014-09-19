@@ -4,6 +4,7 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.HttpStatus;
+import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateTimeJAXBAdapter;
 import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonDeserializer;
 import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonSerializer;
 import be.normegil.librarium.validation.constraint.NotEmpty;
@@ -17,9 +18,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RESTError {
 
 	@NotNull
@@ -36,6 +43,7 @@ public class RESTError {
 
 	@JsonSerialize(using = LocalDateTimeJsonSerializer.class)
 	@JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
+	@XmlJavaTypeAdapter(LocalDateTimeJAXBAdapter.class)
 	private LocalDateTime time;
 
 	private RESTError(@NotNull @Valid final Builder builder) {

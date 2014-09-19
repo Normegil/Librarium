@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restError>
+    <httpStatus>NOT_FOUND</httpStatus>
+    <code>40449</code>
+    <message>Message</message>
+    <developerMessage>DevelopperMessage</developerMessage>
+    <moreInfoUrl>http://Host:42/File</moreInfoUrl>
+    <time>2014-09-19T16:20:00Z</time>
+</restError>
