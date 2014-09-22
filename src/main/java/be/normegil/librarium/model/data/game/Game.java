@@ -5,6 +5,7 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffRole;
+import be.normegil.librarium.model.rest.digest.Digestable;
 import be.normegil.librarium.util.CollectionComparator;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -21,7 +22,7 @@ import java.util.TreeSet;
 
 @javax.persistence.Entity
 @Access(AccessType.FIELD)
-public class Game extends Media implements Comparable<Game>, Serializable {
+public class Game extends Media implements Comparable<Game>, Serializable{
 
 	private static final CollectionComparator COLLECTION_COMPARATOR = new CollectionComparator();
 
@@ -194,6 +195,18 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 					.toComparison();
 		} else {
 			return Constants.Comparator.PRIORITY_SECOND;
+		}
+	}
+
+	public static class Digest extends Media.Digest<Game> implements be.normegil.librarium.model.rest.digest.Digest<Game> {
+		private GameSerie serie;
+
+		@Override
+		public Game toBase() {
+			return Game.builder()
+					.from(super.toBase())
+					.setSerie(serie)
+					.build();
 		}
 	}
 

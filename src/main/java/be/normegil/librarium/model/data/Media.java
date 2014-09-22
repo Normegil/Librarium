@@ -1,9 +1,11 @@
 package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.Constants;
+import be.normegil.librarium.model.data.game.GameSerie;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.model.data.people.StaffRole;
+import be.normegil.librarium.model.rest.digest.Digest;
 import be.normegil.librarium.util.CollectionComparator;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -245,6 +247,13 @@ public abstract class Media extends BaseMedia {
 				.appendSuper(super.hashCode())
 				.append(universes)
 				.toHashCode();
+	}
+
+	public static class Digest<E extends Media> implements be.normegil.librarium.model.rest.digest.Digest<E>{
+		@Override
+		public E toBase() {
+			return null;
+		}
 	}
 
 	public abstract static class Init<E extends Init<E>> extends BaseMedia.Init<E> {
