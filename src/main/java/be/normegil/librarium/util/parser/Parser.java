@@ -6,7 +6,6 @@ import be.normegil.librarium.util.exception.NoSuchParserException;
 import javax.validation.constraints.NotNull;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,13 +47,14 @@ public class Parser<E> {
 
 	private Map<DocumentType, DocumentParser<E>> loadParsers(final Class<E> entityClass, final Class<?>[] contextClasses) {
 		Map<DocumentType, DocumentParser<E>> parsers = new HashMap<>();
-		parsers.put(DocumentType.JSON, new JacksonHelper<>(entityClass));
+		parsers.put(DocumentType.JSON, new JacksonParser<>(entityClass));
 		parsers.put(DocumentType.XML, new JAXBHelper<>(entityClass, contextClasses));
 		return parsers;
 	}
 
 	public enum DocumentType {
 		JSON,
-		XML;
+		XML,
+		CSV
 	}
 }

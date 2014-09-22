@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class JacksonHelper<E> implements DocumentParser<E> {
+public class JacksonParser<E> implements DocumentParser<E> {
 
 	private Class<E> entityClass;
 	private final ObjectMapper mapper;
 
-	public JacksonHelper(@NotNull final Class<E> entityClass) {
+	public JacksonParser(@NotNull final Class<E> entityClass) {
 		this.entityClass = entityClass;
 		mapper = new ObjectMapper();
 	}

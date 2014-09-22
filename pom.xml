@@ -131,11 +131,11 @@
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
 			<version>${jacskon.version}</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-jaxb-annotations</artifactId>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-csv</artifactId>
 			<version>${jacskon.version}</version>
-		</dependency>-->
+		</dependency>
 
 		<!-- Needed to get com.sun.el.ExpressionFactoryImpl. Not sure how this worked -->
 		<dependency>

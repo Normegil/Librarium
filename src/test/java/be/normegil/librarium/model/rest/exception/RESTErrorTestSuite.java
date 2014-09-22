@@ -20,7 +20,7 @@ import java.time.Month;
 		UTRESTErrorBuilder.class,
 		UTRESTErrorJSONSupport.class,
 		UTRESTErrorXMLSupport.class,
-		//UTRESTErrorCSVSupport.class
+		UTRESTErrorCSVSupport.class
 })
 public class RESTErrorTestSuite implements DataFactory<RESTError> {
 
