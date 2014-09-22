@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.book;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTBDBuilderSafety {
 
-	private static final Class<BD.Builder> CLASS = new Class<>(BD.Builder.class);
+	private static final ClassWrapper<BD.Builder> CLASS = new ClassWrapper<>(BD.Builder.class);
 	private BD.Builder entity;
 
 	@Before

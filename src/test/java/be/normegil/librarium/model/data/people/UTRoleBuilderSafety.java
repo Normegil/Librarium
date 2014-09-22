@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.people;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.video.Video;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -11,7 +11,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTRoleBuilderSafety {
 
-	private static final Class<Role.Builder> CLASS = new Class<>(Role.Builder.class);
+	private static final ClassWrapper<Role.Builder> CLASS = new ClassWrapper<>(Role.Builder.class);
 	private Role.Builder entity;
 
 	@Before

@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.video;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -16,7 +16,7 @@ public class UTSerieSeasonSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<SerieSeason> FACTORY = FactoryRepository.get(SerieSeason.class);
-	private static final Class<SerieSeason> CLASS = new Class<>(SerieSeason.class);
+	private static final ClassWrapper<SerieSeason> CLASS = new ClassWrapper<>(SerieSeason.class);
 	private SerieSeason entity;
 
 	@Before

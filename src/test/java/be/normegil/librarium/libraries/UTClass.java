@@ -23,11 +23,11 @@ import static org.junit.Assert.assertEquals;
 public class UTClass {
 
 	private static final java.lang.Class<Media> BASE_CLASS = Media.class;
-	private Class<Media> entity;
+	private ClassWrapper<Media> entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new Class<>(BASE_CLASS);
+		entity = new ClassWrapper<>(BASE_CLASS);
 	}
 
 	@After
@@ -47,7 +47,7 @@ public class UTClass {
 		java.lang.Class<Game> aClass = Game.class;
 		java.lang.Class[] parameters = new java.lang.Class[]{aClass};
 		Constructor<Game> expected = aClass.getConstructor(parameters);
-		Constructor<Game> toTest = new Class<>(aClass).getConstructor(parameters);
+		Constructor<Game> toTest = new ClassWrapper<>(aClass).getConstructor(parameters);
 		assertEquals(expected, toTest);
 	}
 

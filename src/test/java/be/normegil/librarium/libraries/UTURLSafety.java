@@ -15,7 +15,7 @@ public class UTURLSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> FACTORY = FactoryRepository.get(URL.class);
-	private static final Class<URL> CLASS = new Class<>(URL.class);
+	private static final ClassWrapper<URL> CLASS = new ClassWrapper<>(URL.class);
 	private static final String EMPTY_STRING = "";
 	private static final String HOST = "Host";
 	private static final int PORT = 42;

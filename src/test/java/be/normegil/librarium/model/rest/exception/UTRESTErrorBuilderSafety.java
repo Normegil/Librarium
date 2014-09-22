@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.rest.exception;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.validation.Validator;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 public class UTRESTErrorBuilderSafety {
 
-	private static final Class<RESTError.Builder> CLASS = new Class<>(RESTError.Builder.class);
+	private static final ClassWrapper<RESTError.Builder> CLASS = new ClassWrapper<>(RESTError.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private RESTError.Builder entity;
 

@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.people;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -16,7 +16,7 @@ public class UTStaffMemberSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<StaffMember> FACTORY = FactoryRepository.get(StaffMember.class);
-	private static final Class<StaffMember> CLASS = new Class<>(StaffMember.class);
+	private static final ClassWrapper<StaffMember> CLASS = new ClassWrapper<>(StaffMember.class);
 	private StaffMember entity;
 
 	@Before

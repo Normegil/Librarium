@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.book;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class UTBookSerieBuilderSafety {
 
-	private static final Class<BookSerie.Builder> CLASS = new Class<>(BookSerie.Builder.class);
+	private static final ClassWrapper<BookSerie.Builder> CLASS = new ClassWrapper<>(BookSerie.Builder.class);
 	private BookSerie.Builder entity;
 
 	@Before

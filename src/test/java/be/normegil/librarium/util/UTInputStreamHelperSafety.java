@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class UTInputStreamHelperSafety {
 
-	private static final Class<InputStreamHelper> CLASS = new Class<>(InputStreamHelper.class);
+	private static final ClassWrapper<InputStreamHelper> CLASS = new ClassWrapper<>(InputStreamHelper.class);
 	private InputStreamHelper entity;
 
 	@Before

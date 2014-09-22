@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class UTDateHelperSafety {
 
-	private static final Class<DateHelper> CLASS = new Class<>(DateHelper.class);
+	private static final ClassWrapper<DateHelper> CLASS = new ClassWrapper<>(DateHelper.class);
 	private static final String EMPTY_STRING = "";
 	private static final String WRONG_FORMAT = "06/07/2014";
 	private DateHelper entity;

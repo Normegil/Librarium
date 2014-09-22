@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.book;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -15,7 +15,7 @@ public class UTBDSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<BD> FACTORY = FactoryRepository.get(BD.class);
-	private static final Class<BD> CLASS = new Class<>(BD.class);
+	private static final ClassWrapper<BD> CLASS = new ClassWrapper<>(BD.class);
 	private BD entity;
 
 	@Before

@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.video;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class UTSerieSeasonBuilderSafety {
 
-	private static final Class<SerieSeason.Builder> CLASS = new Class<>(SerieSeason.Builder.class);
+	private static final ClassWrapper<SerieSeason.Builder> CLASS = new ClassWrapper<>(SerieSeason.Builder.class);
 	private SerieSeason.Builder entity;
 
 	@Before

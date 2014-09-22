@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.book;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTComicBuilderSafety {
 
-	private static final Class<Comic.Builder> CLASS = new Class<>(Comic.Builder.class);
+	private static final ClassWrapper<Comic.Builder> CLASS = new ClassWrapper<>(Comic.Builder.class);
 	private Comic.Builder entity;
 
 	@Before

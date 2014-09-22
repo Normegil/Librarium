@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.people;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -16,7 +16,7 @@ public class UTPersonSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Person> FACTORY = FactoryRepository.get(Person.class);
-	private static final Class<Person> CLASS = new Class<>(Person.class);
+	private static final ClassWrapper<Person> CLASS = new ClassWrapper<>(Person.class);
 	private Person entity;
 
 	@Before

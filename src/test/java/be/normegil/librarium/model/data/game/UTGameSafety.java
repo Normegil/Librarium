@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.game;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -17,7 +17,7 @@ public class UTGameSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> FACTORY = FactoryRepository.get(Game.class);
-	private static final Class<Game> CLASS = new Class<>(Game.class);
+	private static final ClassWrapper<Game> CLASS = new ClassWrapper<>(Game.class);
 	private Game entity;
 
 	@Before

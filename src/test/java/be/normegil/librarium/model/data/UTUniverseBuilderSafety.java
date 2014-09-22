@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UTUniverseBuilderSafety {
 
-	private static final Class<Universe.Builder> CLASS = new Class<>(Universe.Builder.class);
+	private static final ClassWrapper<Universe.Builder> CLASS = new ClassWrapper<>(Universe.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private Universe.Builder entity;
 

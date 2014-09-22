@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data.people;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.video.Video;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -16,7 +16,7 @@ public class UTRoleSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Role> FACTORY = FactoryRepository.get(Role.class);
-	private static final Class<Role> CLASS = new Class<>(Role.class);
+	private static final ClassWrapper<Role> CLASS = new ClassWrapper<>(Role.class);
 	private Role entity;
 
 	@Before

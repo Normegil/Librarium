@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTClassHelperSafety {
 
-	private static final Class<ClassHelper> CLASS = new Class<>(ClassHelper.class);
+	private static final ClassWrapper<ClassHelper> CLASS = new ClassWrapper<>(ClassHelper.class);
 	private ClassHelper entity;
 
 	@Before

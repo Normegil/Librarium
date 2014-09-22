@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -18,7 +18,7 @@ public class UTDownloadLinkSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<DownloadLink> FACTORY = FactoryRepository.get(DownloadLink.class);
-	private static final Class<DownloadLink> CLASS = new Class<>(DownloadLink.class);
+	private static final ClassWrapper<DownloadLink> CLASS = new ClassWrapper<>(DownloadLink.class);
 	private static final String EMPTY_STRING = "";
 	private DownloadLink entity;
 

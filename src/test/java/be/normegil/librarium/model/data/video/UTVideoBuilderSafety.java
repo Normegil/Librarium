@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.video;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.fake.FakeVideo;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.Role;
@@ -15,7 +15,7 @@ import java.util.Collection;
 
 public class UTVideoBuilderSafety {
 
-	private static final Class<FakeVideo.Builder> CLASS = new Class<>(FakeVideo.Builder.class);
+	private static final ClassWrapper<FakeVideo.Builder> CLASS = new ClassWrapper<>(FakeVideo.Builder.class);
 	private FakeVideo.Builder entity;
 
 	@Before

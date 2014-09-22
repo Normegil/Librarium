@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.people;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.fake.FakeResponsible;
 import be.normegil.librarium.tool.validation.Validator;
@@ -12,7 +12,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTResponsibleBuilderSafety {
 
-	private static final Class<FakeResponsible.Builder> CLASS = new Class<>(FakeResponsible.Builder.class);
+	private static final ClassWrapper<FakeResponsible.Builder> CLASS = new ClassWrapper<>(FakeResponsible.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private FakeResponsible.Builder entity;
 

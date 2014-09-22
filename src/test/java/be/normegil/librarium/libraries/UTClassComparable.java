@@ -9,52 +9,52 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class UTClassComparable extends AbstractDataComparableTest<Class> {
+public class UTClassComparable extends AbstractDataComparableTest<ClassWrapper> {
 
 	private static final java.lang.Class<Media> BASE_CLASS = Media.class;
 
 	@Override
-	protected Class getNewEntity() {
-		return new Class<>(BASE_CLASS);
+	protected ClassWrapper getNewEntity() {
+		return new ClassWrapper<>(BASE_CLASS);
 	}
 
 	@Override
 	@SuppressWarnings(WarningTypes.UNCHECKED_CALL)
-	protected int compare(final Class entity1, final Class entity2) {
+	protected int compare(final ClassWrapper entity1, final ClassWrapper entity2) {
 		return entity1.compareTo(entity2);
 	}
 
 	@Override
 	public void testEquality() throws Exception {
-		Class<Media> otherEntity = new Class<>(BASE_CLASS);
+		ClassWrapper<Media> otherEntity = new ClassWrapper<>(BASE_CLASS);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(getEntity(), otherEntity)));
 	}
 
 	@Test
 	public void testSimpleName_First() throws Exception {
-		Class entity = getEntity();
-		Class<Video> otherEntity = new Class<>(Video.class);
+		ClassWrapper entity = getEntity();
+		ClassWrapper<Video> otherEntity = new ClassWrapper<>(Video.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, otherEntity)));
 	}
 
 	@Test
 	public void testSimpleName_Second() throws Exception {
-		Class entity = getEntity();
-		Class<Video> otherEntity = new Class<>(Video.class);
+		ClassWrapper entity = getEntity();
+		ClassWrapper<Video> otherEntity = new ClassWrapper<>(Video.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(otherEntity, entity)));
 	}
 
 	@Test
 	public void testCanonicalName_First() throws Exception {
-		Class entity = new Class<>(Class.class);
-		Class<java.lang.Class> otherEntity = new Class<>(java.lang.Class.class);
+		ClassWrapper entity = new ClassWrapper<>(ClassWrapper.class);
+		ClassWrapper<Class> otherEntity = new ClassWrapper<>(java.lang.Class.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, otherEntity)));
 	}
 
 	@Test
 	public void testCanonicalName_Second() throws Exception {
-		Class entity = new Class<>(Class.class);
-		Class<java.lang.Class> otherEntity = new Class<>(java.lang.Class.class);
+		ClassWrapper entity = new ClassWrapper<>(ClassWrapper.class);
+		ClassWrapper<Class> otherEntity = new ClassWrapper<>(java.lang.Class.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(otherEntity, entity)));
 	}
 }

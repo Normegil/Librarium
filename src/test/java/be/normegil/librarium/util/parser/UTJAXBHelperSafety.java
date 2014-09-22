@@ -1,7 +1,7 @@
 package be.normegil.librarium.util.parser;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.UnitTestXMLValidationEventHandler;
@@ -25,7 +25,7 @@ public class UTJAXBHelperSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<JAXBHelperTestSuite.JAXBTestClass> FACTORY = FactoryRepository.get(JAXBHelperTestSuite.JAXBTestClass.class);
-	private static final Class<JAXBHelper> CLASS = new Class<>(JAXBHelper.class);
+	private static final ClassWrapper<JAXBHelper> CLASS = new ClassWrapper<>(JAXBHelper.class);
 	private JAXBHelper<JAXBHelperTestSuite.JAXBTestClass> entity;
 
 	@Before

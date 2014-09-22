@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UTDownloadLinkBuilderSafety {
 
-	private static final Class<DownloadLink.Builder> CLASS = new Class<>(DownloadLink.Builder.class);
+	private static final ClassWrapper<DownloadLink.Builder> CLASS = new ClassWrapper<>(DownloadLink.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private DownloadLink.Builder entity;
 

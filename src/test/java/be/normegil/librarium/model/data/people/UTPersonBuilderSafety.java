@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.people;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class UTPersonBuilderSafety {
 
-	private static final Class<Person.Builder> CLASS = new Class<>(Person.Builder.class);
+	private static final ClassWrapper<Person.Builder> CLASS = new ClassWrapper<>(Person.Builder.class);
 	private Person.Builder entity;
 
 	@Before

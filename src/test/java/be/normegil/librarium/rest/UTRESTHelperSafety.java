@@ -2,7 +2,7 @@ package be.normegil.librarium.rest;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.GameTestDAO;
 import be.normegil.librarium.model.data.Entity;
@@ -27,7 +27,7 @@ public class UTRESTHelperSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
-	private static final Class<RESTHelper> CLASS = new Class<>(RESTHelper.class);
+	private static final ClassWrapper<RESTHelper> CLASS = new ClassWrapper<>(RESTHelper.class);
 	private static final long DEFAULT_OFFSET = 0L;
 	private static final int DEFAULT_LIMIT = ApplicationProperties.REST.DEFAULT_LIMIT;
 	private RESTHelper entity;

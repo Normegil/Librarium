@@ -10,13 +10,13 @@ import javax.validation.ConstraintViolationException;
 
 public class UTClassSafety {
 
-	private static final Class<Class> CLASS = new Class<>(Class.class);
+	private static final ClassWrapper<ClassWrapper> CLASS = new ClassWrapper<>(ClassWrapper.class);
 	private static final String EMPTY_STRING = "";
-	private Class<Entity> entity;
+	private ClassWrapper<Entity> entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new Class<>(Entity.class);
+		entity = new ClassWrapper<>(Entity.class);
 	}
 
 	@After

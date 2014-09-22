@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.book;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.fake.FakeBook;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.tool.validation.Validator;
@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class UTBookBuilderSafety {
 
-	private static final Class<FakeBook.Builder> CLASS = new Class<>(FakeBook.Builder.class);
+	private static final ClassWrapper<FakeBook.Builder> CLASS = new ClassWrapper<>(FakeBook.Builder.class);
 	private FakeBook.Builder entity;
 
 	@Before

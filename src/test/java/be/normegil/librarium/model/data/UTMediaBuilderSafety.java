@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.fake.FakeMedia;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class UTMediaBuilderSafety {
 
-	private static final Class<FakeMedia.Builder> CLASS = new Class<>(FakeMedia.Builder.class);
+	private static final ClassWrapper<FakeMedia.Builder> CLASS = new ClassWrapper<>(FakeMedia.Builder.class);
 	private FakeMedia.Builder entity;
 
 	@Before

@@ -1,6 +1,6 @@
 package be.normegil.librarium.tool.test.model.dao;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -10,11 +10,11 @@ import org.junit.Test;
 import javax.validation.ConstraintViolationException;
 
 public abstract class AbstractDAOSafetyTest<E extends DAO> {
-	private final Class<E> daoClassToTest;
+	private final ClassWrapper<E> daoClassToTest;
 	private E dao;
 
 	protected AbstractDAOSafetyTest(java.lang.Class<E> daoClass) {
-		daoClassToTest = new Class<>(daoClass);
+		daoClassToTest = new ClassWrapper<>(daoClass);
 	}
 
 	@Before

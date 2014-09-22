@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -18,7 +18,7 @@ public class UTUniverseSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Universe> FACTORY = FactoryRepository.get(Universe.class);
-	private static final Class<Universe> CLASS = new Class<>(Universe.class);
+	private static final ClassWrapper<Universe> CLASS = new ClassWrapper<>(Universe.class);
 	private static final String EMPTY_STRING = "";
 	private Universe entity;
 

@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data.game;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class UTGameSerieBuilderSafety {
 
-	private static final Class<GameSerie.Builder> CLASS = new Class<>(GameSerie.Builder.class);
+	private static final ClassWrapper<GameSerie.Builder> CLASS = new ClassWrapper<>(GameSerie.Builder.class);
 	private GameSerie.Builder entity;
 
 	@Before

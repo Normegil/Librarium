@@ -2,7 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.util.CollectionComparator;
 import be.normegil.librarium.validation.constraint.NotEmpty;
@@ -193,10 +193,10 @@ public abstract class BaseMedia extends Entity {
 
 	public int compareTo(final BaseMedia o) {
 		if (o != null) {
-			Class<? extends BaseMedia> aClass = new Class<>(getClass());
-			Class<? extends BaseMedia> oClass = new Class<>(o.getClass());
+			ClassWrapper<? extends BaseMedia> aClassWrapper = new ClassWrapper<>(getClass());
+			ClassWrapper<? extends BaseMedia> oClassWrapper = new ClassWrapper<>(o.getClass());
 			return new CompareToBuilder()
-					.append(aClass, oClass)
+					.append(aClassWrapper, oClassWrapper)
 					.append(getTitle(), o.getTitle())
 					.appendSuper(COLLECTION_COMPARATOR.compare(getTags(), o.getTags()))
 					.append(getDescription(), o.getDescription())

@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.fake.FakeBaseMedia;
 import be.normegil.librarium.tool.validation.Validator;
@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class UTBaseMediaBuilderSafety {
 
-	private static final Class<FakeBaseMedia.Builder> CLASS = new Class<>(FakeBaseMedia.Builder.class);
+	private static final ClassWrapper<FakeBaseMedia.Builder> CLASS = new ClassWrapper<>(FakeBaseMedia.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private FakeBaseMedia.Builder entity;
 

@@ -2,7 +2,7 @@ package be.normegil.librarium.rest.game;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
@@ -25,7 +25,7 @@ public class UTGameREST_Safety {
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Entity> ENTITY_FACTORY = FactoryRepository.get(Entity.class);
-	private static final Class<GameREST> CLASS = new Class<>(GameREST.class);
+	private static final ClassWrapper<GameREST> CLASS = new ClassWrapper<>(GameREST.class);
 	private GameREST entity;
 
 	@Mock

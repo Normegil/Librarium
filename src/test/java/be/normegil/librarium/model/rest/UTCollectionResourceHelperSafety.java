@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.rest;
 
 import be.normegil.librarium.ApplicationProperties;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -12,7 +12,7 @@ import javax.validation.ConstraintViolationException;
 
 public class UTCollectionResourceHelperSafety {
 
-	private static final Class<CollectionResource.Helper> CLASS = new Class<>(CollectionResource.Helper.class);
+	private static final ClassWrapper<CollectionResource.Helper> CLASS = new ClassWrapper<>(CollectionResource.Helper.class);
 	private CollectionResource.Helper entity;
 
 	@Before

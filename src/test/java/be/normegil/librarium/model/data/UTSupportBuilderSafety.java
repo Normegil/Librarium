@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.data;
 
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public class UTSupportBuilderSafety {
 
-	private static final Class<Support.Builder> CLASS = new Class<>(Support.Builder.class);
+	private static final ClassWrapper<Support.Builder> CLASS = new ClassWrapper<>(Support.Builder.class);
 	private static final String EMPTY_STRING = "";
 	private Support.Builder entity;
 

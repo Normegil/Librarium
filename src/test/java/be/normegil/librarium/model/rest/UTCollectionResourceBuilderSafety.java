@@ -2,7 +2,7 @@ package be.normegil.librarium.model.rest;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -21,7 +21,7 @@ public class UTCollectionResourceBuilderSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
-	private static final Class<CollectionResource.Builder> CLASS = new Class<>(CollectionResource.Builder.class);
+	private static final ClassWrapper<CollectionResource.Builder> CLASS = new ClassWrapper<>(CollectionResource.Builder.class);
 	private static final Method BUILD_METHOD = CLASS.getMethod("build");
 	private static final Method SET_OFFSET_METHOD = CLASS.getMethod("setOffset", long.class);
 	private static final int DEFAULT_LIMIT = ApplicationProperties.REST.DEFAULT_LIMIT;
@@ -117,6 +117,6 @@ public class UTCollectionResourceBuilderSafety {
 	}
 
 	private Constructor<CollectionResource> getConstructorFromBuilder() {
-		return new Class<>(CollectionResource.class).getConstructor(CollectionResource.Init.class);
+		return new ClassWrapper<>(CollectionResource.class).getConstructor(CollectionResource.Init.class);
 	}
 }

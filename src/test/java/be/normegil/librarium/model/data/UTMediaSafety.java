@@ -1,7 +1,7 @@
 package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.Class;
+import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -18,7 +18,7 @@ public class UTMediaSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Media> FACTORY = FactoryRepository.get(Media.class);
-	private static final Class<Media> CLASS = new Class<>(Media.class);
+	private static final ClassWrapper<Media> CLASS = new ClassWrapper<>(Media.class);
 	private Media entity;
 
 	@Before
