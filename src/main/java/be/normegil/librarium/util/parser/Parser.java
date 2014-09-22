@@ -11,15 +11,9 @@ import java.util.Map;
 
 public class Parser<E> {
 
-	private final Class<?>[] contextClasses;
-	@NotNull
-	private Class<E> entityClass;
-
 	private Map<DocumentType, DocumentParser<E>> parsers;
 
 	public Parser(@NotNull Class<E> entityClass, Class<?>... contextClasses) {
-		this.entityClass = entityClass;
-		this.contextClasses = contextClasses;
 		parsers = loadParsers(entityClass, contextClasses);
 	}
 
@@ -54,7 +48,6 @@ public class Parser<E> {
 
 	public enum DocumentType {
 		JSON,
-		XML,
-		CSV
+		XML
 	}
 }

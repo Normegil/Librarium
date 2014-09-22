@@ -8,7 +8,7 @@ public class FieldWrapper {
 		this.field = field;
 	}
 
-	public String getName(){
+	public String getName() {
 		return field.getName();
 	}
 

@@ -19,6 +19,7 @@ import javax.persistence.Convert;
 import javax.persistence.Converter;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -78,6 +79,14 @@ public class URL implements Comparable<URL> {
 			return url.toURI();
 		} catch (URISyntaxException e) {
 			throw new be.normegil.librarium.util.exception.URISyntaxException(e);
+		}
+	}
+
+	public File toFile() {
+		try {
+			return new File(url.toURI());
+		} catch (URISyntaxException e) {
+			return new File(url.getPath());
 		}
 	}
 

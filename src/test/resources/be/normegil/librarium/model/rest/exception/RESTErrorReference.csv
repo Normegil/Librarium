@@ -1,0 +1,3 @@
+code,httpStatus,message,developerMessage,moreInfoUrl
+40449,NOT_FOUND,Message,DevelopperMessage,http://Host:42/File
+40450,ACCEPTED,Message1,DevelopperMessage1,http://Host:42/File1

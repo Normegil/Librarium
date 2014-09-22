@@ -6,23 +6,24 @@ import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 
 public class Class<E> implements Comparable<Class<E>> {
 
-	private java.lang.Class<E> aClass;
+	private java.lang.Class<E> entityClass;
 
-	public Class(java.lang.Class<E> aClass) {
-		this.aClass = aClass;
+	public Class(java.lang.Class<E> entityClass) {
+		this.entityClass = entityClass;
 	}
 
 	public Constructor<E> getConstructor(java.lang.Class<?>... parameterClasses) {
 		try {
-			return aClass.getConstructor(parameterClasses);
+			return entityClass.getConstructor(parameterClasses);
 		} catch (NoSuchMethodException e) {
 			try {
-				return aClass.getDeclaredConstructor(parameterClasses);
+				return entityClass.getDeclaredConstructor(parameterClasses);
 			} catch (NoSuchMethodException e1) {
 				throw new be.normegil.librarium.util.exception.NoSuchMethodException(e1);
 			}
@@ -31,10 +32,10 @@ public class Class<E> implements Comparable<Class<E>> {
 
 	public Method getMethod(@NotEmpty String methodName, java.lang.Class<?>... parameterClasses) {
 		try {
-			return aClass.getMethod(methodName, parameterClasses);
+			return entityClass.getMethod(methodName, parameterClasses);
 		} catch (NoSuchMethodException e) {
 			try {
-				return aClass.getDeclaredMethod(methodName, parameterClasses);
+				return entityClass.getDeclaredMethod(methodName, parameterClasses);
 			} catch (NoSuchMethodException e1) {
 				throw new be.normegil.librarium.util.exception.NoSuchMethodException(e1);
 			}
@@ -51,15 +52,15 @@ public class Class<E> implements Comparable<Class<E>> {
 	}
 
 	public Collection<FieldWrapper> getAllFields() {
-		return new ClassHelper().getAllFields(aClass);
+		return new ClassHelper().getAllFields(entityClass);
 	}
 
 	public String getSimpleName() {
-		return aClass.getSimpleName();
+		return entityClass.getSimpleName();
 	}
 
 	public String getCanonicalName() {
-		return aClass.getCanonicalName();
+		return entityClass.getCanonicalName();
 	}
 
 	@Override

@@ -37,9 +37,4 @@ public class UTRESTErrorSafety {
 	public void testCopyConstructor_Null() throws Exception {
 		Validator.validate(CLASS.getConstructor(RESTError.class), new Object[]{null});
 	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testWithThrowable_Null() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("withThrowable", Throwable.class), new Object[]{null});
-	}
 }

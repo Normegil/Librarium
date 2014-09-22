@@ -58,7 +58,7 @@ public abstract class AbstractParsingSupportTest<E> {
 	}
 
 	@Test
-	public void testXmlUnMarshaller() throws Exception {
+	public void testUnMarshaller() throws Exception {
 		Parser<E> parser = getParser();
 		String testFileName = getTestFileName();
 		InputStream inputStream = getClass().getResourceAsStream(testFileName);

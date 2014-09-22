@@ -4,6 +4,7 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.HttpStatus;
+import be.normegil.librarium.util.parser.CsvSchema;
 import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateTimeJAXBAdapter;
 import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonDeserializer;
 import be.normegil.librarium.util.parser.adapter.json.LocalDateTimeJsonSerializer;
@@ -27,6 +28,14 @@ import java.time.LocalDateTime;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@CsvSchema(readOnly = true, columns = {
+		"code",
+		"httpStatus",
+		"message",
+		"developerMessage",
+		"moreInfoUrl",
+		"time"
+})
 public class RESTError {
 
 	@NotNull
@@ -76,11 +85,6 @@ public class RESTError {
 	public RESTError withTime(@NotNull @Valid LocalDateTime time) {
 		RESTError error = new RESTError(this);
 		error.time = time;
-		return error;
-	}
-
-	public RESTError withThrowable(@NotNull @Valid Throwable throwable) {
-		RESTError error = new RESTError(this);
 		return error;
 	}
 
