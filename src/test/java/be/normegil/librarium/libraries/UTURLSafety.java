@@ -4,7 +4,7 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
-import be.normegil.librarium.util.exception.MalformedURLException;
+import be.normegil.librarium.util.exception.MalformedURLRuntimeException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class UTURLSafety {
 		Validator.validate(CLASS.getConstructor(String.class), EMPTY_STRING);
 	}
 
-	@Test(expected = MalformedURLException.class)
+	@Test(expected = MalformedURLRuntimeException.class)
 	public void testConstructor_String_WrongRepresentation() throws Exception {
 		new URL(WRONG_FORMAT_URL);
 	}

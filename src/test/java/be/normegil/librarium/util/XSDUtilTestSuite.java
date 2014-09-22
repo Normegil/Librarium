@@ -1,5 +1,7 @@
 package be.normegil.librarium.util;
 
+import be.normegil.librarium.util.exception.IORuntimeException;
+import be.normegil.librarium.util.exception.JAXBRuntimeException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.slf4j.Logger;
@@ -37,9 +39,9 @@ public class XSDUtilTestSuite {
 			};
 			jaxbContext.generateSchema(sor);
 		} catch (JAXBException e) {
-			throw new be.normegil.librarium.util.exception.JAXBException(e);
+			throw new JAXBRuntimeException(e);
 		} catch (IOException e) {
-			throw new be.normegil.librarium.util.exception.IOException(e);
+			throw new IORuntimeException(e);
 		}
 	}
 }

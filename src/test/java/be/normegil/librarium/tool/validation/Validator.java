@@ -1,6 +1,8 @@
 package be.normegil.librarium.tool.validation;
 
 import be.normegil.librarium.Constants;
+import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
+import be.normegil.librarium.util.exception.InvocationTargetRuntimeException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -68,9 +70,9 @@ public class Validator {
 		try {
 			returnValue = method.invoke(object, parameters);
 		} catch (IllegalAccessException e) {
-			throw new be.normegil.librarium.util.exception.IllegalAccessException(e);
+			throw new IllegalAccessRuntimeException(e);
 		} catch (InvocationTargetException e) {
-			throw new be.normegil.librarium.util.exception.InvocationTargetException(e);
+			throw new InvocationTargetRuntimeException(e);
 		}
 		return returnValue;
 	}

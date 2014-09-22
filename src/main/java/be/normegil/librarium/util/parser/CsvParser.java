@@ -1,6 +1,7 @@
 package be.normegil.librarium.util.parser;
 
-import be.normegil.librarium.util.exception.ReadOnlyException;
+import be.normegil.librarium.util.exception.IORuntimeException;
+import be.normegil.librarium.util.exception.ReadOnlyRuntimeException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -29,7 +30,7 @@ public class CsvParser<E> {
 		try {
 			iterator = reader.readValues(file);
 		} catch (IOException e) {
-			throw new be.normegil.librarium.util.exception.IOException(e);
+			throw new IORuntimeException(e);
 		}
 
 		List<E> entities = new ArrayList<>();
@@ -41,7 +42,7 @@ public class CsvParser<E> {
 
 	public void to(@NotNull final List<E> entities, @NotNull final File file) {
 		if (isReadOnly()) {
-			throw new ReadOnlyException("Entity of type " + entityClass.getSimpleName() + " cannot be printed in CSV (But you can read them from CSV)");
+			throw new ReadOnlyRuntimeException("Entity of type " + entityClass.getSimpleName() + " cannot be printed in CSV (But you can read them from CSV)");
 		} else {
 			CsvMapper mapper = new CsvMapper();
 			com.fasterxml.jackson.dataformat.csv.CsvSchema schema = getSchema(mapper)
@@ -50,7 +51,7 @@ public class CsvParser<E> {
 			try {
 				writer.writeValue(file, entities);
 			} catch (IOException e) {
-				throw new be.normegil.librarium.util.exception.IOException(e);
+				throw new IORuntimeException(e);
 			}
 		}
 	}

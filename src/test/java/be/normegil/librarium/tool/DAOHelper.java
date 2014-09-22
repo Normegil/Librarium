@@ -2,7 +2,9 @@ package be.normegil.librarium.tool;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.dao.AbstractDatabaseDAO;
-import be.normegil.librarium.model.data.Entity;
+import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
+import be.normegil.librarium.util.exception.InvocationTargetRuntimeException;
+import be.normegil.librarium.util.exception.NoSuchMethodRuntimeException;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.InvocationTargetException;
@@ -22,11 +24,11 @@ public class DAOHelper {
 
 			setEntityManager.setAccessible(accessible);
 		} catch (NoSuchMethodException e) {
-			throw new be.normegil.librarium.util.exception.NoSuchMethodException(e);
+			throw new NoSuchMethodRuntimeException(e);
 		} catch (InvocationTargetException e) {
-			throw new be.normegil.librarium.util.exception.InvocationTargetException(e);
+			throw new InvocationTargetRuntimeException(e);
 		} catch (IllegalAccessException e) {
-			throw new be.normegil.librarium.util.exception.IllegalAccessException(e);
+			throw new IllegalAccessRuntimeException(e);
 		}
 	}
 

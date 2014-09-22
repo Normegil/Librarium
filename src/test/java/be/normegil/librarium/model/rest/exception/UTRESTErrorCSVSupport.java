@@ -5,7 +5,7 @@ import be.normegil.librarium.model.rest.HttpStatus;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.test.model.data.AbstractCSVSupportTest;
-import be.normegil.librarium.util.exception.ReadOnlyException;
+import be.normegil.librarium.util.exception.ReadOnlyRuntimeException;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class UTRESTErrorCSVSupport extends AbstractCSVSupportTest<RESTError> {
 	}
 
 	@Override
-	@Test(expected = ReadOnlyException.class)
+	@Test(expected = ReadOnlyRuntimeException.class)
 	public void testMarshaller() throws Exception {
 		super.testMarshaller();
 	}

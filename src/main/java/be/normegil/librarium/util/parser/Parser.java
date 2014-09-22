@@ -1,7 +1,7 @@
 package be.normegil.librarium.util.parser;
 
-import be.normegil.librarium.util.exception.IOException;
-import be.normegil.librarium.util.exception.NoSuchParserException;
+import be.normegil.librarium.util.exception.IORuntimeException;
+import be.normegil.librarium.util.exception.NoSuchParserRuntimeException;
 
 import javax.validation.constraints.NotNull;
 import java.io.InputStream;
@@ -20,11 +20,11 @@ public class Parser<E> {
 	public E from(@NotNull DocumentType type, @NotNull InputStream stream) {
 		DocumentParser<E> parser = parsers.get(type);
 		if (parser == null) {
-			throw new NoSuchParserException("Cannot find parser for " + type);
+			throw new NoSuchParserRuntimeException("Cannot find parser for " + type);
 		} else {
 			E value = parser.from(stream);
 			if (value == null) {
-				throw new IOException("Could not load object");
+				throw new IORuntimeException("Could not load object");
 			}
 			return value;
 		}
@@ -33,7 +33,7 @@ public class Parser<E> {
 	public void to(@NotNull E entity, @NotNull DocumentType type, @NotNull OutputStream stream) {
 		DocumentParser<E> parser = parsers.get(type);
 		if (parser == null) {
-			throw new NoSuchParserException("Cannot find parser for " + type);
+			throw new NoSuchParserRuntimeException("Cannot find parser for " + type);
 		} else {
 			parser.to(entity, stream);
 		}

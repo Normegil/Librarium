@@ -1,6 +1,6 @@
 package be.normegil.librarium.model.rest;
 
-import be.normegil.librarium.util.exception.UnknownEnumValueException;
+import be.normegil.librarium.util.exception.UnknownEnumValueRuntimeException;
 
 public enum HttpStatus {
 
@@ -81,7 +81,7 @@ public enum HttpStatus {
 				return status;
 			}
 		}
-		throw new UnknownEnumValueException("No matching constant for [" + statusCode + "]");
+		throw new UnknownEnumValueRuntimeException("No matching constant for [" + statusCode + "]");
 	}
 
 	public int value() {
@@ -122,7 +122,7 @@ public enum HttpStatus {
 					return series;
 				}
 			}
-			throw new UnknownEnumValueException("No matching constant for [" + status + "]");
+			throw new UnknownEnumValueRuntimeException("No matching constant for [" + status + "]");
 		}
 
 		public int value() {

@@ -2,6 +2,7 @@ package be.normegil.librarium.util.parser;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
+import be.normegil.librarium.util.exception.JAXBRuntimeException;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.*;
@@ -28,7 +29,7 @@ public class JAXBHelper<E> implements DocumentParser<E> {
 			this.eventHandler = eventHandler;
 			jaxbContext = JAXBContext.newInstance(toContextClasses(entityClass, jaxbContextClasses));
 		} catch (JAXBException e) {
-			throw new be.normegil.librarium.util.exception.JAXBException(e);
+			throw new JAXBRuntimeException(e);
 		}
 	}
 
@@ -45,7 +46,7 @@ public class JAXBHelper<E> implements DocumentParser<E> {
 			Object unmarshaled = unmarshaller.unmarshal(stream);
 			return (E) unmarshaled;
 		} catch (JAXBException e) {
-			throw new be.normegil.librarium.util.exception.JAXBException(e);
+			throw new JAXBRuntimeException(e);
 		}
 	}
 
@@ -62,7 +63,7 @@ public class JAXBHelper<E> implements DocumentParser<E> {
 
 			marshaller.marshal(entity, stream);
 		} catch (JAXBException e) {
-			throw new be.normegil.librarium.util.exception.JAXBException(e);
+			throw new JAXBRuntimeException(e);
 		}
 	}
 

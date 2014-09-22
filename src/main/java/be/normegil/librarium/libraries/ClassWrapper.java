@@ -2,6 +2,8 @@ package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.util.ClassHelper;
+import be.normegil.librarium.util.exception.NoSuchFieldRuntimeException;
+import be.normegil.librarium.util.exception.NoSuchMethodRuntimeException;
 import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
@@ -24,7 +26,7 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 			try {
 				return entityClass.getDeclaredConstructor(parameterClasses);
 			} catch (NoSuchMethodException e1) {
-				throw new be.normegil.librarium.util.exception.NoSuchMethodException(e1);
+				throw new NoSuchMethodRuntimeException(e1);
 			}
 		}
 	}
@@ -36,7 +38,7 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 			try {
 				return entityClass.getDeclaredMethod(methodName, parameterClasses);
 			} catch (NoSuchMethodException e1) {
-				throw new be.normegil.librarium.util.exception.NoSuchMethodException(e1);
+				throw new NoSuchMethodRuntimeException(e1);
 			}
 		}
 	}
@@ -47,7 +49,7 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 				return field;
 			}
 		}
-		throw new be.normegil.librarium.util.exception.NoSuchFieldException("Field not found [Name=" + fieldName + "]");
+		throw new NoSuchFieldRuntimeException("Field not found [Name=" + fieldName + "]");
 	}
 
 	public Collection<FieldWrapper> getAllFields() {

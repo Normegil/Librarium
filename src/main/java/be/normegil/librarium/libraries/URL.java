@@ -3,6 +3,8 @@ package be.normegil.librarium.libraries;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
+import be.normegil.librarium.util.exception.MalformedURLRuntimeException;
+import be.normegil.librarium.util.exception.URISyntaxRuntimeException;
 import be.normegil.librarium.util.parser.adapter.jaxb.URLJAXBAdapter;
 import be.normegil.librarium.util.parser.adapter.json.URLJsonDeserializer;
 import be.normegil.librarium.util.parser.adapter.json.URLJsonSerializer;
@@ -37,7 +39,7 @@ public class URL implements Comparable<URL> {
 		try {
 			this.url = new java.net.URL(url);
 		} catch (MalformedURLException e) {
-			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+			throw new MalformedURLRuntimeException(e);
 		}
 	}
 
@@ -45,7 +47,7 @@ public class URL implements Comparable<URL> {
 		try {
 			url = new java.net.URL(protocol, host, port, filePath);
 		} catch (MalformedURLException e) {
-			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+			throw new MalformedURLRuntimeException(e);
 		}
 	}
 
@@ -53,7 +55,7 @@ public class URL implements Comparable<URL> {
 		try {
 			this.url = new java.net.URL(url.getProtocol(), url.getHost(), url.getPort(), url.getFilePath());
 		} catch (MalformedURLException e) {
-			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+			throw new MalformedURLRuntimeException(e);
 		}
 	}
 
@@ -65,7 +67,7 @@ public class URL implements Comparable<URL> {
 		try {
 			this.url = uri.toURL();
 		} catch (MalformedURLException e) {
-			throw new be.normegil.librarium.util.exception.MalformedURLException(e);
+			throw new MalformedURLRuntimeException(e);
 		}
 	}
 
@@ -78,7 +80,7 @@ public class URL implements Comparable<URL> {
 		try {
 			return url.toURI();
 		} catch (URISyntaxException e) {
-			throw new be.normegil.librarium.util.exception.URISyntaxException(e);
+			throw new URISyntaxRuntimeException(e);
 		}
 	}
 

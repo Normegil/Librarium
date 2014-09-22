@@ -1,5 +1,7 @@
 package be.normegil.librarium.libraries;
 
+import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
+
 public class FieldWrapper {
 
 	private java.lang.reflect.Field field;
@@ -19,7 +21,7 @@ public class FieldWrapper {
 		try {
 			field.set(entity, value);
 		} catch (IllegalAccessException e) {
-			throw new be.normegil.librarium.util.exception.IllegalAccessException(e);
+			throw new IllegalAccessRuntimeException(e);
 		} finally {
 			field.setAccessible(accessible);
 		}

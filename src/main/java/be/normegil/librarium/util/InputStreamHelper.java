@@ -1,6 +1,7 @@
 package be.normegil.librarium.util;
 
 import be.normegil.librarium.Constants;
+import be.normegil.librarium.util.exception.IORuntimeException;
 
 import javax.validation.constraints.NotNull;
 import java.io.BufferedReader;
@@ -26,7 +27,7 @@ public class InputStreamHelper {
 
 			return builder.toString();
 		} catch (IOException e) {
-			throw new be.normegil.librarium.util.exception.IOException(e);
+			throw new IORuntimeException(e);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package be.normegil.librarium.util.parser;
 
+import be.normegil.librarium.util.exception.IORuntimeException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ public class JacksonParser<E> implements DocumentParser<E> {
 		try {
 			return mapper.readValue(stream, entityClass);
 		} catch (IOException e) {
-			throw new be.normegil.librarium.util.exception.IOException(e);
+			throw new IORuntimeException(e);
 		}
 	}
 
@@ -31,7 +32,7 @@ public class JacksonParser<E> implements DocumentParser<E> {
 		try {
 			mapper.writeValue(stream, entity);
 		} catch (IOException e) {
-			throw new be.normegil.librarium.util.exception.IOException(e);
+			throw new IORuntimeException(e);
 		}
 	}
 }
