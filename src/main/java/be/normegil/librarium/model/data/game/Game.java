@@ -5,6 +5,7 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffRole;
+import be.normegil.librarium.model.rest.digest.Digest;
 import be.normegil.librarium.model.rest.digest.Digestable;
 import be.normegil.librarium.util.CollectionComparator;
 import org.apache.commons.lang3.builder.CompareToBuilder;
@@ -203,10 +204,18 @@ public class Game extends Media implements Comparable<Game>, Serializable{
 
 		@Override
 		public Game toBase() {
-			return Game.builder()
-					.from(super.toBase())
+			Builder builder = Game.builder();
+			return builder
+					.from(super.toBase(builder))
 					.setSerie(serie)
 					.build();
+		}
+
+		@Override
+		public be.normegil.librarium.model.rest.digest.Digest<Game> fromBase(final Game entity) {
+			super.fromBase(entity);
+			serie = entity.getSerie();
+			return this;
 		}
 	}
 

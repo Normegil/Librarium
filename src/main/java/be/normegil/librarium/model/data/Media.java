@@ -249,9 +249,14 @@ public abstract class Media extends BaseMedia {
 				.toHashCode();
 	}
 
-	public static class Digest<E extends Media> implements be.normegil.librarium.model.rest.digest.Digest<E>{
+	public static class Digest {
 		@Override
-		public E toBase() {
+		public Media toBase(Init init) {
+			return init.addAllReleaseDates().addUniverse().addAllUniverses().addSupport();
+		}
+
+		@Override
+		public be.normegil.librarium.model.rest.digest.Digest<E> fromBase(final E entity) {
 			return null;
 		}
 	}
