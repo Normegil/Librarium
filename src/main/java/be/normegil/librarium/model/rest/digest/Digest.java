@@ -1,9 +1,11 @@
 package be.normegil.librarium.model.rest.digest;
 
+import java.net.URI;
+
 public interface Digest<E> {
 
 	E toBase();
 
-	Digest<E> fromBase(E entity);
+	void fromBase(final URI baseURI, final E entity);
 
 }

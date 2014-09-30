@@ -1,12 +1,14 @@
 package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.Constants;
-import be.normegil.librarium.model.data.game.GameSerie;
+import be.normegil.librarium.model.dao.DAO;
+import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.model.data.people.StaffRole;
-import be.normegil.librarium.model.rest.digest.Digest;
+import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.CollectionComparator;
+import be.normegil.librarium.util.exception.NoSuchEntityException;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -17,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -45,6 +48,7 @@ public abstract class Media extends BaseMedia {
 
 	protected Media(@NotNull @Valid Init<?> init) {
 		super(init);
+		releaseDates.addAll(init.entityReleaseDates);
 		addAllUniverses(init.universes);
 		addAllReleaseDates(init.releaseDates);
 	}
@@ -249,15 +253,40 @@ public abstract class Media extends BaseMedia {
 				.toHashCode();
 	}
 
-	public static class Digest {
-		@Override
-		public Media toBase(Init init) {
-			return init.addAllReleaseDates().addUniverse().addAllUniverses().addSupport();
+	public static class MediaDigest extends BaseMediaDigest {
+		private Collection<URI> universes = new TreeSet<>();
+		private Collection<URI> releaseDates = new TreeSet<>();
+
+		public void toBase(Init init) {
+			super.toBase(init);
+
+			DAO<Universe> universeDAO = new DatabaseDAO<>();
+			for (URI universeLink : universes) {
+				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
+				Universe universe = universeDAO.get(id);
+				if (universe != null) {
+					init.addUniverse(universe);
+				} else {
+					throw new NoSuchEntityException("Cannot find Universe in database with ID : " + id);
+				}
+			}
+
+			DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>();
+			for (URI universeLink : universes) {
+				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
+				ReleaseDate releaseDate = releaseDateDAO.get(id);
+				if (releaseDate != null) {
+					init.addReleaseDate(releaseDate);
+				} else {
+					throw new NoSuchEntityException("Cannot find ReleaseDate in database with ID : " + id);
+				}
+			}
 		}
 
-		@Override
-		public be.normegil.librarium.model.rest.digest.Digest<E> fromBase(final E entity) {
-			return null;
+		public void fromBase(final URI baseURI, final Media entity) {
+			super.fromBase(baseURI, entity);
+			universes = new RESTHelper().getRESTUri(baseURI, Universe.class, entity.getUniverses());
+			releaseDates = new RESTHelper().getRESTUri(baseURI, ReleaseDate.class, entity.releaseDates);
 		}
 	}
 
@@ -265,6 +294,7 @@ public abstract class Media extends BaseMedia {
 
 		private Collection<Universe> universes = new TreeSet<>();
 		private Map<Support, LocalDate> releaseDates = new TreeMap<>();
+		private Collection<ReleaseDate> entityReleaseDates = new TreeSet<>();
 
 		protected abstract E self();
 
@@ -308,6 +338,18 @@ public abstract class Media extends BaseMedia {
 
 		public E addReleaseDate(@NotNull @Valid final Support support, final LocalDate releaseDate) {
 			releaseDates.put(support, releaseDate);
+			return self();
+		}
+
+		public E addAllReleaseDates(@NotNull final Collection<ReleaseDate> releaseDates) {
+			for (ReleaseDate releaseDate : releaseDates) {
+				addReleaseDate(releaseDate);
+			}
+			return self();
+		}
+
+		public E addReleaseDate(@NotNull @Valid final ReleaseDate entity) {
+			entityReleaseDates.add(entity);
 			return self();
 		}
 	}

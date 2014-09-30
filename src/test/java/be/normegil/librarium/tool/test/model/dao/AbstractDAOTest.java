@@ -1,7 +1,7 @@
 package be.normegil.librarium.tool.test.model.dao;
 
 import be.normegil.librarium.SpecificTestProperties;
-import be.normegil.librarium.model.dao.AbstractDatabaseDAO;
+import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.tool.DAOHelper;
 import org.junit.After;
 import org.junit.Before;
@@ -16,7 +16,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.*;
 
-public abstract class AbstractDAOTest<DAO extends AbstractDatabaseDAO, Entity> {
+public abstract class AbstractDAOTest<DAO extends DatabaseDAO, Entity> {
 
 	private EntityManager entityManager;
 	private EntityManagerFactory entityManagerFactory;

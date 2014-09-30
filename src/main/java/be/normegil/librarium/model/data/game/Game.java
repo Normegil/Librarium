@@ -2,12 +2,16 @@ package be.normegil.librarium.model.data.game;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
+import be.normegil.librarium.model.dao.DAO;
+import be.normegil.librarium.model.dao.DatabaseDAO;
+import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffRole;
+import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.model.rest.digest.Digest;
-import be.normegil.librarium.model.rest.digest.Digestable;
 import be.normegil.librarium.util.CollectionComparator;
+import be.normegil.librarium.util.exception.NoSuchEntityException;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -17,13 +21,15 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.net.URI;
 import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.UUID;
 
 @javax.persistence.Entity
 @Access(AccessType.FIELD)
-public class Game extends Media implements Comparable<Game>, Serializable{
+public class Game extends Media implements Comparable<Game>, Serializable {
 
 	private static final CollectionComparator COLLECTION_COMPARATOR = new CollectionComparator();
 
@@ -199,23 +205,32 @@ public class Game extends Media implements Comparable<Game>, Serializable{
 		}
 	}
 
-	public static class Digest extends Media.Digest<Game> implements be.normegil.librarium.model.rest.digest.Digest<Game> {
-		private GameSerie serie;
+	public static class GameDigest extends Media.MediaDigest implements Digest<Game> {
+		private URI serie;
 
 		@Override
 		public Game toBase() {
 			Builder builder = Game.builder();
-			return builder
-					.from(super.toBase(builder))
-					.setSerie(serie)
-					.build();
+			super.toBase(builder);
+
+			DAO<GameSerie> serieDAO = new DatabaseDAO<>();
+			UUID id = Entity.helper().getIdFromRESTURI(serie);
+			GameSerie serie = serieDAO.get(id);
+			if (serie != null) {
+				builder.setSerie(serie);
+			} else {
+				throw new NoSuchEntityException("Cannot find ReleaseDate in database with ID : " + id);
+			}
+
+			Game game = builder.build();
+			Entity.helper().setIdFromDigest(this, game);
+			return game;
 		}
 
 		@Override
-		public be.normegil.librarium.model.rest.digest.Digest<Game> fromBase(final Game entity) {
-			super.fromBase(entity);
-			serie = entity.getSerie();
-			return this;
+		public void fromBase(final URI baseURI, final Game entity) {
+			super.fromBase(baseURI, entity);
+			serie = new RESTHelper().getRESTUri(baseURI, GameSerie.class, entity.getSerie());
 		}
 	}
 

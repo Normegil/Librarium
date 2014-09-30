@@ -3,7 +3,7 @@ package be.normegil.librarium.rest;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.dao.MemoryTestDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.CollectionResource;
@@ -37,7 +37,7 @@ public class UTRESTHelperGetAll {
 	private static final int DEFAULT_LIMIT = 6;
 	private static final int NUMBER_OF_GAMES = DEFAULT_LIMIT * 2;
 	private static final long FIRST_OFFSET = 0L;
-	private RESTHelper<Game> restHelper;
+	private RESTServiceHelper<Game> restServiceHelper;
 	private DAO<Game> dao;
 	private URI baseURI;
 
@@ -52,27 +52,27 @@ public class UTRESTHelperGetAll {
 
 	@Before
 	public void setUp() throws Exception {
-		dao = new GameTestDAO(NUMBER_OF_GAMES);
-		restHelper = new RESTHelper<>(dao, context, updater);
+		dao = new MemoryTestDAO(NUMBER_OF_GAMES);
+		restServiceHelper = new RESTServiceHelper<>(dao, context, updater);
 
 		baseURI = URL_FACTORY.getNext().toURI();
 		when(info.getBaseUri())
 				.thenReturn(baseURI);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance();
-		when(context.getContext(restHelper.getClass()))
+		when(context.getContext(restServiceHelper.getClass()))
 				.thenReturn(jaxbContext.createMarshaller());
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		restHelper = null;
+		restServiceHelper = null;
 		dao = null;
 	}
 
 	@Test
 	public void testGetAll_Items() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		List<Game> games = dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT);
 		URL url = new URL(baseURI.toURL());
@@ -82,28 +82,28 @@ public class UTRESTHelperGetAll {
 
 	@Test
 	public void testGetAll_Offset() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		assertEquals((Long) DEFAULT_OFFSET, resource.getOffset());
 	}
 
 	@Test
 	public void testGetAll_Limit() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		assertEquals(DEFAULT_LIMIT, resource.getLimit());
 	}
 
 	@Test
 	public void testGetAll_TotalNumberOfItems() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		assertEquals(dao.getNumberOfElements(), resource.getTotalNumberOfItems());
 	}
 
 	@Test
 	public void testGetAll_FirstLink() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		URL url = new URL(baseURI.toURL());
 		URL link = CollectionResource.helper().getCollectionURL(url, FIRST_OFFSET, DEFAULT_LIMIT);
@@ -112,7 +112,7 @@ public class UTRESTHelperGetAll {
 
 	@Test
 	public void testGetAll_PreviousLink() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		URL url = new URL(baseURI.toURL());
 		long previousOffset = getPreviousOffset(DEFAULT_OFFSET, DEFAULT_LIMIT);
@@ -127,7 +127,7 @@ public class UTRESTHelperGetAll {
 
 	@Test
 	public void testGetAll_NextLink() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		URL url = new URL(baseURI.toURL());
 		URL link = CollectionResource.helper().getCollectionURL(url, DEFAULT_OFFSET + DEFAULT_LIMIT, DEFAULT_LIMIT);
@@ -136,7 +136,7 @@ public class UTRESTHelperGetAll {
 
 	@Test
 	public void testGetAll_LastLink() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		CollectionResource resource = (CollectionResource) response.getEntity();
 		URL url = new URL(baseURI.toURL());
 		long numberOfElements = dao.getNumberOfElements();
@@ -151,7 +151,7 @@ public class UTRESTHelperGetAll {
 
 	@Test
 	public void testGetAll_ResponseStatus() throws Exception {
-		Response response = restHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
+		Response response = restServiceHelper.getAll(info, DEFAULT_OFFSET, DEFAULT_LIMIT);
 		assertEquals(response.getStatus(), HttpStatus.SC_OK);
 	}
 }

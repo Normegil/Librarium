@@ -1,24 +1,25 @@
 package be.normegil.librarium.libraries;
 
+import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.Universe;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
+import be.normegil.librarium.rest.Updater;
+import be.normegil.librarium.tool.test.model.dao.AbstractDAOTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class UTClass {
 
@@ -123,5 +124,87 @@ public class UTClass {
 			fields.addAll(getAllFields(superclass));
 		}
 		return fields;
+	}
+
+	@Test
+	public void testGetInterfaces() throws Exception {
+		ClassWrapper<TestClass> wrapper = new ClassWrapper<>(TestClass.class);
+		Collection<Class<?>> toTest = wrapper.getInterfaces();
+
+		List<Class<?>> expected = new ArrayList<>();
+		expected.add(Serializable.class);
+		expected.add(Comparable.class);
+
+		assertEquals(expected, toTest);
+	}
+
+	@Test
+	public void testGetInterface_ExistingInterface() throws Exception {
+		ClassWrapper<TestClass> wrapper = new ClassWrapper<>(TestClass.class);
+		Class<Serializable> interfaceToGet = Serializable.class;
+		Class<?> toTest = wrapper.getInterface(interfaceToGet);
+		assertEquals(interfaceToGet, toTest);
+	}
+
+	@Test
+	public void testGetInterface_NotExistingInterface() throws Exception {
+		ClassWrapper<TestClass> wrapper = new ClassWrapper<>(TestClass.class);
+		Class<Updater> interfaceToGet = Updater.class;
+		Class<?> toTest = wrapper.getInterface(interfaceToGet);
+		assertNull(toTest);
+	}
+
+	@Test
+	public void testGetClassParameters() throws Exception {
+		TestClass<DatabaseDAO, Game, Entity> dummyObject = new TestClass<>();
+		ClassWrapper<? extends TestClass> wrapper = new ClassWrapper<>(dummyObject.getClass());
+		Set<Class> toTest = wrapper.getClassParameters();
+
+		Set<Class> expected = new HashSet<>();
+		expected.add(DatabaseDAO.class);
+		expected.add(Game.class);
+		expected.add(Entity.class);
+		assertEquals(expected, toTest);
+	}
+
+	@Test
+	public void testGetClassParameters_NoParameters() throws Exception {
+		ClassWrapper<Entity> wrapper = new ClassWrapper<>(Entity.class);
+		Set<Class> toTest = wrapper.getClassParameters();
+		assertTrue(toTest.isEmpty());
+	}
+
+	private class TestClass<E extends DatabaseDAO, T, W> extends AbstractDAOTest<E, T> implements Serializable, Comparable<T> {
+		private static final String ERROR_MESSAGE = "Dummy class for reflection functionnality testing";
+
+		@Override
+		protected E initDAO() {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
+
+		@Override
+		protected Object getEntityId(final T t) {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
+
+		@Override
+		protected void assertChangedPropertyEquals(final T foundEntity) {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
+
+		@Override
+		protected void changeEntity(final T t) {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
+
+		@Override
+		protected T getNewData() {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
+
+		@Override
+		public int compareTo(final T o) {
+			throw new UnsupportedOperationException(ERROR_MESSAGE);
+		}
 	}
 }

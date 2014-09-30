@@ -4,7 +4,10 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.dao.DatabaseDAO;
+import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.CollectionComparator;
+import be.normegil.librarium.util.exception.NoSuchEntityException;
 import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -14,9 +17,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.Set;
-import java.util.TreeSet;
+import java.net.URI;
+import java.util.*;
 
 @javax.persistence.Entity
 @Access(AccessType.FIELD)
@@ -250,6 +252,56 @@ public abstract class BaseMedia extends Entity {
 				.append(wikipediaPage)
 				.append(stores)
 				.toHashCode();
+	}
+
+	public static class BaseMediaDigest extends EntityDigest {
+
+		private String title;
+		private String description;
+		private Collection<String> tags;
+		private URI officialWebsite;
+		private URI wikipediaPage;
+		private Set<URI> stores = new HashSet<>();
+		private Collection<URI> downloadLinks;
+
+		public void toBase(Init init) {
+			init
+					.setTitle(title)
+					.setDescription(description)
+					.addAllTags(tags)
+					.setWikipediaPage(new URL(wikipediaPage))
+					.setOfficialWebsite(new URL(officialWebsite));
+
+			for (URI store : stores) {
+				init.addStore(new URL(store));
+			}
+
+			DatabaseDAO<DownloadLink> dao = new DatabaseDAO<>();
+			for (URI downloadLink : downloadLinks) {
+				UUID id = Entity.helper().getIdFromRESTURI(downloadLink);
+				DownloadLink link = dao.get(id);
+				if (link != null) {
+					init.addDownloadLink(link);
+				} else {
+					throw new NoSuchEntityException("Cannot find DownloadLink in database with ID : " + id);
+				}
+			}
+		}
+
+		public void fromBase(final URI baseURI, final BaseMedia entity) {
+			super.fromBase(baseURI, entity);
+
+			title = entity.getTitle();
+			description = entity.getDescription();
+			tags = entity.getTags();
+			officialWebsite = entity.getOfficialWebsite().toURI();
+			wikipediaPage = entity.getWikipediaPage().toURI();
+
+			for (URL url : entity.getStores()) {
+				stores.add(url.toURI());
+			}
+			downloadLinks = new RESTHelper().getRESTUri(baseURI, DownloadLink.class, entity.getDownloadLinks());
+		}
 	}
 
 	public abstract static class Init<E extends Init<E>> {

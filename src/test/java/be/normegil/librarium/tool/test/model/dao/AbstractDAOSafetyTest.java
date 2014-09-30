@@ -8,13 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
+import java.util.Set;
 
 public abstract class AbstractDAOSafetyTest<E extends DAO> {
 	private final ClassWrapper<E> daoClassToTest;
 	private E dao;
 
-	protected AbstractDAOSafetyTest(java.lang.Class<E> daoClass) {
-		daoClassToTest = new ClassWrapper<>(daoClass);
+	protected AbstractDAOSafetyTest() {
+		Set<Class> classParameters = new ClassWrapper<>(getClass()).getClassParameters();
+		Class<E> classParameter = classParameters.iterator().next();
+		daoClassToTest = new ClassWrapper<>(classParameter);
 	}
 
 	@Before

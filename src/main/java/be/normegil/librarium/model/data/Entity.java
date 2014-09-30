@@ -3,13 +3,16 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -58,7 +61,26 @@ public abstract class Entity {
 		}
 	}
 
+	public static class EntityDigest {
+
+		protected URI uri;
+
+		public void fromBase(final URI baseUri, final Entity entity) {
+			uri = new RESTHelper().getRESTUri(baseUri, entity.getClass(), entity);
+		}
+	}
+
 	public static class Helper {
+
+		public UUID getIdFromRESTURI(URI restURI) {
+			String idAsString = StringUtils.substringAfterLast(restURI.toString(), "/");
+			return UUID.fromString(idAsString);
+		}
+
+		public void setIdFromDigest(EntityDigest digest, Entity entity) {
+			entity.id = getIdFromRESTURI(digest.uri);
+		}
+
 		public List<URL> convertToURLs(@NotNull final List<? extends Entity> entities, @NotNull final URL baseURL) {
 			List<URL> urlsToEntities = new ArrayList<>();
 			UUIDToRESTURLJAXBAdapter adapter = new UUIDToRESTURLJAXBAdapter(baseURL);

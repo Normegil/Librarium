@@ -4,7 +4,7 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.dao.MemoryTestDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
@@ -78,7 +78,7 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 	@Override
 	public CollectionResource getNext(final boolean withLink) {
 		URL url = URL_FACTORY.getNext();
-		DAO<Game> dao = new GameTestDAO(DEFAULT_LIMIT * 2);
+		DAO<Game> dao = new MemoryTestDAO(DEFAULT_LIMIT * 2);
 		List<URL> urls = Entity.helper().convertToURLs(dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), url);
 		return CollectionResource.builder()
 				.addAllItems(urls)

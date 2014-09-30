@@ -4,7 +4,7 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.dao.GameTestDAO;
+import be.normegil.librarium.model.dao.MemoryTestDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
@@ -27,10 +27,10 @@ public class UTRESTHelperSafety {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
-	private static final ClassWrapper<RESTHelper> CLASS = new ClassWrapper<>(RESTHelper.class);
+	private static final ClassWrapper<RESTServiceHelper> CLASS = new ClassWrapper<>(RESTServiceHelper.class);
 	private static final long DEFAULT_OFFSET = 0L;
 	private static final int DEFAULT_LIMIT = ApplicationProperties.REST.DEFAULT_LIMIT;
-	private RESTHelper entity;
+	private RESTServiceHelper entity;
 	private DAO<Game> dao;
 
 	@Mock
@@ -44,8 +44,8 @@ public class UTRESTHelperSafety {
 
 	@Before
 	public void setUp() throws Exception {
-		dao = new GameTestDAO();
-		entity = new RESTHelper<>(dao, context, updater);
+		dao = new MemoryTestDAO();
+		entity = new RESTServiceHelper<>(dao, context, updater);
 	}
 
 	@After
@@ -134,7 +134,7 @@ public class UTRESTHelperSafety {
 		Validator.validate(entity, CLASS.getMethod("delete", UUID.class), new Object[]{null});
 	}
 
-	private Constructor<RESTHelper> getConstructor() {
+	private Constructor<RESTServiceHelper> getConstructor() {
 		return CLASS.getConstructor(DAO.class, ContextResolver.class, Updater.class);
 	}
 

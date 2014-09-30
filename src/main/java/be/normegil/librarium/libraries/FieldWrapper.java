@@ -2,11 +2,13 @@ package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
 
+import java.lang.reflect.Field;
+
 public class FieldWrapper {
 
-	private java.lang.reflect.Field field;
+	private Field field;
 
-	public FieldWrapper(java.lang.reflect.Field field) {
+	public FieldWrapper(Field field) {
 		this.field = field;
 	}
 
@@ -27,7 +29,7 @@ public class FieldWrapper {
 		}
 	}
 
-	public java.lang.reflect.Field getOriginalField() {
+	public Field getOriginalField() {
 		return field;
 	}
 }

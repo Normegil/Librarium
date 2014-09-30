@@ -5,9 +5,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		URLTestSuite.class,
-		ClassWrapperTestSuite.class,
-		FieldWrapperTestSuite.class
+		UTClassSafety.class,
+		UTClass.class,
+		UTClassComparable.class
 })
-public class LibrariesPackageTestSuiteTestSuite {
+public class ClassWrapperTestSuite {
 }

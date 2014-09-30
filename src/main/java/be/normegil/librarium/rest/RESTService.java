@@ -34,4 +34,6 @@ public interface RESTService<E> {
 	@DELETE
 	@Path(Constants.URL.PATH_SEPARATOR + "{ID}")
 	Response delete(@PathParam("ID") UUID id);
+
+
 }

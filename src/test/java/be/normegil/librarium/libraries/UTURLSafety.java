@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
+import java.net.URI;
 
 public class UTURLSafety {
 
@@ -60,6 +61,11 @@ public class UTURLSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
+	public void testConstructor_URI_Null() throws Exception {
+		Validator.validate(CLASS.getConstructor(URI.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
 	public void testConstructor_ProtocolHostPortFile_NullProtocol() throws Exception {
 		Validator.validate(CLASS.getConstructor(String.class, String.class, Integer.class, String.class), new Object[]{null, HOST, PORT, FILE});
 	}
@@ -87,5 +93,15 @@ public class UTURLSafety {
 	@Test(expected = ConstraintViolationException.class)
 	public void testConstructor_ProtocolHostPortFile_NullFile() throws Exception {
 		Validator.validate(CLASS.getConstructor(String.class, String.class, Integer.class, String.class), PROTOCOL, HOST, PORT, null);
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testAddToPath_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("addToPath", String.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testAddToPath_Empty() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("addToPath", String.class), EMPTY_STRING);
 	}
 }

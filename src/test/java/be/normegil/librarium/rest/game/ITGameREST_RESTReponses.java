@@ -3,9 +3,8 @@ package be.normegil.librarium.rest.game;
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.dao.game.GameDatabaseDAO;
+import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.game.Game;
-import be.normegil.librarium.rest.game.GameREST;
 import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.util.LoggerProducer;
 import org.apache.http.HttpStatus;
@@ -58,7 +57,7 @@ public class ITGameREST_RESTReponses {
 		return ShrinkWrap.create(WebArchive.class)
 				.addClass(GameREST.class)
 				.addClass(ApplicationProperties.class)
-				.addClass(GameDatabaseDAO.class)
+				.addClass(DatabaseDAO.class)
 				.addClass(DAO.class)
 				.addClass(Game.class)
 				.addClass(be.normegil.librarium.model.data.Entity.class)

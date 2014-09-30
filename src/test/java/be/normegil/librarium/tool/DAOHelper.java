@@ -1,7 +1,7 @@
 package be.normegil.librarium.tool;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.model.dao.AbstractDatabaseDAO;
+import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
 import be.normegil.librarium.util.exception.InvocationTargetRuntimeException;
 import be.normegil.librarium.util.exception.NoSuchMethodRuntimeException;
@@ -12,10 +12,10 @@ import java.lang.reflect.Method;
 
 public class DAOHelper {
 
-	public void setEntityManager(AbstractDatabaseDAO dao, EntityManager entityManager) {
+	public void setEntityManager(DatabaseDAO dao, EntityManager entityManager) {
 		try {
 			@SuppressWarnings(WarningTypes.UNCHECKED_CALL)
-			Method setEntityManager = AbstractDatabaseDAO.class.getDeclaredMethod("setEntityManager", EntityManager.class);
+			Method setEntityManager = DatabaseDAO.class.getDeclaredMethod("setEntityManager", EntityManager.class);
 
 			boolean accessible = setEntityManager.isAccessible();
 			setEntityManager.setAccessible(true);

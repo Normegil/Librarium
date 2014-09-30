@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		DatabaseDAOTestSuite.class
+		UTDatabaseDAOSafety.class,
+		UTDatabaseDAO.class
 })
-public class DAOPackageTestSuite {
+public class DatabaseDAOTestSuite {
 }

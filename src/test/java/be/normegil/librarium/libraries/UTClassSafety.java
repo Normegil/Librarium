@@ -45,4 +45,9 @@ public class UTClassSafety {
 	public void testGetField_Empty() throws Exception {
 		Validator.validate(entity, CLASS.getMethod("getField", String.class), EMPTY_STRING);
 	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testGetInterface_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("getInterface", Class.class), new Object[]{null});
+	}
 }
