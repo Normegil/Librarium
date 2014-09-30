@@ -1,12 +1,18 @@
 package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.model.data.Entity;
+import be.normegil.librarium.rest.Updater;
 import be.normegil.librarium.tool.validation.Validator;
+import be.normegil.librarium.util.exception.InterfaceNotFoundException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
+
+import java.io.Serializable;
+
+import static org.junit.Assert.assertNull;
 
 public class UTClassSafety {
 
@@ -49,5 +55,12 @@ public class UTClassSafety {
 	@Test(expected = ConstraintViolationException.class)
 	public void testGetInterface_Null() throws Exception {
 		Validator.validate(entity, CLASS.getMethod("getInterface", Class.class), new Object[]{null});
+	}
+
+	@Test(expected = InterfaceNotFoundException.class)
+	public void testGetInterface_NotExistingInterface() throws Exception {
+		ClassWrapper<UTClassSafety> wrapper = new ClassWrapper<>(UTClassSafety.class);
+		Class<Serializable> interfaceToGet = Serializable.class;
+		wrapper.getInterface(interfaceToGet);
 	}
 }

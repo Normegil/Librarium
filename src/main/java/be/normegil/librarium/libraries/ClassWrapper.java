@@ -8,6 +8,7 @@ import be.normegil.librarium.util.exception.NoSuchMethodRuntimeException;
 import be.normegil.librarium.validation.constraint.NotEmpty;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.TypeVariable;
@@ -77,7 +78,7 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 		return interfaces;
 	}
 
-	public Class<?> getInterface(Class<?> aClass) {
+	public Class<?> getInterface(@NotNull Class<?> aClass) {
 		Collection<Class<?>> interfaces = getInterfaces();
 		for (Class<?> anInterface : interfaces) {
 			if (aClass.isAssignableFrom(anInterface)) {

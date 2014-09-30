@@ -131,7 +131,7 @@ public class UTClass {
 		ClassWrapper<TestClass> wrapper = new ClassWrapper<>(TestClass.class);
 		Collection<Class<?>> toTest = wrapper.getInterfaces();
 
-		List<Class<?>> expected = new ArrayList<>();
+		Set<Class<?>> expected = new HashSet<>();
 		expected.add(Serializable.class);
 		expected.add(Comparable.class);
 
@@ -144,14 +144,6 @@ public class UTClass {
 		Class<Serializable> interfaceToGet = Serializable.class;
 		Class<?> toTest = wrapper.getInterface(interfaceToGet);
 		assertEquals(interfaceToGet, toTest);
-	}
-
-	@Test
-	public void testGetInterface_NotExistingInterface() throws Exception {
-		ClassWrapper<TestClass> wrapper = new ClassWrapper<>(TestClass.class);
-		Class<Updater> interfaceToGet = Updater.class;
-		Class<?> toTest = wrapper.getInterface(interfaceToGet);
-		assertNull(toTest);
 	}
 
 	@Test
