@@ -62,6 +62,11 @@ public class GameREST implements RESTService<Game>, Updater<Game> {
 	}
 
 	@Override
+	public Class<Game> getSupportedClass() {
+		return Game.class;
+	}
+
+	@Override
 	public void updateEverything(final Game toUpdate, final Game source) {
 		toUpdate.addAllDevelopers(source.getDevelopers());
 		toUpdate.addAllEditors(source.getEditors());

@@ -22,15 +22,13 @@ public class MemoryTestDAO<E extends Entity> implements DAO<E> {
 	private List<E> entities = new ArrayList<>();
 	private DataFactory<E> FACTORY;
 
-	public MemoryTestDAO() {
-		this(DEFAULT_NUMBER_OF_ENTITY);
+	public MemoryTestDAO(Class<E> daoClassSupported) {
+		this(DEFAULT_NUMBER_OF_ENTITY, daoClassSupported);
 	}
 
-	public MemoryTestDAO(int numberOfEntityToAdd) {
+	public MemoryTestDAO(int numberOfEntityToAdd, Class<E> daoClassSupported) {
 		add(numberOfEntityToAdd);
-		Set<Class> classParameters = new ClassWrapper<>(getClass()).getClassParameters();
-		Class classParameter = classParameters.iterator().next();
-		FACTORY = FactoryRepository.get(classParameter);
+		FACTORY = FactoryRepository.get(daoClassSupported);
 	}
 
 	@Override

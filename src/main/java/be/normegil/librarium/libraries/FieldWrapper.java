@@ -2,13 +2,14 @@ package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.util.exception.IllegalAccessRuntimeException;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 
 public class FieldWrapper {
 
 	private Field field;
 
-	public FieldWrapper(Field field) {
+	public FieldWrapper(@NotNull Field field) {
 		this.field = field;
 	}
 
@@ -16,7 +17,7 @@ public class FieldWrapper {
 		return field.getName();
 	}
 
-	public void set(Object entity, Object value) {
+	public void set(@NotNull Object entity, Object value) {
 		boolean accessible = field.isAccessible();
 		field.setAccessible(true);
 

@@ -52,7 +52,7 @@ public class UTRESTHelperGetAll {
 
 	@Before
 	public void setUp() throws Exception {
-		dao = new MemoryTestDAO(NUMBER_OF_GAMES);
+		dao = new MemoryTestDAO<>(NUMBER_OF_GAMES, Game.class);
 		restServiceHelper = new RESTServiceHelper<>(dao, context, updater);
 
 		baseURI = URL_FACTORY.getNext().toURI();

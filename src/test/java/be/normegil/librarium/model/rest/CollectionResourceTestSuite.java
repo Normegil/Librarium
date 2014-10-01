@@ -78,7 +78,7 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 	@Override
 	public CollectionResource getNext(final boolean withLink) {
 		URL url = URL_FACTORY.getNext();
-		DAO<Game> dao = new MemoryTestDAO(DEFAULT_LIMIT * 2);
+		DAO<Game> dao = new MemoryTestDAO<>(DEFAULT_LIMIT * 2, Game.class);
 		List<URL> urls = Entity.helper().convertToURLs(dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), url);
 		return CollectionResource.builder()
 				.addAllItems(urls)

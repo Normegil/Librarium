@@ -44,7 +44,7 @@ public class UTRESTHelperSafety {
 
 	@Before
 	public void setUp() throws Exception {
-		dao = new MemoryTestDAO();
+		dao = new MemoryTestDAO<>(Game.class);
 		entity = new RESTServiceHelper<>(dao, context, updater);
 	}
 

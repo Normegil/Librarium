@@ -9,5 +9,5 @@ import org.junit.runners.Suite;
 		ClassWrapperTestSuite.class,
 		FieldWrapperTestSuite.class
 })
-public class LibrariesPackageTestSuiteTestSuite {
+public class LibrariesPackageTestSuite {
 }

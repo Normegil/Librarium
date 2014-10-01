@@ -37,7 +37,7 @@ public class UTGameREST {
 
 	@Before
 	public void setUp() throws Exception {
-		gameDAO = new MemoryTestDAO();
+		gameDAO = new MemoryTestDAO<>(Game.class);
 		gameREST = new GameREST();
 		gameREST.setDAO(gameDAO);
 

@@ -4,6 +4,8 @@ import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.Universe;
+import be.normegil.librarium.model.data.book.Book;
+import be.normegil.librarium.model.data.book.BookSerie;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
@@ -144,26 +146,6 @@ public class UTClass {
 		Class<Serializable> interfaceToGet = Serializable.class;
 		Class<?> toTest = wrapper.getInterface(interfaceToGet);
 		assertEquals(interfaceToGet, toTest);
-	}
-
-	@Test
-	public void testGetClassParameters() throws Exception {
-		TestClass<DatabaseDAO, Game, Entity> dummyObject = new TestClass<>();
-		ClassWrapper<? extends TestClass> wrapper = new ClassWrapper<>(dummyObject.getClass());
-		Set<Class> toTest = wrapper.getClassParameters();
-
-		Set<Class> expected = new HashSet<>();
-		expected.add(DatabaseDAO.class);
-		expected.add(Game.class);
-		expected.add(Entity.class);
-		assertEquals(expected, toTest);
-	}
-
-	@Test
-	public void testGetClassParameters_NoParameters() throws Exception {
-		ClassWrapper<Entity> wrapper = new ClassWrapper<>(Entity.class);
-		Set<Class> toTest = wrapper.getClassParameters();
-		assertTrue(toTest.isEmpty());
 	}
 
 	private class TestClass<E extends DatabaseDAO, T, W> extends AbstractDAOTest<E, T> implements Serializable, Comparable<T> {

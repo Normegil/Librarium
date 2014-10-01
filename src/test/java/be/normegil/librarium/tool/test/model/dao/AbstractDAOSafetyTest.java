@@ -14,10 +14,8 @@ public abstract class AbstractDAOSafetyTest<E extends DAO> {
 	private final ClassWrapper<E> daoClassToTest;
 	private E dao;
 
-	protected AbstractDAOSafetyTest() {
-		Set<Class> classParameters = new ClassWrapper<>(getClass()).getClassParameters();
-		Class<E> classParameter = classParameters.iterator().next();
-		daoClassToTest = new ClassWrapper<>(classParameter);
+	protected AbstractDAOSafetyTest(Class<E> daoClassSupported) {
+		daoClassToTest = new ClassWrapper<>(daoClassSupported);
 	}
 
 	@Before

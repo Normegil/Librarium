@@ -30,10 +30,4 @@ public class ClassHelper {
 		}
 		return fields;
 	}
-
-	public List<Type> getClassParameters(@NotNull final Class aClass) {
-		ParameterizedType genericSuperclass = (ParameterizedType) aClass.getGenericSuperclass();
-		Type[] actualTypeArguments = genericSuperclass.getActualTypeArguments();
-		return Arrays.asList(actualTypeArguments);
-	}
 }

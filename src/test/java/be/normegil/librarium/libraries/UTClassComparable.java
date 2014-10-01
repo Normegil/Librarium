@@ -46,15 +46,15 @@ public class UTClassComparable extends AbstractDataComparableTest<ClassWrapper> 
 
 	@Test
 	public void testCanonicalName_First() throws Exception {
-		ClassWrapper entity = new ClassWrapper<>(ClassWrapper.class);
-		ClassWrapper<Class> otherEntity = new ClassWrapper<>(java.lang.Class.class);
+		ClassWrapper entity = new ClassWrapper<>(java.sql.Date.class);
+		ClassWrapper otherEntity = new ClassWrapper<>(java.util.Date.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, otherEntity)));
 	}
 
 	@Test
 	public void testCanonicalName_Second() throws Exception {
-		ClassWrapper entity = new ClassWrapper<>(ClassWrapper.class);
-		ClassWrapper<Class> otherEntity = new ClassWrapper<>(java.lang.Class.class);
+		ClassWrapper entity = new ClassWrapper<>(java.sql.Date.class);
+		ClassWrapper otherEntity = new ClassWrapper<>(java.util.Date.class);
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(otherEntity, entity)));
 	}
 }

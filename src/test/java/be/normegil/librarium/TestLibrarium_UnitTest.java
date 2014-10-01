@@ -1,6 +1,6 @@
 package be.normegil.librarium;
 
-import be.normegil.librarium.libraries.LibrariesPackageTestSuiteTestSuite;
+import be.normegil.librarium.libraries.LibrariesPackageTestSuite;
 import be.normegil.librarium.model.ModelTestSuite;
 import be.normegil.librarium.rest.RESTPackageTestSuite;
 import be.normegil.librarium.util.UtilPackageTestSuite;
@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		LibrariesPackageTestSuiteTestSuite.class,
+		LibrariesPackageTestSuite.class,
         UtilPackageTestSuite.class,
         ModelTestSuite.class,
         RESTPackageTestSuite.class,

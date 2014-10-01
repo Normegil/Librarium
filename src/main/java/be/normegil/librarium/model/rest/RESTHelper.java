@@ -15,18 +15,18 @@ import java.util.Set;
 
 public class RESTHelper {
 
-	private Set<Class<? extends RESTService>> restServices = new HashSet<>();
+	private Set<RESTService> restServices = new HashSet<>();
 
 	public String getPathFor(Class aClass) {
-		Class<? extends RESTService> service = getDefaultServiceFor(aClass);
-		Path annotation = service.getAnnotation(Path.class);
+		RESTService service = getDefaultServiceFor(aClass);
+		Path annotation = service.getClass().getAnnotation(Path.class);
 		return annotation.value();
 	}
 
-	private Class<? extends RESTService> getDefaultServiceFor(final Class aClass) {
-		Set<Class<? extends RESTService>> services = getServicesFor(aClass);
-		for (Class<? extends RESTService> service : services) {
-			Default isDefault = service.getAnnotation(Default.class);
+	private RESTService getDefaultServiceFor(final Class aClass) {
+		Set<RESTService> services = getServicesFor(aClass);
+		for (RESTService service : services) {
+			Default isDefault = service.getClass().getAnnotation(Default.class);
 			if (isDefault != null) {
 				return service;
 			}
@@ -41,22 +41,14 @@ public class RESTHelper {
 		}
 	}
 
-	public Set<Class<? extends RESTService>> getServicesFor(final Class aClass) {
-		Set<Class<? extends RESTService>> services = new HashSet<>();
-		for (Class<? extends RESTService> restService : restServices) {
-			if (getInterfaceParameters(restService).contains(aClass)) {
+	public Set<RESTService> getServicesFor(final Class aClass) {
+		Set<RESTService> services = new HashSet<>();
+		for (RESTService restService : restServices) {
+			if (aClass.isAssignableFrom(restService.getSupportedClass())) {
 				services.add(restService);
 			}
 		}
 		return services;
-	}
-
-	private Set<Class> getInterfaceParameters(final Class<? extends RESTService> restService) {
-		ClassWrapper<? extends RESTService> wrapper = new ClassWrapper<>(restService);
-		Class<?> anInterface = wrapper.getInterface(RESTService.class);
-
-		ClassWrapper<?> interfaceWrapper = new ClassWrapper<>(anInterface);
-		return interfaceWrapper.getClassParameters();
 	}
 
 	public Collection<URI> getRESTUri(final URI baseUri, final Class<? extends Entity> dataClass, final Collection<? extends Entity> entities) {

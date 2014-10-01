@@ -32,7 +32,7 @@ public class UTFieldWrapperSafety {
 	}
 
 	@Test(expected = ConstraintViolationException.class)
-	public void testCopyConstructor_Null() throws Exception {
+	public void testConstructor_Null() throws Exception {
 		Validator.validate(CLASS.getConstructor(Field.class), new Object[]{null});
 	}
 

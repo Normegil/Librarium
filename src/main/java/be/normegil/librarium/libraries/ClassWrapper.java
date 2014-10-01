@@ -11,6 +11,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -86,19 +87,6 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 			}
 		}
 		throw new InterfaceNotFoundException("Interface not found for " + aClass);
-	}
-
-	public Set<Class> getClassParameters() {
-
-//		ParameterizedType genericSuperclass = (ParameterizedType) entityClass.getGenericSuperclass();
-//		entityClass = (Class<Entity>) genericSuperclass.getActualTypeArguments()[0];
-
-		TypeVariable<Class<E>>[] typeParameters = entityClass.getTypeParameters();
-		Set<Class> parameters = new HashSet<>();
-		for (TypeVariable<Class<E>> typeParameter : typeParameters) {
-			parameters.add(typeParameter.getClass());
-		}
-		return parameters;
 	}
 
 	@Override
