@@ -4,13 +4,9 @@ import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.Universe;
-import be.normegil.librarium.model.data.book.Book;
-import be.normegil.librarium.model.data.book.BookSerie;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
-import be.normegil.librarium.rest.Updater;
-import be.normegil.librarium.tool.test.model.dao.AbstractDAOTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +17,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UTClass {
 
@@ -148,33 +144,8 @@ public class UTClass {
 		assertEquals(interfaceToGet, toTest);
 	}
 
-	private class TestClass<E extends DatabaseDAO, T, W> extends AbstractDAOTest<E, T> implements Serializable, Comparable<T> {
+	private class TestClass<E extends DatabaseDAO, T, W> implements Serializable, Comparable<T> {
 		private static final String ERROR_MESSAGE = "Dummy class for reflection functionnality testing";
-
-		@Override
-		protected E initDAO() {
-			throw new UnsupportedOperationException(ERROR_MESSAGE);
-		}
-
-		@Override
-		protected Object getEntityId(final T t) {
-			throw new UnsupportedOperationException(ERROR_MESSAGE);
-		}
-
-		@Override
-		protected void assertChangedPropertyEquals(final T foundEntity) {
-			throw new UnsupportedOperationException(ERROR_MESSAGE);
-		}
-
-		@Override
-		protected void changeEntity(final T t) {
-			throw new UnsupportedOperationException(ERROR_MESSAGE);
-		}
-
-		@Override
-		protected T getNewData() {
-			throw new UnsupportedOperationException(ERROR_MESSAGE);
-		}
 
 		@Override
 		public int compareTo(final T o) {

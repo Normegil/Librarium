@@ -276,7 +276,7 @@ public abstract class BaseMedia extends Entity {
 				init.addStore(new URL(store));
 			}
 
-			DatabaseDAO<DownloadLink> dao = new DatabaseDAO<>();
+			DatabaseDAO<DownloadLink> dao = new DatabaseDAO<>(DownloadLink.class);
 			for (URI downloadLink : downloadLinks) {
 				UUID id = Entity.helper().getIdFromRESTURI(downloadLink);
 				DownloadLink link = dao.get(id);

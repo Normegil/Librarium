@@ -213,7 +213,7 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 			Builder builder = Game.builder();
 			super.toBase(builder);
 
-			DAO<GameSerie> serieDAO = new DatabaseDAO<>();
+			DAO<GameSerie> serieDAO = new DatabaseDAO<>(GameSerie.class);
 			UUID id = Entity.helper().getIdFromRESTURI(serie);
 			GameSerie serie = serieDAO.get(id);
 			if (serie != null) {

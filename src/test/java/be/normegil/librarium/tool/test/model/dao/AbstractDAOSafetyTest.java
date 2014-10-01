@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolationException;
-import java.util.Set;
 
 public abstract class AbstractDAOSafetyTest<E extends DAO> {
 	private final ClassWrapper<E> daoClassToTest;

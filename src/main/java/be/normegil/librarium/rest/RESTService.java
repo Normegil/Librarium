@@ -35,5 +35,5 @@ public interface RESTService<E> {
 	@Path(Constants.URL.PATH_SEPARATOR + "{ID}")
 	Response delete(@PathParam("ID") UUID id);
 
-	Class<E> getSupportedClass();
+	Class<? extends E> getSupportedClass();
 }

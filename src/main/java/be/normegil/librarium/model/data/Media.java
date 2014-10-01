@@ -260,7 +260,7 @@ public abstract class Media extends BaseMedia {
 		public void toBase(Init init) {
 			super.toBase(init);
 
-			DAO<Universe> universeDAO = new DatabaseDAO<>();
+			DAO<Universe> universeDAO = new DatabaseDAO<>(Universe.class);
 			for (URI universeLink : universes) {
 				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
 				Universe universe = universeDAO.get(id);
@@ -271,7 +271,7 @@ public abstract class Media extends BaseMedia {
 				}
 			}
 
-			DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>();
+			DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>(ReleaseDate.class);
 			for (URI universeLink : universes) {
 				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
 				ReleaseDate releaseDate = releaseDateDAO.get(id);
