@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UTBaseMedia {
 
@@ -118,6 +119,13 @@ public class UTBaseMedia {
 	}
 
 	@Test
+	public void testClearTags() throws Exception {
+		entity.addTag(ALTERNATIVE_TAG);
+		entity.clearTags();
+		assertTrue(entity.getTags().isEmpty());
+	}
+
+	@Test
 	public void testSetOfficialWebsite() throws Exception {
 		URL url = URL_FACTORY.getNext();
 		entity.setOfficialWebsite(url);
@@ -185,6 +193,13 @@ public class UTBaseMedia {
 	}
 
 	@Test
+	public void testClearStores() throws Exception {
+		entity.addStore(URL_FACTORY.getNext());
+		entity.clearStores();
+		assertTrue(entity.getStores().isEmpty());
+	}
+
+	@Test
 	public void testAddAllDownloadLinks() throws Exception {
 		Collection<DownloadLink> toAdd = new HashSet<>();
 		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
@@ -235,5 +250,13 @@ public class UTBaseMedia {
 		entity.removeDownloadLink(toRemove);
 
 		assertEquals(downloadLinks, entity.getDownloadLinks());
+	}
+
+	@Test
+	public void testClearDownloadLink() throws Exception {
+		entity.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNext());
+		entity.clearDownloadLinks();
+		assertTrue(entity.getDownloadLinks().isEmpty());
+
 	}
 }

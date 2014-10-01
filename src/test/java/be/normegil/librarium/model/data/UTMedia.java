@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UTMedia {
 
@@ -102,6 +103,13 @@ public class UTMedia {
 	}
 
 	@Test
+	public void testClearUniverses() throws Exception {
+		entity.addUniverse(UNIVERSE_FACTORY.getNext());
+		entity.clearUniverses();
+		assertTrue(entity.getUniverses().isEmpty());
+	}
+
+	@Test
 	public void testAddAllSupports() throws Exception {
 		Collection<Support> toAdd = new HashSet<>();
 		toAdd.add(SUPPORT_FACTORY.getNext());
@@ -152,6 +160,13 @@ public class UTMedia {
 		entity.removeSupport(toRemove);
 
 		assertEquals(supports, entity.getSupports());
+	}
+
+	@Test
+	public void testClearSupports() throws Exception {
+		entity.addSupport(SUPPORT_FACTORY.getNext());
+		entity.clearSupports();
+		assertTrue(entity.getSupports().isEmpty());
 	}
 
 	@Test
@@ -218,5 +233,12 @@ public class UTMedia {
 		entity.removeReleaseDate(support);
 
 		assertEquals(releaseDates, entity.getReleaseDates());
+	}
+
+	@Test
+	public void testClearReleaseDate() throws Exception {
+		entity.addReleaseDate(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		entity.clearReleaseDates();
+		assertTrue(entity.getReleaseDates().isEmpty());
 	}
 }
