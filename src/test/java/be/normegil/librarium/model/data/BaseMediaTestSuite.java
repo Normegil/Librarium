@@ -16,6 +16,8 @@ import org.junit.runners.Suite;
 		UTBaseMediaComparator.class,
 		UTBaseMediaBuilderSafety.class,
 		UTBaseMediaBuilder.class,
+		UTBaseMediaDigestSafety.class,
+		UTBaseMediaDigest.class
 })
 public class BaseMediaTestSuite implements DataFactory<BaseMedia> {
 

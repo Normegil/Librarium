@@ -4,8 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeMedia;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -20,6 +18,8 @@ import java.time.Month;
 		UTMediaComparator.class,
 		UTMediaBuilderSafety.class,
 		UTMediaBuilder.class,
+		UTMediaDigestSafety.class,
+		UTMediaDigest.class
 })
 public class MediaTestSuite implements DataFactory<Media> {
 

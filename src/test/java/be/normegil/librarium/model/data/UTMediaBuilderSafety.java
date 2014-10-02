@@ -61,5 +61,4 @@ public class UTMediaBuilderSafety {
 	public void testAddReleaseDate_Null() throws Exception {
 		Validator.validate(entity, CLASS.getMethod("addReleaseDate", Support.class, LocalDate.class), null, LocalDate.now());
 	}
-
 }

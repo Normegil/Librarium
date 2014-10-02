@@ -9,14 +9,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class UTEntityHelper {
 
+	public static final String BASE_URI = "http://localhost:8080/rest/game/";
+	public static final String REST_URI_WITH_ID = BASE_URI + EntityTestSuite.ID;
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Entity> ENTITY_FACTORY = FactoryRepository.get(Entity.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
@@ -57,5 +60,29 @@ public class UTEntityHelper {
 		URL baseURL = URL_FACTORY.getNext();
 		List<URL> toTest = entity.convertToURLs(new ArrayList<>(), baseURL);
 		assertTrue(toTest.isEmpty());
+	}
+
+	@Test
+	public void testGetIdFromRESTURI() throws Exception {
+		UUID toTest = entity.getIdFromRESTURI(URI.create(REST_URI_WITH_ID));
+		assertEquals(EntityTestSuite.ID, toTest);
+	}
+
+	@Test
+	public void testSetIdFromDigest() throws Exception {
+		UUID expected = entity.getIdFromRESTURI(URI.create(REST_URI_WITH_ID));
+		Entity e = ENTITY_FACTORY.getNext();
+		Entity.EntityDigest digest = new Entity.EntityDigest();
+		digest.uri = URI.create(REST_URI_WITH_ID);
+		entity.setIdFromDigest(digest, e);
+		assertEquals(expected, e.getId());
+	}
+
+	@Test
+	public void testSetIdFromDigest_NullURI() throws Exception {
+		Entity e = ENTITY_FACTORY.getNext();
+		Entity.EntityDigest digest = new Entity.EntityDigest();
+		entity.setIdFromDigest(digest, e);
+		assertNull(e.getId());
 	}
 }

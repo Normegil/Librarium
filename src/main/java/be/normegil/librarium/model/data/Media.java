@@ -38,7 +38,7 @@ public abstract class Media extends BaseMedia {
 	private Collection<StaffMember> staffMembers = new TreeSet<>();
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
-	private Collection<ReleaseDate> releaseDates = new TreeSet<>();
+	protected Collection<ReleaseDate> releaseDates = new TreeSet<>();
 
 	protected Media(@NotNull @Valid Media entity) {
 		super(entity);
@@ -254,8 +254,8 @@ public abstract class Media extends BaseMedia {
 	}
 
 	public static class MediaDigest extends BaseMediaDigest {
-		private Collection<URI> universes = new TreeSet<>();
-		private Collection<URI> releaseDates = new TreeSet<>();
+		protected Collection<URI> universes = new TreeSet<>();
+		protected Collection<URI> releaseDates = new TreeSet<>();
 
 		public void toBase(Init init) {
 			super.toBase(init);

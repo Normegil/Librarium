@@ -206,7 +206,7 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 	}
 
 	public static class GameDigest extends Media.MediaDigest implements Digest<Game> {
-		private URI serie;
+		protected URI serie;
 
 		@Override
 		public Game toBase() {

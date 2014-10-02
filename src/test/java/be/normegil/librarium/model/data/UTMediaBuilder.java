@@ -25,6 +25,8 @@ public class UTMediaBuilder {
 	private static final DataFactory<Universe> UNIVERSE_FACTORY = FactoryRepository.get(Universe.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<ReleaseDate> RELEASE_DATE_FACTORY = FactoryRepository.get(ReleaseDate.class);
 	private FakeMedia.Builder entity;
 
 	@Before
@@ -108,5 +110,14 @@ public class UTMediaBuilder {
 		for (Map.Entry<Support, LocalDate> releaseDate : toAdd.entrySet()) {
 			assertEquals(releaseDate.getValue(), media.getReleaseDate(releaseDate.getKey()));
 		}
+	}
+
+	@Test
+	public void testAddReleaseDate_Full() throws Exception {
+		ReleaseDate releaseDate = RELEASE_DATE_FACTORY.getNext();
+		Media media = entity
+				.addReleaseDate(releaseDate)
+				.build();
+		assertEquals(releaseDate.getDate(), media.getReleaseDate(releaseDate.getSupport()));
 	}
 }

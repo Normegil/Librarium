@@ -5,6 +5,7 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
+import be.normegil.librarium.validation.constraint.URIWithID;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -65,19 +66,19 @@ public abstract class Entity {
 
 		protected URI uri;
 
-		public void fromBase(final URI baseUri, final Entity entity) {
+		public void fromBase(@NotNull final URI baseUri, @NotNull final Entity entity) {
 			uri = new RESTHelper().getRESTUri(baseUri, entity.getClass(), entity);
 		}
 	}
 
 	public static class Helper {
 
-		public UUID getIdFromRESTURI(URI restURI) {
+		public UUID getIdFromRESTURI(@NotNull @URIWithID URI restURI) {
 			String idAsString = StringUtils.substringAfterLast(restURI.toString(), "/");
 			return UUID.fromString(idAsString);
 		}
 
-		public void setIdFromDigest(EntityDigest digest, Entity entity) {
+		public void setIdFromDigest(@NotNull EntityDigest digest, @NotNull Entity entity) {
 			entity.id = getIdFromRESTURI(digest.uri);
 		}
 

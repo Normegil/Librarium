@@ -18,6 +18,9 @@ import org.junit.runners.Suite;
 		UTGameComparator.class,
 		UTGameBuilderSafety.class,
 		UTGameBuilder.class,
+		UTGameDigestSafety.class,
+		UTGameDigest.class,
+		UTGameDigestJSONSupport.class,
 		UTGameDatabaseSupport.class
 })
 public class GameTestSuite implements DataFactory<Game> {

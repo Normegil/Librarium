@@ -256,13 +256,13 @@ public abstract class BaseMedia extends Entity {
 
 	public static class BaseMediaDigest extends EntityDigest {
 
-		private String title;
-		private String description;
-		private Collection<String> tags;
-		private URI officialWebsite;
-		private URI wikipediaPage;
-		private Set<URI> stores = new HashSet<>();
-		private Collection<URI> downloadLinks;
+		String title;
+		protected String description;
+		protected Collection<String> tags;
+		protected URI officialWebsite;
+		protected URI wikipediaPage;
+		protected Set<URI> stores = new HashSet<>();
+		protected Collection<URI> downloadLinks;
 
 		public void toBase(Init init) {
 			init

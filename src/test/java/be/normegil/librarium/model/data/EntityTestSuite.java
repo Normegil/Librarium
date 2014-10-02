@@ -13,10 +13,12 @@ import java.util.UUID;
 		UTEntityComparator.class,
 		UTEntityHelperSafety.class,
 		UTEntityHelper.class,
+		UTEntityDigestSafety.class,
+		UTEntityDigest.class
 })
 public class EntityTestSuite implements DataFactory<Entity> {
 
-	private static final UUID ID = UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e");
+	public static final UUID ID = UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e");
 
 	@Override
 	public Entity getNew() {
