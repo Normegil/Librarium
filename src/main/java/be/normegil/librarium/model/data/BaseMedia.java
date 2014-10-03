@@ -4,11 +4,14 @@ import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.libraries.URL;
+import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.CollectionComparator;
 import be.normegil.librarium.util.exception.NoSuchEntityException;
+import be.normegil.librarium.validation.constraint.ExistingID;
 import be.normegil.librarium.validation.constraint.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -256,7 +259,7 @@ public abstract class BaseMedia extends Entity {
 
 	public static class BaseMediaDigest extends EntityDigest {
 
-		String title;
+		protected String title;
 		protected String description;
 		protected Collection<String> tags;
 		protected URI officialWebsite;
@@ -264,7 +267,10 @@ public abstract class BaseMedia extends Entity {
 		protected Set<URI> stores = new HashSet<>();
 		protected Collection<URI> downloadLinks;
 
-		public void toBase(Init init) {
+		@JsonIgnore
+		protected DAO<DownloadLink> downloadLinkDAO = new DatabaseDAO<>(DownloadLink.class);
+
+		public void toBase(@NotNull final Init init) {
 			init
 					.setTitle(title)
 					.setDescription(description)
@@ -276,10 +282,9 @@ public abstract class BaseMedia extends Entity {
 				init.addStore(new URL(store));
 			}
 
-			DatabaseDAO<DownloadLink> dao = new DatabaseDAO<>(DownloadLink.class);
 			for (URI downloadLink : downloadLinks) {
 				UUID id = Entity.helper().getIdFromRESTURI(downloadLink);
-				DownloadLink link = dao.get(id);
+				DownloadLink link = downloadLinkDAO.get(id);
 				if (link != null) {
 					init.addDownloadLink(link);
 				} else {
@@ -288,7 +293,7 @@ public abstract class BaseMedia extends Entity {
 			}
 		}
 
-		public void fromBase(final URI baseURI, final BaseMedia entity) {
+		public void fromBase(@NotNull final URI baseURI, @NotNull @ExistingID final BaseMedia entity) {
 			super.fromBase(baseURI, entity);
 
 			title = entity.getTitle();
@@ -301,6 +306,10 @@ public abstract class BaseMedia extends Entity {
 				stores.add(url.toURI());
 			}
 			downloadLinks = new RESTHelper().getRESTUri(baseURI, DownloadLink.class, entity.getDownloadLinks());
+		}
+
+		public void setDownloadLinkDAO(final DAO<DownloadLink> downloadLinkDAO) {
+			this.downloadLinkDAO = downloadLinkDAO;
 		}
 	}
 

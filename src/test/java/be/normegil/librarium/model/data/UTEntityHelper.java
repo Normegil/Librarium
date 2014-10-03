@@ -73,7 +73,7 @@ public class UTEntityHelper {
 		UUID expected = entity.getIdFromRESTURI(URI.create(REST_URI_WITH_ID));
 		Entity e = ENTITY_FACTORY.getNext();
 		Entity.EntityDigest digest = new Entity.EntityDigest();
-		digest.uri = URI.create(REST_URI_WITH_ID);
+		digest.href = URI.create(REST_URI_WITH_ID);
 		entity.setIdFromDigest(digest, e);
 		assertEquals(expected, e.getId());
 	}

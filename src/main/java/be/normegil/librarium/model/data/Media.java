@@ -9,6 +9,8 @@ import be.normegil.librarium.model.data.people.StaffRole;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.CollectionComparator;
 import be.normegil.librarium.util.exception.NoSuchEntityException;
+import be.normegil.librarium.validation.constraint.ExistingID;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -30,15 +32,12 @@ public abstract class Media extends BaseMedia {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Media.class);
 	private static final CollectionComparator COLLECTION_COMPARATOR = new CollectionComparator();
-
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH,})
-	private Collection<Universe> universes = new TreeSet<>();
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
-	private Collection<StaffMember> staffMembers = new TreeSet<>();
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
 	protected Collection<ReleaseDate> releaseDates = new TreeSet<>();
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH,})
+	private Collection<Universe> universes = new TreeSet<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
+	private Collection<StaffMember> staffMembers = new TreeSet<>();
 
 	protected Media(@NotNull @Valid Media entity) {
 		super(entity);
@@ -257,10 +256,22 @@ public abstract class Media extends BaseMedia {
 		protected Collection<URI> universes = new TreeSet<>();
 		protected Collection<URI> releaseDates = new TreeSet<>();
 
-		public void toBase(Init init) {
+		@JsonIgnore
+		protected DAO<Universe> universeDAO = new DatabaseDAO<>(Universe.class);
+		@JsonIgnore
+		protected DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>(ReleaseDate.class);
+
+		public void setUniverseDAO(final DAO<Universe> universeDAO) {
+			this.universeDAO = universeDAO;
+		}
+
+		public void setReleaseDateDAO(final DAO<ReleaseDate> releaseDateDAO) {
+			this.releaseDateDAO = releaseDateDAO;
+		}
+
+		public void toBase(@NotNull Init init) {
 			super.toBase(init);
 
-			DAO<Universe> universeDAO = new DatabaseDAO<>(Universe.class);
 			for (URI universeLink : universes) {
 				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
 				Universe universe = universeDAO.get(id);
@@ -271,19 +282,20 @@ public abstract class Media extends BaseMedia {
 				}
 			}
 
-			DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>(ReleaseDate.class);
-			for (URI universeLink : universes) {
-				UUID id = Entity.helper().getIdFromRESTURI(universeLink);
+			for (URI releaseDateLink : releaseDates) {
+				UUID id = Entity.helper().getIdFromRESTURI(releaseDateLink);
 				ReleaseDate releaseDate = releaseDateDAO.get(id);
 				if (releaseDate != null) {
 					init.addReleaseDate(releaseDate);
 				} else {
-					throw new NoSuchEntityException("Cannot find ReleaseDate in database with ID : " + id);
+					throw new NoSuchEntityException("Cannot find ReleaseDate with ID : " + id);
 				}
 			}
+
+
 		}
 
-		public void fromBase(final URI baseURI, final Media entity) {
+		public void fromBase(@NotNull final URI baseURI, @NotNull @ExistingID final Media entity) {
 			super.fromBase(baseURI, entity);
 			universes = new RESTHelper().getRESTUri(baseURI, Universe.class, entity.getUniverses());
 			releaseDates = new RESTHelper().getRESTUri(baseURI, ReleaseDate.class, entity.releaseDates);

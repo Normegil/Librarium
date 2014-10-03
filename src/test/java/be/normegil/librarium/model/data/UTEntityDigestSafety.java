@@ -3,6 +3,7 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.fake.FakeEntity;
+import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
@@ -15,6 +16,8 @@ import java.net.URI;
 
 public class UTEntityDigestSafety {
 
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Entity> ENTITY_FACTORY = FactoryRepository.get(Entity.class);
 	private static final String URI_ADDRESS = "http://localhost:8080/";
@@ -44,6 +47,6 @@ public class UTEntityDigestSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFromBase_NullEntityID() throws Exception {
-		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), new FakeEntity());
+		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), GAME_FACTORY.getNext());
 	}
 }

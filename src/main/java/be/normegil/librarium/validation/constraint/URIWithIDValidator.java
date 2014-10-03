@@ -15,11 +15,15 @@ public class URIWithIDValidator implements ConstraintValidator<URIWithID, URI> {
 
 	@Override
 	public boolean isValid(final URI value, final ConstraintValidatorContext context) {
-		String id = StringUtils.substringAfterLast(value.toString(), Constants.URL.PATH_SEPARATOR);
-		try {
-			UUID uuid = UUID.fromString(id);
-			return uuid != null;
-		} catch (IllegalArgumentException e) {
+		if (value != null) {
+			String id = StringUtils.substringAfterLast(value.toString(), Constants.URL.PATH_SEPARATOR);
+			try {
+				UUID uuid = UUID.fromString(id);
+				return uuid != null;
+			} catch (IllegalArgumentException e) {
+				return false;
+			}
+		} else {
 			return false;
 		}
 	}

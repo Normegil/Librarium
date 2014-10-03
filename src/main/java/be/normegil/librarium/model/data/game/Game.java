@@ -12,6 +12,9 @@ import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.model.rest.digest.Digest;
 import be.normegil.librarium.util.CollectionComparator;
 import be.normegil.librarium.util.exception.NoSuchEntityException;
+import be.normegil.librarium.validation.constraint.ExistingID;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -205,17 +208,24 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 		}
 	}
 
+	@JsonAutoDetect(
+			fieldVisibility = JsonAutoDetect.Visibility.ANY,
+			getterVisibility = JsonAutoDetect.Visibility.NONE,
+			setterVisibility = JsonAutoDetect.Visibility.NONE
+	)
 	public static class GameDigest extends Media.MediaDigest implements Digest<Game> {
 		protected URI serie;
+
+		@JsonIgnore
+		protected DAO<GameSerie> gameSerieDAO = new DatabaseDAO<>(GameSerie.class);
 
 		@Override
 		public Game toBase() {
 			Builder builder = Game.builder();
 			super.toBase(builder);
 
-			DAO<GameSerie> serieDAO = new DatabaseDAO<>(GameSerie.class);
 			UUID id = Entity.helper().getIdFromRESTURI(serie);
-			GameSerie serie = serieDAO.get(id);
+			GameSerie serie = gameSerieDAO.get(id);
 			if (serie != null) {
 				builder.setSerie(serie);
 			} else {
@@ -228,9 +238,13 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 		}
 
 		@Override
-		public void fromBase(final URI baseURI, final Game entity) {
+		public void fromBase(@NotNull final URI baseURI, @NotNull @ExistingID final Game entity) {
 			super.fromBase(baseURI, entity);
 			serie = new RESTHelper().getRESTUri(baseURI, GameSerie.class, entity.getSerie());
+		}
+
+		public void setGameSerieDAO(final DAO<GameSerie> gameSerieDAO) {
+			this.gameSerieDAO = gameSerieDAO;
 		}
 	}
 

@@ -17,6 +17,21 @@ public class FieldWrapper {
 		return field.getName();
 	}
 
+	public Object get(@NotNull Object entity) {
+		boolean accessible = field.isAccessible();
+		field.setAccessible(true);
+
+		Object toReturn;
+		try {
+			toReturn = field.get(entity);
+		} catch (IllegalAccessException e) {
+			throw new IllegalAccessRuntimeException(e);
+		} finally {
+			field.setAccessible(accessible);
+		}
+		return toReturn;
+	}
+
 	public void set(@NotNull Object entity, Object value) {
 		boolean accessible = field.isAccessible();
 		field.setAccessible(true);

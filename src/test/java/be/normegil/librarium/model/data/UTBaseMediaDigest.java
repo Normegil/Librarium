@@ -4,9 +4,12 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.fake.FakeBaseMedia;
+import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
+import be.normegil.librarium.tool.MemoryTestDAO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +20,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -25,21 +29,25 @@ import static org.mockito.Mockito.when;
 public class UTBaseMediaDigest {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
-	private static final DataFactory<BaseMedia> BASE_MEDIA_FACTORY = FactoryRepository.get(BaseMedia.class);
+	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
 	private static final String REST_URI = "http://localhost:8080/rest";
 
 	@Mock
 	private RESTHelper helper;
 
 	private BaseMedia.BaseMediaDigest entity;
+	private MemoryTestDAO<DownloadLink> downloadLinkDAO;
 
 	@Before
 	public void setUp() throws Exception {
 		entity = new BaseMedia.BaseMediaDigest();
+		downloadLinkDAO = new MemoryTestDAO<>(DownloadLink.class);
+		entity.setDownloadLinkDAO(downloadLinkDAO);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		downloadLinkDAO = null;
 		entity = null;
 	}
 
@@ -76,7 +84,7 @@ public class UTBaseMediaDigest {
 	@Test
 	public void testFromBase_Stores() throws Exception {
 		BaseMedia originalBaseMedia = callFromBase();
-		Collection<URL> toTest = new ArrayList<>();
+		Collection<URL> toTest = new TreeSet<>();
 		for (URI store : entity.stores) {
 			toTest.add(new URL(store));
 		}
@@ -86,21 +94,11 @@ public class UTBaseMediaDigest {
 	@Test
 	public void testFromBase_DownloadLinks() throws Exception {
 		BaseMedia originalBaseMedia = callFromBase();
-		Collection<URI> expected = new ArrayList<>();
+		Collection<URI> expected = new TreeSet<>();
 		for (DownloadLink downloadLink : originalBaseMedia.getDownloadLinks()) {
 			expected.add(new RESTHelper().getRESTUri(URI.create(REST_URI), DownloadLink.class, downloadLink));
 		}
 		assertEquals(expected, entity.downloadLinks);
-	}
-
-	private BaseMedia callFromBase() {
-		URI baseUri = URI.create(REST_URI);
-		BaseMedia baseMedia = BASE_MEDIA_FACTORY.getNext();
-		entity.fromBase(baseUri, baseMedia);
-		URI expected = URI.create(REST_URI + Constants.URL.PATH_SEPARATOR + baseMedia.getId());
-		when(helper.getRESTUri(baseUri, FakeBaseMedia.class, baseMedia))
-				.thenReturn(expected);
-		return baseMedia;
 	}
 
 	@Test
@@ -124,7 +122,7 @@ public class UTBaseMediaDigest {
 	@Test
 	public void testToBase_OfficialWebsite() throws Exception {
 		BaseMedia baseMedia = callToBase();
-		assertEquals(new URL(entity.title), baseMedia.getOfficialWebsite());
+		assertEquals(new URL(entity.officialWebsite), baseMedia.getOfficialWebsite());
 	}
 
 	@Test
@@ -136,7 +134,7 @@ public class UTBaseMediaDigest {
 	@Test
 	public void testToBase_Store() throws Exception {
 		BaseMedia baseMedia = callToBase();
-		Collection<URL> expected = new ArrayList<>();
+		Collection<URL> expected = new TreeSet<>();
 		for (URI store : entity.stores) {
 			expected.add(new URL(store));
 		}
@@ -146,16 +144,32 @@ public class UTBaseMediaDigest {
 	@Test
 	public void testToBase_DownloadLinks() throws Exception {
 		BaseMedia baseMedia = callToBase();
-		Collection<URI> toTest = new ArrayList<>();
+		Collection<URI> toTest = new TreeSet<>();
 		for (DownloadLink downloadLink : baseMedia.getDownloadLinks()) {
 			toTest.add(new RESTHelper().getRESTUri(URI.create(REST_URI), DownloadLink.class, downloadLink));
 		}
 		assertEquals(entity.downloadLinks, toTest);
 	}
 
-	public BaseMedia callToBase() throws Exception {
+	private BaseMedia callFromBase() {
+		URI baseUri = URI.create(REST_URI);
+		BaseMedia baseMedia = GAME_FACTORY.getNext();
+		entity.fromBase(baseUri, baseMedia);
+		URI expected = URI.create(REST_URI + Constants.URL.PATH_SEPARATOR + baseMedia.getId());
+		when(helper.getRESTUri(baseUri, FakeBaseMedia.class, baseMedia))
+				.thenReturn(expected);
+		return baseMedia;
+	}
+
+	private BaseMedia callToBase() throws Exception {
 		FakeBaseMedia.Builder builder = FakeBaseMedia.builder();
-		BaseMedia baseMedia = BASE_MEDIA_FACTORY.getNext();
+		BaseMedia baseMedia = GAME_FACTORY.getNext();
+		new EntityHelper().assignIdsTo(baseMedia.getDownloadLinks());
+
+		for (DownloadLink downloadLink : baseMedia.getDownloadLinks()) {
+			downloadLinkDAO.create(downloadLink);
+		}
+
 		entity.fromBase(URI.create(REST_URI), baseMedia);
 		entity.toBase(builder);
 		return builder.build();

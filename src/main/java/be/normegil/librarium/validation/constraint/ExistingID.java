@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
 		ElementType.PARAMETER
 })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = URIWithIDValidator.class)
-public @interface URIWithID {
+@Constraint(validatedBy = ExistingIDValidator.class)
+public @interface ExistingID {
 
 	String message() default
-			"Given argument is missing an id parameter";
+			"Given argument has a null ID";
 
 	Class<?>[] groups() default {};
 

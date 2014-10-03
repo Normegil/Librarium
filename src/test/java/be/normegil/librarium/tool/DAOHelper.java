@@ -31,5 +31,4 @@ public class DAOHelper {
 			throw new IllegalAccessRuntimeException(e);
 		}
 	}
-
 }

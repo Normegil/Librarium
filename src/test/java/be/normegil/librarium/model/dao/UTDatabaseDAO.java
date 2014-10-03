@@ -38,10 +38,10 @@ public class UTDatabaseDAO {
 		entityManagerFactory = Persistence.createEntityManagerFactory(SpecificTestProperties.PERSISTENCE_UNIT_NAME);
 		entityManager = entityManagerFactory.createEntityManager();
 
-		entity = insertDataInDatabase();
-
 		dao = new DatabaseDAO<>(Game.class);
 		new DAOHelper().setEntityManager(dao, entityManager);
+
+		entity = insertDataInDatabase();
 	}
 
 	@After

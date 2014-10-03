@@ -21,7 +21,6 @@ public class UTGameDigestSafety {
 	private static final String URI_ADDRESS = "http://localhost:8080/";
 	private static final ClassWrapper<Game.GameDigest> CLASS = new ClassWrapper<>(Game.GameDigest.class);
 	private static final Method FROM_BASE_METHOD = CLASS.getMethod("fromBase", URI.class, Game.class);
-	private static final Method TO_BASE_METHOD = CLASS.getMethod("toBase", Game.Init.class);
 	private Game.GameDigest entity;
 
 	@Before
@@ -46,12 +45,6 @@ public class UTGameDigestSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFromBase_NullEntityID() throws Exception {
-		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), new FakeEntity());
+		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), GAME_FACTORY.getNext());
 	}
-
-	@Test(expected = ConstraintViolationException.class)
-	public void testToBase_Null() throws Exception {
-		Validator.validate(entity, TO_BASE_METHOD, new Object[]{null});
-	}
-
 }

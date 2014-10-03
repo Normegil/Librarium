@@ -30,7 +30,7 @@ public class JacksonParser<E> implements DocumentParser<E> {
 	@Override
 	public void to(@NotNull final E entity, @NotNull final OutputStream stream) {
 		try {
-			mapper.writeValue(stream, entity);
+			mapper.writerWithDefaultPrettyPrinter().writeValue(stream, entity);
 		} catch (IOException e) {
 			throw new IORuntimeException(e);
 		}

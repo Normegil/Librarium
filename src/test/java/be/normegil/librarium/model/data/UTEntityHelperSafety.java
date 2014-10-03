@@ -73,7 +73,7 @@ public class UTEntityHelperSafety {
 	public void testSetIdFromDigest_InvalidURI() throws Exception {
 		Entity e = ENTITY_FACTORY.getNext();
 		Entity.EntityDigest digest = new Entity.EntityDigest();
-		digest.uri = URI.create(INVALID_URI);
+		digest.href = URI.create(INVALID_URI);
 		Validator.validate(entity, SET_ID_FROM_DIGEST_METHOD, digest, e);
 	}
 }

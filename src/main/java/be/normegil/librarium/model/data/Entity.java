@@ -5,12 +5,14 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
+import be.normegil.librarium.validation.constraint.ExistingID;
 import be.normegil.librarium.validation.constraint.URIWithID;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
 import java.net.URI;
@@ -64,22 +66,24 @@ public abstract class Entity {
 
 	public static class EntityDigest {
 
-		protected URI uri;
+		@NotNull
+		@URIWithID
+		protected URI href;
 
-		public void fromBase(@NotNull final URI baseUri, @NotNull final Entity entity) {
-			uri = new RESTHelper().getRESTUri(baseUri, entity.getClass(), entity);
+		public void fromBase(@NotNull final URI baseUri, @NotNull @ExistingID final Entity entity) {
+			href = new RESTHelper().getRESTUri(baseUri, entity.getClass(), entity);
 		}
 	}
 
 	public static class Helper {
 
-		public UUID getIdFromRESTURI(@NotNull @URIWithID URI restURI) {
+		public UUID getIdFromRESTURI(@NotNull @URIWithID final URI restURI) {
 			String idAsString = StringUtils.substringAfterLast(restURI.toString(), "/");
 			return UUID.fromString(idAsString);
 		}
 
-		public void setIdFromDigest(@NotNull EntityDigest digest, @NotNull Entity entity) {
-			entity.id = getIdFromRESTURI(digest.uri);
+		public void setIdFromDigest(@NotNull @Valid final EntityDigest digest, @NotNull final Entity entity) {
+			entity.id = digest.href != null ? getIdFromRESTURI(digest.href) : null;
 		}
 
 		public List<URL> convertToURLs(@NotNull final List<? extends Entity> entities, @NotNull final URL baseURL) {

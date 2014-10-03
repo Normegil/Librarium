@@ -2,13 +2,18 @@ package be.normegil.librarium.model.rest;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.annotation.Default;
-import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.Entity;
+import be.normegil.librarium.model.rest.services.DownloadLinkREST;
+import be.normegil.librarium.model.rest.services.GameSerieREST;
+import be.normegil.librarium.model.rest.services.ReleaseDateREST;
+import be.normegil.librarium.model.rest.services.UniverseREST;
 import be.normegil.librarium.rest.RESTService;
+import be.normegil.librarium.rest.game.GameREST;
 import be.normegil.librarium.util.exception.RESTServiceNotFoundException;
 
 import javax.ws.rs.Path;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,10 +22,25 @@ public class RESTHelper {
 
 	private Set<RESTService> restServices = new HashSet<>();
 
+	public RESTHelper() {
+		restServices.addAll(Arrays.asList(
+				new DownloadLinkREST(),
+				new UniverseREST(),
+				new ReleaseDateREST(),
+
+				new GameREST(),
+				new GameSerieREST()
+		));
+	}
+
 	public String getPathFor(Class aClass) {
 		RESTService service = getDefaultServiceFor(aClass);
 		Path annotation = service.getClass().getAnnotation(Path.class);
-		return annotation.value();
+		String path = annotation.value();
+		if (path.startsWith(Constants.URL.PATH_SEPARATOR)) {
+			path = path.substring(Constants.URL.PATH_SEPARATOR.length());
+		}
+		return path;
 	}
 
 	private RESTService getDefaultServiceFor(final Class aClass) {
@@ -62,7 +82,12 @@ public class RESTHelper {
 	public URI getRESTUri(final URI baseUri, final Class<? extends Entity> dataClass, final Entity entity) {
 		String baseUriAsString = baseUri.toString();
 		RESTHelper helper = new RESTHelper();
-		return URI.create(baseUriAsString + Constants.URL.PATH_SEPARATOR + helper.getPathFor(dataClass) + Constants.URL.PATH_SEPARATOR + entity.getId());
+
+		if (!baseUriAsString.endsWith(Constants.URL.PATH_SEPARATOR)) {
+			baseUriAsString += Constants.URL.PATH_SEPARATOR;
+		}
+
+		return URI.create(baseUriAsString + helper.getPathFor(dataClass) + Constants.URL.PATH_SEPARATOR + entity.getId());
 	}
 
 }

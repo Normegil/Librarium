@@ -1,10 +1,7 @@
-package be.normegil.librarium.model.dao;
+package be.normegil.librarium.tool;
 
-import be.normegil.librarium.libraries.ClassWrapper;
+import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
-import be.normegil.librarium.tool.DataFactory;
-import be.normegil.librarium.tool.EntityHelper;
-import be.normegil.librarium.tool.FactoryRepository;
 import org.apache.commons.lang3.Validate;
 
 import javax.ejb.Stateless;
@@ -12,7 +9,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Stateless
@@ -27,8 +23,8 @@ public class MemoryTestDAO<E extends Entity> implements DAO<E> {
 	}
 
 	public MemoryTestDAO(int numberOfEntityToAdd, Class<E> daoClassSupported) {
-		add(numberOfEntityToAdd);
 		FACTORY = FactoryRepository.get(daoClassSupported);
+		add(numberOfEntityToAdd);
 	}
 
 	@Override
