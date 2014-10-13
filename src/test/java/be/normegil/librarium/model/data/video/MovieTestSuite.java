@@ -25,7 +25,7 @@ public class MovieTestSuite implements DataFactory<Movie> {
 	private static final DataFactory<Video> VIDEO_FACTORY = FactoryRepository.get(Video.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<MovieSerie> MOVIE_SERIE_FACTORY = FactoryRepository.get(MovieSerie.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("88759640-5e79-42d8-906f-fd6c8269d243");
 
 	@Override
 	public Movie getDefault() {

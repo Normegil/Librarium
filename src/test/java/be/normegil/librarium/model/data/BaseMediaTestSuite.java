@@ -25,7 +25,7 @@ import java.util.UUID;
 })
 public class BaseMediaTestSuite implements DataFactory<BaseMedia> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("3b482e5c-ade3-410e-978c-37b1a0a959ec");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)

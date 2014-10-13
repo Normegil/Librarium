@@ -30,7 +30,7 @@ public class MangaTestSuite implements DataFactory<Manga> {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<AbstractBD> ABSTRACT_BD_FACTORY = FactoryRepository.get(AbstractBD.class);
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("8fa0c58d-204a-4bf5-93bc-cfc2e906ee15");
 
 	@Override
 	public Manga getDefault() {

@@ -25,7 +25,7 @@ public class ReleaseDateTestSuite implements DataFactory<ReleaseDate> {
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("040a6c8c-9fa0-4682-8b08-c7ca019f5561");
 
 	@Override
 	public ReleaseDate getDefault() {

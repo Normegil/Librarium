@@ -21,7 +21,7 @@ import java.util.UUID;
 })
 public class ComicTestSuite implements DataFactory<Comic> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("5ec8c027-f8ce-4505-ae36-27783e8c9677");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<AbstractBD> ABSTRACT_BD_FACTORY = FactoryRepository.get(AbstractBD.class);
 

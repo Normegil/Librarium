@@ -31,7 +31,7 @@ public class VideoTestSuite implements DataFactory<Video> {
 	private static final DataFactory<Role> ROLE_FACTORY = FactoryRepository.get(Role.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("798300dc-e228-4242-97ba-b1ca50f4e8f0");
 	private static long index = 0L;
 
 	@Override

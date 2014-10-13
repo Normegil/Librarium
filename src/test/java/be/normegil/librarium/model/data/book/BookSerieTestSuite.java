@@ -3,9 +3,12 @@ package be.normegil.librarium.model.data.book;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.BaseMedia;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -23,6 +26,7 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 	private static final DataFactory<BaseMedia> BASE_MEDIA_FACTORY = FactoryRepository.get(BaseMedia.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Book> BOOK_FACTORY = FactoryRepository.get(Book.class);
+	private static final UUID DEFAULT_ID = UUID.fromString("5594d3fe-dfd1-490d-bcd5-b22381060d22");
 
 	@Override
 	public BookSerie getDefault() {
@@ -41,7 +45,11 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 		if (withLink) {
 			builder.addBook(BOOK_FACTORY.getDefault(false, withIds));
 		}
-		return builder.build();
+		BookSerie serie = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(serie, DEFAULT_ID);
+		}
+		return serie;
 	}
 
 	@Override
@@ -51,6 +59,10 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 		if (withLink) {
 			builder.addBook(BOOK_FACTORY.getNew(false, withIds));
 		}
-		return builder.build();
+		BookSerie serie = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(serie, UUID.randomUUID());
+		}
+		return serie;
 	}
 }

@@ -21,7 +21,7 @@ import java.util.UUID;
 })
 public class PersonTestSuite implements DataFactory<Person> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("02a66c9e-4098-4037-afbc-890f95341746");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)

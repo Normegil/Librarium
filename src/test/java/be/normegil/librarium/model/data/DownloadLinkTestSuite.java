@@ -28,7 +28,7 @@ public class DownloadLinkTestSuite implements DataFactory<DownloadLink> {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<BaseMedia> BASE_MEDIA_FACTORY = FactoryRepository.get(BaseMedia.class);
 	private static final String TITLE = "Title";
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("6f45d203-8840-4e43-a1d7-522cf854dbd9");
 
 	private static long index = 0L;
 

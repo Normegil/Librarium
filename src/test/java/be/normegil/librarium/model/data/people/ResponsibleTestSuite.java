@@ -25,7 +25,7 @@ public class ResponsibleTestSuite implements DataFactory<Responsible> {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
 	private static final String NAME = "Name";
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("33701a05-ce59-46b0-8bbb-7d5f7aec773b");
 	private static long index = 0L;
 
 	@Override

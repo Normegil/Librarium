@@ -3,9 +3,12 @@ package be.normegil.librarium.model.data.video;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.BaseMedia;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -25,6 +28,7 @@ public class SerieSeasonTestSuite implements DataFactory<SerieSeason> {
 	private static final DataFactory<Serie> SERIE_FACTORY = FactoryRepository.get(Serie.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<EpisodeSerie> EPISODE_SERIE_FACTORY = FactoryRepository.get(EpisodeSerie.class);
+	private static final UUID DEFAULT_ID = UUID.fromString("0145cb2b-add2-4843-bab0-589b30a7e079");
 	private Long index = 0L;
 
 	@Override
@@ -48,7 +52,11 @@ public class SerieSeasonTestSuite implements DataFactory<SerieSeason> {
 					.addEpisode(EPISODE_SERIE_FACTORY.getDefault(false, withIds));
 		}
 
-		return builder.build();
+		SerieSeason season = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(season, DEFAULT_ID);
+		}
+		return season;
 
 	}
 
@@ -65,6 +73,10 @@ public class SerieSeasonTestSuite implements DataFactory<SerieSeason> {
 		}
 
 		index += 1;
-		return builder.build();
+		SerieSeason season = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(season, UUID.randomUUID());
+		}
+		return season;
 	}
 }

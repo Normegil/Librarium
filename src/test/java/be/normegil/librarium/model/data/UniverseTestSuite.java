@@ -25,7 +25,7 @@ public class UniverseTestSuite implements DataFactory<Universe> {
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	private static final String NAME = "Name";
 	private static final String DESCRIPTION = "Description";
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("1251bf42-03db-4d27-be9b-0ab1b0fc085a");
 	private static long index = 0L;
 
 	@Override

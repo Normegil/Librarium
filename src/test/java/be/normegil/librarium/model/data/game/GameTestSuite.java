@@ -33,7 +33,7 @@ public class GameTestSuite implements DataFactory<Game> {
 	private static final DataFactory<GameSerie> GAME_SERIE_FACTORY = FactoryRepository.get(GameSerie.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("ddde0e8f-67d2-4907-85ea-bf3eb3143c13");
 
 	@Override
 	public Game getDefault() {

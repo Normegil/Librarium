@@ -23,7 +23,7 @@ public class EnterpriseTestSuite implements DataFactory<Enterprise> {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("7930d837-f0a6-427f-9958-57e16ee24d1d");
 
 	@Override
 	public Enterprise getDefault() {

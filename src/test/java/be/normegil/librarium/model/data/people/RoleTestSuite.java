@@ -26,7 +26,7 @@ public class RoleTestSuite implements DataFactory<Role> {
 	private static final DataFactory<Person> PERSON_FACTORY = FactoryRepository.get(Person.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Video> VIDEO_FACTORY = FactoryRepository.get(Video.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("3873812f-a42d-43a1-83a3-974266ab7ef9");
 
 	@Override
 	public Role getDefault() {

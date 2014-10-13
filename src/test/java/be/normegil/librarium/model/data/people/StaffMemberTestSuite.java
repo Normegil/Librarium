@@ -22,7 +22,7 @@ import java.util.UUID;
 })
 public class StaffMemberTestSuite implements DataFactory<StaffMember> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("4fbaef7d-0ffe-4c65-93d8-ee43bdd1dfea");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)

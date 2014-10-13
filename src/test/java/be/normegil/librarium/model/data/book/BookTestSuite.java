@@ -23,7 +23,7 @@ import java.util.UUID;
 })
 public class BookTestSuite implements DataFactory<Book> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("ccdde87b-e2c2-4856-9d4a-bf84ba0ee634");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)

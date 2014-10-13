@@ -26,7 +26,7 @@ public class GameSerieTestSuite implements DataFactory<GameSerie> {
 	private static final DataFactory<BaseMedia> BASE_MEDIA_FACTORY = FactoryRepository.get(BaseMedia.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("bc8e76f7-2064-4ce0-af12-ea5d28f8ce8f");
 
 	@Override
 	public GameSerie getDefault() {

@@ -23,7 +23,7 @@ public class AbstractBDTestSuite implements DataFactory<AbstractBD> {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Book> BOOK_FACTORY = FactoryRepository.get(Book.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("4a4876c6-3caa-42d1-a726-782a9da9036d");
 	private static long index = 0L;
 
 	@Override

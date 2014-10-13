@@ -22,7 +22,7 @@ import java.util.UUID;
 })
 public class SupportTestSuite implements DataFactory<Support> {
 
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("dc8924df-9cf2-46e5-9fb8-a8cb5850f646");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)

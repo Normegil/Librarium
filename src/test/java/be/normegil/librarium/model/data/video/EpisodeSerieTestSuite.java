@@ -26,7 +26,7 @@ public class EpisodeSerieTestSuite implements DataFactory<EpisodeSerie> {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<SerieSeason> SERIE_SEASON_FACTORY = FactoryRepository.get(SerieSeason.class);
 	public static final long DEFAULT_EPISODE_NUMBER = 1L;
-	public static final UUID DEFAULT_ID = UUID.fromString("");
+	public static final UUID DEFAULT_ID = UUID.fromString("12585b63-d83d-4f38-a4bb-6b718bf7e1f6");
 	private static long index = 0L;
 
 	@Override

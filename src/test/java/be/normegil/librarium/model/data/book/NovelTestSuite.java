@@ -23,7 +23,7 @@ public class NovelTestSuite implements DataFactory<Novel> {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Book> BOOK_FACTORY = FactoryRepository.get(Book.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("404f3434-9e09-4392-bb30-b053028bbf84");
 
 	@Override
 	public Novel getDefault() {

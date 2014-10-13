@@ -32,7 +32,7 @@ public class MediaTestSuite implements DataFactory<Media> {
 	private static final DataFactory<Universe> UNIVERSE_FACTORY = FactoryRepository.get(Universe.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
-	private static final UUID DEFAULT_ID = UUID.fromString("");
+	private static final UUID DEFAULT_ID = UUID.fromString("69721915-119b-4d11-8a1c-500a3155c2d1");
 
 	@Override
 	public Media getDefault() {
