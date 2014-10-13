@@ -3,12 +3,14 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeMedia;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -30,44 +32,53 @@ public class MediaTestSuite implements DataFactory<Media> {
 	private static final DataFactory<Universe> UNIVERSE_FACTORY = FactoryRepository.get(Universe.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
+	private static final UUID DEFAULT_ID = UUID.fromString("");
 
 	@Override
 	public Media getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public Media getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public Media getDefault(boolean withLink) {
+	public Media getDefault(final boolean withLink, final boolean withIds) {
 		FakeMedia.Builder builder = FakeMedia.builder()
-				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds));
 
 		if (withLink) {
-			builder.addUniverse(UNIVERSE_FACTORY.getDefault(false))
-					.addReleaseDate(SUPPORT_FACTORY.getDefault(false), LocalDate.of(2014, Month.AUGUST, 20));
+			builder.addUniverse(UNIVERSE_FACTORY.getDefault(false, withIds))
+					.addReleaseDate(SUPPORT_FACTORY.getDefault(false, withIds), LocalDate.of(2014, Month.AUGUST, 20));
 		}
 
-		return builder.build();
+		Media media = builder.build();
+		if(withIds){
+			new EntityHelper().setId(media, DEFAULT_ID);
+		}
+		return media;
 	}
 
 	@Override
-	public Media getNew(boolean withLink) {
+	public Media getNew(final boolean withLink, final boolean withIds) {
 		FakeMedia.Builder builder = FakeMedia.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink));
+				.from(BASE_MEDIA_FACTORY.getNew(withLink, withIds));
 
 		if (withLink) {
-			builder.addUniverse(UNIVERSE_FACTORY.getNew(false))
-					.addUniverse(UNIVERSE_FACTORY.getNew(false))
-					.addSupport(SUPPORT_FACTORY.getNew(false))
-					.addSupport(SUPPORT_FACTORY.getNew(false))
-					.addReleaseDate(SUPPORT_FACTORY.getNew(false), LocalDate.of(2014, Month.AUGUST, 20))
-					.addReleaseDate(SUPPORT_FACTORY.getNew(false), LocalDate.now());
+			builder.addUniverse(UNIVERSE_FACTORY.getNew(false, withIds))
+					.addUniverse(UNIVERSE_FACTORY.getNew(false, withIds))
+					.addSupport(SUPPORT_FACTORY.getNew(false, withIds))
+					.addSupport(SUPPORT_FACTORY.getNew(false, withIds))
+					.addReleaseDate(SUPPORT_FACTORY.getNew(false, withIds), LocalDate.of(2014, Month.AUGUST, 20))
+					.addReleaseDate(SUPPORT_FACTORY.getNew(false, withIds), LocalDate.now());
 		}
 
-		return builder.build();
+		Media media = builder.build();
+		if(withIds){
+			new EntityHelper().setId(media, DEFAULT_ID);
+		}
+		return media;
 	}
 }

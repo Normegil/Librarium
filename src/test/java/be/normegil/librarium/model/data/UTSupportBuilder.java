@@ -37,7 +37,7 @@ public class UTSupportBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Support support = FACTORY.getNew(true);
+		Support support = FACTORY.getNew();
 		Support copy = entity.from(support).build();
 		assertEquals(support, copy);
 	}

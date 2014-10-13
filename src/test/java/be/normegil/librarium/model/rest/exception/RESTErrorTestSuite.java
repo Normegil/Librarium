@@ -34,16 +34,16 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 
 	@Override
 	public RESTError getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public RESTError getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public RESTError getDefault(final boolean withLink) {
+	public RESTError getDefault(final boolean withLink, final boolean withIds) {
 		return RESTError.builder()
 				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode(FAKE_CODE)
@@ -55,7 +55,7 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 	}
 
 	@Override
-	public RESTError getNew(final boolean withLink) {
+	public RESTError getNew(final boolean withLink, final boolean withIds) {
 		RESTError entity = RESTError.builder()
 				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode((int) (FAKE_CODE + index))

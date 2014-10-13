@@ -26,30 +26,30 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 
 	@Override
 	public BookSerie getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public BookSerie getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public BookSerie getDefault(boolean withLink) {
+	public BookSerie getDefault(final boolean withLink, final boolean withIds) {
 		BookSerie.Builder builder = BookSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds));
 		if (withLink) {
-			builder.addBook(BOOK_FACTORY.getDefault(false));
+			builder.addBook(BOOK_FACTORY.getDefault(false, withIds));
 		}
 		return builder.build();
 	}
 
 	@Override
-	public BookSerie getNew(boolean withLink) {
+	public BookSerie getNew(final boolean withLink, final boolean withIds) {
 		BookSerie.Builder builder = BookSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink));
+				.from(BASE_MEDIA_FACTORY.getNew(withLink, withIds));
 		if (withLink) {
-			builder.addBook(BOOK_FACTORY.getNew(false));
+			builder.addBook(BOOK_FACTORY.getNew(false, withIds));
 		}
 		return builder.build();
 	}

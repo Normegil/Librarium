@@ -1,13 +1,14 @@
 package be.normegil.librarium.model.data.game;
 
 import be.normegil.librarium.WarningTypes;
-import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.BaseMedia;
-import be.normegil.librarium.model.data.DownloadLink;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -24,48 +25,49 @@ public class GameSerieTestSuite implements DataFactory<GameSerie> {
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<BaseMedia> BASE_MEDIA_FACTORY = FactoryRepository.get(BaseMedia.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
-	private static final DataFactory<URL> URL_FACTORY = FactoryRepository.get(URL.class);
-	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
-	private static final DataFactory<DownloadLink> DOWNLOAD_LINK_FACTORY = FactoryRepository.get(DownloadLink.class);
-	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Game> GAME_FACTORY = FactoryRepository.get(Game.class);
-	private static final String TITLE = "Title";
-	private static final String DESCRIPTION = "Description";
-	private static final String TAG = "Tag";
-	private static long index = 0L;
+	private static final UUID DEFAULT_ID = UUID.fromString("");
 
 	@Override
 	public GameSerie getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public GameSerie getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public GameSerie getDefault(boolean withLink) {
+	public GameSerie getDefault(final boolean withLink, final boolean withIds) {
 		GameSerie.Builder builder = GameSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds));
 
 		if (withLink) {
-			builder.addGame(GAME_FACTORY.getDefault(false));
+			builder.addGame(GAME_FACTORY.getDefault(false, withIds));
 		}
 
-		return builder.build();
+		GameSerie serie = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(serie, DEFAULT_ID);
+		}
+		return serie;
 	}
 
 	@Override
-	public GameSerie getNew(boolean withLink) {
+	public GameSerie getNew(final boolean withLink, final boolean withIds) {
 		GameSerie.Builder builder = GameSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink));
+				.from(BASE_MEDIA_FACTORY.getNew(withLink, withIds));
 
 		if (withLink) {
-			builder.addGame(GAME_FACTORY.getNew(false))
-					.addGame(GAME_FACTORY.getNew(false));
+			builder.addGame(GAME_FACTORY.getNew(false, withIds))
+					.addGame(GAME_FACTORY.getNew(false, withIds));
 		}
 
-		return builder.build();
+		GameSerie serie = builder.build();
+		if (withLink) {
+			new EntityHelper().setId(serie, UUID.randomUUID());
+		}
+		return serie;
 	}
 }

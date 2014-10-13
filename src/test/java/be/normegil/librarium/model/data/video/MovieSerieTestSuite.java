@@ -26,30 +26,30 @@ public class MovieSerieTestSuite implements DataFactory<MovieSerie> {
 
 	@Override
 	public MovieSerie getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public MovieSerie getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public MovieSerie getDefault(boolean withLink) {
+	public MovieSerie getDefault(final boolean withLink, final boolean withIds) {
 		MovieSerie.Builder builder = MovieSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds));
 		if (withLink) {
-			builder.addMovie(MOVIE_FACTORY.getDefault(false));
+			builder.addMovie(MOVIE_FACTORY.getDefault(false, withIds));
 		}
 		return builder.build();
 	}
 
 	@Override
-	public MovieSerie getNew(boolean withLink) {
+	public MovieSerie getNew(final boolean withLink, final boolean withIds) {
 		MovieSerie.Builder builder = MovieSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink));
+				.from(BASE_MEDIA_FACTORY.getNew(withLink, withIds));
 		if (withLink) {
-			builder.addMovie(MOVIE_FACTORY.getNew(false));
+			builder.addMovie(MOVIE_FACTORY.getNew(false, withIds));
 		}
 		return builder.build();
 	}

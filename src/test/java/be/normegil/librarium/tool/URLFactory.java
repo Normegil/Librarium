@@ -13,21 +13,21 @@ public class URLFactory implements DataFactory<URL> {
 
 	@Override
 	public URL getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public URL getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public URL getDefault(boolean withLink) {
+	public URL getDefault(final boolean withLink, final boolean withIds) {
 		return new URL(PROTOCOL, HOST, PORT, FILE_PATH);
 	}
 
 	@Override
-	public URL getNew(boolean withLink) {
+	public URL getNew(final boolean withLink, final boolean withIds) {
 		String host = HOST + index;
 		int port = (int) (index % HIGHEST_PORT_NUMBER);
 		String filePath = FILE_PATH + index;

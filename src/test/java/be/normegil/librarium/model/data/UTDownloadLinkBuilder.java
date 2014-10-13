@@ -35,7 +35,7 @@ public class UTDownloadLinkBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNew(true);
+		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNew();
 		DownloadLink copy = entity.from(downloadLink).build();
 		assertEquals(downloadLink, copy);
 	}

@@ -32,21 +32,21 @@ public class JAXBHelperTestSuite implements DataFactory<JAXBHelperTestSuite.JAXB
 
 	@Override
 	public JAXBTestClass getDefault() {
-		return getDefault(true);
+		return getDefault(true, false);
 	}
 
 	@Override
 	public JAXBTestClass getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public JAXBTestClass getDefault(final boolean withLink) {
+	public JAXBTestClass getDefault(final boolean withLink, final boolean withIds) {
 		return new JAXBTestClass(ID, TITLE, URL_FACTORY.getDefault(), LocalDate.of(2014, Month.SEPTEMBER, 2), IGNORED);
 	}
 
 	@Override
-	public JAXBTestClass getNew(final boolean withLink) {
+	public JAXBTestClass getNew(final boolean withLink, final boolean withIds) {
 		JAXBTestClass jaxbTestClass = new JAXBTestClass(
 				ID + index,
 				TITLE + index,

@@ -35,7 +35,7 @@ public class UTUniverseBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Universe universe = FACTORY.getNew(true);
+		Universe universe = FACTORY.getNew();
 		Universe copy = entity.from(universe).build();
 		assertEquals(universe, copy);
 	}
