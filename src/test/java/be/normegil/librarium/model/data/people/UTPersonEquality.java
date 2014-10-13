@@ -18,7 +18,7 @@ public class UTPersonEquality extends AbstractDataEqualityTest<Person> {
 
 	@Override
 	protected Person getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class UTPersonEquality extends AbstractDataEqualityTest<Person> {
 	public void testDifferentRole() throws Exception {
 		Person entity = getEntity();
 		Person copy = new Person(entity);
-		entity.addRole(ROLE_FACTORY.getNext());
+		entity.addRole(ROLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

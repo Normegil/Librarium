@@ -5,8 +5,6 @@ import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -34,13 +32,27 @@ public class GameTestSuite implements DataFactory<Game> {
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 
 	@Override
+	public Game getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Game getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Game getNext() {
-		return getNext(true);
+	public Game getDefault(boolean withLink) {
+		Game.Builder builder = Game.builder()
+				.from(MEDIA_FACTORY.getDefault(withLink));
+		if (withLink) {
+			builder
+					.addDeveloper(RESPONSIBLE_FACTORY.getDefault(false))
+					.addEditor(RESPONSIBLE_FACTORY.getDefault(false))
+					.addComposer(RESPONSIBLE_FACTORY.getDefault(false))
+					.setSerie(GAME_SERIE_FACTORY.getDefault(false));
+		}
+		return builder.build();
 	}
 
 	@Override
@@ -53,20 +65,6 @@ public class GameTestSuite implements DataFactory<Game> {
 					.addEditor(RESPONSIBLE_FACTORY.getNew(false))
 					.addComposer(RESPONSIBLE_FACTORY.getNew(false))
 					.setSerie(GAME_SERIE_FACTORY.getNew(false));
-		}
-		return builder.build();
-	}
-
-	@Override
-	public Game getNext(boolean withLink) {
-		Game.Builder builder = Game.builder()
-				.from(MEDIA_FACTORY.getNext(withLink));
-		if (withLink) {
-			builder
-					.addDeveloper(RESPONSIBLE_FACTORY.getNext(false))
-					.addEditor(RESPONSIBLE_FACTORY.getNext(false))
-					.addComposer(RESPONSIBLE_FACTORY.getNext(false))
-					.setSerie(GAME_SERIE_FACTORY.getNext(false));
 		}
 		return builder.build();
 	}

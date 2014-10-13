@@ -23,7 +23,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 
 	@Override
 	protected Book getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testAuthor_First() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.addAuthor(RESPONSIBLE_FACTORY.getNext());
+		copy.addAuthor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -51,7 +51,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testAuthor_Second() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.addAuthor(RESPONSIBLE_FACTORY.getNext());
+		copy.addAuthor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -59,7 +59,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testEditor_First() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.addEditor(RESPONSIBLE_FACTORY.getNext());
+		copy.addEditor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -67,7 +67,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testEditor_Second() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.addEditor(RESPONSIBLE_FACTORY.getNext());
+		copy.addEditor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -75,7 +75,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testSerie_First() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.setSerie(BOOK_SERIE_FACTORY.getNext());
+		copy.setSerie(BOOK_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -83,7 +83,7 @@ public class UTBookComparator extends AbstractDataComparableTest<Book> {
 	public void testSerie_Second() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		copy.setSerie(BOOK_SERIE_FACTORY.getNext());
+		copy.setSerie(BOOK_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

@@ -23,7 +23,7 @@ public class UTBookSerie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		books = entity.getBooks();
 	}
 
@@ -42,9 +42,9 @@ public class UTBookSerie {
 	@Test
 	public void testAddAllBooks() throws Exception {
 		Collection<Book> toAdd = new HashSet<>();
-		toAdd.add(BOOK_FACTORY.getNext());
-		toAdd.add(BOOK_FACTORY.getNext());
-		toAdd.add(BOOK_FACTORY.getNext());
+		toAdd.add(BOOK_FACTORY.getNew());
+		toAdd.add(BOOK_FACTORY.getNew());
+		toAdd.add(BOOK_FACTORY.getNew());
 
 		books.addAll(toAdd);
 		entity.addAllBooks(toAdd);
@@ -53,7 +53,7 @@ public class UTBookSerie {
 
 	@Test
 	public void testAddBook() throws Exception {
-		Book toAdd = BOOK_FACTORY.getNext();
+		Book toAdd = BOOK_FACTORY.getNew();
 		books.add(toAdd);
 		entity.addBook(toAdd);
 		assertEquals(books, entity.getBooks());
@@ -61,9 +61,9 @@ public class UTBookSerie {
 
 	@Test
 	public void testRemoveAllBooks() throws Exception {
-		Book base = BOOK_FACTORY.getNext();
-		Book second = BOOK_FACTORY.getNext();
-		Book third = BOOK_FACTORY.getNext();
+		Book base = BOOK_FACTORY.getNew();
+		Book second = BOOK_FACTORY.getNew();
+		Book third = BOOK_FACTORY.getNew();
 
 		Collection<Book> toAdd = new HashSet<>();
 		toAdd.add(base);

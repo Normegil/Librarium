@@ -16,7 +16,7 @@ public class UTNovelDatabaseSupport extends AbstractEntityDatabaseSupportTest<No
 
 	@Override
 	protected Novel initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

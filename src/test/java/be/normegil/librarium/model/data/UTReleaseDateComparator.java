@@ -21,7 +21,7 @@ public class UTReleaseDateComparator extends AbstractDataComparableTest<ReleaseD
 
 	@Override
 	protected ReleaseDate getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -40,28 +40,28 @@ public class UTReleaseDateComparator extends AbstractDataComparableTest<ReleaseD
 	@Test
 	public void testMedia_First() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate otherEntity = new ReleaseDate(MEDIA_FACTORY.getNext(), entity.getSupport(), entity.getDate());
+		ReleaseDate otherEntity = new ReleaseDate(MEDIA_FACTORY.getNew(), entity.getSupport(), entity.getDate());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, otherEntity)));
 	}
 
 	@Test
 	public void testMedia_Second() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate otherEntity = new ReleaseDate(MEDIA_FACTORY.getNext(), entity.getSupport(), entity.getDate());
+		ReleaseDate otherEntity = new ReleaseDate(MEDIA_FACTORY.getNew(), entity.getSupport(), entity.getDate());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(otherEntity, entity)));
 	}
 
 	@Test
 	public void testSupport_First() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate otherEntity = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNext(), entity.getDate());
+		ReleaseDate otherEntity = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNew(), entity.getDate());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, otherEntity)));
 	}
 
 	@Test
 	public void testSupport_Second() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate otherEntity = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNext(), entity.getDate());
+		ReleaseDate otherEntity = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNew(), entity.getDate());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(otherEntity, entity)));
 	}
 

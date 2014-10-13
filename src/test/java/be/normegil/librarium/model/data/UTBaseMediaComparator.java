@@ -27,7 +27,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 
 	@Override
 	protected BaseMedia getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -46,14 +46,14 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	@Test
 	public void testClass_First() throws Exception {
 		BaseMedia entity = getEntity();
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, game)));
 	}
 
 	@Test
 	public void testClass_Second() throws Exception {
 		BaseMedia entity = getEntity();
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(game, entity)));
 	}
 
@@ -109,7 +109,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testOfficialWebsite_First() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.setOfficialWebsite(URL_FACTORY.getNext());
+		copy.setOfficialWebsite(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -117,7 +117,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testOfficialWebsite_Second() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.setOfficialWebsite(URL_FACTORY.getNext());
+		copy.setOfficialWebsite(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -125,7 +125,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testWikipediaPage_First() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -133,7 +133,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testWikipediaPage_Second() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -141,7 +141,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testStore_First() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.addStore(URL_FACTORY.getNext());
+		copy.addStore(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -149,7 +149,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testStore_Second() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.addStore(URL_FACTORY.getNext());
+		copy.addStore(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -157,7 +157,7 @@ public class UTBaseMediaComparator extends AbstractDataComparableTest<BaseMedia>
 	public void testDownloadLink_Equality() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		copy.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNext());
+		copy.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

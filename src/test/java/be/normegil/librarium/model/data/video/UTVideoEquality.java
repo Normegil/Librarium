@@ -25,7 +25,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 
 	@Override
 	protected Video getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentProducer() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addProducer(RESPONSIBLE_FACTORY.getNext());
+		entity.addProducer(RESPONSIBLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 
@@ -55,7 +55,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentDirector() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addDirector(RESPONSIBLE_FACTORY.getNext());
+		entity.addDirector(RESPONSIBLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 
@@ -63,7 +63,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentComposer() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addComposer(RESPONSIBLE_FACTORY.getNext());
+		entity.addComposer(RESPONSIBLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 
@@ -71,7 +71,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentScenarist() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addScenarist(RESPONSIBLE_FACTORY.getNext());
+		entity.addScenarist(RESPONSIBLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 
@@ -79,7 +79,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentOther() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addOtherStaffMember(RESPONSIBLE_FACTORY.getNext());
+		entity.addOtherStaffMember(RESPONSIBLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 
@@ -87,7 +87,7 @@ public class UTVideoEquality extends AbstractDataEqualityTest<Video> {
 	public void testDifferentActor() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		entity.addActor(ROLE_FACTORY.getNext());
+		entity.addActor(ROLE_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 }

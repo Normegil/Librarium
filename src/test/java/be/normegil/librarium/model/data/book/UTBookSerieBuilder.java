@@ -33,7 +33,7 @@ public class UTBookSerieBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		BookSerie bookSerie = BOOK_SERIE_FACTORY.getNext();
+		BookSerie bookSerie = BOOK_SERIE_FACTORY.getNew();
 		BookSerie copy = entity.from(bookSerie).build();
 		assertEquals(bookSerie, copy);
 	}
@@ -41,9 +41,9 @@ public class UTBookSerieBuilder {
 	@Test
 	public void testAddAllBooks() throws Exception {
 		Collection<Book> toAdd = new HashSet<>();
-		toAdd.add(BOOK_FACTORY.getNext());
-		toAdd.add(BOOK_FACTORY.getNext());
-		toAdd.add(BOOK_FACTORY.getNext());
+		toAdd.add(BOOK_FACTORY.getNew());
+		toAdd.add(BOOK_FACTORY.getNew());
+		toAdd.add(BOOK_FACTORY.getNew());
 
 		BookSerie bookSerie = entity
 				.addAllBooks(toAdd)
@@ -54,7 +54,7 @@ public class UTBookSerieBuilder {
 
 	@Test
 	public void testAddBook() throws Exception {
-		Book book = BOOK_FACTORY.getNext();
+		Book book = BOOK_FACTORY.getNew();
 		BookSerie bookSerie = entity
 				.addBook(book)
 				.build();

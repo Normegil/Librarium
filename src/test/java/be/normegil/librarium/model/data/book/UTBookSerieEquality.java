@@ -18,7 +18,7 @@ public class UTBookSerieEquality extends AbstractDataEqualityTest<BookSerie> {
 
 	@Override
 	protected BookSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class UTBookSerieEquality extends AbstractDataEqualityTest<BookSerie> {
 	public void testDifferentBook() throws Exception {
 		BookSerie entity = getEntity();
 		BookSerie copy = new BookSerie(entity);
-		entity.addBook(BOOK_FACTORY.getNext());
+		entity.addBook(BOOK_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

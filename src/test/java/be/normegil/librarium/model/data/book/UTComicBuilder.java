@@ -27,7 +27,7 @@ public class UTComicBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Comic comic = COMIC_FACTORY.getNext();
+		Comic comic = COMIC_FACTORY.getNew();
 		Comic copy = entity.from(comic).build();
 		assertEquals(comic, copy);
 	}

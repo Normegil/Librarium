@@ -20,7 +20,7 @@ public class UTNovelSafety {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After

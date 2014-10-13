@@ -3,8 +3,6 @@ package be.normegil.librarium.model.data.book;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -24,26 +22,26 @@ public class NovelTestSuite implements DataFactory<Novel> {
 	private static final DataFactory<Book> BOOK_FACTORY = FactoryRepository.get(Book.class);
 
 	@Override
+	public Novel getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Novel getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Novel getNext() {
-		return getNext(true);
+	public Novel getDefault(boolean withLink) {
+		return Novel.builder()
+				.from(BOOK_FACTORY.getDefault(withLink))
+				.build();
 	}
 
 	@Override
 	public Novel getNew(boolean withLink) {
 		return Novel.builder()
-				.from(BOOK_FACTORY.getNew(withLink))
-				.build();
-	}
-
-	@Override
-	public Novel getNext(boolean withLink) {
-		return Novel.builder()
-				.from(BOOK_FACTORY.getNew(withLink))
+				.from(BOOK_FACTORY.getDefault(withLink))
 				.build();
 	}
 }

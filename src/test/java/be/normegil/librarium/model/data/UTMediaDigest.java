@@ -90,7 +90,7 @@ public class UTMediaDigest {
 
 	private Media callFromBase() {
 		URI baseUri = URI.create(REST_URI);
-		Media media = GAME_FACTORY.getNext();
+		Media media = GAME_FACTORY.getNew();
 
 		new EntityHelper().assignIdsTo(media.getDownloadLinks());
 		new EntityHelper().assignIdsTo(media.getUniverses());
@@ -103,7 +103,7 @@ public class UTMediaDigest {
 
 	public Media callToBase() throws Exception {
 		FakeMedia.Builder builder = FakeMedia.builder();
-		Media media = GAME_FACTORY.getNext();
+		Media media = GAME_FACTORY.getNew();
 
 		new EntityHelper().assignIdsTo(media.getDownloadLinks());
 		new EntityHelper().assignIdsTo(media.getUniverses());

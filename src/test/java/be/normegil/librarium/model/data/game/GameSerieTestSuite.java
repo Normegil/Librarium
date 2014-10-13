@@ -35,13 +35,25 @@ public class GameSerieTestSuite implements DataFactory<GameSerie> {
 	private static long index = 0L;
 
 	@Override
+	public GameSerie getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public GameSerie getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public GameSerie getNext() {
-		return getNext(true);
+	public GameSerie getDefault(boolean withLink) {
+		GameSerie.Builder builder = GameSerie.builder()
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+
+		if (withLink) {
+			builder.addGame(GAME_FACTORY.getDefault(false));
+		}
+
+		return builder.build();
 	}
 
 	@Override
@@ -50,20 +62,8 @@ public class GameSerieTestSuite implements DataFactory<GameSerie> {
 				.from(BASE_MEDIA_FACTORY.getNew(withLink));
 
 		if (withLink) {
-			builder.addGame(GAME_FACTORY.getNew(false));
-		}
-
-		return builder.build();
-	}
-
-	@Override
-	public GameSerie getNext(boolean withLink) {
-		GameSerie.Builder builder = GameSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getNext(withLink));
-
-		if (withLink) {
-			builder.addGame(GAME_FACTORY.getNext(false))
-					.addGame(GAME_FACTORY.getNext(false));
+			builder.addGame(GAME_FACTORY.getNew(false))
+					.addGame(GAME_FACTORY.getNew(false));
 		}
 
 		return builder.build();

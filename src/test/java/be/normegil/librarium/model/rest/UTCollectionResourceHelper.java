@@ -9,9 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +30,7 @@ public class UTCollectionResourceHelper {
 
 	@Test
 	public void testGetCollectionURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		long offset = 5L;
 		int limit = 25;
 		URL toTest = entity.getCollectionURL(url, offset, limit);
@@ -43,7 +40,7 @@ public class UTCollectionResourceHelper {
 
 	@Test
 	public void testGetBaseURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		long offset = 5L;
 		int limit = 25;
 		URL urlToParse = url.addToPath(Constants.URL.PARAMETER_SEPARATOR + "offset=" + offset + "&limit=" + limit);

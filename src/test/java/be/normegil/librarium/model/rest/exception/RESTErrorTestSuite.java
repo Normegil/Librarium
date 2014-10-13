@@ -33,35 +33,35 @@ public class RESTErrorTestSuite implements DataFactory<RESTError> {
 	private static long index = 0L;
 
 	@Override
+	public RESTError getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public RESTError getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public RESTError getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public RESTError getNew(final boolean withLink) {
+	public RESTError getDefault(final boolean withLink) {
 		return RESTError.builder()
 				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode(FAKE_CODE)
 				.setMessage(MESSAGE)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE)
-				.setMoreInfoURL(URL_FACTORY.getNew())
+				.setMoreInfoURL(URL_FACTORY.getDefault())
 				.setTime(DEFAULT_TIME)
 				.build();
 	}
 
 	@Override
-	public RESTError getNext(final boolean withLink) {
+	public RESTError getNew(final boolean withLink) {
 		RESTError entity = RESTError.builder()
 				.setHttpStatus(HttpStatus.NOT_FOUND)
 				.setCode((int) (FAKE_CODE + index))
 				.setMessage(MESSAGE + index)
 				.setDeveloperMessage(DEVELOPPER_MESSAGE + index)
-				.setMoreInfoURL(URL_FACTORY.getNext())
+				.setMoreInfoURL(URL_FACTORY.getNew())
 				.setTime(LocalDateTime.now())
 				.build();
 

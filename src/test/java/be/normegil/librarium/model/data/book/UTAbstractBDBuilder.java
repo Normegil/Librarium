@@ -28,7 +28,7 @@ public class UTAbstractBDBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		AbstractBD abstractBD = ABSTRACT_BD_FACTORY.getNext();
+		AbstractBD abstractBD = ABSTRACT_BD_FACTORY.getNew();
 		AbstractBD copy = entity.from(abstractBD).build();
 		assertEquals(abstractBD, copy);
 	}

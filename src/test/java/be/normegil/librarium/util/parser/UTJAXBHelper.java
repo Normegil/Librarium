@@ -36,7 +36,7 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testTo_XML() throws Exception {
-		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
+		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getDefault();
 
 		File file = File.createTempFile("JAXBHelperTest-", ".xml");
 		FileOutputStream outputStream = new FileOutputStream(file);
@@ -53,7 +53,7 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testTo_JSON() throws Exception {
-		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
+		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getDefault();
 
 		File file = File.createTempFile("JAXBHelperTest-", ".json");
 		FileOutputStream outputStream = new FileOutputStream(file);
@@ -70,7 +70,7 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testFrom_XML() throws Exception {
-		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
+		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getDefault();
 
 		InputStream inputStream = getClass().getResourceAsStream("JAXBTestClass.xml");
 		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);
@@ -81,7 +81,7 @@ public class UTJAXBHelper {
 
 	@Test
 	public void testFrom_JSON() throws Exception {
-		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getNew();
+		JAXBHelperTestSuite.JAXBTestClass expected = FACTORY.getDefault();
 
 		InputStream inputStream = getClass().getResourceAsStream("JAXBTestClass.json");
 		JAXBHelperTestSuite.JAXBTestClass toTest = entity.from(inputStream);

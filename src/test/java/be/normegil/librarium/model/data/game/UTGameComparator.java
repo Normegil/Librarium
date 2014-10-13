@@ -22,7 +22,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 
 	@Override
 	protected Game getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testDeveloper_First() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addDeveloper(RESPONSIBLE_FACTORY.getNext());
+		copy.addDeveloper(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -50,7 +50,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testDeveloper_Second() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addDeveloper(RESPONSIBLE_FACTORY.getNext());
+		copy.addDeveloper(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -58,7 +58,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testEditor_First() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addEditor(RESPONSIBLE_FACTORY.getNext());
+		copy.addEditor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -66,7 +66,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testEditor_Second() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addEditor(RESPONSIBLE_FACTORY.getNext());
+		copy.addEditor(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -74,7 +74,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testComposer_First() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addComposer(RESPONSIBLE_FACTORY.getNext());
+		copy.addComposer(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -82,7 +82,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testComposer_Second() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.addComposer(RESPONSIBLE_FACTORY.getNext());
+		copy.addComposer(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -90,7 +90,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testSerie_First() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.setSerie(GAME_SERIE_FACTORY.getNext());
+		copy.setSerie(GAME_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -98,7 +98,7 @@ public class UTGameComparator extends AbstractDataComparableTest<Game> {
 	public void testSerie_Second() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		copy.setSerie(GAME_SERIE_FACTORY.getNext());
+		copy.setSerie(GAME_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

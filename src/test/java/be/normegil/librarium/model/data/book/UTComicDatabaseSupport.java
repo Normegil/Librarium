@@ -16,7 +16,7 @@ public class UTComicDatabaseSupport extends AbstractEntityDatabaseSupportTest<Co
 
 	@Override
 	protected Comic initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

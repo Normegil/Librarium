@@ -22,7 +22,7 @@ public class UTResponsible {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -44,7 +44,7 @@ public class UTResponsible {
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		entity.setWikipediaPage(url);
 		assertEquals(url, entity.getWikipediaPage());
 	}

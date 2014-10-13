@@ -22,7 +22,7 @@ public class UTSupportComparator extends AbstractDataComparableTest<Support> {
 
 	@Override
 	protected Support getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class UTSupportComparator extends AbstractDataComparableTest<Support> {
 	public void testWikipediaPage_First() throws Exception {
 		Support entity = getEntity();
 		Support copy = new Support(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -66,7 +66,7 @@ public class UTSupportComparator extends AbstractDataComparableTest<Support> {
 	public void testWikipediaPage_Second() throws Exception {
 		Support entity = getEntity();
 		Support copy = new Support(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -74,7 +74,7 @@ public class UTSupportComparator extends AbstractDataComparableTest<Support> {
 	public void testMedia_Equality() throws Exception {
 		Support entity = getEntity();
 		Support copy = new Support(entity);
-		copy.addMedia(MEDIA_FACTORY.getNext());
+		copy.addMedia(MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

@@ -15,7 +15,7 @@ public class UTEnterpriseEquality extends AbstractDataEqualityTest<Enterprise> {
 
 	@Override
 	protected Enterprise getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test

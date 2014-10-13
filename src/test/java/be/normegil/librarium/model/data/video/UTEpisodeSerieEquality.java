@@ -18,7 +18,7 @@ public class UTEpisodeSerieEquality extends AbstractDataEqualityTest<EpisodeSeri
 
 	@Override
 	protected EpisodeSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class UTEpisodeSerieEquality extends AbstractDataEqualityTest<EpisodeSeri
 	public void testDifferentSeason() throws Exception {
 		EpisodeSerie entity = getEntity();
 		EpisodeSerie copy = new EpisodeSerie(entity);
-		entity.setSeason(SERIE_SEASON_FACTORY.getNext());
+		entity.setSeason(SERIE_SEASON_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

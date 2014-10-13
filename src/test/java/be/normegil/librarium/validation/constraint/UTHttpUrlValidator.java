@@ -26,14 +26,14 @@ public class UTHttpUrlValidator {
 
 	@Test
 	public void testWrongProtocol() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URL alternativeUrl = new URL(ALTERNATIVE_PROTOCOL, url.getHost(), url.getPort(), url.getFilePath());
 		assertFalse(entity.isValid(alternativeUrl, context));
 	}
 
 	@Test
 	public void testHttpProtocol() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URL alternativeUrl = new URL(HTTP_PROTOCOL, url.getHost(), url.getPort(), url.getFilePath());
 		assertTrue(entity.isValid(alternativeUrl, context));
 	}

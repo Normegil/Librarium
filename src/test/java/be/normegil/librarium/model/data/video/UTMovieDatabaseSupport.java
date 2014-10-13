@@ -16,7 +16,7 @@ public class UTMovieDatabaseSupport extends AbstractEntityDatabaseSupportTest<Mo
 
 	@Override
 	protected Movie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

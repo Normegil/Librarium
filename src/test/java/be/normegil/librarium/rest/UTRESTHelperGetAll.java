@@ -55,7 +55,7 @@ public class UTRESTHelperGetAll {
 		dao = new MemoryTestDAO<>(NUMBER_OF_GAMES, Game.class);
 		restServiceHelper = new RESTServiceHelper<>(dao, context, updater);
 
-		baseURI = URL_FACTORY.getNext().toURI();
+		baseURI = URL_FACTORY.getNew().toURI();
 		when(info.getBaseUri())
 				.thenReturn(baseURI);
 

@@ -27,7 +27,7 @@ public class UTBDBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		BD bd = BD_FACTORY.getNext();
+		BD bd = BD_FACTORY.getNew();
 		BD copy = entity.from(bd).build();
 		assertEquals(bd, copy);
 	}

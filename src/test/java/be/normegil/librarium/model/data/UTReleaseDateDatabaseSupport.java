@@ -17,7 +17,7 @@ public class UTReleaseDateDatabaseSupport extends AbstractDatabaseSupportTest<Re
 
 	@Override
 	protected ReleaseDate initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

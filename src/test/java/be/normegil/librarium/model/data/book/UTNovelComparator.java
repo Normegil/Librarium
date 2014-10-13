@@ -16,7 +16,7 @@ public class UTNovelComparator extends AbstractDataComparableTest<Novel> {
 
 	@Override
 	protected Novel getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

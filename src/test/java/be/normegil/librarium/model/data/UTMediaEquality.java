@@ -23,7 +23,7 @@ public class UTMediaEquality extends AbstractDataEqualityTest<Media> {
 
 	@Override
 	protected Media getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class UTMediaEquality extends AbstractDataEqualityTest<Media> {
 	public void testDifferentUniverse() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		entity.addUniverse(UNIVERSE_FACTORY.getNext());
+		entity.addUniverse(UNIVERSE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -45,7 +45,7 @@ public class UTMediaEquality extends AbstractDataEqualityTest<Media> {
 	public void testDifferentReleaseDate() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		entity.addReleaseDate(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		entity.addReleaseDate(SUPPORT_FACTORY.getNew(), LocalDate.now());
 		assertEquals(entity, copy);
 	}
 }

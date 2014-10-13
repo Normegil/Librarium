@@ -4,7 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.test.model.data.AbstractParsingSupportTest;
-import be.normegil.librarium.util.parser.JAXBHelper;
 import be.normegil.librarium.util.parser.Parser;
 
 public class UTCollectionResourceJSONSupport extends AbstractParsingSupportTest<CollectionResource> {
@@ -18,6 +17,6 @@ public class UTCollectionResourceJSONSupport extends AbstractParsingSupportTest<
 
 	@Override
 	protected CollectionResource initEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 }

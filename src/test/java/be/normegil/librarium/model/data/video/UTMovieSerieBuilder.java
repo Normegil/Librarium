@@ -33,7 +33,7 @@ public class UTMovieSerieBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		MovieSerie movieSerie = MOVIE_SERIE_FACTORY.getNext();
+		MovieSerie movieSerie = MOVIE_SERIE_FACTORY.getNew();
 		MovieSerie copy = entity.from(movieSerie).build();
 		assertEquals(movieSerie, copy);
 	}
@@ -41,9 +41,9 @@ public class UTMovieSerieBuilder {
 	@Test
 	public void testAddAllMovies() throws Exception {
 		Collection<Movie> toAdd = new HashSet<>();
-		toAdd.add(MOVIE_FACTORY.getNext());
-		toAdd.add(MOVIE_FACTORY.getNext());
-		toAdd.add(MOVIE_FACTORY.getNext());
+		toAdd.add(MOVIE_FACTORY.getNew());
+		toAdd.add(MOVIE_FACTORY.getNew());
+		toAdd.add(MOVIE_FACTORY.getNew());
 
 		MovieSerie movieSerie = entity
 				.addAllMovies(toAdd)
@@ -54,7 +54,7 @@ public class UTMovieSerieBuilder {
 
 	@Test
 	public void testAddMovie() throws Exception {
-		Movie movie = MOVIE_FACTORY.getNext();
+		Movie movie = MOVIE_FACTORY.getNew();
 		MovieSerie movieSerie = entity
 				.addMovie(movie)
 				.build();

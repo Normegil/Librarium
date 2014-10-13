@@ -21,7 +21,7 @@ public class UTResponsibleComparator extends AbstractDataComparableTest<Responsi
 
 	@Override
 	protected Responsible getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class UTResponsibleComparator extends AbstractDataComparableTest<Responsi
 	public void testWikipediaPage_First() throws Exception {
 		Responsible entity = getEntity();
 		Responsible copy = new FakeResponsible(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -65,7 +65,7 @@ public class UTResponsibleComparator extends AbstractDataComparableTest<Responsi
 	public void testWikipediaPage_Second() throws Exception {
 		Responsible entity = getEntity();
 		Responsible copy = new FakeResponsible(entity);
-		copy.setWikipediaPage(URL_FACTORY.getNext());
+		copy.setWikipediaPage(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

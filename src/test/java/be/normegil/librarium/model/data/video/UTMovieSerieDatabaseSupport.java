@@ -16,7 +16,7 @@ public class UTMovieSerieDatabaseSupport extends AbstractEntityDatabaseSupportTe
 
 	@Override
 	protected MovieSerie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

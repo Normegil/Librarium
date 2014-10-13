@@ -41,7 +41,7 @@ public class UTEntityHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testConvertToURLs_NullList() throws Exception {
-		Validator.validate(entity, CONVERT_TO_URL_METHOD, null, URL_FACTORY.getNext());
+		Validator.validate(entity, CONVERT_TO_URL_METHOD, null, URL_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -61,7 +61,7 @@ public class UTEntityHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testSetIdFromDigest_FirstNull() throws Exception {
-		Validator.validate(entity, SET_ID_FROM_DIGEST_METHOD, null, ENTITY_FACTORY.getNext());
+		Validator.validate(entity, SET_ID_FROM_DIGEST_METHOD, null, ENTITY_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -71,7 +71,7 @@ public class UTEntityHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testSetIdFromDigest_InvalidURI() throws Exception {
-		Entity e = ENTITY_FACTORY.getNext();
+		Entity e = ENTITY_FACTORY.getNew();
 		Entity.EntityDigest digest = new Entity.EntityDigest();
 		digest.href = URI.create(INVALID_URI);
 		Validator.validate(entity, SET_ID_FROM_DIGEST_METHOD, digest, e);

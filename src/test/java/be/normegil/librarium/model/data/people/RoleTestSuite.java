@@ -25,13 +25,22 @@ public class RoleTestSuite implements DataFactory<Role> {
 	private static final DataFactory<Video> VIDEO_FACTORY = FactoryRepository.get(Video.class);
 
 	@Override
+	public Role getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Role getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Role getNext() {
-		return getNext(true);
+	public Role getDefault(boolean withLink) {
+		Role.Builder builder = Role.builder()
+				.setRole(PERSON_FACTORY.getDefault(false))
+				.setActor(PERSON_FACTORY.getDefault(false))
+				.setVideo(VIDEO_FACTORY.getDefault(false));
+		return builder.build();
 	}
 
 	@Override
@@ -40,15 +49,6 @@ public class RoleTestSuite implements DataFactory<Role> {
 				.setRole(PERSON_FACTORY.getNew(false))
 				.setActor(PERSON_FACTORY.getNew(false))
 				.setVideo(VIDEO_FACTORY.getNew(false));
-		return builder.build();
-	}
-
-	@Override
-	public Role getNext(boolean withLink) {
-		Role.Builder builder = Role.builder()
-				.setRole(PERSON_FACTORY.getNext(false))
-				.setActor(PERSON_FACTORY.getNext(false))
-				.setVideo(VIDEO_FACTORY.getNext(false));
 		return builder.build();
 	}
 }

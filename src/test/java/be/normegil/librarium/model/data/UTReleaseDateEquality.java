@@ -23,7 +23,7 @@ public class UTReleaseDateEquality extends AbstractDataEqualityTest<ReleaseDate>
 
 	@Override
 	protected ReleaseDate getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -36,14 +36,14 @@ public class UTReleaseDateEquality extends AbstractDataEqualityTest<ReleaseDate>
 	@Test
 	public void testDifferentMedia() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate copy = new ReleaseDate(MEDIA_FACTORY.getNext(), entity.getSupport(), entity.getDate());
+		ReleaseDate copy = new ReleaseDate(MEDIA_FACTORY.getNew(), entity.getSupport(), entity.getDate());
 		assertNotEquals(entity, copy);
 	}
 
 	@Test
 	public void testDifferentSupport() throws Exception {
 		ReleaseDate entity = getEntity();
-		ReleaseDate copy = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNext(), entity.getDate());
+		ReleaseDate copy = new ReleaseDate(entity.getMedia(), SUPPORT_FACTORY.getNew(), entity.getDate());
 		assertNotEquals(entity, copy);
 	}
 

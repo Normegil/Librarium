@@ -25,7 +25,7 @@ public class UTDownloadLink {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -53,21 +53,21 @@ public class UTDownloadLink {
 
 	@Test
 	public void testSetLink() throws Exception {
-		URL alternativeLink = URL_FACTORY.getNext();
+		URL alternativeLink = URL_FACTORY.getNew();
 		entity.setLink(alternativeLink);
 		assertEquals(alternativeLink, entity.getLink());
 	}
 
 	@Test
 	public void testSetMedia() throws Exception {
-		BaseMedia media = BASE_MEDIA_FACTORY.getNext();
+		BaseMedia media = BASE_MEDIA_FACTORY.getNew();
 		entity.setMedia(media);
 		assertEquals(media, entity.getMedia());
 	}
 
 	@Test
 	public void testToString() throws Exception {
-		DownloadLink link = FACTORY.getNew();
+		DownloadLink link = FACTORY.getDefault();
 		assertEquals("DownloadLink[id=<null>,title=Title,description=Description,link=URL[url=http://Host:42/File]]", link.toString());
 	}
 }

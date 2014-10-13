@@ -32,7 +32,7 @@ public class UTGameREST_Safety {
 	private UriInfo info;
 
 	public UTGameREST_Safety() {
-		Mockito.when(info.getBaseUri()).thenReturn(URL_FACTORY.getNew().toURI());
+		Mockito.when(info.getBaseUri()).thenReturn(URL_FACTORY.getDefault().toURI());
 	}
 
 	@Before
@@ -67,7 +67,7 @@ public class UTGameREST_Safety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testCreate_NullInfo() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("create", UriInfo.class, Game.class), null, ENTITY_FACTORY.getNext());
+		Validator.validate(entity, CLASS.getMethod("create", UriInfo.class, Game.class), null, ENTITY_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -77,7 +77,7 @@ public class UTGameREST_Safety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPUT_NullID() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("updateByPUT", UUID.class, Entity.class), null, ENTITY_FACTORY.getNext());
+		Validator.validate(entity, CLASS.getMethod("updateByPUT", UUID.class, Entity.class), null, ENTITY_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -87,12 +87,12 @@ public class UTGameREST_Safety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPOST_NullInfo() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Entity.class), null, UUID.class, ENTITY_FACTORY.getNext());
+		Validator.validate(entity, CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Entity.class), null, UUID.class, ENTITY_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPOST_NullID() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Entity.class), info, null, ENTITY_FACTORY.getNext());
+		Validator.validate(entity, CLASS.getMethod("updateByPOST", UriInfo.class, UUID.class, Entity.class), info, null, ENTITY_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)

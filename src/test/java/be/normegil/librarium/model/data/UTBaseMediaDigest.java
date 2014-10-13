@@ -18,7 +18,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 
@@ -153,7 +152,7 @@ public class UTBaseMediaDigest {
 
 	private BaseMedia callFromBase() {
 		URI baseUri = URI.create(REST_URI);
-		BaseMedia baseMedia = GAME_FACTORY.getNext();
+		BaseMedia baseMedia = GAME_FACTORY.getNew();
 		entity.fromBase(baseUri, baseMedia);
 		URI expected = URI.create(REST_URI + Constants.URL.PATH_SEPARATOR + baseMedia.getId());
 		when(helper.getRESTUri(baseUri, FakeBaseMedia.class, baseMedia))
@@ -163,7 +162,7 @@ public class UTBaseMediaDigest {
 
 	private BaseMedia callToBase() throws Exception {
 		FakeBaseMedia.Builder builder = FakeBaseMedia.builder();
-		BaseMedia baseMedia = GAME_FACTORY.getNext();
+		BaseMedia baseMedia = GAME_FACTORY.getNew();
 		new EntityHelper().assignIdsTo(baseMedia.getDownloadLinks());
 
 		for (DownloadLink downloadLink : baseMedia.getDownloadLinks()) {

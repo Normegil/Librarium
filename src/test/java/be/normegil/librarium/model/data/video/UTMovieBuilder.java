@@ -29,14 +29,14 @@ public class UTMovieBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Movie movie = MOVIE_FACTORY.getNext();
+		Movie movie = MOVIE_FACTORY.getNew();
 		Movie copy = entity.from(movie).build();
 		assertEquals(movie, copy);
 	}
 
 	@Test
 	public void testSetSerie() throws Exception {
-		MovieSerie serie = MOVIE_SERIE_FACTORY.getNext();
+		MovieSerie serie = MOVIE_SERIE_FACTORY.getNew();
 		Movie movie = entity
 				.setSerie(serie)
 				.build();

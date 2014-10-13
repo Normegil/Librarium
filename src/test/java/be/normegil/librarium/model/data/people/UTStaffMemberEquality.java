@@ -21,7 +21,7 @@ public class UTStaffMemberEquality extends AbstractDataEqualityTest<StaffMember>
 
 	@Override
 	protected StaffMember getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class UTStaffMemberEquality extends AbstractDataEqualityTest<StaffMember>
 	public void testDifferentResponsible() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		entity.setResponsible(RESPONSIBLE_FACTORY.getNext());
+		entity.setResponsible(RESPONSIBLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -51,7 +51,7 @@ public class UTStaffMemberEquality extends AbstractDataEqualityTest<StaffMember>
 	public void testDifferentVideo() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		entity.setMedia(VIDEO_FACTORY.getNext());
+		entity.setMedia(VIDEO_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

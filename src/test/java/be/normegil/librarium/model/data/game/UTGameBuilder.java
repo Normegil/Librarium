@@ -36,7 +36,7 @@ public class UTGameBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		Game copy = entity.from(game).build();
 		assertEquals(game, copy);
 	}
@@ -44,9 +44,9 @@ public class UTGameBuilder {
 	@Test
 	public void testAddAllDevelopers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Game game = entity
 				.addAllDevelopers(toAdd)
@@ -57,7 +57,7 @@ public class UTGameBuilder {
 
 	@Test
 	public void testAddDeveloper() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Game game = entity
 				.addDeveloper(responsible)
 				.build();
@@ -68,9 +68,9 @@ public class UTGameBuilder {
 	@Test
 	public void testAddAllEditors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Game game = entity
 				.addAllEditors(toAdd)
@@ -81,7 +81,7 @@ public class UTGameBuilder {
 
 	@Test
 	public void testAddEditor() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Game game = entity
 				.addEditor(responsible)
 				.build();
@@ -92,9 +92,9 @@ public class UTGameBuilder {
 	@Test
 	public void testAddAllComposers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Game game = entity
 				.addAllComposers(toAdd)
@@ -105,7 +105,7 @@ public class UTGameBuilder {
 
 	@Test
 	public void testAddComposer() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Game game = entity
 				.addComposer(responsible)
 				.build();
@@ -115,7 +115,7 @@ public class UTGameBuilder {
 
 	@Test
 	public void testSetSerie() throws Exception {
-		GameSerie serie = GAME_SERIE_FACTORY.getNext();
+		GameSerie serie = GAME_SERIE_FACTORY.getNew();
 		Game game = entity
 				.setSerie(serie)
 				.build();

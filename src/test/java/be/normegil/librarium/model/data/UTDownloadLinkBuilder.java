@@ -35,7 +35,7 @@ public class UTDownloadLinkBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNext(true);
+		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNew(true);
 		DownloadLink copy = entity.from(downloadLink).build();
 		assertEquals(downloadLink, copy);
 	}
@@ -58,7 +58,7 @@ public class UTDownloadLinkBuilder {
 
 	@Test
 	public void testSetLink() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		DownloadLink downloadLink = entity
 				.setLink(url)
 				.build();
@@ -67,7 +67,7 @@ public class UTDownloadLinkBuilder {
 
 	@Test
 	public void testSetMedia() throws Exception {
-		BaseMedia media = BASE_MEDIA_FACTORY.getNext();
+		BaseMedia media = BASE_MEDIA_FACTORY.getNew();
 		DownloadLink downloadLink = entity
 				.setMedia(media)
 				.build();

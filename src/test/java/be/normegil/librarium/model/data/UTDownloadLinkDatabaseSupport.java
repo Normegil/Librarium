@@ -17,7 +17,7 @@ public class UTDownloadLinkDatabaseSupport extends AbstractEntityDatabaseSupport
 
 	@Override
 	protected DownloadLink initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

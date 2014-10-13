@@ -25,7 +25,7 @@ public class UTRESTErrorCSVSupport extends AbstractCSVSupportTest<RESTError> {
 	@Override
 	protected List<RESTError> initEntity() {
 		List<RESTError> errors = new ArrayList<>();
-		RESTError error = FACTORY.getNew();
+		RESTError error = FACTORY.getDefault();
 		RESTError error1 = RESTError.builder()
 				.from(error)
 				.setCode(error.getCode() + 1)

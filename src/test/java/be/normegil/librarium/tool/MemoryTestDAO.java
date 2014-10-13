@@ -86,7 +86,7 @@ public class MemoryTestDAO<E extends Entity> implements DAO<E> {
 	private EntityHelper add(int numberOfEntity) {
 		EntityHelper entityHelper = new EntityHelper();
 		for (int i = 0; i < numberOfEntity; i++) {
-			E entity = FACTORY.getNext();
+			E entity = FACTORY.getNew();
 			entityHelper.setId(entity, UUID.randomUUID());
 			entities.add(entity);
 		}

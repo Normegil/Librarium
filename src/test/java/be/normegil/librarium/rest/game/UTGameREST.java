@@ -41,7 +41,7 @@ public class UTGameREST {
 		gameREST = new GameREST();
 		gameREST.setDAO(gameDAO);
 
-		Mockito.when(info.getBaseUri()).thenReturn(URL_FACTORY.getNext().toURI());
+		Mockito.when(info.getBaseUri()).thenReturn(URL_FACTORY.getNew().toURI());
 	}
 
 	@After
@@ -102,7 +102,7 @@ public class UTGameREST {
 
 	@Test
 	public void testCreate() throws Exception {
-		gameREST.create(info, GAME_FACTORY.getNext());
+		gameREST.create(info, GAME_FACTORY.getNew());
 		assertGameCreated();
 		throw new NotImplementedException();
 	}

@@ -18,7 +18,7 @@ public class UTBookSerieComparator extends AbstractDataComparableTest<BookSerie>
 
 	@Override
 	protected BookSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class UTBookSerieComparator extends AbstractDataComparableTest<BookSerie>
 	public void testBook_First() throws Exception {
 		BookSerie entity = getEntity();
 		BookSerie copy = new BookSerie(entity);
-		copy.addBook(BOOK_FACTORY.getNext());
+		copy.addBook(BOOK_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -45,7 +45,7 @@ public class UTBookSerieComparator extends AbstractDataComparableTest<BookSerie>
 	public void testBook_Second() throws Exception {
 		BookSerie entity = getEntity();
 		BookSerie copy = new BookSerie(entity);
-		copy.addBook(BOOK_FACTORY.getNext());
+		copy.addBook(BOOK_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

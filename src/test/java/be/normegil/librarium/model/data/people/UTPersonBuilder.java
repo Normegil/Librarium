@@ -33,7 +33,7 @@ public class UTPersonBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Person person = PERSON_FACTORY.getNext();
+		Person person = PERSON_FACTORY.getNew();
 		Person copy = entity.from(person).build();
 		assertEquals(person, copy);
 	}
@@ -41,9 +41,9 @@ public class UTPersonBuilder {
 	@Test
 	public void testAddAllRoles() throws Exception {
 		Collection<Role> toAdd = new HashSet<>();
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
 
 		Person person = entity
 				.addAllRoles(toAdd)
@@ -54,7 +54,7 @@ public class UTPersonBuilder {
 
 	@Test
 	public void testAddRole() throws Exception {
-		Role role = ROLE_FACTORY.getNext();
+		Role role = ROLE_FACTORY.getNew();
 		Person person = entity
 				.addRole(role)
 				.build();

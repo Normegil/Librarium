@@ -33,7 +33,7 @@ public class UTBaseMedia {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		tags = entity.getTags();
 		stores = entity.getStores();
 		downloadLinks = entity.getDownloadLinks();
@@ -127,14 +127,14 @@ public class UTBaseMedia {
 
 	@Test
 	public void testSetOfficialWebsite() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		entity.setOfficialWebsite(url);
 		assertEquals(url, entity.getOfficialWebsite());
 	}
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		entity.setWikipediaPage(url);
 		assertEquals(url, entity.getWikipediaPage());
 	}
@@ -142,9 +142,9 @@ public class UTBaseMedia {
 	@Test
 	public void testAddAllStores() throws Exception {
 		Collection<URL> toAdd = new HashSet<>();
-		toAdd.add(URL_FACTORY.getNext());
-		toAdd.add(URL_FACTORY.getNext());
-		toAdd.add(URL_FACTORY.getNext());
+		toAdd.add(URL_FACTORY.getNew());
+		toAdd.add(URL_FACTORY.getNew());
+		toAdd.add(URL_FACTORY.getNew());
 
 		stores.addAll(toAdd);
 		entity.addAllStores(toAdd);
@@ -153,7 +153,7 @@ public class UTBaseMedia {
 
 	@Test
 	public void testAddStore() throws Exception {
-		URL toAdd = URL_FACTORY.getNext();
+		URL toAdd = URL_FACTORY.getNew();
 		stores.add(toAdd);
 		entity.addStore(toAdd);
 		assertEquals(stores, entity.getStores());
@@ -161,9 +161,9 @@ public class UTBaseMedia {
 
 	@Test
 	public void testRemoveAllStores() throws Exception {
-		URL base = URL_FACTORY.getNext();
-		URL second = URL_FACTORY.getNext();
-		URL third = URL_FACTORY.getNext();
+		URL base = URL_FACTORY.getNew();
+		URL second = URL_FACTORY.getNew();
+		URL third = URL_FACTORY.getNew();
 
 		Collection<URL> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -194,7 +194,7 @@ public class UTBaseMedia {
 
 	@Test
 	public void testClearStores() throws Exception {
-		entity.addStore(URL_FACTORY.getNext());
+		entity.addStore(URL_FACTORY.getNew());
 		entity.clearStores();
 		assertTrue(entity.getStores().isEmpty());
 	}
@@ -202,9 +202,9 @@ public class UTBaseMedia {
 	@Test
 	public void testAddAllDownloadLinks() throws Exception {
 		Collection<DownloadLink> toAdd = new HashSet<>();
-		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
-		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
-		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
+		toAdd.add(DOWNLOAD_LINK_FACTORY.getNew());
+		toAdd.add(DOWNLOAD_LINK_FACTORY.getNew());
+		toAdd.add(DOWNLOAD_LINK_FACTORY.getNew());
 
 		downloadLinks.addAll(toAdd);
 		entity.addAllDownloadLinks(toAdd);
@@ -213,7 +213,7 @@ public class UTBaseMedia {
 
 	@Test
 	public void testAddDownloadLink() throws Exception {
-		DownloadLink toAdd = DOWNLOAD_LINK_FACTORY.getNext();
+		DownloadLink toAdd = DOWNLOAD_LINK_FACTORY.getNew();
 		downloadLinks.add(toAdd);
 		entity.addDownloadLink(toAdd);
 		assertEquals(downloadLinks, entity.getDownloadLinks());
@@ -221,9 +221,9 @@ public class UTBaseMedia {
 
 	@Test
 	public void testRemoveAllDownloadLinks() throws Exception {
-		DownloadLink base = DOWNLOAD_LINK_FACTORY.getNext();
-		DownloadLink second = DOWNLOAD_LINK_FACTORY.getNext();
-		DownloadLink third = DOWNLOAD_LINK_FACTORY.getNext();
+		DownloadLink base = DOWNLOAD_LINK_FACTORY.getNew();
+		DownloadLink second = DOWNLOAD_LINK_FACTORY.getNew();
+		DownloadLink third = DOWNLOAD_LINK_FACTORY.getNew();
 
 		Collection<DownloadLink> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -254,7 +254,7 @@ public class UTBaseMedia {
 
 	@Test
 	public void testClearDownloadLink() throws Exception {
-		entity.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNext());
+		entity.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNew());
 		entity.clearDownloadLinks();
 		assertTrue(entity.getDownloadLinks().isEmpty());
 

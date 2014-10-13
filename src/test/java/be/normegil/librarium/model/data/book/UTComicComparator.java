@@ -16,7 +16,7 @@ public class UTComicComparator extends AbstractDataComparableTest<Comic> {
 
 	@Override
 	protected Comic getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

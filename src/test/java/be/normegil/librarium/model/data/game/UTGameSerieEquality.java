@@ -17,7 +17,7 @@ public class UTGameSerieEquality extends AbstractDataEqualityTest<GameSerie> {
 
 	@Override
 	protected GameSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class UTGameSerieEquality extends AbstractDataEqualityTest<GameSerie> {
 	public void testDifferentGame() throws Exception {
 		GameSerie entity = getEntity();
 		GameSerie copy = new GameSerie(entity);
-		entity.addGame(GAME_FACTORY.getNext());
+		entity.addGame(GAME_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 }

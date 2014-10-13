@@ -17,7 +17,7 @@ public class UTURLComparable extends AbstractDataComparableTest<URL> {
 
 	@Override
 	protected URL getNewEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

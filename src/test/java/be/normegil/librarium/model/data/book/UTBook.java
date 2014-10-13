@@ -28,7 +28,7 @@ public class UTBook {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		authors = entity.getAuthors();
 		editors = entity.getEditors();
 	}
@@ -49,9 +49,9 @@ public class UTBook {
 	@Test
 	public void testAddAllAuthors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		authors.addAll(toAdd);
 		entity.addAllAuthors(toAdd);
@@ -60,7 +60,7 @@ public class UTBook {
 
 	@Test
 	public void testAddAuthor() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		authors.add(toAdd);
 		entity.addAuthor(toAdd);
 		assertEquals(authors, entity.getAuthors());
@@ -68,9 +68,9 @@ public class UTBook {
 
 	@Test
 	public void testRemoveAllAuthors() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -102,9 +102,9 @@ public class UTBook {
 	@Test
 	public void testAddAllEditors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		editors.addAll(toAdd);
 		entity.addAllEditors(toAdd);
@@ -113,7 +113,7 @@ public class UTBook {
 
 	@Test
 	public void testAddEditor() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		editors.add(toAdd);
 		entity.addEditor(toAdd);
 		assertEquals(editors, entity.getEditors());
@@ -121,9 +121,9 @@ public class UTBook {
 
 	@Test
 	public void testRemoveAllEditors() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -154,7 +154,7 @@ public class UTBook {
 
 	@Test
 	public void testSetSerie() throws Exception {
-		BookSerie serie = BOOK_SERIE_FACTORY.getNext();
+		BookSerie serie = BOOK_SERIE_FACTORY.getNew();
 		entity.setSerie(serie);
 		assertEquals(serie, entity.getSerie());
 	}

@@ -16,7 +16,7 @@ public class UTStaffMemberDatabaseSupport extends AbstractEntityDatabaseSupportT
 
 	@Override
 	protected StaffMember initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

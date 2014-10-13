@@ -28,13 +28,13 @@ public class UTURLConverter {
 
 	@Test
 	public void testConvertToDatabaseColumn() throws Exception {
-		URL url = FACTORY.getNext();
+		URL url = FACTORY.getNew();
 		assertEquals(url.toRepresentation(), entity.convertToDatabaseColumn(url));
 	}
 
 	@Test
 	public void testConvertToEntityAttribute() throws Exception {
-		URL url = FACTORY.getNext();
+		URL url = FACTORY.getNew();
 		String toParse = url.toRepresentation();
 		assertEquals(url, entity.convertToEntityAttribute(toParse));
 	}

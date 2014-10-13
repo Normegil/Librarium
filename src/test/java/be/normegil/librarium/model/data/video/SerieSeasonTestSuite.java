@@ -4,8 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.BaseMedia;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -30,24 +28,24 @@ public class SerieSeasonTestSuite implements DataFactory<SerieSeason> {
 	private Long index = 0L;
 
 	@Override
+	public SerieSeason getDefault() {
+		return getDefault(true, false);
+	}
+
+	@Override
 	public SerieSeason getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public SerieSeason getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public SerieSeason getNew(boolean withLink) {
+	public SerieSeason getDefault(final boolean withLink, final boolean withIds) {
 		SerieSeason.Builder builder = SerieSeason.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink))
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds))
 				.setSeasonNumber(1L);
 
 		if (withLink) {
-			builder.setSerie(SERIE_FACTORY.getNew(false))
-					.addEpisode(EPISODE_SERIE_FACTORY.getNew(false));
+			builder.setSerie(SERIE_FACTORY.getDefault(false, withIds))
+					.addEpisode(EPISODE_SERIE_FACTORY.getDefault(false, withIds));
 		}
 
 		return builder.build();
@@ -55,15 +53,15 @@ public class SerieSeasonTestSuite implements DataFactory<SerieSeason> {
 	}
 
 	@Override
-	public SerieSeason getNext(boolean withLink) {
+	public SerieSeason getNew(final boolean withLink, final boolean withIds) {
 		SerieSeason.Builder builder = SerieSeason.builder()
-				.from(BASE_MEDIA_FACTORY.getNew(withLink))
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink, withIds))
 				.setSeasonNumber(index);
 
 		if (withLink) {
-			builder.setSerie(SERIE_FACTORY.getNext())
-					.addEpisode(EPISODE_SERIE_FACTORY.getNext())
-					.addEpisode(EPISODE_SERIE_FACTORY.getNext());
+			builder.setSerie(SERIE_FACTORY.getNew())
+					.addEpisode(EPISODE_SERIE_FACTORY.getNew(false, withIds))
+					.addEpisode(EPISODE_SERIE_FACTORY.getNew(false, withIds));
 		}
 
 		index += 1;

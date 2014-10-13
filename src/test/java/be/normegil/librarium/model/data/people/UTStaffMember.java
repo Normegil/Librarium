@@ -22,7 +22,7 @@ public class UTStaffMember {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -44,14 +44,14 @@ public class UTStaffMember {
 
 	@Test
 	public void testSetResponsible() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		entity.setResponsible(responsible);
 		assertEquals(responsible, entity.getResponsible());
 	}
 
 	@Test
 	public void testSetVideo() throws Exception {
-		Video video = VIDEO_FACTORY.getNext();
+		Video video = VIDEO_FACTORY.getNew();
 		entity.setMedia(video);
 		assertEquals(video, entity.getMedia());
 	}

@@ -42,13 +42,13 @@ public class UTUrlConverter {
 
 	@Test
 	public void testConvertToDatabaseColumn() throws Exception {
-		URL url = URL_FACTORY.getNew();
+		URL url = URL_FACTORY.getDefault();
 		assertEquals("http://Host:42/File", entity.convertToDatabaseColumn(url));
 	}
 
 	@Test
 	public void testConvertToEntityAttribute() throws Exception {
-		URL url = URL_FACTORY.getNew();
+		URL url = URL_FACTORY.getDefault();
 		assertEquals(url, entity.convertToEntityAttribute("http://Host:42/File"));
 	}
 }

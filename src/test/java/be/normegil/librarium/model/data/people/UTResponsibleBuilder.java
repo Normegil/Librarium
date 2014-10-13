@@ -32,7 +32,7 @@ public class UTResponsibleBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Responsible copy = entity.from(responsible).build();
 		assertEquals(responsible, copy);
 	}
@@ -47,7 +47,7 @@ public class UTResponsibleBuilder {
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		Responsible responsible = entity
 				.setWikipediaPage(url)
 				.build();

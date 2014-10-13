@@ -40,7 +40,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Video video = VIDEO_FACTORY.getNext();
+		Video video = VIDEO_FACTORY.getNew();
 		Video copy = entity.from(video).build();
 		assertEquals(video, copy);
 	}
@@ -56,9 +56,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllProducers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllProducers(toAdd)
@@ -69,7 +69,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddProducer() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Video video = entity
 				.addProducer(responsible)
 				.build();
@@ -80,9 +80,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllDirectors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllDirectors(toAdd)
@@ -93,7 +93,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddDirector() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Video video = entity
 				.addDirector(responsible)
 				.build();
@@ -104,9 +104,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllComposers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllComposers(toAdd)
@@ -117,7 +117,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddComposer() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Video video = entity
 				.addComposer(responsible)
 				.build();
@@ -128,9 +128,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllScenarists() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllScenarists(toAdd)
@@ -141,7 +141,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddScenarist() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Video video = entity
 				.addScenarist(responsible)
 				.build();
@@ -152,9 +152,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllOtherStaffMembers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllOtherStaffMembers(toAdd)
@@ -165,7 +165,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddOtherStaffMember() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Video video = entity
 				.addOtherStaffMember(responsible)
 				.build();
@@ -176,9 +176,9 @@ public class UTVideoBuilder {
 	@Test
 	public void testAddAllActors() throws Exception {
 		Collection<Role> toAdd = new HashSet<>();
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
 
 		Video video = entity
 				.addAllActors(toAdd)
@@ -189,7 +189,7 @@ public class UTVideoBuilder {
 
 	@Test
 	public void testAddActor() throws Exception {
-		Role role = ROLE_FACTORY.getNext();
+		Role role = ROLE_FACTORY.getNew();
 		Video video = entity
 				.addActor(role)
 				.build();

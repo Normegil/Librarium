@@ -22,7 +22,7 @@ public class UTStaffMemberComparator extends AbstractDataComparableTest<StaffMem
 
 	@Override
 	protected StaffMember getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class UTStaffMemberComparator extends AbstractDataComparableTest<StaffMem
 	public void testResponsible_First() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		copy.setResponsible(RESPONSIBLE_FACTORY.getNext());
+		copy.setResponsible(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -66,7 +66,7 @@ public class UTStaffMemberComparator extends AbstractDataComparableTest<StaffMem
 	public void testResponsible_Second() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		copy.setResponsible(RESPONSIBLE_FACTORY.getNext());
+		copy.setResponsible(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -74,7 +74,7 @@ public class UTStaffMemberComparator extends AbstractDataComparableTest<StaffMem
 	public void testMedia_First() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		copy.setMedia(MEDIA_FACTORY.getNext());
+		copy.setMedia(MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -82,7 +82,7 @@ public class UTStaffMemberComparator extends AbstractDataComparableTest<StaffMem
 	public void testMedia_Second() throws Exception {
 		StaffMember entity = getEntity();
 		StaffMember copy = new StaffMember(entity);
-		copy.setMedia(MEDIA_FACTORY.getNext());
+		copy.setMedia(MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

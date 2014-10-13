@@ -18,7 +18,7 @@ public class UTUniverseEquality extends AbstractDataEqualityTest<Universe> {
 
 	@Override
 	protected Universe getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -48,7 +48,7 @@ public class UTUniverseEquality extends AbstractDataEqualityTest<Universe> {
 	public void testDifferentMedia() throws Exception {
 		Universe entity = getEntity();
 		Universe copy = new Universe(entity);
-		entity.addMedia(MEDIA_FACTORY.getNext());
+		entity.addMedia(MEDIA_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 }

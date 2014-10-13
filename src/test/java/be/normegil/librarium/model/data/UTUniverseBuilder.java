@@ -35,7 +35,7 @@ public class UTUniverseBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Universe universe = FACTORY.getNext(true);
+		Universe universe = FACTORY.getNew(true);
 		Universe copy = entity.from(universe).build();
 		assertEquals(universe, copy);
 	}
@@ -59,9 +59,9 @@ public class UTUniverseBuilder {
 	@Test
 	public void testAddAllMedias() throws Exception {
 		Collection<Media> toAdd = new HashSet<>();
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
 
 		Universe universe = entity
 				.addAllMedias(toAdd)
@@ -72,7 +72,7 @@ public class UTUniverseBuilder {
 
 	@Test
 	public void testAddMedia() throws Exception {
-		Media media = MEDIA_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
 		Universe universe = entity
 				.addMedia(media)
 				.build();

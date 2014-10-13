@@ -4,8 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -31,38 +29,38 @@ public class DownloadLinkTestSuite implements DataFactory<DownloadLink> {
 	private static long index = 0L;
 
 	@Override
+	public DownloadLink getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public DownloadLink getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public DownloadLink getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public DownloadLink getNew(boolean withLink) {
+	public DownloadLink getDefault(boolean withLink) {
 		DownloadLink.Builder builder = DownloadLink.builder()
 				.setTitle(TITLE)
 				.setDescription(DESCRIPTION)
-				.setLink(URL_FACTORY.getNew());
+				.setLink(URL_FACTORY.getDefault());
 
 		if (withLink) {
-			builder.setMedia(BASE_MEDIA_FACTORY.getNew(false));
+			builder.setMedia(BASE_MEDIA_FACTORY.getDefault(false));
 		}
 
 		return builder.build();
 	}
 
 	@Override
-	public DownloadLink getNext(boolean withLink) {
+	public DownloadLink getNew(boolean withLink) {
 		DownloadLink.Builder builder = DownloadLink.builder()
 				.setTitle(TITLE + index)
 				.setDescription(DESCRIPTION + index)
-				.setLink(URL_FACTORY.getNext());
+				.setLink(URL_FACTORY.getNew());
 
 		if (withLink) {
-			builder.setMedia(BASE_MEDIA_FACTORY.getNext());
+			builder.setMedia(BASE_MEDIA_FACTORY.getNew());
 		}
 
 		index += 1;

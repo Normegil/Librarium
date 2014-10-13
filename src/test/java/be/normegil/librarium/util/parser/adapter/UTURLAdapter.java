@@ -29,13 +29,13 @@ public class UTURLAdapter {
 
 	@Test
 	public void testMarshal() throws Exception {
-		URL url = FACTORY.getNext();
+		URL url = FACTORY.getNew();
 		assertEquals(url.toRepresentation(), entity.marshal(url));
 	}
 
 	@Test
 	public void testUnmarshal() throws Exception {
-		URL url = FACTORY.getNext();
+		URL url = FACTORY.getNew();
 		String toParse = url.toRepresentation();
 		assertEquals(url, entity.unmarshal(toParse));
 	}

@@ -19,7 +19,7 @@ public class UTPersonComparator extends AbstractDataComparableTest<Person> {
 
 	@Override
 	protected Person getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class UTPersonComparator extends AbstractDataComparableTest<Person> {
 	public void testRole_First() throws Exception {
 		Person entity = getEntity();
 		Person copy = new Person(entity);
-		copy.addRole(ROLE_FACTORY.getNext());
+		copy.addRole(ROLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -46,7 +46,7 @@ public class UTPersonComparator extends AbstractDataComparableTest<Person> {
 	public void testRole_Second() throws Exception {
 		Person entity = getEntity();
 		Person copy = new Person(entity);
-		copy.addRole(ROLE_FACTORY.getNext());
+		copy.addRole(ROLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

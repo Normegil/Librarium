@@ -32,13 +32,26 @@ public class MediaTestSuite implements DataFactory<Media> {
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
 
 	@Override
+	public Media getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Media getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Media getNext() {
-		return getNext(true);
+	public Media getDefault(boolean withLink) {
+		FakeMedia.Builder builder = FakeMedia.builder()
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+
+		if (withLink) {
+			builder.addUniverse(UNIVERSE_FACTORY.getDefault(false))
+					.addReleaseDate(SUPPORT_FACTORY.getDefault(false), LocalDate.of(2014, Month.AUGUST, 20));
+		}
+
+		return builder.build();
 	}
 
 	@Override
@@ -48,24 +61,11 @@ public class MediaTestSuite implements DataFactory<Media> {
 
 		if (withLink) {
 			builder.addUniverse(UNIVERSE_FACTORY.getNew(false))
-					.addReleaseDate(SUPPORT_FACTORY.getNew(false), LocalDate.of(2014, Month.AUGUST, 20));
-		}
-
-		return builder.build();
-	}
-
-	@Override
-	public Media getNext(boolean withLink) {
-		FakeMedia.Builder builder = FakeMedia.builder()
-				.from(BASE_MEDIA_FACTORY.getNext(withLink));
-
-		if (withLink) {
-			builder.addUniverse(UNIVERSE_FACTORY.getNext(false))
-					.addUniverse(UNIVERSE_FACTORY.getNext(false))
-					.addSupport(SUPPORT_FACTORY.getNext(false))
-					.addSupport(SUPPORT_FACTORY.getNext(false))
-					.addReleaseDate(SUPPORT_FACTORY.getNext(false), LocalDate.of(2014, Month.AUGUST, 20))
-					.addReleaseDate(SUPPORT_FACTORY.getNext(false), LocalDate.now());
+					.addUniverse(UNIVERSE_FACTORY.getNew(false))
+					.addSupport(SUPPORT_FACTORY.getNew(false))
+					.addSupport(SUPPORT_FACTORY.getNew(false))
+					.addReleaseDate(SUPPORT_FACTORY.getNew(false), LocalDate.of(2014, Month.AUGUST, 20))
+					.addReleaseDate(SUPPORT_FACTORY.getNew(false), LocalDate.now());
 		}
 
 		return builder.build();

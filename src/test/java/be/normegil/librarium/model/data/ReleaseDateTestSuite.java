@@ -25,29 +25,29 @@ public class ReleaseDateTestSuite implements DataFactory<ReleaseDate> {
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
 
 	@Override
+	public ReleaseDate getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public ReleaseDate getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public ReleaseDate getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public ReleaseDate getNew(final boolean withLink) {
+	public ReleaseDate getDefault(final boolean withLink) {
 		return new ReleaseDate(
-				MEDIA_FACTORY.getNew(),
-				SUPPORT_FACTORY.getNew(),
+				MEDIA_FACTORY.getDefault(),
+				SUPPORT_FACTORY.getDefault(),
 				LocalDate.of(2014, Month.AUGUST, 30)
 		);
 	}
 
 	@Override
-	public ReleaseDate getNext(final boolean withLink) {
+	public ReleaseDate getNew(final boolean withLink) {
 		ReleaseDate entity = new ReleaseDate(
-				MEDIA_FACTORY.getNext(),
-				SUPPORT_FACTORY.getNext(),
+				MEDIA_FACTORY.getNew(),
+				SUPPORT_FACTORY.getNew(),
 				LocalDate.now()
 		);
 		return entity;

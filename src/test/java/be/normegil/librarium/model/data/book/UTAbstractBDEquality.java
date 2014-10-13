@@ -17,7 +17,7 @@ public class UTAbstractBDEquality extends AbstractDataEqualityTest<AbstractBD> {
 
 	@Override
 	protected AbstractBD getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test

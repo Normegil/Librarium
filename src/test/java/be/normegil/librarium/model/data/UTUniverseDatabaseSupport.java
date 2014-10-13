@@ -16,7 +16,7 @@ public class UTUniverseDatabaseSupport extends AbstractEntityDatabaseSupportTest
 
 	@Override
 	protected Universe initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

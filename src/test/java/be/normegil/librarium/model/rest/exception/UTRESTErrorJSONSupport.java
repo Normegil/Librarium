@@ -17,6 +17,6 @@ public class UTRESTErrorJSONSupport extends AbstractParsingSupportTest<RESTError
 
 	@Override
 	protected RESTError initEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 }

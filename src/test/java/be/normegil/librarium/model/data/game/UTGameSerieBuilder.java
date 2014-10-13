@@ -33,7 +33,7 @@ public class UTGameSerieBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		GameSerie gameSerie = GAME_SERIE_FACTORY.getNext();
+		GameSerie gameSerie = GAME_SERIE_FACTORY.getNew();
 		GameSerie copy = entity.from(gameSerie).build();
 		assertEquals(gameSerie, copy);
 	}
@@ -41,9 +41,9 @@ public class UTGameSerieBuilder {
 	@Test
 	public void testAddAllGames() throws Exception {
 		Collection<Game> toAdd = new HashSet<>();
-		toAdd.add(GAME_FACTORY.getNext());
-		toAdd.add(GAME_FACTORY.getNext());
-		toAdd.add(GAME_FACTORY.getNext());
+		toAdd.add(GAME_FACTORY.getNew());
+		toAdd.add(GAME_FACTORY.getNew());
+		toAdd.add(GAME_FACTORY.getNew());
 
 		GameSerie gameSerie = entity
 				.addAllGames(toAdd)
@@ -54,7 +54,7 @@ public class UTGameSerieBuilder {
 
 	@Test
 	public void testAddGame() throws Exception {
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		GameSerie gameSerie = entity
 				.addGame(game)
 				.build();

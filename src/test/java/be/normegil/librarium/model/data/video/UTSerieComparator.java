@@ -19,7 +19,7 @@ public class UTSerieComparator extends AbstractDataComparableTest<Serie> {
 
 	@Override
 	protected Serie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class UTSerieComparator extends AbstractDataComparableTest<Serie> {
 	public void testSeason_Equality() throws Exception {
 		Serie entity = getEntity();
 		Serie copy = new Serie(entity);
-		copy.addSeason(SERIE_SEASON_FACTORY.getNext());
+		copy.addSeason(SERIE_SEASON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

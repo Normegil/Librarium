@@ -32,37 +32,37 @@ public class UniverseTestSuite implements DataFactory<Universe> {
 	private static long index = 0L;
 
 	@Override
+	public Universe getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Universe getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Universe getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Universe getNew(boolean withLink) {
+	public Universe getDefault(boolean withLink) {
 		Universe.Builder builder = Universe.builder()
 				.setName(NAME)
 				.setDescription(DESCRIPTION);
 
 		if (withLink) {
-			builder.addMedia(MEDIA_FACTORY.getNew(false));
+			builder.addMedia(MEDIA_FACTORY.getDefault(false));
 		}
 
 		return builder.build();
 	}
 
 	@Override
-	public Universe getNext(boolean withLink) {
+	public Universe getNew(boolean withLink) {
 		Universe.Builder builder = Universe.builder()
 				.setName(NAME + index)
 				.setDescription(DESCRIPTION + index);
 
 		if (withLink) {
-			builder.addMedia(MEDIA_FACTORY.getNext(false))
-					.addMedia(MEDIA_FACTORY.getNext(false));
+			builder.addMedia(MEDIA_FACTORY.getNew(false))
+					.addMedia(MEDIA_FACTORY.getNew(false));
 
 		}
 		index += 1;

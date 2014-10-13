@@ -37,7 +37,7 @@ public class UTBookBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Book book = BOOK_FACTORY.getNext();
+		Book book = BOOK_FACTORY.getNew();
 		Book copy = entity.from(book).build();
 		assertEquals(book, copy);
 	}
@@ -45,9 +45,9 @@ public class UTBookBuilder {
 	@Test
 	public void testAddAllAuthors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Book book = entity
 				.addAllAuthors(toAdd)
@@ -58,7 +58,7 @@ public class UTBookBuilder {
 
 	@Test
 	public void testAddAuthor() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Book book = entity
 				.addAuthor(responsible)
 				.build();
@@ -69,9 +69,9 @@ public class UTBookBuilder {
 	@Test
 	public void testAddAllEditors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		Book book = entity
 				.addAllEditors(toAdd)
@@ -82,7 +82,7 @@ public class UTBookBuilder {
 
 	@Test
 	public void testAddEditor() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		Book book = entity
 				.addEditor(responsible)
 				.build();

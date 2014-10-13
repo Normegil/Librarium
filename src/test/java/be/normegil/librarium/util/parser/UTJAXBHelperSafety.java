@@ -67,12 +67,12 @@ public class UTJAXBHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testTo_NullDocumentType() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNext(), null, System.out);
+		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNew(), null, System.out);
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testTo_NullOutputStream() throws Exception {
-		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNext(), Parser.DocumentType.JSON, null);
+		Validator.validate(entity, CLASS.getMethod("to", Object.class, Parser.DocumentType.class, OutputStream.class), FACTORY.getNew(), Parser.DocumentType.JSON, null);
 	}
 
 	private Schema getValidationSchema(java.lang.Class<?> aClass) throws SAXException {

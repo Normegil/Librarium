@@ -33,7 +33,7 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testUnchanged() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
@@ -45,7 +45,7 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentTitle() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
@@ -58,7 +58,7 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentDescription() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
@@ -71,7 +71,7 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentTags() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
@@ -84,12 +84,12 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentOfficialWebsite() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
 		digest1.fromBase(baseURI, entity);
-		entity.setOfficialWebsite(URL_FACTORY.getNext());
+		entity.setOfficialWebsite(URL_FACTORY.getNew());
 		digest2.fromBase(baseURI, entity);
 		assertNotEquals(digest1, digest2);
 	}
@@ -97,12 +97,12 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentWikipediaPage() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
 		digest1.fromBase(baseURI, entity);
-		entity.setWikipediaPage(URL_FACTORY.getNext());
+		entity.setWikipediaPage(URL_FACTORY.getNew());
 		digest2.fromBase(baseURI, entity);
 		assertNotEquals(digest1, digest2);
 	}
@@ -110,12 +110,12 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentStores() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
 		digest1.fromBase(baseURI, entity);
-		entity.addStore(URL_FACTORY.getNext());
+		entity.addStore(URL_FACTORY.getNew());
 		digest2.fromBase(baseURI, entity);
 		assertNotEquals(digest1, digest2);
 	}
@@ -123,12 +123,12 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	@Test
 	public void testDifferentDownloadLink() throws Exception {
 		BaseMedia entity = getBaseMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		BaseMedia.BaseMediaDigest digest1 = new BaseMedia.BaseMediaDigest();
 		BaseMedia.BaseMediaDigest digest2 = new BaseMedia.BaseMediaDigest();
 		digest1.fromBase(baseURI, entity);
-		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNext();
+		DownloadLink downloadLink = DOWNLOAD_LINK_FACTORY.getNew();
 		new EntityHelper().setId(downloadLink, UUID.randomUUID());
 		entity.addDownloadLink(downloadLink);
 		digest2.fromBase(baseURI, entity);
@@ -136,7 +136,7 @@ public class UTBaseMediaDigestEquality extends AbstractDataEqualityTest<BaseMedi
 	}
 
 	private BaseMedia getBaseMedia() {
-		BaseMedia entity = BASE_MEDIA_FACTORY.getNext();
+		BaseMedia entity = BASE_MEDIA_FACTORY.getNew();
 		EntityHelper entityHelper = new EntityHelper();
 		for (DownloadLink downloadLink : entity.getDownloadLinks()) {
 			entityHelper.setId(downloadLink, UUID.randomUUID());

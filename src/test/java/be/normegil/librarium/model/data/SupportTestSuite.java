@@ -3,11 +3,12 @@ package be.normegil.librarium.model.data;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -21,6 +22,7 @@ import org.junit.runners.Suite;
 })
 public class SupportTestSuite implements DataFactory<Support> {
 
+	public static final UUID DEFAULT_ID = UUID.fromString("");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
@@ -29,41 +31,48 @@ public class SupportTestSuite implements DataFactory<Support> {
 	private static Long index = 1L;
 
 	@Override
+	public Support getDefault() {
+		return getDefault(true, false);
+	}
+
+	@Override
 	public Support getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public Support getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Support getNew(boolean withLink) {
+	public Support getDefault(final boolean withLink, final boolean withIds) {
 		Support.Builder builder = Support.builder()
 				.setName(NAME)
+				.setWikipediaPage(URL_FACTORY.getDefault());
+
+		if (withLink) {
+			builder.addMedia(MEDIA_FACTORY.getDefault(false, withIds));
+		}
+
+		Support support = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(support, DEFAULT_ID);
+		}
+		return support;
+	}
+
+	@Override
+	public Support getNew(final boolean withLink, final boolean withIds) {
+		Support.Builder builder = Support.builder()
+				.setName(NAME + index)
 				.setWikipediaPage(URL_FACTORY.getNew());
 
 		if (withLink) {
-			builder.addMedia(MEDIA_FACTORY.getNew(false));
-		}
-
-		return builder.build();
-	}
-
-	@Override
-	public Support getNext(boolean withLink) {
-		Support.Builder builder = Support.builder()
-				.setName(NAME + index)
-				.setWikipediaPage(URL_FACTORY.getNext());
-
-		if (withLink) {
-			builder.addMedia(MEDIA_FACTORY.getNext(false))
-					.addMedia(MEDIA_FACTORY.getNext(false));
+			builder.addMedia(MEDIA_FACTORY.getNew(false, withIds))
+					.addMedia(MEDIA_FACTORY.getNew(false, withIds));
 		}
 
 		index += 1;
-
-		return builder.build();
+		Support support = builder.build();
+		if (withIds) {
+			new EntityHelper().setId(support, DEFAULT_ID);
+		}
+		return support;
 	}
 }

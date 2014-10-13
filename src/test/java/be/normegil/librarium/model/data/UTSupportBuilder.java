@@ -37,7 +37,7 @@ public class UTSupportBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Support support = FACTORY.getNext(true);
+		Support support = FACTORY.getNew(true);
 		Support copy = entity.from(support).build();
 		assertEquals(support, copy);
 	}
@@ -52,7 +52,7 @@ public class UTSupportBuilder {
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		Support support = entity
 				.setWikipediaPage(url)
 				.build();
@@ -62,9 +62,9 @@ public class UTSupportBuilder {
 	@Test
 	public void testAddAllMedias() throws Exception {
 		Collection<Media> toAdd = new HashSet<>();
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
 
 		Support support = entity
 				.addAllMedias(toAdd)
@@ -75,7 +75,7 @@ public class UTSupportBuilder {
 
 	@Test
 	public void testAddMedia() throws Exception {
-		Media media = MEDIA_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
 		Support support = entity
 				.addMedia(media)
 				.build();

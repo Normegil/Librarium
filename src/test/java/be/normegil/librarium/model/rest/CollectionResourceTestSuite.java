@@ -49,18 +49,18 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 	};
 
 	@Override
+	public CollectionResource getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public CollectionResource getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public CollectionResource getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public CollectionResource getNew(final boolean withLink) {
-		URL url = URL_FACTORY.getNew();
+	public CollectionResource getDefault(final boolean withLink) {
+		URL url = URL_FACTORY.getDefault();
 		List<URL> urls = new ArrayList<>();
 		for (int i = 0; i < DEFAULT_LIMIT; i++) {
 			int index = i % uuids.length;
@@ -76,8 +76,8 @@ public class CollectionResourceTestSuite implements DataFactory<CollectionResour
 	}
 
 	@Override
-	public CollectionResource getNext(final boolean withLink) {
-		URL url = URL_FACTORY.getNext();
+	public CollectionResource getNew(final boolean withLink) {
+		URL url = URL_FACTORY.getNew();
 		DAO<Game> dao = new MemoryTestDAO<>(DEFAULT_LIMIT * 2, Game.class);
 		List<URL> urls = Entity.helper().convertToURLs(dao.getAll(DEFAULT_OFFSET, DEFAULT_LIMIT), url);
 		return CollectionResource.builder()

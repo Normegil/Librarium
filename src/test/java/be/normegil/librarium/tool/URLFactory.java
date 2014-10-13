@@ -12,22 +12,22 @@ public class URLFactory implements DataFactory<URL> {
 	private static Long index = 0L;
 
 	@Override
+	public URL getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public URL getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public URL getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public URL getNew(boolean withLink) {
+	public URL getDefault(boolean withLink) {
 		return new URL(PROTOCOL, HOST, PORT, FILE_PATH);
 	}
 
 	@Override
-	public URL getNext(boolean withLink) {
+	public URL getNew(boolean withLink) {
 		String host = HOST + index;
 		int port = (int) (index % HIGHEST_PORT_NUMBER);
 		String filePath = FILE_PATH + index;

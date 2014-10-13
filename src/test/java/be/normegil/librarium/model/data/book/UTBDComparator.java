@@ -16,7 +16,7 @@ public class UTBDComparator extends AbstractDataComparableTest<BD> {
 
 	@Override
 	protected BD getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

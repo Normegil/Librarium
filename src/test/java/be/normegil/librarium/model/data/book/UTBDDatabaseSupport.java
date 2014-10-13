@@ -16,7 +16,7 @@ public class UTBDDatabaseSupport extends AbstractEntityDatabaseSupportTest<BD> {
 
 	@Override
 	protected BD initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class UTBookEquality extends AbstractDataEqualityTest<Book> {
 	                        private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 	@Override
 	protected Book getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -33,7 +33,7 @@ public class UTBookEquality extends AbstractDataEqualityTest<Book> {
 	public void testDifferentAuthor() throws Exception {
 		Book entity = getEntity();
 		Book copy = new FakeBook(entity);
-		entity.addAuthor(RESPONSIBLE_FACTORY.getNext());
+		entity.addAuthor(RESPONSIBLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

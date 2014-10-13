@@ -27,7 +27,7 @@ public class UTSupport {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNext();
+		entity = FACTORY.getNew();
 		medias = entity.getMedias();
 	}
 
@@ -51,7 +51,7 @@ public class UTSupport {
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL wikipediaPage = URL_FACTORY.getNext();
+		URL wikipediaPage = URL_FACTORY.getNew();
 		entity.setWikipediaPage(wikipediaPage);
 		assertEquals(wikipediaPage, entity.getWikipediaPage());
 	}
@@ -59,9 +59,9 @@ public class UTSupport {
 	@Test
 	public void testAddAllMedias() throws Exception {
 		Collection<Media> toAdd = new HashSet<>();
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
 
 		medias.addAll(toAdd);
 		entity.addAllMedias(toAdd);
@@ -70,7 +70,7 @@ public class UTSupport {
 
 	@Test
 	public void testAddMedia() throws Exception {
-		Media toAdd = MEDIA_FACTORY.getNext();
+		Media toAdd = MEDIA_FACTORY.getNew();
 		medias.add(toAdd);
 		entity.addMedia(toAdd);
 		assertEquals(medias, entity.getMedias());
@@ -78,9 +78,9 @@ public class UTSupport {
 
 	@Test
 	public void testRemoveAllMedias() throws Exception {
-		Media base = MEDIA_FACTORY.getNext();
-		Media second = MEDIA_FACTORY.getNext();
-		Media third = MEDIA_FACTORY.getNext();
+		Media base = MEDIA_FACTORY.getNew();
+		Media second = MEDIA_FACTORY.getNew();
+		Media third = MEDIA_FACTORY.getNew();
 
 		Collection<Media> toAdd = new HashSet<>();
 		toAdd.add(base);

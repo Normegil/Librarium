@@ -19,7 +19,7 @@ public class UTEpisodeSerie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -42,7 +42,7 @@ public class UTEpisodeSerie {
 
 	@Test
 	public void testSetSeason() throws Exception {
-		SerieSeason season = SERIE_SEASON_FACTORY.getNext();
+		SerieSeason season = SERIE_SEASON_FACTORY.getNew();
 		entity.setSeason(season);
 		assertEquals(season, entity.getSeason());
 	}

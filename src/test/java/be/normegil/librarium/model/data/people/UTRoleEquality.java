@@ -21,7 +21,7 @@ public class UTRoleEquality extends AbstractDataEqualityTest<Role> {
 
 	@Override
 	protected Role getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class UTRoleEquality extends AbstractDataEqualityTest<Role> {
 	public void testDifferentRole() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		entity.setRole(PERSON_FACTORY.getNext());
+		entity.setRole(PERSON_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -43,7 +43,7 @@ public class UTRoleEquality extends AbstractDataEqualityTest<Role> {
 	public void testDifferentActor() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		entity.setActor(PERSON_FACTORY.getNext());
+		entity.setActor(PERSON_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -51,7 +51,7 @@ public class UTRoleEquality extends AbstractDataEqualityTest<Role> {
 	public void testDifferentVideo() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		entity.setVideo(VIDEO_FACTORY.getNext());
+		entity.setVideo(VIDEO_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

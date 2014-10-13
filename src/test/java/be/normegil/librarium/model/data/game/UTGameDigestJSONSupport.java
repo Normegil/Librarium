@@ -23,7 +23,7 @@ public class UTGameDigestJSONSupport extends AbstractParsingSupportTest<Game.Gam
 
 	@Override
 	protected Game.GameDigest initEntity() {
-		Game game = GAME_FACTORY.getNew();
+		Game game = GAME_FACTORY.getDefault();
 		EntityHelper helper = new EntityHelper();
 		helper.setId(game, GAME_ID);
 

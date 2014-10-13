@@ -25,7 +25,7 @@ public class UTUniverse {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		medias.addAll(entity.getMedias());
 	}
 
@@ -56,9 +56,9 @@ public class UTUniverse {
 	@Test
 	public void testAddAllMedias() throws Exception {
 		Collection<Media> toAdd = new HashSet<>();
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
-		toAdd.add(MEDIA_FACTORY.getNext());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
+		toAdd.add(MEDIA_FACTORY.getNew());
 
 		medias.addAll(toAdd);
 		entity.addAllMedias(toAdd);
@@ -67,7 +67,7 @@ public class UTUniverse {
 
 	@Test
 	public void testAddMedia() throws Exception {
-		Media toAdd = MEDIA_FACTORY.getNext();
+		Media toAdd = MEDIA_FACTORY.getNew();
 		medias.add(toAdd);
 		entity.addMedia(toAdd);
 		assertEquals(medias, entity.getMedias());
@@ -75,9 +75,9 @@ public class UTUniverse {
 
 	@Test
 	public void testRemoveAllMedias() throws Exception {
-		Media base = MEDIA_FACTORY.getNext();
-		Media second = MEDIA_FACTORY.getNext();
-		Media third = MEDIA_FACTORY.getNext();
+		Media base = MEDIA_FACTORY.getNew();
+		Media second = MEDIA_FACTORY.getNew();
+		Media third = MEDIA_FACTORY.getNew();
 
 		Collection<Media> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -108,7 +108,7 @@ public class UTUniverse {
 
 	@Test
 	public void testToString() throws Exception {
-		Universe universe = FACTORY.getNew();
+		Universe universe = FACTORY.getDefault();
 		assertEquals("Universe[id=<null>,name=Name,description=Description]", universe.toString());
 	}
 }

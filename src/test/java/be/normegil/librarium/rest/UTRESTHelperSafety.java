@@ -96,7 +96,7 @@ public class UTRESTHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testCreate_NullInfo() throws Exception {
-		Validator.validate(entity, getCreateMethod(), null, GAME_FACTORY.getNext());
+		Validator.validate(entity, getCreateMethod(), null, GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -106,7 +106,7 @@ public class UTRESTHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPUT_NullUUID() throws Exception {
-		Validator.validate(entity, getUpdateByPUTMethod(), null, GAME_FACTORY.getNext());
+		Validator.validate(entity, getUpdateByPUTMethod(), null, GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -116,12 +116,12 @@ public class UTRESTHelperSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPOST_NullInfo() throws Exception {
-		Validator.validate(entity, getUpdateByPOSTMethod(), null, UUID.randomUUID(), GAME_FACTORY.getNext());
+		Validator.validate(entity, getUpdateByPOSTMethod(), null, UUID.randomUUID(), GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testUpdateByPOST_NullUUID() throws Exception {
-		Validator.validate(entity, getUpdateByPOSTMethod(), info, null, GAME_FACTORY.getNext());
+		Validator.validate(entity, getUpdateByPOSTMethod(), info, null, GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)

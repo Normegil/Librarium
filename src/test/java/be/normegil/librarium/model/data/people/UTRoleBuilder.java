@@ -32,14 +32,14 @@ public class UTRoleBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Role role = ROLE_FACTORY.getNext();
+		Role role = ROLE_FACTORY.getNew();
 		Role copy = entity.from(role).build();
 		assertEquals(role, copy);
 	}
 
 	@Test
 	public void testSetRole() throws Exception {
-		Person person = PERSON_FACTORY.getNext();
+		Person person = PERSON_FACTORY.getNew();
 		Role role = entity
 				.setRole(person)
 				.build();
@@ -48,7 +48,7 @@ public class UTRoleBuilder {
 
 	@Test
 	public void testSetActor() throws Exception {
-		Person person = PERSON_FACTORY.getNext();
+		Person person = PERSON_FACTORY.getNew();
 		Role role = entity
 				.setActor(person)
 				.build();
@@ -57,7 +57,7 @@ public class UTRoleBuilder {
 
 	@Test
 	public void testSetVideo() throws Exception {
-		Video video = VIDEO_FACTORY.getNext();
+		Video video = VIDEO_FACTORY.getNew();
 		Role role = entity
 				.setVideo(video)
 				.build();

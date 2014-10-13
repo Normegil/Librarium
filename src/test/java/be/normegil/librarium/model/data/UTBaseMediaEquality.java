@@ -23,7 +23,7 @@ public class UTBaseMediaEquality extends AbstractDataEqualityTest<BaseMedia> {
 
 	@Override
 	protected BaseMedia getNewEntity() {
-		return FACTORY.getNew(true);
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class UTBaseMediaEquality extends AbstractDataEqualityTest<BaseMedia> {
 	public void testDifferentOfficialWebsite() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		entity.setOfficialWebsite(URL_FACTORY.getNext(true));
+		entity.setOfficialWebsite(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -69,7 +69,7 @@ public class UTBaseMediaEquality extends AbstractDataEqualityTest<BaseMedia> {
 	public void testDifferentWikipediaPage() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		entity.setWikipediaPage(URL_FACTORY.getNext(true));
+		entity.setWikipediaPage(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -77,7 +77,7 @@ public class UTBaseMediaEquality extends AbstractDataEqualityTest<BaseMedia> {
 	public void testDifferentStore() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		entity.addStore(URL_FACTORY.getNext(true));
+		entity.addStore(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -85,7 +85,7 @@ public class UTBaseMediaEquality extends AbstractDataEqualityTest<BaseMedia> {
 	public void testDifferentDownloadLink() throws Exception {
 		BaseMedia entity = getEntity();
 		BaseMedia copy = new FakeBaseMedia(entity);
-		entity.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNext(true));
+		entity.addDownloadLink(DOWNLOAD_LINK_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 }

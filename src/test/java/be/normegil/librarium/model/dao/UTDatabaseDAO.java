@@ -92,7 +92,7 @@ public class UTDatabaseDAO {
 
 	@Test
 	public void testSave() throws Exception {
-		Entity newEntity = FACTORY.getNext();
+		Entity newEntity = FACTORY.getNew();
 
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
@@ -118,8 +118,8 @@ public class UTDatabaseDAO {
 	private BaseMedia insertDataInDatabase() {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
-		BaseMedia entity = FACTORY.getNext();
-		BaseMedia otherEntity = FACTORY.getNext();
+		BaseMedia entity = FACTORY.getNew();
+		BaseMedia otherEntity = FACTORY.getNew();
 		entityManager.persist(entity);
 		entityManager.persist(otherEntity);
 		transaction.commit();

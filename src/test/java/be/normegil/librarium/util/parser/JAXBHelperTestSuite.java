@@ -31,26 +31,26 @@ public class JAXBHelperTestSuite implements DataFactory<JAXBHelperTestSuite.JAXB
 	private static Long index = 0L;
 
 	@Override
+	public JAXBTestClass getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public JAXBTestClass getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public JAXBTestClass getNext() {
-		return getNext(true);
+	public JAXBTestClass getDefault(final boolean withLink) {
+		return new JAXBTestClass(ID, TITLE, URL_FACTORY.getDefault(), LocalDate.of(2014, Month.SEPTEMBER, 2), IGNORED);
 	}
 
 	@Override
 	public JAXBTestClass getNew(final boolean withLink) {
-		return new JAXBTestClass(ID, TITLE, URL_FACTORY.getNew(), LocalDate.of(2014, Month.SEPTEMBER, 2), IGNORED);
-	}
-
-	@Override
-	public JAXBTestClass getNext(final boolean withLink) {
 		JAXBTestClass jaxbTestClass = new JAXBTestClass(
 				ID + index,
 				TITLE + index,
-				URL_FACTORY.getNext(),
+				URL_FACTORY.getNew(),
 				LocalDate.now(),
 				IGNORED
 		);

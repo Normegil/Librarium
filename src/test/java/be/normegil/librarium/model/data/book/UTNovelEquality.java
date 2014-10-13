@@ -16,7 +16,7 @@ public class UTNovelEquality extends AbstractDataEqualityTest<Novel> {
 
 	@Override
 	protected Novel getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test

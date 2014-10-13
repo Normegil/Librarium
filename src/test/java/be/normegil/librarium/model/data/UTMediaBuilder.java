@@ -41,14 +41,14 @@ public class UTMediaBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Media media = FACTORY.getNext(true);
+		Media media = FACTORY.getNew();
 		Media copy = entity.from(media).build();
 		assertEquals(media, copy);
 	}
 
 	@Test
 	public void testAddUniverse() throws Exception {
-		Universe universe = UNIVERSE_FACTORY.getNext();
+		Universe universe = UNIVERSE_FACTORY.getNew();
 		Media media = entity
 				.addUniverse(universe)
 				.build();
@@ -58,8 +58,8 @@ public class UTMediaBuilder {
 	@Test
 	public void testAddAllUniverses() throws Exception {
 		Collection<Universe> toAdd = new HashSet<>();
-		toAdd.add(UNIVERSE_FACTORY.getNext());
-		toAdd.add(UNIVERSE_FACTORY.getNext());
+		toAdd.add(UNIVERSE_FACTORY.getNew());
+		toAdd.add(UNIVERSE_FACTORY.getNew());
 
 		Media media = entity
 				.addAllUniverses(toAdd)
@@ -69,7 +69,7 @@ public class UTMediaBuilder {
 
 	@Test
 	public void testAddSupport() throws Exception {
-		Support support = SUPPORT_FACTORY.getNext();
+		Support support = SUPPORT_FACTORY.getNew();
 		Media media = entity
 				.addSupport(support)
 				.build();
@@ -79,8 +79,8 @@ public class UTMediaBuilder {
 	@Test
 	public void testAddAllSupports() throws Exception {
 		Collection<Support> toAdd = new HashSet<>();
-		toAdd.add(SUPPORT_FACTORY.getNext());
-		toAdd.add(SUPPORT_FACTORY.getNext());
+		toAdd.add(SUPPORT_FACTORY.getNew());
+		toAdd.add(SUPPORT_FACTORY.getNew());
 
 		Media media = entity
 				.addAllSupports(toAdd)
@@ -90,7 +90,7 @@ public class UTMediaBuilder {
 
 	@Test
 	public void testAddReleaseDate() throws Exception {
-		Support support = SUPPORT_FACTORY.getNext();
+		Support support = SUPPORT_FACTORY.getNew();
 		LocalDate date = LocalDate.now();
 		Media media = entity
 				.addReleaseDate(support, date)
@@ -101,8 +101,8 @@ public class UTMediaBuilder {
 	@Test
 	public void testAddAllReleaseDates() throws Exception {
 		Map<Support, LocalDate> toAdd = new HashMap<>();
-		toAdd.put(SUPPORT_FACTORY.getNext(), LocalDate.now());
-		toAdd.put(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		toAdd.put(SUPPORT_FACTORY.getNew(), LocalDate.now());
+		toAdd.put(SUPPORT_FACTORY.getNew(), LocalDate.now());
 
 		Media media = entity
 				.addAllReleaseDates(toAdd)
@@ -114,7 +114,7 @@ public class UTMediaBuilder {
 
 	@Test
 	public void testAddReleaseDate_Full() throws Exception {
-		ReleaseDate releaseDate = RELEASE_DATE_FACTORY.getNext();
+		ReleaseDate releaseDate = RELEASE_DATE_FACTORY.getNew();
 		Media media = entity
 				.addReleaseDate(releaseDate)
 				.build();

@@ -22,7 +22,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 
 	@Override
 	protected Role getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testRole_First() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setRole(PERSON_FACTORY.getNext());
+		copy.setRole(PERSON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -50,7 +50,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testRole_Second() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setRole(PERSON_FACTORY.getNext());
+		copy.setRole(PERSON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -58,7 +58,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testActor_First() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setActor(PERSON_FACTORY.getNext());
+		copy.setActor(PERSON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -66,7 +66,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testActor_Second() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setActor(PERSON_FACTORY.getNext());
+		copy.setActor(PERSON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -74,7 +74,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testVideo_First() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setVideo(VIDEO_FACTORY.getNext());
+		copy.setVideo(VIDEO_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -82,7 +82,7 @@ public class UTRoleComparator extends AbstractDataComparableTest<Role> {
 	public void testVideo_Second() throws Exception {
 		Role entity = getEntity();
 		Role copy = new Role(entity);
-		copy.setVideo(VIDEO_FACTORY.getNext());
+		copy.setVideo(VIDEO_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

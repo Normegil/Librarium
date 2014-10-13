@@ -35,14 +35,14 @@ public class UTSerieSeasonBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		SerieSeason serieSeason = SERIE_SEASON_FACTORY.getNext();
+		SerieSeason serieSeason = SERIE_SEASON_FACTORY.getNew();
 		SerieSeason copy = entity.from(serieSeason).build();
 		assertEquals(serieSeason, copy);
 	}
 
 	@Test
 	public void testSetSerie() throws Exception {
-		Serie serie = SERIE_FACTORY.getNext();
+		Serie serie = SERIE_FACTORY.getNew();
 		SerieSeason serieSeason = entity
 				.setSerie(serie)
 				.build();
@@ -61,9 +61,9 @@ public class UTSerieSeasonBuilder {
 	@Test
 	public void testAddAllEpisodes() throws Exception {
 		Collection<EpisodeSerie> toAdd = new HashSet<>();
-		toAdd.add(EPISODE_SERIE_FACTORY.getNext());
-		toAdd.add(EPISODE_SERIE_FACTORY.getNext());
-		toAdd.add(EPISODE_SERIE_FACTORY.getNext());
+		toAdd.add(EPISODE_SERIE_FACTORY.getNew());
+		toAdd.add(EPISODE_SERIE_FACTORY.getNew());
+		toAdd.add(EPISODE_SERIE_FACTORY.getNew());
 
 		SerieSeason serieSeason = entity
 				.addAllEpisodes(toAdd)
@@ -74,7 +74,7 @@ public class UTSerieSeasonBuilder {
 
 	@Test
 	public void testAddEpisode() throws Exception {
-		EpisodeSerie episodeSerie = EPISODE_SERIE_FACTORY.getNext();
+		EpisodeSerie episodeSerie = EPISODE_SERIE_FACTORY.getNew();
 		SerieSeason serieSeason = entity
 				.addEpisode(episodeSerie)
 				.build();

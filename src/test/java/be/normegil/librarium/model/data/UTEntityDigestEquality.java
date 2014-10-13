@@ -29,8 +29,8 @@ public class UTEntityDigestEquality extends AbstractDataEqualityTest<Entity.Enti
 
 	@Test
 	public void testUnchanged() throws Exception {
-		Entity entity = ENTITY_FACTORY.getNext();
-		URL url = URL_FACTORY.getNext();
+		Entity entity = ENTITY_FACTORY.getNew();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Entity.EntityDigest digest1 = new Entity.EntityDigest();
 		Entity.EntityDigest digest2 = new Entity.EntityDigest();
@@ -41,11 +41,11 @@ public class UTEntityDigestEquality extends AbstractDataEqualityTest<Entity.Enti
 
 	@Test
 	public void testDifferentID() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Entity.EntityDigest digest1 = new Entity.EntityDigest();
 		Entity.EntityDigest digest2 = new Entity.EntityDigest();
-		Entity entity = ENTITY_FACTORY.getNext();
+		Entity entity = ENTITY_FACTORY.getNew();
 		digest1.fromBase(baseURI, entity);
 		new EntityHelper().setId(entity, UUID.randomUUID());
 		digest2.fromBase(baseURI, entity);
@@ -56,9 +56,9 @@ public class UTEntityDigestEquality extends AbstractDataEqualityTest<Entity.Enti
 	public void testDifferentURL() throws Exception {
 		Entity.EntityDigest digest1 = new Entity.EntityDigest();
 		Entity.EntityDigest digest2 = new Entity.EntityDigest();
-		Entity entity = ENTITY_FACTORY.getNext();
-		digest1.fromBase(URL_FACTORY.getNext().toURI(), entity);
-		digest2.fromBase(URL_FACTORY.getNext().toURI(), entity);
+		Entity entity = ENTITY_FACTORY.getNew();
+		digest1.fromBase(URL_FACTORY.getNew().toURI(), entity);
+		digest2.fromBase(URL_FACTORY.getNew().toURI(), entity);
 		assertNotEquals(digest1, digest2);
 	}
 }

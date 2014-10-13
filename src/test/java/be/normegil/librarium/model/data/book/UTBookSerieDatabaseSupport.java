@@ -16,7 +16,7 @@ public class UTBookSerieDatabaseSupport extends AbstractEntityDatabaseSupportTes
 
 	@Override
 	protected BookSerie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

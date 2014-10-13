@@ -38,12 +38,12 @@ public class UTEntityHelper {
 
 	@Test
 	public void testConvertToURLs() throws Exception {
-		URL baseURL = URL_FACTORY.getNext();
+		URL baseURL = URL_FACTORY.getNew();
 
 		List<Entity> entities = new ArrayList<>();
-		entities.add(ENTITY_FACTORY.getNext());
-		entities.add(ENTITY_FACTORY.getNext());
-		entities.add(ENTITY_FACTORY.getNext());
+		entities.add(ENTITY_FACTORY.getNew());
+		entities.add(ENTITY_FACTORY.getNew());
+		entities.add(ENTITY_FACTORY.getNew());
 
 		List<URL> expected = new ArrayList<>();
 		for (Entity entity1 : entities) {
@@ -57,7 +57,7 @@ public class UTEntityHelper {
 
 	@Test
 	public void testConvertToURLs_EmptyList() throws Exception {
-		URL baseURL = URL_FACTORY.getNext();
+		URL baseURL = URL_FACTORY.getNew();
 		List<URL> toTest = entity.convertToURLs(new ArrayList<>(), baseURL);
 		assertTrue(toTest.isEmpty());
 	}
@@ -71,7 +71,7 @@ public class UTEntityHelper {
 	@Test
 	public void testSetIdFromDigest() throws Exception {
 		UUID expected = entity.getIdFromRESTURI(URI.create(REST_URI_WITH_ID));
-		Entity e = ENTITY_FACTORY.getNext();
+		Entity e = ENTITY_FACTORY.getNew();
 		Entity.EntityDigest digest = new Entity.EntityDigest();
 		digest.href = URI.create(REST_URI_WITH_ID);
 		entity.setIdFromDigest(digest, e);
@@ -80,7 +80,7 @@ public class UTEntityHelper {
 
 	@Test
 	public void testSetIdFromDigest_NullURI() throws Exception {
-		Entity e = ENTITY_FACTORY.getNext();
+		Entity e = ENTITY_FACTORY.getNew();
 		Entity.EntityDigest digest = new Entity.EntityDigest();
 		entity.setIdFromDigest(digest, e);
 		assertNull(e.getId());

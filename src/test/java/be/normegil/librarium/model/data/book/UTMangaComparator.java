@@ -16,7 +16,7 @@ public class UTMangaComparator extends AbstractDataComparableTest<Manga> {
 
 	@Override
 	protected Manga getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

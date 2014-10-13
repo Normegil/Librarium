@@ -22,26 +22,30 @@ public class EntityTestSuite implements DataFactory<Entity> {
 	public static final UUID ID = UUID.fromString("40d46c43-0700-4f38-8f4a-dcfa8186195e");
 
 	@Override
+	public Entity getDefault() {
+		return getDefault(true, false);
+	}
+
+	@Override
 	public Entity getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public Entity getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Entity getNew(final boolean withLink) {
+	public Entity getDefault(final boolean withLink, final boolean withIds) {
 		Entity entity = new FakeEntity();
-		new EntityHelper().setId(entity, ID);
+		if (withIds) {
+			new EntityHelper().setId(entity, ID);
+		}
 		return entity;
 	}
 
 	@Override
-	public Entity getNext(final boolean withLink) {
+	public Entity getNew(final boolean withLink, final boolean withIds) {
 		Entity entity = new FakeEntity();
-		new EntityHelper().setId(entity, UUID.randomUUID());
+		if (withIds) {
+			new EntityHelper().setId(entity, UUID.randomUUID());
+		}
 		return entity;
 	}
 }

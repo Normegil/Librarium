@@ -29,7 +29,7 @@ public class UTMedia {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		universes = entity.getUniverses();
 		supports = entity.getSupports();
 		releaseDates = entity.getReleaseDates();
@@ -52,9 +52,9 @@ public class UTMedia {
 	@Test
 	public void testAddAllUniverses() throws Exception {
 		Collection<Universe> toAdd = new HashSet<>();
-		toAdd.add(UNIVERSE_FACTORY.getNext());
-		toAdd.add(UNIVERSE_FACTORY.getNext());
-		toAdd.add(UNIVERSE_FACTORY.getNext());
+		toAdd.add(UNIVERSE_FACTORY.getNew());
+		toAdd.add(UNIVERSE_FACTORY.getNew());
+		toAdd.add(UNIVERSE_FACTORY.getNew());
 
 		universes.addAll(toAdd);
 		entity.addAllUniverses(toAdd);
@@ -63,7 +63,7 @@ public class UTMedia {
 
 	@Test
 	public void testAddUniverse() throws Exception {
-		Universe toAdd = UNIVERSE_FACTORY.getNext();
+		Universe toAdd = UNIVERSE_FACTORY.getNew();
 		universes.add(toAdd);
 		entity.addUniverse(toAdd);
 		assertEquals(universes, entity.getUniverses());
@@ -71,9 +71,9 @@ public class UTMedia {
 
 	@Test
 	public void testRemoveAllUniverses() throws Exception {
-		Universe base = UNIVERSE_FACTORY.getNext();
-		Universe second = UNIVERSE_FACTORY.getNext();
-		Universe third = UNIVERSE_FACTORY.getNext();
+		Universe base = UNIVERSE_FACTORY.getNew();
+		Universe second = UNIVERSE_FACTORY.getNew();
+		Universe third = UNIVERSE_FACTORY.getNew();
 
 		Collection<Universe> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -104,7 +104,7 @@ public class UTMedia {
 
 	@Test
 	public void testClearUniverses() throws Exception {
-		entity.addUniverse(UNIVERSE_FACTORY.getNext());
+		entity.addUniverse(UNIVERSE_FACTORY.getNew());
 		entity.clearUniverses();
 		assertTrue(entity.getUniverses().isEmpty());
 	}
@@ -112,9 +112,9 @@ public class UTMedia {
 	@Test
 	public void testAddAllSupports() throws Exception {
 		Collection<Support> toAdd = new HashSet<>();
-		toAdd.add(SUPPORT_FACTORY.getNext());
-		toAdd.add(SUPPORT_FACTORY.getNext());
-		toAdd.add(SUPPORT_FACTORY.getNext());
+		toAdd.add(SUPPORT_FACTORY.getNew());
+		toAdd.add(SUPPORT_FACTORY.getNew());
+		toAdd.add(SUPPORT_FACTORY.getNew());
 
 		supports.addAll(toAdd);
 		entity.addAllSupports(toAdd);
@@ -123,7 +123,7 @@ public class UTMedia {
 
 	@Test
 	public void testAddSupport() throws Exception {
-		Support toAdd = SUPPORT_FACTORY.getNext();
+		Support toAdd = SUPPORT_FACTORY.getNew();
 		supports.add(toAdd);
 		entity.addSupport(toAdd);
 		assertEquals(supports, entity.getSupports());
@@ -131,9 +131,9 @@ public class UTMedia {
 
 	@Test
 	public void testRemoveAllSupports() throws Exception {
-		Support base = SUPPORT_FACTORY.getNext();
-		Support second = SUPPORT_FACTORY.getNext();
-		Support third = SUPPORT_FACTORY.getNext();
+		Support base = SUPPORT_FACTORY.getNew();
+		Support second = SUPPORT_FACTORY.getNew();
+		Support third = SUPPORT_FACTORY.getNew();
 
 		Collection<Support> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -164,14 +164,14 @@ public class UTMedia {
 
 	@Test
 	public void testClearSupports() throws Exception {
-		entity.addSupport(SUPPORT_FACTORY.getNext());
+		entity.addSupport(SUPPORT_FACTORY.getNew());
 		entity.clearSupports();
 		assertTrue(entity.getSupports().isEmpty());
 	}
 
 	@Test
 	public void testGetReleaseDate() throws Exception {
-		Support support = SUPPORT_FACTORY.getNext();
+		Support support = SUPPORT_FACTORY.getNew();
 		LocalDate date = LocalDate.of(1990, 01, 01);
 
 		entity.addReleaseDate(support, date);
@@ -181,9 +181,9 @@ public class UTMedia {
 	@Test
 	public void testAddAllReleaseDates() throws Exception {
 		Map<Support, LocalDate> toAdd = new HashMap<>();
-		toAdd.put(SUPPORT_FACTORY.getNext(), LocalDate.now());
-		toAdd.put(SUPPORT_FACTORY.getNext(), LocalDate.now());
-		toAdd.put(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		toAdd.put(SUPPORT_FACTORY.getNew(), LocalDate.now());
+		toAdd.put(SUPPORT_FACTORY.getNew(), LocalDate.now());
+		toAdd.put(SUPPORT_FACTORY.getNew(), LocalDate.now());
 
 		releaseDates.putAll(toAdd);
 		entity.addAllReleaseDates(toAdd);
@@ -192,7 +192,7 @@ public class UTMedia {
 
 	@Test
 	public void testAddReleaseDate() throws Exception {
-		Support toAddSupport = SUPPORT_FACTORY.getNext();
+		Support toAddSupport = SUPPORT_FACTORY.getNew();
 		LocalDate toAddDate = LocalDate.now();
 		releaseDates.put(toAddSupport, toAddDate);
 		entity.addReleaseDate(toAddSupport, toAddDate);
@@ -201,9 +201,9 @@ public class UTMedia {
 
 	@Test
 	public void testRemoveAllReleaseDates() throws Exception {
-		Support base = SUPPORT_FACTORY.getNext();
-		Support second = SUPPORT_FACTORY.getNext();
-		Support third = SUPPORT_FACTORY.getNext();
+		Support base = SUPPORT_FACTORY.getNew();
+		Support second = SUPPORT_FACTORY.getNew();
+		Support third = SUPPORT_FACTORY.getNew();
 		LocalDate date = LocalDate.now();
 
 		Map<Support, LocalDate> toAdd = new HashMap<>();
@@ -237,7 +237,7 @@ public class UTMedia {
 
 	@Test
 	public void testClearReleaseDate() throws Exception {
-		entity.addReleaseDate(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		entity.addReleaseDate(SUPPORT_FACTORY.getNew(), LocalDate.now());
 		entity.clearReleaseDates();
 		assertTrue(entity.getReleaseDates().isEmpty());
 	}

@@ -22,7 +22,7 @@ public class UTRESTErrorEquality extends AbstractDataEqualityTest<RESTError> {
 
 	@Override
 	protected RESTError getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -77,7 +77,7 @@ public class UTRESTErrorEquality extends AbstractDataEqualityTest<RESTError> {
 		RESTError entity = getEntity();
 		RESTError copy = RESTError.builder()
 				.from(entity)
-				.setMoreInfoURL(URL_FACTORY.getNext())
+				.setMoreInfoURL(URL_FACTORY.getNew())
 				.build();
 		assertEquals(entity, copy);
 	}

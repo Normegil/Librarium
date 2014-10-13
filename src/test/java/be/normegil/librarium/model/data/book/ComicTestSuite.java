@@ -2,11 +2,12 @@ package be.normegil.librarium.model.data.book;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import java.util.UUID;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -20,30 +21,39 @@ import org.junit.runners.Suite;
 })
 public class ComicTestSuite implements DataFactory<Comic> {
 
+	public static final UUID DEFAULT_ID = UUID.fromString("");
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<AbstractBD> ABSTRACT_BD_FACTORY = FactoryRepository.get(AbstractBD.class);
 
 	@Override
+	public Comic getDefault() {
+		return getDefault(true, false);
+	}
+
+	@Override
 	public Comic getNew() {
-		return getNew(true);
+		return getNew(true, false);
 	}
 
 	@Override
-	public Comic getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Comic getNew(boolean withLink) {
-		return Comic.builder()
-				.from(ABSTRACT_BD_FACTORY.getNew(withLink))
+	public Comic getDefault(final boolean withLink, final boolean withIds) {
+		Comic comic = Comic.builder()
+				.from(ABSTRACT_BD_FACTORY.getDefault(withLink, withIds))
 				.build();
+		if (withIds) {
+			new EntityHelper().setId(comic, DEFAULT_ID);
+		}
+		return comic;
 	}
 
 	@Override
-	public Comic getNext(boolean withLink) {
-		return Comic.builder()
-				.from(ABSTRACT_BD_FACTORY.getNext(withLink))
+	public Comic getNew(final boolean withLink, final boolean withIds) {
+		Comic comic = Comic.builder()
+				.from(ABSTRACT_BD_FACTORY.getNew(withLink, withIds))
 				.build();
+		if (withIds) {
+			new EntityHelper().setId(comic, UUID.randomUUID());
+		}
+		return comic;
 	}
 }

@@ -27,7 +27,7 @@ public class UTMangaBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Manga manga = MANGA_FACTORY.getNext();
+		Manga manga = MANGA_FACTORY.getNew();
 		Manga copy = entity.from(manga).build();
 		assertEquals(manga, copy);
 	}

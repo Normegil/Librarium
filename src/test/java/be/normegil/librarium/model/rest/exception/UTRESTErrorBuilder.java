@@ -37,7 +37,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_Code() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -46,7 +46,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_Status() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -55,7 +55,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_Message() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -64,7 +64,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_DeveloperMessage() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -73,7 +73,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_URL() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -82,7 +82,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testFrom_Time() throws Exception {
-		RESTError error = REST_ERROR_FACTORY.getNext();
+		RESTError error = REST_ERROR_FACTORY.getNew();
 		RESTError copy = entity
 				.from(error)
 				.build();
@@ -123,7 +123,7 @@ public class UTRESTErrorBuilder {
 
 	@Test
 	public void testSetMoreInfoURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		RESTError rESTError = entity
 				.setMoreInfoURL(url)
 				.build();

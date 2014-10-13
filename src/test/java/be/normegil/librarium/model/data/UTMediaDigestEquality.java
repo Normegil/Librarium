@@ -35,7 +35,7 @@ public class UTMediaDigestEquality extends AbstractDataEqualityTest<Media.MediaD
 	@Test
 	public void testUnchanged() throws Exception {
 		Media entity = getMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Media.MediaDigest digest1 = new Media.MediaDigest();
 		Media.MediaDigest digest2 = new Media.MediaDigest();
@@ -47,12 +47,12 @@ public class UTMediaDigestEquality extends AbstractDataEqualityTest<Media.MediaD
 	@Test
 	public void testDifferentUniverses() throws Exception {
 		Media entity = getMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Media.MediaDigest digest1 = new Media.MediaDigest();
 		Media.MediaDigest digest2 = new Media.MediaDigest();
 		digest1.fromBase(baseURI, entity);
-		Universe universe = UNIVERSE_FACTORY.getNext();
+		Universe universe = UNIVERSE_FACTORY.getNew();
 		new EntityHelper().setId(universe, UUID.randomUUID());
 		entity.addUniverse(universe);
 		digest2.fromBase(baseURI, entity);
@@ -71,12 +71,12 @@ public class UTMediaDigestEquality extends AbstractDataEqualityTest<Media.MediaD
 	@Test
 	public void testDifferentReleaseDates() throws Exception {
 		Media entity = getMedia();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Media.MediaDigest digest1 = new Media.MediaDigest();
 		Media.MediaDigest digest2 = new Media.MediaDigest();
 		digest1.fromBase(baseURI, entity);
-		ReleaseDate releaseDate = RELEASE_DATE_FACTORY.getNext();
+		ReleaseDate releaseDate = RELEASE_DATE_FACTORY.getNew();
 		entity.addReleaseDate(releaseDate.getSupport(), releaseDate.getDate());
 		digest2.fromBase(baseURI, entity);
 		assertNotEquals(digest1, digest2);
@@ -92,7 +92,7 @@ public class UTMediaDigestEquality extends AbstractDataEqualityTest<Media.MediaD
 	}
 
 	private Media getMedia() {
-		Media media = MEDIA_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
 		EntityHelper entityHelper = new EntityHelper();
 		for (Universe universe : media.getUniverses()) {
 			entityHelper.setId(universe, UUID.randomUUID());

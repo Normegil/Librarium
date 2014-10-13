@@ -28,7 +28,7 @@ public class UTGame {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		developers = entity.getDevelopers();
 		editors = entity.getEditors();
 		composers = entity.getComposers();
@@ -51,9 +51,9 @@ public class UTGame {
 	@Test
 	public void testAddAllDevelopers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		developers.addAll(toAdd);
 		entity.addAllDevelopers(toAdd);
@@ -62,7 +62,7 @@ public class UTGame {
 
 	@Test
 	public void testAddDeveloper() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		developers.add(toAdd);
 		entity.addDeveloper(toAdd);
 		assertEquals(developers, entity.getDevelopers());
@@ -70,9 +70,9 @@ public class UTGame {
 
 	@Test
 	public void testRemoveAllDevelopers() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -104,9 +104,9 @@ public class UTGame {
 	@Test
 	public void testAddAllEditors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		editors.addAll(toAdd);
 		entity.addAllEditors(toAdd);
@@ -115,7 +115,7 @@ public class UTGame {
 
 	@Test
 	public void testAddEditor() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		editors.add(toAdd);
 		entity.addEditor(toAdd);
 		assertEquals(editors, entity.getEditors());
@@ -123,9 +123,9 @@ public class UTGame {
 
 	@Test
 	public void testRemoveAllEditors() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -157,9 +157,9 @@ public class UTGame {
 	@Test
 	public void testAddAllComposers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		composers.addAll(toAdd);
 		entity.addAllComposers(toAdd);
@@ -168,7 +168,7 @@ public class UTGame {
 
 	@Test
 	public void testAddComposer() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		composers.add(toAdd);
 		entity.addComposer(toAdd);
 		assertEquals(composers, entity.getComposers());
@@ -176,9 +176,9 @@ public class UTGame {
 
 	@Test
 	public void testRemoveAllComposers() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -209,7 +209,7 @@ public class UTGame {
 
 	@Test
 	public void testSetSerie() throws Exception {
-		GameSerie gameSerie = GAME_SERIE_FACTORY.getNext();
+		GameSerie gameSerie = GAME_SERIE_FACTORY.getNew();
 		entity.setSerie(gameSerie);
 		assertEquals(gameSerie, entity.getSerie());
 	}

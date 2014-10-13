@@ -23,7 +23,7 @@ public class UTDownloadLinkEquality extends AbstractDataEqualityTest<DownloadLin
 
 	@Override
 	protected DownloadLink getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class UTDownloadLinkEquality extends AbstractDataEqualityTest<DownloadLin
 	public void testDifferentLink() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		entity.setLink(URL_FACTORY.getNext());
+		entity.setLink(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -61,7 +61,7 @@ public class UTDownloadLinkEquality extends AbstractDataEqualityTest<DownloadLin
 	public void testDifferentMedia() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		entity.setMedia(BASE_MEDIA_FACTORY.getNext());
+		entity.setMedia(BASE_MEDIA_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

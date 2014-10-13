@@ -16,7 +16,7 @@ public class UTSerieSeasonDatabaseSupport extends AbstractEntityDatabaseSupportT
 
 	@Override
 	protected SerieSeason initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

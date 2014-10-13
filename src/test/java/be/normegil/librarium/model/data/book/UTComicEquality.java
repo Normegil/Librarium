@@ -16,7 +16,7 @@ public class UTComicEquality extends AbstractDataEqualityTest<Comic> {
 
 	@Override
 	protected Comic getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test

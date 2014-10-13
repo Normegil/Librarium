@@ -135,7 +135,7 @@ public class UTMapComparator {
 		Map<Long, DownloadLink> map2 = new HashMap<>();
 		map2.put(entry1.getKey(), entry1.getValue());
 		map2.put(entry2.getKey(), entry2.getValue());
-		map2.put(entry3.getKey(), FACTORY.getNext(false));
+		map2.put(entry3.getKey(), FACTORY.getNew(false));
 
 		assertTrue(COMPARATOR_HELPER.testComparatorResult(Constants.Comparator.PRIORITY_FIRST, entity.compareMaps(map1, map2)));
 	}
@@ -149,7 +149,7 @@ public class UTMapComparator {
 		Map<Long, DownloadLink> map1 = new HashMap<>();
 		map1.put(entry1.getKey(), entry1.getValue());
 		map1.put(entry2.getKey(), entry2.getValue());
-		map1.put(entry3.getKey(), FACTORY.getNext(false));
+		map1.put(entry3.getKey(), FACTORY.getNew(false));
 
 		Map<Long, DownloadLink> map2 = new HashMap<>();
 		map2.put(entry1.getKey(), entry1.getValue());
@@ -162,20 +162,20 @@ public class UTMapComparator {
 	@Test
 	public void testCompareCollection_PriorityKey_KeyDiffer_ValueDiffer() throws Exception {
 		Map<Long, DownloadLink> map2 = new HashMap<>();
-		map2.put(4L, FACTORY.getNext(false));
-		map2.put(5L, FACTORY.getNext(false));
-		map2.put(6L, FACTORY.getNext(false));
+		map2.put(4L, FACTORY.getNew(false));
+		map2.put(5L, FACTORY.getNew(false));
+		map2.put(6L, FACTORY.getNew(false));
 
 		Map<Long, DownloadLink> map1 = new HashMap<>();
-		map1.put(1L, FACTORY.getNext(false));
-		map1.put(2L, FACTORY.getNext(false));
-		map1.put(3L, FACTORY.getNext(false));
+		map1.put(1L, FACTORY.getNew(false));
+		map1.put(2L, FACTORY.getNew(false));
+		map1.put(3L, FACTORY.getNew(false));
 
 		assertTrue(COMPARATOR_HELPER.testComparatorResult(Constants.Comparator.PRIORITY_FIRST, entity.compareMaps(map1, map2)));
 	}
 
 	private Map.Entry<Long, DownloadLink> getNewEntry() {
-		AbstractMap.SimpleEntry<Long, DownloadLink> entry = new AbstractMap.SimpleEntry<>(index, FACTORY.getNext(false));
+		AbstractMap.SimpleEntry<Long, DownloadLink> entry = new AbstractMap.SimpleEntry<>(index, FACTORY.getNew(false));
 		index += 1;
 		return entry;
 	}

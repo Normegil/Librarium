@@ -16,7 +16,7 @@ public class UTSerieDatabaseSupport extends AbstractEntityDatabaseSupportTest<Se
 
 	@Override
 	protected Serie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

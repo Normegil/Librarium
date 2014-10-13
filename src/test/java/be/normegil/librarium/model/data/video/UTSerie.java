@@ -23,7 +23,7 @@ public class UTSerie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		seasons = entity.getSeasons();
 	}
 
@@ -42,9 +42,9 @@ public class UTSerie {
 	@Test
 	public void testAddAllSeasons() throws Exception {
 		Collection<SerieSeason> toAdd = new HashSet<>();
-		toAdd.add(SERIE_SEASON_FACTORY.getNext());
-		toAdd.add(SERIE_SEASON_FACTORY.getNext());
-		toAdd.add(SERIE_SEASON_FACTORY.getNext());
+		toAdd.add(SERIE_SEASON_FACTORY.getNew());
+		toAdd.add(SERIE_SEASON_FACTORY.getNew());
+		toAdd.add(SERIE_SEASON_FACTORY.getNew());
 
 		seasons.addAll(toAdd);
 		entity.addAllSeasons(toAdd);
@@ -53,7 +53,7 @@ public class UTSerie {
 
 	@Test
 	public void testAddSeason() throws Exception {
-		SerieSeason toAdd = SERIE_SEASON_FACTORY.getNext();
+		SerieSeason toAdd = SERIE_SEASON_FACTORY.getNew();
 		seasons.add(toAdd);
 		entity.addSeason(toAdd);
 		assertEquals(seasons, entity.getSeasons());
@@ -61,9 +61,9 @@ public class UTSerie {
 
 	@Test
 	public void testRemoveAllSeasons() throws Exception {
-		SerieSeason base = SERIE_SEASON_FACTORY.getNext();
-		SerieSeason second = SERIE_SEASON_FACTORY.getNext();
-		SerieSeason third = SERIE_SEASON_FACTORY.getNext();
+		SerieSeason base = SERIE_SEASON_FACTORY.getNew();
+		SerieSeason second = SERIE_SEASON_FACTORY.getNew();
+		SerieSeason third = SERIE_SEASON_FACTORY.getNew();
 
 		Collection<SerieSeason> toAdd = new HashSet<>();
 		toAdd.add(base);

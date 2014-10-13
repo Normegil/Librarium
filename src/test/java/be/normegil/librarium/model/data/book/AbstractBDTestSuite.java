@@ -4,8 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeAbstractBD;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -25,27 +23,27 @@ public class AbstractBDTestSuite implements DataFactory<AbstractBD> {
 	private static long index = 0L;
 
 	@Override
+	public AbstractBD getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public AbstractBD getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public AbstractBD getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public AbstractBD getNew(boolean withLink) {
+	public AbstractBD getDefault(boolean withLink) {
 		return FakeAbstractBD.builder()
-				.from(BOOK_FACTORY.getNew(withLink))
+				.from(BOOK_FACTORY.getDefault(withLink))
 				.setIssueNumber(1L)
 				.build();
 	}
 
 	@Override
-	public AbstractBD getNext(boolean withLink) {
+	public AbstractBD getNew(boolean withLink) {
 		AbstractBD entity = FakeAbstractBD.builder()
-				.from(BOOK_FACTORY.getNext(withLink))
+				.from(BOOK_FACTORY.getNew(withLink))
 				.setIssueNumber(index)
 				.build();
 		index += 1;

@@ -18,12 +18,12 @@ public class UTRoleDatabaseSupport extends AbstractEntityDatabaseSupportTest<Rol
 
 	@Override
 	protected Role initEntity() {
-		return FACTORY.getNext(true);
+		return FACTORY.getNew();
 	}
 
 	@Override
 	protected Role changeEntity(final Role entity) {
-		entity.setActor(PERSON_FACTORY.getNext(true));
+		entity.setActor(PERSON_FACTORY.getNew());
 		return entity;
 	}
 }

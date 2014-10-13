@@ -21,7 +21,7 @@ public class UTSupportEquality extends AbstractDataEqualityTest<Support> {
 
 	@Override
 	protected Support getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class UTSupportEquality extends AbstractDataEqualityTest<Support> {
 	public void testDifferentWikipediaPage() throws Exception {
 		Support entity = getEntity();
 		Support copy = new Support(entity);
-		entity.setWikipediaPage(URL_FACTORY.getNext());
+		entity.setWikipediaPage(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -43,7 +43,7 @@ public class UTSupportEquality extends AbstractDataEqualityTest<Support> {
 	public void testDifferentMedia() throws Exception {
 		Support entity = getEntity();
 		Support copy = new Support(entity);
-		entity.addMedia(MEDIA_FACTORY.getNext());
+		entity.addMedia(MEDIA_FACTORY.getNew());
 		assertEquals(entity, copy);
 	}
 }

@@ -19,7 +19,7 @@ public class UTEpisodeSerieComparator extends AbstractDataComparableTest<Episode
 
 	@Override
 	protected EpisodeSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class UTEpisodeSerieComparator extends AbstractDataComparableTest<Episode
 	public void testSeason_First() throws Exception {
 		EpisodeSerie entity = getEntity();
 		EpisodeSerie copy = new EpisodeSerie(entity);
-		copy.setSeason(SERIE_SEASON_FACTORY.getNext());
+		copy.setSeason(SERIE_SEASON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -63,7 +63,7 @@ public class UTEpisodeSerieComparator extends AbstractDataComparableTest<Episode
 	public void testSeason_Second() throws Exception {
 		EpisodeSerie entity = getEntity();
 		EpisodeSerie copy = new EpisodeSerie(entity);
-		copy.setSeason(SERIE_SEASON_FACTORY.getNext());
+		copy.setSeason(SERIE_SEASON_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

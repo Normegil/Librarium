@@ -2,11 +2,11 @@ package be.normegil.librarium.tool;
 
 public interface DataFactory<E> {
 
+	public E getDefault();
+
 	public E getNew();
 
-	public E getNext();
+	public E getDefault(boolean withLink, boolean withIds);
 
-	public E getNew(boolean withLink);
-
-	public E getNext(boolean withLink);
+	public E getNew(boolean withLink, boolean withIds);
 }

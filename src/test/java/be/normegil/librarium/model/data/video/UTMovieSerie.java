@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +23,7 @@ public class UTMovieSerie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNext();
+		entity = FACTORY.getNew();
 		movies = entity.getMovies();
 	}
 
@@ -43,9 +42,9 @@ public class UTMovieSerie {
 	@Test
 	public void testAddAllMovies() throws Exception {
 		Collection<Movie> toAdd = new HashSet<>();
-		toAdd.add(MOVIE_FACTORY.getNext());
-		toAdd.add(MOVIE_FACTORY.getNext());
-		toAdd.add(MOVIE_FACTORY.getNext());
+		toAdd.add(MOVIE_FACTORY.getNew());
+		toAdd.add(MOVIE_FACTORY.getNew());
+		toAdd.add(MOVIE_FACTORY.getNew());
 
 		movies.addAll(toAdd);
 		entity.addAllMovies(toAdd);
@@ -54,7 +53,7 @@ public class UTMovieSerie {
 
 	@Test
 	public void testAddMovie() throws Exception {
-		Movie toAdd = MOVIE_FACTORY.getNext();
+		Movie toAdd = MOVIE_FACTORY.getNew();
 		movies.add(toAdd);
 		entity.addMovie(toAdd);
 		assertEquals(movies, entity.getMovies());
@@ -62,9 +61,9 @@ public class UTMovieSerie {
 
 	@Test
 	public void testRemoveAllMovies() throws Exception {
-		Movie base = MOVIE_FACTORY.getNext();
-		Movie second = MOVIE_FACTORY.getNext();
-		Movie third = MOVIE_FACTORY.getNext();
+		Movie base = MOVIE_FACTORY.getNew();
+		Movie second = MOVIE_FACTORY.getNew();
+		Movie third = MOVIE_FACTORY.getNew();
 
 		Collection<Movie> toAdd = new HashSet<>();
 		toAdd.add(base);

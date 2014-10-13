@@ -21,7 +21,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 
 	@Override
 	protected Game getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 	public void testDifferentDeveloper() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		entity.addDeveloper(RESPONSIBLE_FACTORY.getNext());
+		entity.addDeveloper(RESPONSIBLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -43,7 +43,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 	public void testDifferentEditor() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		entity.addEditor(RESPONSIBLE_FACTORY.getNext());
+		entity.addEditor(RESPONSIBLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -51,7 +51,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 	public void testDifferentComposer() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		entity.addComposer(RESPONSIBLE_FACTORY.getNext());
+		entity.addComposer(RESPONSIBLE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -59,7 +59,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 	public void testDifferentSerie() throws Exception {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
-		entity.setSerie(GAME_SERIE_FACTORY.getNext());
+		entity.setSerie(GAME_SERIE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

@@ -22,7 +22,7 @@ public class UTRole {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -38,21 +38,21 @@ public class UTRole {
 
 	@Test
 	public void testSetRole() throws Exception {
-		Person person = PERSON_FACTORY.getNext();
+		Person person = PERSON_FACTORY.getNew();
 		entity.setRole(person);
 		assertEquals(person, entity.getRole());
 	}
 
 	@Test
 	public void testSetActor() throws Exception {
-		Person person = PERSON_FACTORY.getNext();
+		Person person = PERSON_FACTORY.getNew();
 		entity.setActor(person);
 		assertEquals(person, entity.getActor());
 	}
 
 	@Test
 	public void testSetVideo() throws Exception {
-		Video video = VIDEO_FACTORY.getNext();
+		Video video = VIDEO_FACTORY.getNew();
 		entity.setVideo(video);
 		assertEquals(video, entity.getVideo());
 	}

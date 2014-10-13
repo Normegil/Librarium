@@ -22,7 +22,7 @@ public class UTDownloadLinkComparator extends AbstractDataComparableTest<Downloa
 
 	@Override
 	protected DownloadLink getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UTDownloadLinkComparator extends AbstractDataComparableTest<Downloa
 	public void testLink_First() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		copy.setLink(URL_FACTORY.getNext());
+		copy.setLink(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -74,7 +74,7 @@ public class UTDownloadLinkComparator extends AbstractDataComparableTest<Downloa
 	public void testLink_Second() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		copy.setLink(URL_FACTORY.getNext());
+		copy.setLink(URL_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -82,7 +82,7 @@ public class UTDownloadLinkComparator extends AbstractDataComparableTest<Downloa
 	public void testMedia_First() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		copy.setMedia(BASE_MEDIA_FACTORY.getNext());
+		copy.setMedia(BASE_MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -90,7 +90,7 @@ public class UTDownloadLinkComparator extends AbstractDataComparableTest<Downloa
 	public void testMedia_Second() throws Exception {
 		DownloadLink entity = getEntity();
 		DownloadLink copy = new DownloadLink(entity);
-		copy.setMedia(BASE_MEDIA_FACTORY.getNext());
+		copy.setMedia(BASE_MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

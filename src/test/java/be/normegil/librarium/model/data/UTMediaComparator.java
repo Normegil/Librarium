@@ -24,7 +24,7 @@ public class UTMediaComparator extends AbstractDataComparableTest<Media> {
 
 	@Override
 	protected Media getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class UTMediaComparator extends AbstractDataComparableTest<Media> {
 	public void testUniverse_First() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		copy.addUniverse(UNIVERSE_FACTORY.getNext());
+		copy.addUniverse(UNIVERSE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -52,7 +52,7 @@ public class UTMediaComparator extends AbstractDataComparableTest<Media> {
 	public void testUniverse_Second() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		copy.addUniverse(UNIVERSE_FACTORY.getNext());
+		copy.addUniverse(UNIVERSE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 
@@ -60,7 +60,7 @@ public class UTMediaComparator extends AbstractDataComparableTest<Media> {
 	public void testSupport_Equality() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		copy.addSupport(SUPPORT_FACTORY.getNext());
+		copy.addSupport(SUPPORT_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -68,7 +68,7 @@ public class UTMediaComparator extends AbstractDataComparableTest<Media> {
 	public void testReleaseDate_Equality() throws Exception {
 		Media entity = getEntity();
 		Media copy = new FakeMedia(entity);
-		copy.addReleaseDate(SUPPORT_FACTORY.getNext(), LocalDate.now());
+		copy.addReleaseDate(SUPPORT_FACTORY.getNew(), LocalDate.now());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

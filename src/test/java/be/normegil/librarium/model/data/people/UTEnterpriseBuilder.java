@@ -27,7 +27,7 @@ public class UTEnterpriseBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Enterprise enterprise = ENTERPRISE_FACTORY.getNext();
+		Enterprise enterprise = ENTERPRISE_FACTORY.getNew();
 		Enterprise copy = entity.from(enterprise).build();
 		assertEquals(enterprise, copy);
 	}

@@ -83,10 +83,10 @@ public class UTCollectionResourceBuilderSafety {
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuild_OffsetHigherThanNumberOfElements() throws Exception {
 		List<URL> urls = new ArrayList<>();
-		urls.add(URL_FACTORY.getNext());
-		urls.add(URL_FACTORY.getNext());
-		urls.add(URL_FACTORY.getNext());
-		URL baseURL = URL_FACTORY.getNext();
+		urls.add(URL_FACTORY.getNew());
+		urls.add(URL_FACTORY.getNew());
+		urls.add(URL_FACTORY.getNew());
+		URL baseURL = URL_FACTORY.getNew();
 
 		entity
 				.addAllItems(urls)
@@ -101,10 +101,10 @@ public class UTCollectionResourceBuilderSafety {
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuild_OffsetEqualsToNumberOfElementsWhenNotZero() throws Exception {
 		List<URL> urls = new ArrayList<>();
-		urls.add(URL_FACTORY.getNext());
-		urls.add(URL_FACTORY.getNext());
-		urls.add(URL_FACTORY.getNext());
-		URL baseURL = URL_FACTORY.getNext();
+		urls.add(URL_FACTORY.getNew());
+		urls.add(URL_FACTORY.getNew());
+		urls.add(URL_FACTORY.getNew());
+		URL baseURL = URL_FACTORY.getNew();
 
 		entity
 				.addAllItems(urls)

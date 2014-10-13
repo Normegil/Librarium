@@ -23,7 +23,7 @@ public class UTGameSerie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		games = entity.getGames();
 	}
 
@@ -42,9 +42,9 @@ public class UTGameSerie {
 	@Test
 	public void testAddAllGames() throws Exception {
 		Collection<Game> toAdd = new HashSet<>();
-		toAdd.add(GAME_FACTORY.getNext());
-		toAdd.add(GAME_FACTORY.getNext());
-		toAdd.add(GAME_FACTORY.getNext());
+		toAdd.add(GAME_FACTORY.getNew());
+		toAdd.add(GAME_FACTORY.getNew());
+		toAdd.add(GAME_FACTORY.getNew());
 
 		games.addAll(toAdd);
 		entity.addAllGames(toAdd);
@@ -53,7 +53,7 @@ public class UTGameSerie {
 
 	@Test
 	public void testAddGame() throws Exception {
-		Game toAdd = GAME_FACTORY.getNext();
+		Game toAdd = GAME_FACTORY.getNew();
 		games.add(toAdd);
 		entity.addGame(toAdd);
 		assertEquals(games, entity.getGames());
@@ -61,9 +61,9 @@ public class UTGameSerie {
 
 	@Test
 	public void testRemoveAllGames() throws Exception {
-		Game base = GAME_FACTORY.getNext();
-		Game second = GAME_FACTORY.getNext();
-		Game third = GAME_FACTORY.getNext();
+		Game base = GAME_FACTORY.getNew();
+		Game second = GAME_FACTORY.getNew();
+		Game third = GAME_FACTORY.getNew();
 
 		Collection<Game> toAdd = new HashSet<>();
 		toAdd.add(base);

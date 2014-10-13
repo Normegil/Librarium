@@ -20,7 +20,7 @@ public class UTURLComparator extends AbstractDataComparatorTest<URL> {
 
 	@Override
 	protected URL getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class UTMovieSerieEquality extends AbstractDataEqualityTest<MovieSerie> {
 
 	@Override
 	protected MovieSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class UTMovieSerieEquality extends AbstractDataEqualityTest<MovieSerie> {
 	public void testDifferentMovie() throws Exception {
 		MovieSerie entity = getEntity();
 		MovieSerie copy = new MovieSerie(entity);
-		entity.addMovie(MOVIE_FACTORY.getNext());
+		entity.addMovie(MOVIE_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

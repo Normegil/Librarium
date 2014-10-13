@@ -3,8 +3,6 @@ package be.normegil.librarium.model.data.book;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -24,26 +22,26 @@ public class BDTestSuite implements DataFactory<BD> {
 	private static final DataFactory<AbstractBD> ABSTRACT_BD_FACTORY = FactoryRepository.get(AbstractBD.class);
 
 	@Override
+	public BD getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public BD getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public BD getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public BD getNew(boolean withLink) {
+	public BD getDefault(boolean withLink) {
 		return BD.builder()
-				.from(ABSTRACT_BD_FACTORY.getNew(withLink))
+				.from(ABSTRACT_BD_FACTORY.getDefault(withLink))
 				.build();
 	}
 
 	@Override
-	public BD getNext(boolean withLink) {
+	public BD getNew(boolean withLink) {
 		BD entity = BD.builder()
-				.from(ABSTRACT_BD_FACTORY.getNext(withLink))
+				.from(ABSTRACT_BD_FACTORY.getNew(withLink))
 				.build();
 		return entity;
 	}

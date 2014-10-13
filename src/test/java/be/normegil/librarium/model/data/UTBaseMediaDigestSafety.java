@@ -36,7 +36,7 @@ public class UTBaseMediaDigestSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFromBase_NullURI() throws Exception {
-		Validator.validate(entity, FROM_BASE_METHOD, null, GAME_FACTORY.getNext());
+		Validator.validate(entity, FROM_BASE_METHOD, null, GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)
@@ -46,7 +46,7 @@ public class UTBaseMediaDigestSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testFromBase_NullEntityID() throws Exception {
-		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), GAME_FACTORY.getNext());
+		Validator.validate(entity, FROM_BASE_METHOD, URI.create(URI_ADDRESS), GAME_FACTORY.getNew());
 	}
 
 	@Test(expected = ConstraintViolationException.class)

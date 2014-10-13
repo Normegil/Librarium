@@ -22,7 +22,7 @@ public class UTEntityComparator extends AbstractDataComparableTest<Entity> {
 
 	@Override
 	protected Entity getNewEntity() {
-		Entity entity = FACTORY.getNew();
+		Entity entity = FACTORY.getDefault();
 		new EntityHelper().setId(entity, ID);
 		return entity;
 	}

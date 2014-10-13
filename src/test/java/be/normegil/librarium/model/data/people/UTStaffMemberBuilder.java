@@ -2,7 +2,6 @@ package be.normegil.librarium.model.data.people;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.Media;
-import be.normegil.librarium.model.data.video.Video;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;
@@ -33,7 +32,7 @@ public class UTStaffMemberBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		StaffMember staffMember = STAFF_MEMBER_FACTORY.getNext();
+		StaffMember staffMember = STAFF_MEMBER_FACTORY.getNew();
 		StaffMember copy = entity.from(staffMember).build();
 		assertEquals(staffMember, copy);
 	}
@@ -48,7 +47,7 @@ public class UTStaffMemberBuilder {
 
 	@Test
 	public void testSetResponsible() throws Exception {
-		Responsible responsible = RESPONSIBLE_FACTORY.getNext();
+		Responsible responsible = RESPONSIBLE_FACTORY.getNew();
 		StaffMember staffMember = entity
 				.setResponsible(responsible)
 				.build();
@@ -57,7 +56,7 @@ public class UTStaffMemberBuilder {
 
 	@Test
 	public void testSetMedia() throws Exception {
-		Media media = MEDIA_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
 		StaffMember staffMember = entity
 				.setMedia(media)
 				.build();

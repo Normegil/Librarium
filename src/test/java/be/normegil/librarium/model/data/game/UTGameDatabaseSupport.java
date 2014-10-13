@@ -16,7 +16,7 @@ public class UTGameDatabaseSupport extends AbstractEntityDatabaseSupportTest<Gam
 
 	@Override
 	protected Game initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class UTPersonDatabaseSupport extends AbstractEntityDatabaseSupportTest<P
 
 	@Override
 	protected Person initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

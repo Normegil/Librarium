@@ -16,7 +16,7 @@ public class UTMangaEquality extends AbstractDataEqualityTest<Manga> {
 
 	@Override
 	protected Manga getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test

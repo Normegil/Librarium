@@ -19,7 +19,7 @@ public class UTGameSerieComparator extends AbstractDataComparableTest<GameSerie>
 
 	@Override
 	protected GameSerie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class UTGameSerieComparator extends AbstractDataComparableTest<GameSerie>
 	public void testGame_First() throws Exception {
 		GameSerie entity = getEntity();
 		GameSerie copy = new GameSerie(entity);
-		copy.addGame(GAME_FACTORY.getNext());
+		copy.addGame(GAME_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -46,7 +46,7 @@ public class UTGameSerieComparator extends AbstractDataComparableTest<GameSerie>
 	public void testGame_Second() throws Exception {
 		GameSerie entity = getEntity();
 		GameSerie copy = new GameSerie(entity);
-		copy.addGame(GAME_FACTORY.getNext());
+		copy.addGame(GAME_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

@@ -50,7 +50,7 @@ public class UTFieldWrapper {
 
 	@Test
 	public void testSet_Null() throws Exception {
-		Entity game = GAME_FACTORY.getNew();
+		Entity game = GAME_FACTORY.getDefault();
 		new EntityHelper().setId(game, UUID.randomUUID());
 		entity.set(game, null);
 		assertNull(game.getId());
@@ -58,7 +58,7 @@ public class UTFieldWrapper {
 
 	@Test
 	public void testSet() throws Exception {
-		Entity game = GAME_FACTORY.getNew();
+		Entity game = GAME_FACTORY.getDefault();
 		UUID expected = UUID.randomUUID();
 		entity.set(game, expected);
 		assertEquals(expected, game.getId());

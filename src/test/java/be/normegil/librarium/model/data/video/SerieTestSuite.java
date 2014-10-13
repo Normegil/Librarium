@@ -4,8 +4,6 @@ import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.BaseMedia;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -27,13 +25,23 @@ public class SerieTestSuite implements DataFactory<Serie> {
 	private static final DataFactory<SerieSeason> SERIE_SEASON_FACTORY = FactoryRepository.get(SerieSeason.class);
 
 	@Override
+	public Serie getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Serie getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Serie getNext() {
-		return getNext(true);
+	public Serie getDefault(boolean withLink) {
+		Serie.Builder builder = Serie.builder()
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+		if (withLink) {
+			builder.addSeason(SERIE_SEASON_FACTORY.getDefault(false));
+		}
+		return builder.build();
 	}
 
 	@Override
@@ -41,18 +49,8 @@ public class SerieTestSuite implements DataFactory<Serie> {
 		Serie.Builder builder = Serie.builder()
 				.from(BASE_MEDIA_FACTORY.getNew(withLink));
 		if (withLink) {
-			builder.addSeason(SERIE_SEASON_FACTORY.getNew(false));
-		}
-		return builder.build();
-	}
-
-	@Override
-	public Serie getNext(boolean withLink) {
-		Serie.Builder builder = Serie.builder()
-				.from(BASE_MEDIA_FACTORY.getNext(withLink));
-		if (withLink) {
-			builder.addSeason(SERIE_SEASON_FACTORY.getNext(false))
-					.addSeason(SERIE_SEASON_FACTORY.getNext(false));
+			builder.addSeason(SERIE_SEASON_FACTORY.getNew(false))
+					.addSeason(SERIE_SEASON_FACTORY.getNew(false));
 		}
 		return builder.build();
 	}

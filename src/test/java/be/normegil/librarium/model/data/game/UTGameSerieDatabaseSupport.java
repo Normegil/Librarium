@@ -16,7 +16,7 @@ public class UTGameSerieDatabaseSupport extends AbstractEntityDatabaseSupportTes
 
 	@Override
 	protected GameSerie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

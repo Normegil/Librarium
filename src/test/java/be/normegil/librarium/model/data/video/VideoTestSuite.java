@@ -32,50 +32,50 @@ public class VideoTestSuite implements DataFactory<Video> {
 	private static long index = 0L;
 
 	@Override
+	public Video getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Video getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Video getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Video getNew(boolean withLink) {
+	public Video getDefault(boolean withLink) {
 		FakeVideo.Builder builder = FakeVideo.builder()
-				.from(MEDIA_FACTORY.getNew(withLink))
+				.from(MEDIA_FACTORY.getDefault(withLink))
 				.setDuration(Duration.ofMinutes(90));
 		if (withLink) {
-			builder.addActor(ROLE_FACTORY.getNew(false))
-					.addProducer(RESPONSIBLE_FACTORY.getNew(false))
-					.addDirector(RESPONSIBLE_FACTORY.getNew(false))
-					.addComposer(RESPONSIBLE_FACTORY.getNew(false))
-					.addScenarist(RESPONSIBLE_FACTORY.getNew(false))
-					.addOtherStaffMember(RESPONSIBLE_FACTORY.getNew(false));
+			builder.addActor(ROLE_FACTORY.getDefault(false))
+					.addProducer(RESPONSIBLE_FACTORY.getDefault(false))
+					.addDirector(RESPONSIBLE_FACTORY.getDefault(false))
+					.addComposer(RESPONSIBLE_FACTORY.getDefault(false))
+					.addScenarist(RESPONSIBLE_FACTORY.getDefault(false))
+					.addOtherStaffMember(RESPONSIBLE_FACTORY.getDefault(false));
 		}
 
 		return builder.build();
 	}
 
 	@Override
-	public Video getNext(boolean withLink) {
+	public Video getNew(boolean withLink) {
 		FakeVideo.Builder builder = FakeVideo.builder()
-				.from(MEDIA_FACTORY.getNext(withLink))
+				.from(MEDIA_FACTORY.getNew(withLink))
 				.setDuration(Duration.ofMinutes(index));
 
 		if (withLink) {
-			builder.addActor(ROLE_FACTORY.getNext(false))
-					.addProducer(RESPONSIBLE_FACTORY.getNext(false))
-					.addProducer(RESPONSIBLE_FACTORY.getNext(false))
-					.addDirector(RESPONSIBLE_FACTORY.getNext(false))
-					.addDirector(RESPONSIBLE_FACTORY.getNext(false))
-					.addComposer(RESPONSIBLE_FACTORY.getNext(false))
-					.addComposer(RESPONSIBLE_FACTORY.getNext(false))
-					.addScenarist(RESPONSIBLE_FACTORY.getNext(false))
-					.addScenarist(RESPONSIBLE_FACTORY.getNext(false))
-					.addOtherStaffMember(RESPONSIBLE_FACTORY.getNext(false))
-					.addOtherStaffMember(RESPONSIBLE_FACTORY.getNext(false));
+			builder.addActor(ROLE_FACTORY.getNew(false))
+					.addProducer(RESPONSIBLE_FACTORY.getNew(false))
+					.addProducer(RESPONSIBLE_FACTORY.getNew(false))
+					.addDirector(RESPONSIBLE_FACTORY.getNew(false))
+					.addDirector(RESPONSIBLE_FACTORY.getNew(false))
+					.addComposer(RESPONSIBLE_FACTORY.getNew(false))
+					.addComposer(RESPONSIBLE_FACTORY.getNew(false))
+					.addScenarist(RESPONSIBLE_FACTORY.getNew(false))
+					.addScenarist(RESPONSIBLE_FACTORY.getNew(false))
+					.addOtherStaffMember(RESPONSIBLE_FACTORY.getNew(false))
+					.addOtherStaffMember(RESPONSIBLE_FACTORY.getNew(false));
 		}
 
 		index += 1;

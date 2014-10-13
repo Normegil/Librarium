@@ -19,7 +19,7 @@ public class UTMovie {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -35,7 +35,7 @@ public class UTMovie {
 
 	@Test
 	public void testSetSerie() throws Exception {
-		MovieSerie serie = MOVIE_SERIE_FACTORY.getNext();
+		MovieSerie serie = MOVIE_SERIE_FACTORY.getNew();
 		entity.setSerie(serie);
 		assertEquals(serie, entity.getSerie());
 	}

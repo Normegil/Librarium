@@ -14,6 +14,6 @@ public class UTCollectionResourceXMLSupport extends AbstractParsingSupportTest<C
 
 	@Override
 	protected CollectionResource initEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 }

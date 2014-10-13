@@ -25,13 +25,23 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 	private static final DataFactory<Book> BOOK_FACTORY = FactoryRepository.get(Book.class);
 
 	@Override
+	public BookSerie getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public BookSerie getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public BookSerie getNext() {
-		return getNext(true);
+	public BookSerie getDefault(boolean withLink) {
+		BookSerie.Builder builder = BookSerie.builder()
+				.from(BASE_MEDIA_FACTORY.getDefault(withLink));
+		if (withLink) {
+			builder.addBook(BOOK_FACTORY.getDefault(false));
+		}
+		return builder.build();
 	}
 
 	@Override
@@ -40,16 +50,6 @@ public class BookSerieTestSuite implements DataFactory<BookSerie> {
 				.from(BASE_MEDIA_FACTORY.getNew(withLink));
 		if (withLink) {
 			builder.addBook(BOOK_FACTORY.getNew(false));
-		}
-		return builder.build();
-	}
-
-	@Override
-	public BookSerie getNext(boolean withLink) {
-		BookSerie.Builder builder = BookSerie.builder()
-				.from(BASE_MEDIA_FACTORY.getNext(withLink));
-		if (withLink) {
-			builder.addBook(BOOK_FACTORY.getNext(false));
 		}
 		return builder.build();
 	}

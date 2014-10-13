@@ -24,7 +24,7 @@ public class UTReleaseDate {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -34,16 +34,16 @@ public class UTReleaseDate {
 
 	@Test
 	public void testConstructor_Media() throws Exception {
-		Media media = MEDIA_FACTORY.getNext();
-		Support support = SUPPORT_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
+		Support support = SUPPORT_FACTORY.getNew();
 		ReleaseDate copy = new ReleaseDate(media, support, LocalDate.now());
 		assertEquals(media, copy.getMedia());
 	}
 
 	@Test
 	public void testConstructor_Support() throws Exception {
-		Media media = MEDIA_FACTORY.getNext();
-		Support support = SUPPORT_FACTORY.getNext();
+		Media media = MEDIA_FACTORY.getNew();
+		Support support = SUPPORT_FACTORY.getNew();
 		ReleaseDate copy = new ReleaseDate(media, support, LocalDate.now());
 		assertEquals(support, copy.getSupport());
 	}
@@ -63,7 +63,7 @@ public class UTReleaseDate {
 
 	@Test
 	public void testToString() throws Exception {
-		ReleaseDate releaseDate = FACTORY.getNew();
+		ReleaseDate releaseDate = FACTORY.getDefault();
 		assertEquals("ReleaseDate[media=FakeMedia[id=<null>,title=Title],support=Support[id=<null>,name=Name],date=2014-08-30]", releaseDate.toString());
 	}
 }

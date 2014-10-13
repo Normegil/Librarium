@@ -20,7 +20,7 @@ public class UTUniverseComparator extends AbstractDataComparableTest<Universe> {
 
 	@Override
 	protected Universe getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class UTUniverseComparator extends AbstractDataComparableTest<Universe> {
 	public void testMedia_Equality() throws Exception {
 		Universe entity = getEntity();
 		Universe copy = new Universe(entity);
-		copy.addMedia(MEDIA_FACTORY.getNext());
+		copy.addMedia(MEDIA_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

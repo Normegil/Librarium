@@ -40,7 +40,7 @@ public class UTEntityDigest {
 	@Test
 	public void testFromBase() throws Exception {
 		URI baseUri = URI.create(REST_URI);
-		Entity e = GAME_FACTORY.getNext();
+		Entity e = GAME_FACTORY.getNew();
 		new EntityHelper().setId(e, UUID.randomUUID());
 		entity.fromBase(baseUri, e);
 		URI expected = URI.create(REST_URI + Constants.URL.PATH_SEPARATOR + new RESTHelper().getPathFor(e.getClass()) + Constants.URL.PATH_SEPARATOR + e.getId());

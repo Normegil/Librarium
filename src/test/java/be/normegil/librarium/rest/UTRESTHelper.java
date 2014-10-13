@@ -55,7 +55,7 @@ public class UTRESTHelper {
 		dao = new MemoryTestDAO<>(Game.class);
 		restServiceHelper = new RESTServiceHelper<>(dao, context, updater);
 
-		baseURI = URL_FACTORY.getNext().toURI();
+		baseURI = URL_FACTORY.getNew().toURI();
 		when(info.getBaseUri())
 				.thenReturn(baseURI);
 
@@ -93,14 +93,14 @@ public class UTRESTHelper {
 
 	@Test
 	public void testCreate_ResponseStatus() throws Exception {
-		Game entity = GAME_FACTORY.getNext();
+		Game entity = GAME_FACTORY.getNew();
 		Response response = restServiceHelper.create(info, entity);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 	}
 
 	@Test
 	public void testCreate_LocationValid() throws Exception {
-		Game entity = GAME_FACTORY.getNext();
+		Game entity = GAME_FACTORY.getNew();
 		Response response = restServiceHelper.create(info, entity);
 		URI location = response.getLocation();
 		URL baseURL = new URL(info.getBaseUri());
@@ -110,7 +110,7 @@ public class UTRESTHelper {
 
 	@Test
 	public void testCreate_WithID() throws Exception {
-		Game entity = GAME_FACTORY.getNext();
+		Game entity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(entity, UUID.randomUUID());
 		Response response = restServiceHelper.create(info, entity);
 		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
@@ -119,7 +119,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_Status() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, entity.getId());
 		Response response = restServiceHelper.updateByPUT(entity.getId(), entity);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
@@ -128,7 +128,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_UpdaterCalled() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, entity.getId());
 		restServiceHelper.updateByPUT(entity.getId(), newEntity);
 		verify(updater, times(1))
@@ -138,7 +138,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_NotExisting() throws Exception {
 		UUID uuid = UUID.randomUUID();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, uuid);
 		Response response = restServiceHelper.updateByPUT(uuid, newEntity);
 		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
@@ -147,7 +147,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_EntityIDNull_Status() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		Response response = restServiceHelper.updateByPUT(entity.getId(), newEntity);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 	}
@@ -155,7 +155,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_EntityIDNull_UpdaterCalled() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		restServiceHelper.updateByPUT(entity.getId(), newEntity);
 		verify(updater, times(1))
 				.updateEverything(entity, newEntity);
@@ -164,7 +164,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPUT_DifferentsIDs() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, UUID.randomUUID());
 		Response response = restServiceHelper.updateByPUT(entity.getId(), newEntity);
 		assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatus());
@@ -173,7 +173,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPOST_UpdaterCalled() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, entity.getId());
 		restServiceHelper.updateByPOST(info, entity.getId(), newEntity);
 		verify(updater, times(1))
@@ -183,7 +183,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPOST_Status() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, entity.getId());
 		Response response = restServiceHelper.updateByPOST(info, entity.getId(), newEntity);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
@@ -192,7 +192,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPOST_NotExisting() throws Exception {
 		UUID uuid = UUID.randomUUID();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		new EntityHelper().setId(newEntity, uuid);
 		Response response = restServiceHelper.updateByPOST(info, uuid, newEntity);
 		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());
@@ -201,7 +201,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPOST_EntityIDNull_UpdaterCalled() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		restServiceHelper.updateByPOST(info, entity.getId(), newEntity);
 		verify(updater, times(1))
 				.updateNotNull(entity, newEntity);
@@ -210,7 +210,7 @@ public class UTRESTHelper {
 	@Test
 	public void testUpdateByPOST_EntityIDNull_Status() throws Exception {
 		Game entity = dao.getAll().iterator().next();
-		Game newEntity = GAME_FACTORY.getNext();
+		Game newEntity = GAME_FACTORY.getNew();
 		Response response = restServiceHelper.updateByPOST(info, entity.getId(), newEntity);
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
 	}

@@ -32,7 +32,7 @@ public class UTGameDigestEquality extends AbstractDataEqualityTest<Game.GameDige
 	@Test
 	public void testUnchanged() throws Exception {
 		Game entity = getGame();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Game.GameDigest digest1 = new Game.GameDigest();
 		Game.GameDigest digest2 = new Game.GameDigest();
@@ -44,12 +44,12 @@ public class UTGameDigestEquality extends AbstractDataEqualityTest<Game.GameDige
 	@Test
 	public void testDifferentSeries() throws Exception {
 		Game entity = getGame();
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		URI baseURI = url.toURI();
 		Game.GameDigest digest1 = new Game.GameDigest();
 		Game.GameDigest digest2 = new Game.GameDigest();
 		digest1.fromBase(baseURI, entity);
-		GameSerie serie = GAME_SERIE_FACTORY.getNext();
+		GameSerie serie = GAME_SERIE_FACTORY.getNew();
 		new EntityHelper().setId(serie, UUID.randomUUID());
 		entity.setSerie(serie);
 		digest2.fromBase(baseURI, entity);
@@ -57,7 +57,7 @@ public class UTGameDigestEquality extends AbstractDataEqualityTest<Game.GameDige
 	}
 
 	private Game getGame() {
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		new EntityHelper().setId(game.getSerie(), UUID.randomUUID());
 		return game;
 	}

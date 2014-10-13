@@ -3,8 +3,6 @@ package be.normegil.librarium.model.data.people;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -24,26 +22,26 @@ public class EnterpriseTestSuite implements DataFactory<Enterprise> {
 	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 
 	@Override
+	public Enterprise getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Enterprise getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Enterprise getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Enterprise getNew(boolean withLink) {
+	public Enterprise getDefault(boolean withLink) {
 		return Enterprise.builder()
-				.from(RESPONSIBLE_FACTORY.getNew(withLink))
+				.from(RESPONSIBLE_FACTORY.getDefault(withLink))
 				.build();
 	}
 
 	@Override
-	public Enterprise getNext(boolean withLink) {
+	public Enterprise getNew(boolean withLink) {
 		Enterprise entity = Enterprise.builder()
-				.from(RESPONSIBLE_FACTORY.getNew(withLink))
+				.from(RESPONSIBLE_FACTORY.getDefault(withLink))
 				.build();
 
 		return entity;

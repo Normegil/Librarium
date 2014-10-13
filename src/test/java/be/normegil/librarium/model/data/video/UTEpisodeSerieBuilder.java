@@ -29,7 +29,7 @@ public class UTEpisodeSerieBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		EpisodeSerie episodeSerie = EPISODE_SERIE_FACTORY.getNext();
+		EpisodeSerie episodeSerie = EPISODE_SERIE_FACTORY.getNew();
 		EpisodeSerie copy = entity.from(episodeSerie).build();
 		assertEquals(episodeSerie, copy);
 	}
@@ -45,7 +45,7 @@ public class UTEpisodeSerieBuilder {
 
 	@Test
 	public void testSetSeason() throws Exception {
-		SerieSeason season = SERIE_SEASON_FACTORY.getNext(true);
+		SerieSeason season = SERIE_SEASON_FACTORY.getNew();
 		EpisodeSerie episodeSerie = entity
 				.setSeason(season)
 				.build();

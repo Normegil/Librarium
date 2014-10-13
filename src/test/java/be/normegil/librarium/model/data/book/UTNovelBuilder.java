@@ -27,7 +27,7 @@ public class UTNovelBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		Novel novel = NOVEL_FACTORY.getNext();
+		Novel novel = NOVEL_FACTORY.getNew();
 		Novel copy = entity.from(novel).build();
 		assertEquals(novel, copy);
 	}

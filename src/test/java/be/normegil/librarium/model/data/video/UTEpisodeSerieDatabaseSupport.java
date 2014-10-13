@@ -16,7 +16,7 @@ public class UTEpisodeSerieDatabaseSupport extends AbstractEntityDatabaseSupport
 
 	@Override
 	protected EpisodeSerie initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

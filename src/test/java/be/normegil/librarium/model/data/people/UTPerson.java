@@ -23,7 +23,7 @@ public class UTPerson {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 		roles.addAll(entity.getRoles());
 	}
 
@@ -42,9 +42,9 @@ public class UTPerson {
 	@Test
 	public void testAddAllRoles() throws Exception {
 		Collection<Role> toAdd = new HashSet<>();
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
 
 		roles.addAll(toAdd);
 		entity.addAllRoles(toAdd);
@@ -53,7 +53,7 @@ public class UTPerson {
 
 	@Test
 	public void testAddRole() throws Exception {
-		Role toAdd = ROLE_FACTORY.getNext();
+		Role toAdd = ROLE_FACTORY.getNew();
 		roles.add(toAdd);
 		entity.addRole(toAdd);
 		assertEquals(roles, entity.getRoles());
@@ -61,9 +61,9 @@ public class UTPerson {
 
 	@Test
 	public void testRemoveAllRoles() throws Exception {
-		Role base = ROLE_FACTORY.getNext();
-		Role second = ROLE_FACTORY.getNext();
-		Role third = ROLE_FACTORY.getNext();
+		Role base = ROLE_FACTORY.getNew();
+		Role second = ROLE_FACTORY.getNew();
+		Role third = ROLE_FACTORY.getNew();
 
 		Collection<Role> toAdd = new HashSet<>();
 		toAdd.add(base);

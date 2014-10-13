@@ -19,7 +19,7 @@ public class UTMovieComparator extends AbstractDataComparableTest<Movie> {
 
 	@Override
 	protected Movie getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class UTMovieComparator extends AbstractDataComparableTest<Movie> {
 	public void testSerie_First() throws Exception {
 		Movie entity = getEntity();
 		Movie copy = new Movie(entity);
-		copy.setSerie(MOVIE_SERIE_FACTORY.getNext());
+		copy.setSerie(MOVIE_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_FIRST, compare(entity, copy)));
 	}
 
@@ -47,7 +47,7 @@ public class UTMovieComparator extends AbstractDataComparableTest<Movie> {
 	public void testSerie_Second() throws Exception {
 		Movie entity = getEntity();
 		Movie copy = new Movie(entity);
-		copy.setSerie(MOVIE_SERIE_FACTORY.getNext());
+		copy.setSerie(MOVIE_SERIE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.PRIORITY_SECOND, compare(copy, entity)));
 	}
 }

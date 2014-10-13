@@ -16,7 +16,7 @@ public class UTEnterpriseComparator extends AbstractDataComparableTest<Enterpris
 
 	@Override
 	protected Enterprise getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override

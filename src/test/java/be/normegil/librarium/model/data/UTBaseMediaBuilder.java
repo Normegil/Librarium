@@ -40,7 +40,7 @@ public class UTBaseMediaBuilder {
 
 	@Test
 	public void testFrom() throws Exception {
-		BaseMedia baseMedia = FACTORY.getNext(true);
+		BaseMedia baseMedia = FACTORY.getNew();
 		BaseMedia copy = entity.from(baseMedia).build();
 		assertEquals(baseMedia, copy);
 	}
@@ -83,7 +83,7 @@ public class UTBaseMediaBuilder {
 
 	@Test
 	public void testSetOfficialWebsite() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		BaseMedia baseMedia = entity
 				.setOfficialWebsite(url)
 				.build();
@@ -92,7 +92,7 @@ public class UTBaseMediaBuilder {
 
 	@Test
 	public void testSetWikipediaPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		BaseMedia baseMedia = entity
 				.setWikipediaPage(url)
 				.build();
@@ -101,7 +101,7 @@ public class UTBaseMediaBuilder {
 
 	@Test
 	public void testAddStore() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		BaseMedia baseMedia = entity
 				.addStore(url)
 				.build();
@@ -111,8 +111,8 @@ public class UTBaseMediaBuilder {
 	@Test
 	public void testAddAllStores() throws Exception {
 		Collection<URL> toAdd = new HashSet<>();
-		toAdd.add(URL_FACTORY.getNext());
-		toAdd.add(URL_FACTORY.getNext());
+		toAdd.add(URL_FACTORY.getNew());
+		toAdd.add(URL_FACTORY.getNew());
 
 		BaseMedia baseMedia = entity
 				.addAllStores(toAdd)
@@ -122,7 +122,7 @@ public class UTBaseMediaBuilder {
 
 	@Test
 	public void testAddDownloadLink() throws Exception {
-		DownloadLink link = DOWNLOAD_LINK_FACTORY.getNext();
+		DownloadLink link = DOWNLOAD_LINK_FACTORY.getNew();
 		BaseMedia baseMedia = entity
 				.addDownloadLink(link)
 				.build();
@@ -132,8 +132,8 @@ public class UTBaseMediaBuilder {
 	@Test
 	public void testAddAllDownloadLinks() throws Exception {
 		Collection<DownloadLink> toAdd = new HashSet<>();
-		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
-		toAdd.add(DOWNLOAD_LINK_FACTORY.getNext());
+		toAdd.add(DOWNLOAD_LINK_FACTORY.getNew());
+		toAdd.add(DOWNLOAD_LINK_FACTORY.getNew());
 
 		BaseMedia baseMedia = entity
 				.addAllDownloadLinks(toAdd)

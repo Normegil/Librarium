@@ -16,7 +16,7 @@ public class UTMangaDatabaseSupport extends AbstractEntityDatabaseSupportTest<Ma
 
 	@Override
 	protected Manga initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class UTSupportDatabaseSupport extends AbstractEntityDatabaseSupportTest<
 
 	@Override
 	protected Support initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

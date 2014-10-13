@@ -36,7 +36,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testSetOffset() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setBaseURL(url)
@@ -47,7 +47,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testOffsetNotPresent() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setLimit(DEFAULT_LIMIT)
 				.setBaseURL(url)
@@ -58,7 +58,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testSetLimit() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setLimit(DEFAULT_LIMIT)
 				.setBaseURL(url)
@@ -69,7 +69,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testLimitNotPresent() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setBaseURL(url)
@@ -80,7 +80,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testSetLimit_HigherThanMaximum() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setLimit(ApplicationProperties.REST.MAX_LIMIT + 10)
 				.setTotalNumberOfItems(DEFAULT_NUMBER_OF_ITEMS)
@@ -91,7 +91,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testFirstPageURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -104,7 +104,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testLastPageURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -117,7 +117,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testLastPageURL_LimitHigherThanTotalNumberOfItems() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -130,7 +130,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testLastPageURL_NumberOfItemsMultipleOfLimit() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -143,7 +143,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testPreviousPageURL_OffsetHigherThanLimit() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		long offset = DEFAULT_LIMIT + 5;
 		CollectionResource collectionResource = entity
 				.setOffset(offset)
@@ -157,7 +157,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testPreviousPageURL_OffsetLowerThanLimit() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		long offset = DEFAULT_LIMIT - 5;
 		CollectionResource collectionResource = entity
 				.setOffset(offset)
@@ -171,7 +171,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testPreviousPageURL_FirstOffset() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(FIRST_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -183,7 +183,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testNextPageURL() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_OFFSET)
 				.setLimit(DEFAULT_LIMIT)
@@ -196,7 +196,7 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testNextPageURL_LastPage() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		long totalNumberOfItems = DEFAULT_LIMIT + 5;
 		CollectionResource collectionResource = entity
 				.setOffset(DEFAULT_LIMIT)
@@ -209,11 +209,11 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testAddAllItems() throws Exception {
-		URL url = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
 		List<URL> toAdd = new ArrayList<>();
-		toAdd.add(URL_FACTORY.getNext());
-		toAdd.add(URL_FACTORY.getNext());
-		toAdd.add(URL_FACTORY.getNext());
+		toAdd.add(URL_FACTORY.getNew());
+		toAdd.add(URL_FACTORY.getNew());
+		toAdd.add(URL_FACTORY.getNew());
 
 		CollectionResource collectionResource = entity
 				.addAllItems(toAdd)
@@ -226,8 +226,8 @@ public class UTCollectionResourceBuilder {
 
 	@Test
 	public void testAddItem() throws Exception {
-		URL url = URL_FACTORY.getNext();
-		URL baseUrl = URL_FACTORY.getNext();
+		URL url = URL_FACTORY.getNew();
+		URL baseUrl = URL_FACTORY.getNew();
 		CollectionResource collectionResource = entity
 				.addItem(url)
 				.setBaseURL(baseUrl)

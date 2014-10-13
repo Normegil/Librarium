@@ -21,7 +21,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 
 	@Override
 	protected CollectionResource getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 	public void testDifferentFirstLink() throws Exception {
 		CollectionResource entity = getEntity();
 		CollectionResource copy = new CollectionResource(entity);
-		CLASS.getField("first").set(copy, URL_FACTORY.getNext());
+		CLASS.getField("first").set(copy, URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -63,7 +63,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 	public void testDifferentLastLink() throws Exception {
 		CollectionResource entity = getEntity();
 		CollectionResource copy = new CollectionResource(entity);
-		CLASS.getField("last").set(copy, URL_FACTORY.getNext());
+		CLASS.getField("last").set(copy, URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -71,7 +71,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 	public void testDifferentPreviousLink() throws Exception {
 		CollectionResource entity = getEntity();
 		CollectionResource copy = new CollectionResource(entity);
-		CLASS.getField("previous").set(copy, URL_FACTORY.getNext());
+		CLASS.getField("previous").set(copy, URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -79,7 +79,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 	public void testDifferentNextLink() throws Exception {
 		CollectionResource entity = getEntity();
 		CollectionResource copy = new CollectionResource(entity);
-		CLASS.getField("next").set(copy, URL_FACTORY.getNext());
+		CLASS.getField("next").set(copy, URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 
@@ -88,7 +88,7 @@ public class UTCollectionResourceEquality extends AbstractDataEqualityTest<Colle
 		CollectionResource entity = getEntity();
 		CollectionResource copy = CollectionResource.builder()
 				.from(entity)
-				.addItem(URL_FACTORY.getNext())
+				.addItem(URL_FACTORY.getNew())
 				.build();
 		assertNotEquals(entity, copy);
 	}

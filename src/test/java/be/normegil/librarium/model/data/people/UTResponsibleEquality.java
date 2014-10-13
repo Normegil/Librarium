@@ -20,7 +20,7 @@ public class UTResponsibleEquality extends AbstractDataEqualityTest<Responsible>
 
 	@Override
 	protected Responsible getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Test
@@ -42,7 +42,7 @@ public class UTResponsibleEquality extends AbstractDataEqualityTest<Responsible>
 	public void testDifferentWikipediaPage() throws Exception {
 		Responsible entity = getEntity();
 		Responsible copy = new FakeResponsible(entity);
-		entity.setWikipediaPage(URL_FACTORY.getNext());
+		entity.setWikipediaPage(URL_FACTORY.getNew());
 		assertNotEquals(entity, copy);
 	}
 }

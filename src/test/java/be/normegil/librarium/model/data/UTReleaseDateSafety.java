@@ -25,7 +25,7 @@ public class UTReleaseDateSafety {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNew();
+		entity = FACTORY.getDefault();
 	}
 
 	@After
@@ -35,12 +35,12 @@ public class UTReleaseDateSafety {
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testConstructor_NullMedia() throws Exception {
-		Validator.validate(CLASS.getConstructor(Media.class, Support.class, LocalDate.class), new Object[]{null, SUPPORT_FACTORY.getNext(), LocalDate.now()});
+		Validator.validate(CLASS.getConstructor(Media.class, Support.class, LocalDate.class), new Object[]{null, SUPPORT_FACTORY.getNew(), LocalDate.now()});
 	}
 
 	@Test(expected = ConstraintViolationException.class)
 	public void testConstructor_NullSupport() throws Exception {
-		Validator.validate(CLASS.getConstructor(Media.class, Support.class, LocalDate.class), MEDIA_FACTORY.getNext(), null, LocalDate.now());
+		Validator.validate(CLASS.getConstructor(Media.class, Support.class, LocalDate.class), MEDIA_FACTORY.getNew(), null, LocalDate.now());
 	}
 
 	@Test(expected = ConstraintViolationException.class)

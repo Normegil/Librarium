@@ -16,7 +16,7 @@ public class UTEnterpriseDatabaseSupport extends AbstractEntityDatabaseSupportTe
 
 	@Override
 	protected Enterprise initEntity() {
-		return FACTORY.getNext();
+		return FACTORY.getNew();
 	}
 
 	@Override

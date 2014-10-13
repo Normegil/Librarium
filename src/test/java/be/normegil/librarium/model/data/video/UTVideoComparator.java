@@ -26,7 +26,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 
 	@Override
 	protected Video getNewEntity() {
-		return FACTORY.getNew();
+		return FACTORY.getDefault();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testProducer_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addProducer(RESPONSIBLE_FACTORY.getNext());
+		copy.addProducer(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -70,7 +70,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testDirector_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addDirector(RESPONSIBLE_FACTORY.getNext());
+		copy.addDirector(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -78,7 +78,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testComposer_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addComposer(RESPONSIBLE_FACTORY.getNext());
+		copy.addComposer(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -86,7 +86,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testScenarist_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addScenarist(RESPONSIBLE_FACTORY.getNext());
+		copy.addScenarist(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -94,7 +94,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testOtherStaffMember_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addOtherStaffMember(RESPONSIBLE_FACTORY.getNext());
+		copy.addOtherStaffMember(RESPONSIBLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 
@@ -102,7 +102,7 @@ public class UTVideoComparator extends AbstractDataComparableTest<Video> {
 	public void testActor_Equality() throws Exception {
 		Video entity = getEntity();
 		Video copy = new FakeVideo(entity);
-		copy.addActor(ROLE_FACTORY.getNext());
+		copy.addActor(ROLE_FACTORY.getNew());
 		assertTrue(getComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, compare(entity, copy)));
 	}
 }

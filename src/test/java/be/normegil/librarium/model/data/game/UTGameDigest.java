@@ -67,13 +67,13 @@ public class UTGameDigest {
 
 	private Game callFromBase() {
 		URI baseUri = URI.create(REST_URI);
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		entity.fromBase(baseUri, game);
 		return game;
 	}
 
 	public Game callToBase() throws Exception {
-		Game game = GAME_FACTORY.getNext();
+		Game game = GAME_FACTORY.getNew();
 		new EntityHelper().setId(game, UUID.randomUUID());
 
 		new EntityHelper().assignIdsTo(game.getDownloadLinks());

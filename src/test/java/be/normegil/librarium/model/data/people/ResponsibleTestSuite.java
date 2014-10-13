@@ -5,8 +5,6 @@ import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.data.fake.FakeResponsible;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import be.normegil.librarium.tool.TestResult;
-import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -27,28 +25,28 @@ public class ResponsibleTestSuite implements DataFactory<Responsible> {
 	private static long index = 0L;
 
 	@Override
+	public Responsible getDefault() {
+		return getDefault(true);
+	}
+
+	@Override
 	public Responsible getNew() {
 		return getNew(true);
 	}
 
 	@Override
-	public Responsible getNext() {
-		return getNext(true);
-	}
-
-	@Override
-	public Responsible getNew(boolean withLink) {
+	public Responsible getDefault(boolean withLink) {
 		return FakeResponsible.builder()
 				.setName(NAME)
-				.setWikipediaPage(URL_FACTORY.getNew())
+				.setWikipediaPage(URL_FACTORY.getDefault())
 				.build();
 	}
 
 	@Override
-	public Responsible getNext(boolean withLink) {
+	public Responsible getNew(boolean withLink) {
 		Responsible entity = FakeResponsible.builder()
 				.setName(NAME + index)
-				.setWikipediaPage(URL_FACTORY.getNext())
+				.setWikipediaPage(URL_FACTORY.getNew())
 				.build();
 
 		index += 1;

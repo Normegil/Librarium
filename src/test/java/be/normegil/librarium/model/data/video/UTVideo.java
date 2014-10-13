@@ -35,7 +35,7 @@ public class UTVideo {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getNext();
+		entity = FACTORY.getNew();
 		actors = entity.getActors();
 		producers = entity.getProducers();
 		directors = entity.getDirectors();
@@ -70,9 +70,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllProducers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		producers.addAll(toAdd);
 		entity.addAllProducers(toAdd);
@@ -81,7 +81,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddProducer() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		producers.add(toAdd);
 		entity.addProducer(toAdd);
 		assertEquals(producers, entity.getProducers());
@@ -89,9 +89,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllProducers() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -123,9 +123,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllDirectors() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		directors.addAll(toAdd);
 		entity.addAllDirectors(toAdd);
@@ -134,7 +134,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddDirector() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		directors.add(toAdd);
 		entity.addDirector(toAdd);
 		assertEquals(directors, entity.getDirectors());
@@ -142,9 +142,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllDirectors() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -176,9 +176,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllComposers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		composers.addAll(toAdd);
 		entity.addAllComposers(toAdd);
@@ -187,7 +187,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddComposer() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		composers.add(toAdd);
 		entity.addComposer(toAdd);
 		assertEquals(composers, entity.getComposers());
@@ -195,9 +195,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllComposers() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -229,9 +229,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllScenarists() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		scenarists.addAll(toAdd);
 		entity.addAllScenarists(toAdd);
@@ -240,7 +240,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddScenarist() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		scenarists.add(toAdd);
 		entity.addScenarist(toAdd);
 		assertEquals(scenarists, entity.getScenarists());
@@ -248,9 +248,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllScenarists() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -282,9 +282,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllOtherStaffMembers() throws Exception {
 		Collection<Responsible> toAdd = new HashSet<>();
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
-		toAdd.add(RESPONSIBLE_FACTORY.getNext());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
+		toAdd.add(RESPONSIBLE_FACTORY.getNew());
 
 		otherStaffMembers.addAll(toAdd);
 		entity.addAllOtherStaffMembers(toAdd);
@@ -293,7 +293,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddOtherStaffMember() throws Exception {
-		Responsible toAdd = RESPONSIBLE_FACTORY.getNext();
+		Responsible toAdd = RESPONSIBLE_FACTORY.getNew();
 		otherStaffMembers.add(toAdd);
 		entity.addOtherStaffMember(toAdd);
 		assertEquals(otherStaffMembers, entity.getOtherStaffMembers());
@@ -301,9 +301,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllOtherStaffMembers() throws Exception {
-		Responsible base = RESPONSIBLE_FACTORY.getNext();
-		Responsible second = RESPONSIBLE_FACTORY.getNext();
-		Responsible third = RESPONSIBLE_FACTORY.getNext();
+		Responsible base = RESPONSIBLE_FACTORY.getNew();
+		Responsible second = RESPONSIBLE_FACTORY.getNew();
+		Responsible third = RESPONSIBLE_FACTORY.getNew();
 
 		Collection<Responsible> toAdd = new HashSet<>();
 		toAdd.add(base);
@@ -334,14 +334,14 @@ public class UTVideo {
 
 	@Test
 	public void testGetRoleForActor() throws Exception {
-		Role role = ROLE_FACTORY.getNext();
+		Role role = ROLE_FACTORY.getNew();
 		entity.addActor(role);
 		assertTrue(entity.getRoleForActor(role.getActor()).contains(role.getRole()));
 	}
 
 	@Test
 	public void testGetActorsForRole() throws Exception {
-		Role role = ROLE_FACTORY.getNext();
+		Role role = ROLE_FACTORY.getNew();
 		entity.addActor(role);
 		assertTrue(entity.getActorsForRole(role.getRole()).contains(role.getActor()));
 	}
@@ -349,9 +349,9 @@ public class UTVideo {
 	@Test
 	public void testAddAllActors() throws Exception {
 		Collection<Role> toAdd = new HashSet<>();
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
-		toAdd.add(ROLE_FACTORY.getNext());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
+		toAdd.add(ROLE_FACTORY.getNew());
 
 		actors.addAll(toAdd);
 		entity.addAllActors(toAdd);
@@ -360,7 +360,7 @@ public class UTVideo {
 
 	@Test
 	public void testAddActor() throws Exception {
-		Role toAdd = ROLE_FACTORY.getNext();
+		Role toAdd = ROLE_FACTORY.getNew();
 		actors.add(toAdd);
 		entity.addActor(toAdd);
 		assertEquals(actors, entity.getActors());
@@ -368,9 +368,9 @@ public class UTVideo {
 
 	@Test
 	public void testRemoveAllActors() throws Exception {
-		Role base = ROLE_FACTORY.getNext();
-		Role second = ROLE_FACTORY.getNext();
-		Role third = ROLE_FACTORY.getNext();
+		Role base = ROLE_FACTORY.getNew();
+		Role second = ROLE_FACTORY.getNew();
+		Role third = ROLE_FACTORY.getNew();
 
 		Collection<Role> toAdd = new HashSet<>();
 		toAdd.add(base);
