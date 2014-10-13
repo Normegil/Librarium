@@ -300,6 +300,34 @@ public abstract class Media extends BaseMedia {
 			universes = new RESTHelper().getRESTUri(baseURI, Universe.class, entity.getUniverses());
 			releaseDates = new RESTHelper().getRESTUri(baseURI, ReleaseDate.class, entity.releaseDates);
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (obj == this) {
+				return true;
+			}
+			if (obj.getClass() != getClass()) {
+				return false;
+			}
+			MediaDigest rhs = (MediaDigest) obj;
+			return new EqualsBuilder()
+					.appendSuper(super.equals(obj))
+					.append(this.universes, rhs.universes)
+					.append(this.releaseDates, rhs.releaseDates)
+					.isEquals();
+		}
+
+		@Override
+		public int hashCode() {
+			return new HashCodeBuilder()
+					.appendSuper(super.hashCode())
+					.append(universes)
+					.append(releaseDates)
+					.toHashCode();
+		}
 	}
 
 	public abstract static class Init<E extends Init<E>> extends BaseMedia.Init<E> {

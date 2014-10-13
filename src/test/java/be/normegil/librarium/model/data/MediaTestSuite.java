@@ -19,7 +19,8 @@ import java.time.Month;
 		UTMediaBuilderSafety.class,
 		UTMediaBuilder.class,
 		UTMediaDigestSafety.class,
-		UTMediaDigest.class
+		UTMediaDigest.class,
+		UTMediaDigestEquality.class
 })
 public class MediaTestSuite implements DataFactory<Media> {
 

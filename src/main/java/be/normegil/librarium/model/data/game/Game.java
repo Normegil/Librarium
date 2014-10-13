@@ -246,6 +246,32 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 		public void setGameSerieDAO(final DAO<GameSerie> gameSerieDAO) {
 			this.gameSerieDAO = gameSerieDAO;
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (obj == this) {
+				return true;
+			}
+			if (obj.getClass() != getClass()) {
+				return false;
+			}
+			GameDigest rhs = (GameDigest) obj;
+			return new EqualsBuilder()
+					.appendSuper(super.equals(obj))
+					.append(this.serie, rhs.serie)
+					.isEquals();
+		}
+
+		@Override
+		public int hashCode() {
+			return new HashCodeBuilder()
+					.appendSuper(super.hashCode())
+					.append(serie)
+					.toHashCode();
+		}
 	}
 
 	public abstract static class Init<E extends Init<E>> extends Media.Init<E> {

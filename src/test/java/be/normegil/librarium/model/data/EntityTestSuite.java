@@ -14,7 +14,8 @@ import java.util.UUID;
 		UTEntityHelperSafety.class,
 		UTEntityHelper.class,
 		UTEntityDigestSafety.class,
-		UTEntityDigest.class
+		UTEntityDigest.class,
+		UTEntityDigestEquality.class
 })
 public class EntityTestSuite implements DataFactory<Entity> {
 

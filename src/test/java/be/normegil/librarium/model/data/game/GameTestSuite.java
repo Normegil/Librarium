@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
 		UTGameBuilder.class,
 		UTGameDigestSafety.class,
 		UTGameDigest.class,
+		UTGameDigestEquality.class,
 		UTGameDigestJSONSupport.class,
 		UTGameDatabaseSupport.class
 })

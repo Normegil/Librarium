@@ -9,6 +9,8 @@ import be.normegil.librarium.validation.constraint.ExistingID;
 import be.normegil.librarium.validation.constraint.URIWithID;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -72,6 +74,30 @@ public abstract class Entity {
 
 		public void fromBase(@NotNull final URI baseUri, @NotNull @ExistingID final Entity entity) {
 			href = new RESTHelper().getRESTUri(baseUri, entity.getClass(), entity);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (obj == this) {
+				return true;
+			}
+			if (obj.getClass() != getClass()) {
+				return false;
+			}
+			EntityDigest rhs = (EntityDigest) obj;
+			return new EqualsBuilder()
+					.append(this.href, rhs.href)
+					.isEquals();
+		}
+
+		@Override
+		public int hashCode() {
+			return new HashCodeBuilder()
+					.append(href)
+					.toHashCode();
 		}
 	}
 

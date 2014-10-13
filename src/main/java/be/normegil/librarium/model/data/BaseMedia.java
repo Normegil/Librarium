@@ -37,7 +37,7 @@ public abstract class BaseMedia extends Entity {
 
 	@NotNull
 	@ElementCollection
-	private Collection<String> tags = new TreeSet<>();
+	private Collection<String> tags = new ArrayList<>();
 
 	private URL officialWebsite;
 
@@ -310,6 +310,45 @@ public abstract class BaseMedia extends Entity {
 
 		public void setDownloadLinkDAO(final DAO<DownloadLink> downloadLinkDAO) {
 			this.downloadLinkDAO = downloadLinkDAO;
+		}
+
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (obj == this) {
+				return true;
+			}
+			if (obj.getClass() != getClass()) {
+				return false;
+			}
+			BaseMediaDigest rhs = (BaseMediaDigest) obj;
+			return new EqualsBuilder()
+					.appendSuper(super.equals(obj))
+					.append(this.title, rhs.title)
+					.append(this.description, rhs.description)
+					.append(this.tags, rhs.tags)
+					.append(this.officialWebsite, rhs.officialWebsite)
+					.append(this.wikipediaPage, rhs.wikipediaPage)
+					.append(this.stores, rhs.stores)
+					.append(this.downloadLinks, rhs.downloadLinks)
+					.isEquals();
+		}
+
+		@Override
+		public int hashCode() {
+			return new HashCodeBuilder()
+					.appendSuper(super.hashCode())
+					.append(title)
+					.append(description)
+					.append(tags)
+					.append(officialWebsite)
+					.append(wikipediaPage)
+					.append(stores)
+					.append(downloadLinks)
+					.toHashCode();
 		}
 	}
 
