@@ -36,7 +36,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
 		entity.addDeveloper(RESPONSIBLE_FACTORY.getNew());
-		assertEquals(entity, copy);
+		assertNotEquals(entity, copy);
 	}
 
 	@Test
@@ -44,7 +44,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
 		entity.addEditor(RESPONSIBLE_FACTORY.getNew());
-		assertEquals(entity, copy);
+		assertNotEquals(entity, copy);
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class UTGameEquality extends AbstractDataEqualityTest<Game> {
 		Game entity = getEntity();
 		Game copy = new Game(entity);
 		entity.addComposer(RESPONSIBLE_FACTORY.getNew());
-		assertEquals(entity, copy);
+		assertNotEquals(entity, copy);
 	}
 
 	@Test

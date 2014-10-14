@@ -41,9 +41,9 @@ public class UTEntityHelper {
 		URL baseURL = URL_FACTORY.getNew();
 
 		List<Entity> entities = new ArrayList<>();
-		entities.add(ENTITY_FACTORY.getNew());
-		entities.add(ENTITY_FACTORY.getNew());
-		entities.add(ENTITY_FACTORY.getNew());
+		entities.add(ENTITY_FACTORY.getNew(true, true));
+		entities.add(ENTITY_FACTORY.getNew(true, true));
+		entities.add(ENTITY_FACTORY.getNew(true, true));
 
 		List<URL> expected = new ArrayList<>();
 		for (Entity entity1 : entities) {

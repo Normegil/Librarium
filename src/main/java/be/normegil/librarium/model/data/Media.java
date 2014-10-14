@@ -169,13 +169,13 @@ public abstract class Media extends BaseMedia {
 		releaseDates.clear();
 	}
 
-	protected Set<StaffMember> getStaffMembers() {
-		return new HashSet<>(staffMembers);
+	protected List<StaffMember> getStaffMembers() {
+		return new ArrayList<>(staffMembers);
 	}
 
 	protected Set<Responsible> getResponsibleFor(@NotNull StaffRole staffRole) {
 		Set<Responsible> responsibles = new TreeSet<>();
-		for (StaffMember staffMember : getStaffMembers()) {
+		for (StaffMember staffMember : staffMembers) {
 			if (staffRole.equals(staffMember.getRole())) {
 				responsibles.add(staffMember.getResponsible());
 			}

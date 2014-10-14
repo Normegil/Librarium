@@ -1,5 +1,6 @@
 package be.normegil.librarium.model.data;
 
+import be.normegil.librarium.Constants;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeMedia;
 import be.normegil.librarium.model.data.game.Game;
@@ -8,15 +9,19 @@ import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.MemoryTestDAO;
+import be.normegil.librarium.tool.comparator.PropertyComparatorHelper;
+import be.normegil.librarium.util.CollectionComparator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UTMediaDigest {
 
@@ -68,11 +73,11 @@ public class UTMediaDigest {
 	@Test
 	public void testFromBase_StaffMembers() throws Exception {
 		Media media = callFromBase();
-		Collection<URI> expected = new TreeSet<>();
+		Collection<URI> expected = new ArrayList<>();
 		for (StaffMember staffMember : media.getStaffMembers()) {
 			expected.add(new RESTHelper().getRESTUri(URI.create(REST_URI), StaffMember.class, staffMember));
 		}
-		assertEquals(expected, entity.staffMembers);
+		assertTrue(new PropertyComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, new CollectionComparator().compare(expected, entity.staffMembers)));
 	}
 
 	@Test
@@ -98,11 +103,8 @@ public class UTMediaDigest {
 	@Test
 	public void testToBase_StaffMembers() throws Exception {
 		Media media = callToBase();
-		Collection<URI> toTest = new TreeSet<>();
-		for (StaffMember staffMember : media.getStaffMembers()) {
-			toTest.add(new RESTHelper().getRESTUri(URI.create(REST_URI), StaffMember.class, staffMember));
-		}
-		assertEquals(entity.staffMembers, toTest);
+		Collection<URI> toTest = new RESTHelper().getRESTUri(URI.create(REST_URI), StaffMember.class, media.getStaffMembers());
+		assertTrue(new PropertyComparatorHelper().testComparatorResult(Constants.Comparator.EQUALS, new CollectionComparator().compare(entity.staffMembers, toTest)));
 	}
 
 	@Test

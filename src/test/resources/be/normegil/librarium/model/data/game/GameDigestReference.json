@@ -1,0 +1,14 @@
+{
+  "href" : "http://localhost:9999/rest/games/ddde0e8f-67d2-4907-85ea-bf3eb3143c13",
+  "title" : "Title",
+  "description" : "Description",
+  "tags" : [ "Tag", "Tag1" ],
+  "officialWebsite" : "http://Host:42/File",
+  "wikipediaPage" : "http://Host:42/File",
+  "stores" : [ "http://Host:42/File" ],
+  "downloadLinks" : [ "http://localhost:9999/rest/downloadlinks/6f45d203-8840-4e43-a1d7-522cf854dbd9" ],
+  "universes" : [ "http://localhost:9999/rest/universes/1251bf42-03db-4d27-be9b-0ab1b0fc085a" ],
+  "releaseDates" : [ "http://localhost:9999/rest/releasedates/040a6c8c-9fa0-4682-8b08-c7ca019f5561" ],
+  "staffMembers" : [ "http://localhost:9999/rest/staffmembers/cdec7af5-8ea8-41d3-9ecd-696740dd1342", "http://localhost:9999/rest/staffmembers/4fbaef7d-0ffe-4c65-93d8-ee43bdd1dfea", "http://localhost:9999/rest/staffmembers/2b71b51c-edc9-4ad4-8546-b5ac8c38c9e7" ],
+  "serie" : "http://localhost:9999/rest/gameseries/bc8e76f7-2064-4ce0-af12-ea5d28f8ce8f"
+}

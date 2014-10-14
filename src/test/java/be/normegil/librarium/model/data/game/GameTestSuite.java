@@ -2,7 +2,6 @@ package be.normegil.librarium.model.data.game;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.Media;
-import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.model.data.people.StaffRole;
 import be.normegil.librarium.tool.DataFactory;
@@ -33,8 +32,6 @@ public class GameTestSuite implements DataFactory<Game> {
 	private static final DataFactory<Media> MEDIA_FACTORY = FactoryRepository.get(Media.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<GameSerie> GAME_SERIE_FACTORY = FactoryRepository.get(GameSerie.class);
-	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
-	private static final DataFactory<Responsible> RESPONSIBLE_FACTORY = FactoryRepository.get(Responsible.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<StaffMember> STAFF_MEMBER_FACTORY = FactoryRepository.get(StaffMember.class);
 	private static final UUID DEFAULT_ID = UUID.fromString("ddde0e8f-67d2-4907-85ea-bf3eb3143c13");

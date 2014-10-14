@@ -9,8 +9,6 @@ import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.UUID;
 
 @RunWith(Suite.class)
@@ -56,7 +54,7 @@ public class MediaTestSuite implements DataFactory<Media> {
 
 		if (withLink) {
 			builder.addUniverse(UNIVERSE_FACTORY.getDefault(false, withIds))
-					.addReleaseDate(SUPPORT_FACTORY.getDefault(false, withIds), LocalDate.of(2014, Month.AUGUST, 20))
+					.addReleaseDate(RELEASE_DATE_FACTORY.getDefault(false, withIds))
 					.addStaffMember(STAFF_MEMBER_FACTORY.getDefault(false, withIds));
 		}
 

@@ -60,10 +60,4 @@ public class UTReleaseDate {
 		entity.setDate(date);
 		assertEquals(date, entity.getDate());
 	}
-
-	@Test
-	public void testToString() throws Exception {
-		ReleaseDate releaseDate = FACTORY.getDefault();
-		assertEquals("ReleaseDate[media=FakeMedia[id=<null>,title=Title],support=Support[id=<null>,name=Name],date=2014-08-30]", releaseDate.toString());
-	}
 }
