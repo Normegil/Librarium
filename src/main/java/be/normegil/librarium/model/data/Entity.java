@@ -105,7 +105,11 @@ public abstract class Entity {
 
 		public UUID getIdFromRESTURI(@NotNull @URIWithID final URI restURI) {
 			String idAsString = StringUtils.substringAfterLast(restURI.toString(), "/");
-			return UUID.fromString(idAsString);
+			try {
+				return UUID.fromString(idAsString);
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException("URI : " + restURI, e);
+			}
 		}
 
 		public void setIdFromDigest(@NotNull @Valid final EntityDigest digest, @NotNull final Entity entity) {

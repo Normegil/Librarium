@@ -37,7 +37,7 @@ public abstract class BaseMedia extends Entity {
 
 	@NotNull
 	@ElementCollection
-	private Collection<String> tags = new ArrayList<>();
+	private Set<String> tags = new HashSet<>();
 
 	private URL officialWebsite;
 
@@ -261,11 +261,11 @@ public abstract class BaseMedia extends Entity {
 
 		protected String title;
 		protected String description;
-		protected Collection<String> tags;
+		protected Set<String> tags;
 		protected URI officialWebsite;
 		protected URI wikipediaPage;
 		protected Set<URI> stores = new HashSet<>();
-		protected Collection<URI> downloadLinks;
+		protected Set<URI> downloadLinks;
 
 		@JsonIgnore
 		protected DAO<DownloadLink> downloadLinkDAO = new DatabaseDAO<>(DownloadLink.class);
@@ -305,7 +305,8 @@ public abstract class BaseMedia extends Entity {
 			for (URL url : entity.getStores()) {
 				stores.add(url.toURI());
 			}
-			downloadLinks = new RESTHelper().getRESTUri(baseURI, DownloadLink.class, entity.getDownloadLinks());
+			Collection<URI> downloadLinksURIs = new RESTHelper().getRESTUri(baseURI, DownloadLink.class, entity.getDownloadLinks());
+			downloadLinks = new HashSet<>(downloadLinksURIs);
 		}
 
 		public void setDownloadLinkDAO(final DAO<DownloadLink> downloadLinkDAO) {

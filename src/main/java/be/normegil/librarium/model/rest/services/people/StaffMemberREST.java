@@ -1,7 +1,7 @@
-package be.normegil.librarium.model.rest.services;
+package be.normegil.librarium.model.rest.services.people;
 
 import be.normegil.librarium.Constants;
-import be.normegil.librarium.model.data.game.GameSerie;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.rest.RESTService;
 
 import javax.ws.rs.Path;
@@ -10,8 +10,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.UUID;
 
-@Path(Constants.URL.PATH_SEPARATOR + "gameseries")
-public class GameSerieREST implements RESTService<GameSerie> {
+@Path(Constants.URL.PATH_SEPARATOR + "staffmembers")
+public class StaffMemberREST implements RESTService<StaffMember> {
 	@Override
 	public Response getAll(@Context final UriInfo info, final Long offset, final Integer limit) {
 		throw new UnsupportedOperationException();
@@ -23,17 +23,17 @@ public class GameSerieREST implements RESTService<GameSerie> {
 	}
 
 	@Override
-	public Response create(@Context final UriInfo info, final GameSerie entity) {
+	public Response create(@Context final UriInfo info, final StaffMember entity) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Response updateByPUT(final UUID id, final GameSerie entity) {
+	public Response updateByPUT(final UUID id, final StaffMember entity) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Response updateByPOST(@Context final UriInfo info, final UUID id, final GameSerie entity) {
+	public Response updateByPOST(@Context final UriInfo info, final UUID id, final StaffMember entity) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -43,7 +43,7 @@ public class GameSerieREST implements RESTService<GameSerie> {
 	}
 
 	@Override
-	public Class<? extends GameSerie> getSupportedClass() {
-		return GameSerie.class;
+	public Class<? extends StaffMember> getSupportedClass() {
+		return StaffMember.class;
 	}
 }

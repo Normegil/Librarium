@@ -2,6 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeMedia;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.EntityHelper;
 import be.normegil.librarium.tool.FactoryRepository;
@@ -32,6 +33,10 @@ public class MediaTestSuite implements DataFactory<Media> {
 	private static final DataFactory<Universe> UNIVERSE_FACTORY = FactoryRepository.get(Universe.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<StaffMember> STAFF_MEMBER_FACTORY = FactoryRepository.get(StaffMember.class);
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<ReleaseDate> RELEASE_DATE_FACTORY = FactoryRepository.get(ReleaseDate.class);
 	private static final UUID DEFAULT_ID = UUID.fromString("69721915-119b-4d11-8a1c-500a3155c2d1");
 
 	@Override
@@ -51,11 +56,12 @@ public class MediaTestSuite implements DataFactory<Media> {
 
 		if (withLink) {
 			builder.addUniverse(UNIVERSE_FACTORY.getDefault(false, withIds))
-					.addReleaseDate(SUPPORT_FACTORY.getDefault(false, withIds), LocalDate.of(2014, Month.AUGUST, 20));
+					.addReleaseDate(SUPPORT_FACTORY.getDefault(false, withIds), LocalDate.of(2014, Month.AUGUST, 20))
+					.addStaffMember(STAFF_MEMBER_FACTORY.getDefault(false, withIds));
 		}
 
 		Media media = builder.build();
-		if(withIds){
+		if (withIds) {
 			new EntityHelper().setId(media, DEFAULT_ID);
 		}
 		return media;
@@ -71,12 +77,14 @@ public class MediaTestSuite implements DataFactory<Media> {
 					.addUniverse(UNIVERSE_FACTORY.getNew(false, withIds))
 					.addSupport(SUPPORT_FACTORY.getNew(false, withIds))
 					.addSupport(SUPPORT_FACTORY.getNew(false, withIds))
-					.addReleaseDate(SUPPORT_FACTORY.getNew(false, withIds), LocalDate.of(2014, Month.AUGUST, 20))
-					.addReleaseDate(SUPPORT_FACTORY.getNew(false, withIds), LocalDate.now());
+					.addReleaseDate(RELEASE_DATE_FACTORY.getNew(false, withIds))
+					.addReleaseDate(RELEASE_DATE_FACTORY.getNew(false, withIds))
+					.addStaffMember(STAFF_MEMBER_FACTORY.getNew(false, withIds))
+					.addStaffMember(STAFF_MEMBER_FACTORY.getNew(false, withIds));
 		}
 
 		Media media = builder.build();
-		if(withIds){
+		if (withIds) {
 			new EntityHelper().setId(media, DEFAULT_ID);
 		}
 		return media;

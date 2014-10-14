@@ -115,6 +115,7 @@ public class ReleaseDate extends Entity implements Comparable<ReleaseDate>, Seri
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this, ApplicationProperties.TO_STRING_STYLE)
+				.appendSuper(super.toString())
 				.append("media", media)
 				.append("support", support)
 				.append("date", date)

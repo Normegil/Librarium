@@ -58,7 +58,7 @@ public class ReleaseDateTestSuite implements DataFactory<ReleaseDate> {
 				LocalDate.now()
 		);
 		if(withIds){
-			new EntityHelper().setId(releaseDate, DEFAULT_ID);
+			new EntityHelper().setId(releaseDate, UUID.randomUUID());
 		}
 		return releaseDate;
 	}

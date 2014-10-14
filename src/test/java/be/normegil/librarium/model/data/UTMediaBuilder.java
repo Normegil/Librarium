@@ -2,6 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.model.data.fake.FakeMedia;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
 import org.junit.After;
@@ -27,6 +28,8 @@ public class UTMediaBuilder {
 	private static final DataFactory<Support> SUPPORT_FACTORY = FactoryRepository.get(Support.class);
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<ReleaseDate> RELEASE_DATE_FACTORY = FactoryRepository.get(ReleaseDate.class);
+	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
+	private static final DataFactory<StaffMember> STAFF_MEMBER_FACTORY = FactoryRepository.get(StaffMember.class);
 	private FakeMedia.Builder entity;
 
 	@Before
@@ -119,5 +122,14 @@ public class UTMediaBuilder {
 				.addReleaseDate(releaseDate)
 				.build();
 		assertEquals(releaseDate.getDate(), media.getReleaseDate(releaseDate.getSupport()));
+	}
+
+	@Test
+	public void testAddStaffMember() throws Exception {
+		StaffMember staffMember = STAFF_MEMBER_FACTORY.getNew();
+		Media media = entity
+				.addStaffMember(staffMember)
+				.build();
+		assertTrue(media.getStaffMembers().contains(staffMember));
 	}
 }

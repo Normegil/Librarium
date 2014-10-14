@@ -2,6 +2,7 @@ package be.normegil.librarium.model.data;
 
 import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.data.fake.FakeMedia;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.After;
 import org.junit.Before;
@@ -60,5 +61,15 @@ public class UTMediaBuilderSafety {
 	@Test(expected = ConstraintViolationException.class)
 	public void testAddReleaseDate_Null() throws Exception {
 		Validator.validate(entity, CLASS.getMethod("addReleaseDate", Support.class, LocalDate.class), null, LocalDate.now());
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testDirectAddReleaseDate_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("addReleaseDate", ReleaseDate.class), new Object[]{null});
+	}
+
+	@Test(expected = ConstraintViolationException.class)
+	public void testAddStaffMember_Null() throws Exception {
+		Validator.validate(entity, CLASS.getMethod("addStaffMember", StaffMember.class), new Object[]{null});
 	}
 }

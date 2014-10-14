@@ -6,6 +6,7 @@ import be.normegil.librarium.libraries.FieldWrapper;
 import be.normegil.librarium.model.data.DownloadLink;
 import be.normegil.librarium.model.data.ReleaseDate;
 import be.normegil.librarium.model.data.Universe;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.EntityHelper;
@@ -17,7 +18,6 @@ import org.junit.Test;
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,6 +32,7 @@ public class UTGameDigest {
 	private MemoryTestDAO<ReleaseDate> releaseDateDAO;
 	private MemoryTestDAO<Universe> universeDAO;
 	private MemoryTestDAO<GameSerie> gameSerieDAO;
+	private MemoryTestDAO<StaffMember> staffMemberDAO;
 
 	@Before
 	public void setUp() throws Exception {
@@ -40,10 +41,12 @@ public class UTGameDigest {
 		releaseDateDAO = new MemoryTestDAO<>(ReleaseDate.class);
 		universeDAO = new MemoryTestDAO<>(Universe.class);
 		gameSerieDAO = new MemoryTestDAO<>(GameSerie.class);
+		staffMemberDAO = new MemoryTestDAO<>(StaffMember.class);
 		entity.setDownloadLinkDAO(downloadLinkDAO);
 		entity.setReleaseDateDAO(releaseDateDAO);
 		entity.setUniverseDAO(universeDAO);
 		entity.setGameSerieDAO(gameSerieDAO);
+		entity.setStaffMembersDAO(staffMemberDAO);
 	}
 
 	@After
@@ -73,16 +76,14 @@ public class UTGameDigest {
 	}
 
 	public Game callToBase() throws Exception {
-		Game game = GAME_FACTORY.getNew();
-		new EntityHelper().setId(game, UUID.randomUUID());
-
-		new EntityHelper().assignIdsTo(game.getDownloadLinks());
-		new EntityHelper().assignIdsTo(game.getUniverses());
+		Game game = GAME_FACTORY.getNew(true, true);
 
 		ClassWrapper<? extends Game> gameClass = new ClassWrapper<>(game.getClass());
+
 		FieldWrapper releaseDatesField = gameClass.getField("releaseDates");
+		FieldWrapper staffMembersField = gameClass.getField("staffMembers");
 		Collection<ReleaseDate> releaseDates = (Collection<ReleaseDate>) releaseDatesField.get(game);
-		new EntityHelper().assignIdsTo(releaseDates);
+		Collection<StaffMember> staffMembers = (Collection<StaffMember>) staffMembersField.get(game);
 
 		new EntityHelper().assignIdTo(game.getSerie());
 
@@ -96,6 +97,10 @@ public class UTGameDigest {
 
 		for (ReleaseDate releaseDate : releaseDates) {
 			releaseDateDAO.create(releaseDate);
+		}
+
+		for (StaffMember staffMember : staffMembers) {
+			staffMemberDAO.create(staffMember);
 		}
 
 		gameSerieDAO.create(game.getSerie());

@@ -33,11 +33,11 @@ public abstract class Media extends BaseMedia {
 	private static final Logger LOG = LoggerFactory.getLogger(Media.class);
 	private static final CollectionComparator COLLECTION_COMPARATOR = new CollectionComparator();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
-	protected Collection<ReleaseDate> releaseDates = new TreeSet<>();
+	protected Set<ReleaseDate> releaseDates = new HashSet<>();
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH,})
-	private Collection<Universe> universes = new TreeSet<>();
+	private Set<Universe> universes = new TreeSet<>();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
-	private Collection<StaffMember> staffMembers = new TreeSet<>();
+	private List<StaffMember> staffMembers = new ArrayList<>();
 
 	protected Media(@NotNull @Valid Media entity) {
 		super(entity);
@@ -48,6 +48,7 @@ public abstract class Media extends BaseMedia {
 	protected Media(@NotNull @Valid Init<?> init) {
 		super(init);
 		releaseDates.addAll(init.entityReleaseDates);
+		staffMembers.addAll(init.staffMembers);
 		addAllUniverses(init.universes);
 		addAllReleaseDates(init.releaseDates);
 	}
@@ -169,7 +170,7 @@ public abstract class Media extends BaseMedia {
 	}
 
 	protected Set<StaffMember> getStaffMembers() {
-		return new TreeSet<>(staffMembers);
+		return new HashSet<>(staffMembers);
 	}
 
 	protected Set<Responsible> getResponsibleFor(@NotNull StaffRole staffRole) {
@@ -253,13 +254,16 @@ public abstract class Media extends BaseMedia {
 	}
 
 	public static class MediaDigest extends BaseMediaDigest {
-		protected Collection<URI> universes = new TreeSet<>();
-		protected Collection<URI> releaseDates = new TreeSet<>();
+		protected Set<URI> universes = new HashSet<>();
+		protected Set<URI> releaseDates = new HashSet<>();
+		protected List<URI> staffMembers = new ArrayList<>();
 
 		@JsonIgnore
 		protected DAO<Universe> universeDAO = new DatabaseDAO<>(Universe.class);
 		@JsonIgnore
 		protected DAO<ReleaseDate> releaseDateDAO = new DatabaseDAO<>(ReleaseDate.class);
+		@JsonIgnore
+		protected DAO<StaffMember> staffMembersDAO = new DatabaseDAO<>(StaffMember.class);
 
 		public void setUniverseDAO(final DAO<Universe> universeDAO) {
 			this.universeDAO = universeDAO;
@@ -267,6 +271,10 @@ public abstract class Media extends BaseMedia {
 
 		public void setReleaseDateDAO(final DAO<ReleaseDate> releaseDateDAO) {
 			this.releaseDateDAO = releaseDateDAO;
+		}
+
+		public void setStaffMembersDAO(final DAO<StaffMember> staffMembersDAO) {
+			this.staffMembersDAO = staffMembersDAO;
 		}
 
 		public void toBase(@NotNull Init init) {
@@ -292,13 +300,25 @@ public abstract class Media extends BaseMedia {
 				}
 			}
 
-
+			for (URI staffMemberLink : staffMembers) {
+				UUID id = Entity.helper().getIdFromRESTURI(staffMemberLink);
+				StaffMember staffMember = staffMembersDAO.get(id);
+				if (staffMember != null) {
+					init.addStaffMember(staffMember);
+				} else {
+					throw new NoSuchEntityException("Cannot find StaffMember with ID : " + id);
+				}
+			}
 		}
 
 		public void fromBase(@NotNull final URI baseURI, @NotNull @ExistingID final Media entity) {
 			super.fromBase(baseURI, entity);
-			universes = new RESTHelper().getRESTUri(baseURI, Universe.class, entity.getUniverses());
-			releaseDates = new RESTHelper().getRESTUri(baseURI, ReleaseDate.class, entity.releaseDates);
+			Collection<URI> universeURIs = new RESTHelper().getRESTUri(baseURI, Universe.class, entity.getUniverses());
+			Collection<URI> releaseDateURIs = new RESTHelper().getRESTUri(baseURI, ReleaseDate.class, entity.releaseDates);
+			Collection<URI> staffMemberURIs = new RESTHelper().getRESTUri(baseURI, StaffMember.class, entity.staffMembers);
+			universes = new HashSet<>(universeURIs);
+			releaseDates = new HashSet<>(releaseDateURIs);
+			staffMembers = new ArrayList<>(staffMemberURIs);
 		}
 
 		@Override
@@ -317,6 +337,7 @@ public abstract class Media extends BaseMedia {
 					.appendSuper(super.equals(obj))
 					.append(this.universes, rhs.universes)
 					.append(this.releaseDates, rhs.releaseDates)
+					.append(this.staffMembers, rhs.staffMembers)
 					.isEquals();
 		}
 
@@ -326,22 +347,30 @@ public abstract class Media extends BaseMedia {
 					.appendSuper(super.hashCode())
 					.append(universes)
 					.append(releaseDates)
+					.append(staffMembers)
 					.toHashCode();
 		}
 	}
 
 	public abstract static class Init<E extends Init<E>> extends BaseMedia.Init<E> {
 
-		private Collection<Universe> universes = new TreeSet<>();
-		private Map<Support, LocalDate> releaseDates = new TreeMap<>();
-		private Collection<ReleaseDate> entityReleaseDates = new TreeSet<>();
+		private Collection<Universe> universes = new HashSet<>();
+		private Map<Support, LocalDate> releaseDates = new HashMap<>();
+		private Collection<ReleaseDate> entityReleaseDates = new HashSet<>();
+		private Collection<StaffMember> staffMembers = new HashSet<>();
 
 		protected abstract E self();
 
 		public E from(@NotNull @Valid Media entity) {
 			super.from(entity);
 			addAllUniverses(entity.getUniverses());
-			addAllReleaseDates(entity.getReleaseDates());
+			for (ReleaseDate entityReleaseDate : entity.releaseDates) {
+				addReleaseDate(entityReleaseDate);
+			}
+
+			for (StaffMember staffMember : entity.getStaffMembers()) {
+				addStaffMember(staffMember);
+			}
 			return self();
 		}
 
@@ -390,6 +419,11 @@ public abstract class Media extends BaseMedia {
 
 		public E addReleaseDate(@NotNull @Valid final ReleaseDate entity) {
 			entityReleaseDates.add(entity);
+			return self();
+		}
+
+		public E addStaffMember(@NotNull @Valid final StaffMember staffMember) {
+			staffMembers.add(staffMember);
 			return self();
 		}
 	}

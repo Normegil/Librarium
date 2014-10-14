@@ -123,7 +123,6 @@ public class StaffMember extends Entity implements Comparable<StaffMember>, Seri
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.appendSuper(super.hashCode())
 				.append(role)
 				.append(responsible)
 				.append(media)

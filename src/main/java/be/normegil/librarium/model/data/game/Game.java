@@ -7,6 +7,7 @@ import be.normegil.librarium.model.dao.DatabaseDAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
+import be.normegil.librarium.model.data.people.StaffMember;
 import be.normegil.librarium.model.data.people.StaffRole;
 import be.normegil.librarium.model.rest.RESTHelper;
 import be.normegil.librarium.model.rest.digest.Digest;
@@ -175,9 +176,6 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 		Game rhs = (Game) obj;
 		return new EqualsBuilder()
 				.appendSuper(super.equals(obj))
-				.append(this.getDevelopers(), rhs.getDevelopers())
-				.append(this.getEditors(), rhs.getEditors())
-				.append(this.getComposers(), rhs.getComposers())
 				.append(this.serie, rhs.serie)
 				.isEquals();
 	}
@@ -186,9 +184,6 @@ public class Game extends Media implements Comparable<Game>, Serializable {
 	public int hashCode() {
 		return new HashCodeBuilder()
 				.appendSuper(super.hashCode())
-				.append(getDevelopers())
-				.append(getEditors())
-				.append(getComposers())
 				.append(serie)
 				.toHashCode();
 	}

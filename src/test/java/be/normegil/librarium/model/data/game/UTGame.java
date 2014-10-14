@@ -28,7 +28,7 @@ public class UTGame {
 
 	@Before
 	public void setUp() throws Exception {
-		entity = FACTORY.getDefault();
+		entity = FACTORY.getNew();
 		developers = entity.getDevelopers();
 		editors = entity.getEditors();
 		composers = entity.getComposers();

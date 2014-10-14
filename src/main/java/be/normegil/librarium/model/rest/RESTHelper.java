@@ -4,9 +4,10 @@ import be.normegil.librarium.Constants;
 import be.normegil.librarium.annotation.Default;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.rest.services.DownloadLinkREST;
-import be.normegil.librarium.model.rest.services.GameSerieREST;
 import be.normegil.librarium.model.rest.services.ReleaseDateREST;
 import be.normegil.librarium.model.rest.services.UniverseREST;
+import be.normegil.librarium.model.rest.services.game.GameSerieREST;
+import be.normegil.librarium.model.rest.services.people.StaffMemberREST;
 import be.normegil.librarium.rest.RESTService;
 import be.normegil.librarium.rest.game.GameREST;
 import be.normegil.librarium.util.exception.RESTServiceNotFoundException;
@@ -29,7 +30,9 @@ public class RESTHelper {
 				new ReleaseDateREST(),
 
 				new GameREST(),
-				new GameSerieREST()
+				new GameSerieREST(),
+
+				new StaffMemberREST()
 		));
 	}
 
