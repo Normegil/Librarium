@@ -2,7 +2,6 @@ package be.normegil.librarium.model.rest.services;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.data.Universe;
-import be.normegil.librarium.rest.RESTService;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;

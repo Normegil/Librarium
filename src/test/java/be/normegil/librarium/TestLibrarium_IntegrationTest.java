@@ -1,6 +1,6 @@
 package be.normegil.librarium;
 
-import be.normegil.librarium.rest.game.ITGameREST_RESTReponses;
+import be.normegil.librarium.model.rest.services.game.ITGameREST_RESTReponses;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;

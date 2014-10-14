@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest.game;
+package be.normegil.librarium.model.rest.services.game;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.dao.DAO;
@@ -6,9 +6,9 @@ import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.data.game.GameSerie;
 import be.normegil.librarium.model.data.people.Responsible;
-import be.normegil.librarium.rest.RESTService;
-import be.normegil.librarium.rest.RESTServiceHelper;
-import be.normegil.librarium.rest.Updater;
+import be.normegil.librarium.model.rest.services.RESTService;
+import be.normegil.librarium.model.rest.services.RESTServiceHelper;
+import be.normegil.librarium.model.rest.services.Updater;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;

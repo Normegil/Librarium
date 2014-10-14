@@ -8,8 +8,8 @@ import be.normegil.librarium.model.rest.services.ReleaseDateREST;
 import be.normegil.librarium.model.rest.services.UniverseREST;
 import be.normegil.librarium.model.rest.services.game.GameSerieREST;
 import be.normegil.librarium.model.rest.services.people.StaffMemberREST;
-import be.normegil.librarium.rest.RESTService;
-import be.normegil.librarium.rest.game.GameREST;
+import be.normegil.librarium.model.rest.services.RESTService;
+import be.normegil.librarium.model.rest.services.game.GameREST;
 import be.normegil.librarium.util.exception.RESTServiceNotFoundException;
 
 import javax.ws.rs.Path;
@@ -60,7 +60,7 @@ public class RESTHelper {
 		} else if (services.size() == 0) {
 			throw new RESTServiceNotFoundException("No REST Service found for " + aClass);
 		} else {
-			throw new IllegalStateException("Application has more than one service for " + aClass + " but no @Default annotated service");
+			throw new IllegalStateException("Application has more than one services for " + aClass + " but no @Default annotated services");
 		}
 	}
 

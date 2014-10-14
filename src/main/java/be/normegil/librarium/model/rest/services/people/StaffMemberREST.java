@@ -2,7 +2,7 @@ package be.normegil.librarium.model.rest.services.people;
 
 import be.normegil.librarium.Constants;
 import be.normegil.librarium.model.data.people.StaffMember;
-import be.normegil.librarium.rest.RESTService;
+import be.normegil.librarium.model.rest.services.RESTService;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;

@@ -1,6 +1,6 @@
 package be.normegil.librarium;
 
-import be.normegil.librarium.rest.game.GameREST;
+import be.normegil.librarium.model.rest.services.game.GameREST;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.ws.rs.ApplicationPath;

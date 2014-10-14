@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.model.rest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

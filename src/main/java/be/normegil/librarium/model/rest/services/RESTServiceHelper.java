@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.model.rest.services;
 
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
@@ -8,7 +8,6 @@ import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Response;

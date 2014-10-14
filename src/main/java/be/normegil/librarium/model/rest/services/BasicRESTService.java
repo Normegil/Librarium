@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.model.rest.services;
 
 import be.normegil.librarium.ApplicationProperties;
 import be.normegil.librarium.libraries.URL;
@@ -6,6 +6,7 @@ import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.CollectionResource;
+import be.normegil.librarium.model.rest.services.RESTService;
 import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 

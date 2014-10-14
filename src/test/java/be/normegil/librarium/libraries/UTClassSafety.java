@@ -1,7 +1,6 @@
 package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.model.data.Entity;
-import be.normegil.librarium.rest.Updater;
 import be.normegil.librarium.tool.validation.Validator;
 import be.normegil.librarium.util.exception.InterfaceNotFoundException;
 import org.junit.After;

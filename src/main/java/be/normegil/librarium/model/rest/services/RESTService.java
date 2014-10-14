@@ -1,4 +1,4 @@
-package be.normegil.librarium.rest;
+package be.normegil.librarium.model.rest.services;
 
 import be.normegil.librarium.Constants;
 
