@@ -1,6 +1,5 @@
-package be.normegil.librarium.util.parser.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
-import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateJAXBAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +8,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 
-public class UTLocalDateAdapterSafety {
+public class UTLocalDateJAXBAdapterSafety {
 
 	private static final String EMPTY_STRING = "";
 	private LocalDateJAXBAdapter entity;

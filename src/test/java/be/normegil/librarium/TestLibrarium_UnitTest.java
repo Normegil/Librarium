@@ -13,7 +13,6 @@ import org.junit.runners.Suite;
 		LibrariesPackageTestSuite.class,
         UtilPackageTestSuite.class,
         ModelTestSuite.class,
-        RESTPackageTestSuite.class,
 		ValidationPackageTestSuite.class
 })
 public class TestLibrarium_UnitTest {

@@ -14,7 +14,7 @@ public class LocalDateTimeJsonDeserializer extends JsonDeserializer<LocalDateTim
 	private DateHelper helper = new DateHelper();
 
 	@Override
-	public LocalDateTime deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException, JsonProcessingException {
+	public LocalDateTime deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
 		return helper.parseLocalDateTime(jp.getText());
 	}
 }

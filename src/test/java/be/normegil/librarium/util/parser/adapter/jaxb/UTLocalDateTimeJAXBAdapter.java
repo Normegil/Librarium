@@ -1,23 +1,22 @@
-package be.normegil.librarium.util.parser.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.util.DateHelper;
-import be.normegil.librarium.util.parser.adapter.jaxb.LocalDateJAXBAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
 
-public class UTLocalDateAdapter {
+public class UTLocalDateTimeJAXBAdapter {
 
 	private static final DateHelper DATE_HELPER = new DateHelper();
-	private LocalDateJAXBAdapter entity;
+	private LocalDateTimeJAXBAdapter entity;
 
 	@Before
 	public void setUp() throws Exception {
-		entity = new LocalDateJAXBAdapter();
+		entity = new LocalDateTimeJAXBAdapter();
 	}
 
 	@After
@@ -27,13 +26,13 @@ public class UTLocalDateAdapter {
 
 	@Test
 	public void testMarshal() throws Exception {
-		LocalDate now = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now();
 		assertEquals(DATE_HELPER.format(now), entity.marshal(now));
 	}
 
 	@Test
 	public void testUnmarshal() throws Exception {
-		LocalDate now = LocalDate.now();
+		LocalDateTime now = LocalDateTime.now();
 		String toParse = DATE_HELPER.format(now);
 		assertEquals(now, entity.unmarshal(toParse));
 	}

@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.parser.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class UTURLAdapter {
+public class UTURLJAXBAdapter {
 
 	@SuppressWarnings(WarningTypes.UNCHECKED_CAST)
 	private static final DataFactory<URL> FACTORY = FactoryRepository.get(URL.class);

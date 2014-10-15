@@ -1,6 +1,6 @@
 package be.normegil.librarium.util;
 
-import be.normegil.librarium.util.parser.JAXBPackageTestSuite;
+import be.normegil.librarium.util.parser.ParserPackageTestSuite;
 import be.normegil.librarium.util.persistence.PersistencePackageTestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
 		InputStreamHelperTestSuite.class,
         XSDUtilTestSuite.class,
 
-		JAXBPackageTestSuite.class,
+		ParserPackageTestSuite.class,
 		PersistencePackageTestSuite.class
 })
 public class UtilPackageTestSuite {

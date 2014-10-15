@@ -1,7 +1,6 @@
 package be.normegil.librarium.libraries;
 
 import be.normegil.librarium.Constants;
-import be.normegil.librarium.util.ClassHelper;
 import be.normegil.librarium.util.exception.InterfaceNotFoundException;
 import be.normegil.librarium.util.exception.NoSuchFieldRuntimeException;
 import be.normegil.librarium.util.exception.NoSuchMethodRuntimeException;
@@ -11,11 +10,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 
@@ -59,7 +54,23 @@ public class ClassWrapper<E> implements Comparable<ClassWrapper<E>> {
 	}
 
 	public Collection<FieldWrapper> getAllFields() {
-		return new ClassHelper().getAllFields(entityClass);
+		List<FieldWrapper> fields = new ArrayList<>();
+		java.lang.reflect.Field[] declaredFields = entityClass.getDeclaredFields();
+		java.lang.reflect.Field[] classFields = entityClass.getFields();
+
+		for (java.lang.reflect.Field field : declaredFields) {
+			fields.add(new FieldWrapper(field));
+		}
+		for (java.lang.reflect.Field field : classFields) {
+			fields.add(new FieldWrapper(field));
+		}
+
+		Class superclass = entityClass.getSuperclass();
+		if (superclass != null) {
+			ClassWrapper classWrapper = new ClassWrapper<>(superclass);
+			fields.addAll(classWrapper.getAllFields());
+		}
+		return fields;
 	}
 
 	public String getSimpleName() {

@@ -18,7 +18,7 @@ public class UTXSDUtil {
 	}
 
 	@Test
-	public void testGame() throws Exception {
+	public void testGetSchema() throws Exception {
 		URL schemeURL = getClass().getResource(XSDUtil.XSD_FOLDER_PATH + "JAXBTestClass.xsd");
 		URL schemaURLToTest = xsdUtil.getSchema(JAXBHelperTestSuite.JAXBTestClass.class);
 		assertEquals(schemeURL, schemaURLToTest);

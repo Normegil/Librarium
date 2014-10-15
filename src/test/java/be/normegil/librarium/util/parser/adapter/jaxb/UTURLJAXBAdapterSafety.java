@@ -1,4 +1,4 @@
-package be.normegil.librarium.util.parser.adapter;
+package be.normegil.librarium.util.parser.adapter.jaxb;
 
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.util.parser.adapter.jaxb.URLJAXBAdapter;
@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class UTURLAdapterSafety {
+public class UTURLJAXBAdapterSafety {
 
 	private static final String EMPTY_STRING = "";
 	private URLJAXBAdapter entity;

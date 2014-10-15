@@ -5,32 +5,27 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 import static org.junit.Assert.assertEquals;
 
 public class UTDateHelper {
 
 	private DateHelper entity;
-	private LocalDate date;
 
 	@Before
 	public void setUp() throws Exception {
 		entity = new DateHelper();
-		date = LocalDate.of(2014, Month.SEPTEMBER, 3);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		date = null;
 		entity = null;
 	}
 
 	@Test
-	public void testFormat() throws Exception {
+	public void testFormatLocalDate() throws Exception {
+		LocalDate date = LocalDate.of(2014, Month.SEPTEMBER, 3);
 		ZonedDateTime zonedDateTime = ZonedDateTime.of(date.atStartOfDay(), ZoneId.systemDefault());
 		String expected = zonedDateTime.format(ApplicationProperties.STANDARD_TIME_FORMAT);
 
@@ -38,10 +33,29 @@ public class UTDateHelper {
 	}
 
 	@Test
-	public void testParse() throws Exception {
+	public void testParseLocalDate() throws Exception {
+		LocalDate date = LocalDate.of(2014, Month.SEPTEMBER, 3);
 		ZonedDateTime zonedDateTime = ZonedDateTime.of(date.atStartOfDay(), ZoneId.systemDefault());
 		String toConvert = zonedDateTime.format(ApplicationProperties.STANDARD_TIME_FORMAT);
 
 		assertEquals(date, entity.parseLocalDate(toConvert));
+	}
+
+	@Test
+	public void testFormatLocalDateTime() throws Exception {
+		LocalDateTime time = LocalDateTime.of(2014, Month.SEPTEMBER, 3, 12, 25);
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(time, ZoneId.systemDefault());
+		String expected = zonedDateTime.format(ApplicationProperties.STANDARD_TIME_FORMAT);
+
+		assertEquals(expected, entity.format(time));
+	}
+
+	@Test
+	public void testParseLocalDateTime() throws Exception {
+		LocalDateTime time = LocalDateTime.of(2014, Month.SEPTEMBER, 3, 12, 25);
+		ZonedDateTime zonedDateTime = ZonedDateTime.of(time, ZoneId.systemDefault());
+		String toConvert = zonedDateTime.format(ApplicationProperties.STANDARD_TIME_FORMAT);
+
+		assertEquals(time, entity.parseLocalDateTime(toConvert));
 	}
 }
