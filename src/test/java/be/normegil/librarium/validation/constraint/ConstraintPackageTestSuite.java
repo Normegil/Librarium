@@ -5,11 +5,13 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+		ExistingIDTestSuite.class,
+		HttpUrlValidatorTestSuite.class,
 		NotEmptyValidatorTestSuite.class,
-		ValidDateFormatValidatorTestSuite.class,
+		PositiveLongTestSuite.class,
 		PositiveDurationValidatorTestSuite.class,
-		PositiveLongValidatorTestSuite.class,
-		HttpUrlValidatorTestSuite.class
+		ValidDateFormatValidatorTestSuite.class,
+		URIWithIDTestSuite.class
 })
 public class ConstraintPackageTestSuite {
 }

@@ -1,4 +1,4 @@
-package be.normegil.librarium.model.rest.digest;
+package be.normegil.librarium.model.rest;
 
 import java.net.URI;
 

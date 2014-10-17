@@ -5,6 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+		UTURLJsonDeserializerSafety.class,
+		UTURLJsonDeserializer.class
 })
 public class URLJsonDeserializerTestSuite {
 }

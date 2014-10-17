@@ -6,7 +6,17 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		GamePackageTestSuite.class
+		AbstractBaseMediaRestServiceTestSuite.class,
+		AbstractMediaRestServiceTestSuite.class,
+		BasicRESTServiceTestSuite.class,
+		RESTServiceHelperTestSuite.class,
+
+		DownloadLinkRESTTestSuite.class,
+		ReleaseDateRESTTestSuite.class,
+		UniverseRESTTestSuite.class,
+
+		GamePackageTestSuite.class,
+		PeoplePackageTestSuite.class
 })
 public class ServicePackageTestSuite {
 }

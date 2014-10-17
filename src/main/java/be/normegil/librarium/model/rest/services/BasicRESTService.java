@@ -6,7 +6,6 @@ import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.model.rest.CollectionResource;
-import be.normegil.librarium.model.rest.services.RESTService;
 import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 
@@ -190,15 +189,15 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 		return baseURL.addToPath("?offset=" + offset + "&limit=" + limit);
 	}
 
-	public abstract DAO<E> getDao();
+	protected abstract DAO<E> getDao();
 
 	public abstract void setDAO(final DAO<Game> dao);
 
-	public abstract Logger getLogger();
+	protected abstract Logger getLogger();
 
-	public abstract void setLog(final Logger log);
+	public abstract void setLogger(final Logger log);
 
-	public abstract ContextResolver<Marshaller> getContextResolver();
+	protected abstract ContextResolver<Marshaller> getContextResolver();
 
 	public abstract void setContextResolver(final ContextResolver<Marshaller> contextResolver);
 }

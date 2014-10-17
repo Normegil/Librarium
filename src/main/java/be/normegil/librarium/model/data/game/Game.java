@@ -9,7 +9,7 @@ import be.normegil.librarium.model.data.Media;
 import be.normegil.librarium.model.data.people.Responsible;
 import be.normegil.librarium.model.data.people.StaffRole;
 import be.normegil.librarium.model.rest.RESTHelper;
-import be.normegil.librarium.model.rest.digest.Digest;
+import be.normegil.librarium.model.rest.Digest;
 import be.normegil.librarium.util.CollectionComparator;
 import be.normegil.librarium.util.exception.NoSuchEntityException;
 import be.normegil.librarium.validation.constraint.ExistingID;
