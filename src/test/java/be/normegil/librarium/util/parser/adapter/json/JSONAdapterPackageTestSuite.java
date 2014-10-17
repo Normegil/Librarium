@@ -7,8 +7,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 		LocalDateTimeJsonDeserializerTestSuite.class,
 		LocalDateTimeJsonSerializerTestSuite.class,
-		ThrowableJsonDeserializerTestSuite.class,
-		ThrowableJsonSerializerTestSuite.class,
 		URLJsonDeserializerTestSuite.class,
 		URLJsonSerializerTestSuite.class
 })
