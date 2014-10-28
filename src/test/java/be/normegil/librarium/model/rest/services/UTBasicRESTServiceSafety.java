@@ -10,6 +10,7 @@ import be.normegil.librarium.tool.FactoryRepository;
 import be.normegil.librarium.tool.validation.Validator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 
@@ -78,6 +79,7 @@ public class UTBasicRESTServiceSafety {
 		}
 	};
 
+	@Mock
 	private UriInfo uriInfo;
 
 	@Test(expected = ConstraintViolationException.class)

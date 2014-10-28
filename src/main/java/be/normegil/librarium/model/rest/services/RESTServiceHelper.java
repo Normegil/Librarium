@@ -8,7 +8,6 @@ import be.normegil.librarium.util.parser.adapter.jaxb.UUIDToRESTURLJAXBAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -21,7 +20,6 @@ import java.util.UUID;
 public class RESTServiceHelper<E extends Entity> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RESTServiceHelper.class);
-	@Inject
 	private DAO<E> dao;
 	private ContextResolver<Marshaller> context;
 	private Updater<E> updater;

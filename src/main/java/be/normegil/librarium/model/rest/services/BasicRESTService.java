@@ -47,6 +47,7 @@ public abstract class BasicRESTService<E extends Entity> implements RESTService 
 
 			Entity entity = getDao().get(id);
 			if (entity == null) {
+
 				return Response.status(Response.Status.NOT_FOUND).build();
 			} else {
 				URL baseURL = new URL(info.getBaseUri().toURL());

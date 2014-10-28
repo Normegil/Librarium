@@ -1,12 +1,79 @@
 package be.normegil.librarium.model.rest.services;
 
+import be.normegil.librarium.ApplicationProperties;
+import be.normegil.librarium.Constants;
+import be.normegil.librarium.libraries.ClassWrapper;
+import be.normegil.librarium.model.dao.DAO;
+import be.normegil.librarium.model.data.Entity;
+import be.normegil.librarium.model.data.game.Game;
+import be.normegil.librarium.tool.DataFactory;
+import be.normegil.librarium.tool.FactoryRepository;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.slf4j.Logger;
+
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.ext.ContextResolver;
+import javax.xml.bind.Marshaller;
+import java.lang.reflect.Method;
+import java.util.UUID;
 
 public class UTBasicRESTService {
 
-	@Test
+	private static final DataFactory<Game> FACTORY = FactoryRepository.get(Game.class);
+	private BasicRESTService entity = new BasicRESTService() {
+		@Override
+		protected void update(final Entity loadedEntity, final Entity entity) {
+		}
+
+		@Override
+		protected void updateNullCheck(final Entity loadedEntity, final Entity entity) {
+
+		}
+
+		@Override
+		public DAO getDao() {
+			return null;
+		}
+
+		@Override
+		public void setDAO(final DAO dao) {
+
+		}
+
+		@Override
+		public Logger getLogger() {
+			return null;
+		}
+
+		@Override
+		public void setLogger(final Logger log) {
+
+		}
+
+		@Override
+		public ContextResolver<Marshaller> getContextResolver() {
+			return null;
+		}
+
+		@Override
+		public void setContextResolver(final ContextResolver contextResolver) {
+
+		}
+
+		@Override
+		public Class getSupportedClass() {
+			return null;
+		}
+	};
+
+	@Mock
+	private UriInfo uriInfo;
+
+	@Test(expected = UnsupportedOperationException.class)
 	public void testGetAll_NegativeOffset() throws Exception {
-		throw new UnsupportedOperationException();
+		entity.getAll(uriInfo, -1l, ApplicationProperties.REST.DEFAULT_LIMIT);
 	}
 
 	@Test
