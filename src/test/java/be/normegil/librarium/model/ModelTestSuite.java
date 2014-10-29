@@ -1,4 +1,4 @@
-ypackage be.normegil.librarium.model;
+package be.normegil.librarium.model;
 
 import be.normegil.librarium.model.dao.DAOPackageTestSuite;
 import be.normegil.librarium.model.data.DataPackageTestSuite;
