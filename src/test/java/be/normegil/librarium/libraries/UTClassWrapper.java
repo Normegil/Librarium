@@ -19,7 +19,7 @@ import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class UTClass {
+public class UTClassWrapper {
 
 	private static final java.lang.Class<Media> BASE_CLASS = Media.class;
 	private ClassWrapper<Media> entity;

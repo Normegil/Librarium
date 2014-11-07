@@ -3,17 +3,15 @@ package be.normegil.librarium.model.rest.services.game;
 import be.normegil.librarium.WarningTypes;
 import be.normegil.librarium.libraries.URL;
 import be.normegil.librarium.model.dao.DAO;
-import be.normegil.librarium.model.rest.services.game.GameREST;
-import be.normegil.librarium.tool.MemoryTestDAO;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
+import be.normegil.librarium.tool.MemoryTestDAO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -59,32 +57,32 @@ public class UTGameREST {
 		Collection<Game> allInMemoryGame = gameDAO.getAll();
 		assertEquals(allInMemoryGame.size(), gamesList.size());
 		assertTrue(allInMemoryGame.containsAll(gamesList));
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGetAll_GivenOffset_NullLimit() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGetAll_NullOffset_GivenLimit() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGetAll_GivenOffset_GivenLimit() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGetAll_NegativeOffset() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGetAll_OffsetTooHigh() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
@@ -93,24 +91,24 @@ public class UTGameREST {
 		Response response = gameREST.get(info, game.getId());
 		Game gameFromREST = (Game) response.getEntity();
 		assertEquals(game, gameFromREST);
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testGet_IDNotFound() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testCreate() throws Exception {
 		gameREST.create(info, GAME_FACTORY.getNew());
 		assertGameCreated();
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testCreate_WithID() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
@@ -124,159 +122,158 @@ public class UTGameREST {
 
 	@Test
 	public void testUpdateByPUT_ChangeDescription() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeOfficialWebsite() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeWikipediaPage() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeGameSerie() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeTags() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeStores() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeDownloadLink() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeUniverses() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeSupports() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeReleaseDates() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeDeveloppers() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeEditors() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_ChangeComposers() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_NotExisting() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPUT_DifferentsIDs() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeTitle() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeDescription() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeOfficialWebsite() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeWikipediaPage() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeGameSerie() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeTags() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeStores() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeDownloadLink() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeUniverses() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeSupports() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeReleaseDates() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeDeveloppers() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeEditors() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_ChangeComposers() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
-
 
 
 	@Test
 	public void testUpdateByPOST_NotExisting() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
 	public void testUpdateByPOST_DifferentsIDs() throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Test
@@ -290,7 +287,7 @@ public class UTGameREST {
 	@Test
 	public void testDelete_IDNotFound() throws Exception {
 		gameREST.delete(UUID.randomUUID());
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	private void assertGameCreated() {

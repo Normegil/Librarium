@@ -7,7 +7,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		ClassHelperTestSuite.class,
 		CollectionComparatorTestSuite.class,
 		DateHelperTestSuite.class,
 		InputStreamHelperTestSuite.class,

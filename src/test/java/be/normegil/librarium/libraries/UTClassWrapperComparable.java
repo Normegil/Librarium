@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class UTClassComparable extends AbstractDataComparableTest<ClassWrapper> {
+public class UTClassWrapperComparable extends AbstractDataComparableTest<ClassWrapper> {
 
 	private static final java.lang.Class<Media> BASE_CLASS = Media.class;
 

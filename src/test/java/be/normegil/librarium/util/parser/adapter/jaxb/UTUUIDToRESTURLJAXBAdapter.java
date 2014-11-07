@@ -39,7 +39,7 @@ public class UTUUIDToRESTURLJAXBAdapter {
 	@Test
 	public void testUnmarshal() throws Exception {
 		UUID uuid = UUID.randomUUID();
-		URL toParse = URL_FACTORY.getNew().addToPath(uuid);
+		URL toParse = URL_FACTORY.getNew().addToPath(uuid.toString());
 		assertEquals(uuid, entity.unmarshal(toParse));
 	}
 }

@@ -1,14 +1,11 @@
 package be.normegil.librarium.model.rest.services;
 
 import be.normegil.librarium.ApplicationProperties;
-import be.normegil.librarium.Constants;
-import be.normegil.librarium.libraries.ClassWrapper;
 import be.normegil.librarium.model.dao.DAO;
 import be.normegil.librarium.model.data.Entity;
 import be.normegil.librarium.model.data.game.Game;
 import be.normegil.librarium.tool.DataFactory;
 import be.normegil.librarium.tool.FactoryRepository;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.slf4j.Logger;
@@ -16,8 +13,6 @@ import org.slf4j.Logger;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.ContextResolver;
 import javax.xml.bind.Marshaller;
-import java.lang.reflect.Method;
-import java.util.UUID;
 
 public class UTBasicRESTService {
 
